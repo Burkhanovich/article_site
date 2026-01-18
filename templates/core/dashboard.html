@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %} - {% trans "Article Publishing Platform" %}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>
+            <i class="bi bi-speedometer2"></i> {% trans "Dashboard" %}
+        </h1>
+        <p class="lead text-muted">
+            {% trans "Welcome back" %}, {{ user.username }}!
+            <span class="badge bg-primary">{{ user.get_role_display }}</span>
+        </p>
+    </div>
+</div>
+
+{% if user.is_author %}
+    <!-- Author Dashboard -->
+
+    {% if not user.has_accepted_rules %}
+        <!-- Warning for authors who haven't accepted rules -->
+        <div class="alert alert-warning">
+            <h5><i class="bi bi-exclamation-triangle"></i> {% trans "Action Required" %}</h5>
+            <p class="mb-2">{% trans "You need to read and accept our article writing rules before you can start publishing." %}</p>
+            <a href="{% url 'users:accept_rules' %}" class="btn btn-warning">
+                <i class="bi bi-check-circle"></i> {% trans "Accept Rules Now" %}
+            </a>
+        </div>
+    {% else %}
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card bg-primary text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase mb-1">{% trans "Total Articles" %}</h6>
+                                <h2 class="mb-0">{{ total_articles }}</h2>
+                            </div>
+                            <div>
+                                <i class="bi bi-file-earmark-text" style="font-size: 3rem; opacity: 0.5;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase mb-1">{% trans "Published" %}</h6>
+                                <h2 class="mb-0">{{ published_articles }}</h2>
+                            </div>
+                            <div>
+                                <i class="bi bi-check-circle" style="font-size: 3rem; opacity: 0.5;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-warning text-dark shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase mb-1">{% trans "Drafts" %}</h6>
+                                <h2 class="mb-0">{{ draft_articles }}</h2>
+                            </div>
+                            <div>
+                                <i class="bi bi-pencil-square" style="font-size: 3rem; opacity: 0.5;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h4 class="mb-3">{% trans "Quick Actions" %}</h4>
+                <div class="btn-group" role="group">
+                    <a href="{% url 'articles:create' %}" class="btn btn-success">
+                        <i class="bi bi-plus-circle"></i> {% trans "Create New Article" %}
+                    </a>
+                    <a href="{% url 'articles:my_articles' %}" class="btn btn-primary">
+                        <i class="bi bi-folder"></i> {% trans "My Articles" %}
+                    </a>
+                    <a href="{% url 'articles:list' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-newspaper"></i> {% trans "Browse All Articles" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Articles -->
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">{% trans "Your Recent Articles" %}</h4>
+
+                {% if recent_articles %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Title" %}</th>
+                                    <th>{% trans "Status" %}</th>
+                                    <th>{% trans "Views" %}</th>
+                                    <th>{% trans "Created" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for article in recent_articles %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'articles:detail' article.slug %}" class="text-decoration-none">
+                                                {{ article.title }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if article.status == 'PUBLISHED' %}
+                                                <span class="badge bg-success">{% trans "Published" %}</span>
+                                            {% else %}
+                                                <span class="badge bg-warning text-dark">{% trans "Draft" %}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <i class="bi bi-eye"></i> {{ article.views }}
+                                        </td>
+                                        <td>{{ article.created_at|date:"M d, Y" }}</td>
+                                        <td>
+                                            <a href="{% url 'articles:edit' article.slug %}" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <a href="{% url 'articles:my_articles' %}" class="btn btn-outline-primary">
+                        {% trans "View All My Articles" %} <i class="bi bi-arrow-right"></i>
+                    </a>
+                {% else %}
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i> {% trans "You haven't created any articles yet." %}
+                        <a href="{% url 'articles:create' %}" class="alert-link">{% trans "Create your first article" %}</a>.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+{% else %}
+    <!-- Reader Dashboard -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h5><i class="bi bi-info-circle"></i> {% trans "Reader Account" %}</h5>
+                <p class="mb-0">
+                    {% trans "You are registered as a Reader. You can browse and read all published articles." %}
+                    {% trans "To create articles, you need to register as an Author." %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Articles for Reader -->
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3">{% trans "Recent Articles" %}</h4>
+
+            {% if recent_articles %}
+                <div class="row g-4">
+                    {% for article in recent_articles %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 shadow-sm">
+                                {% if article.cover_image %}
+                                    <img src="{{ article.cover_image.url }}" class="card-img-top article-cover" alt="{{ article.title }}">
+                                {% else %}
+                                    <div class="article-cover d-flex align-items-center justify-content-center bg-secondary text-white">
+                                        <i class="bi bi-file-earmark-text" style="font-size: 3rem;"></i>
+                                    </div>
+                                {% endif %}
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ article.title }}</h5>
+                                    <p class="card-text text-muted">
+                                        <small>
+                                            <i class="bi bi-person"></i> {{ article.author.username }}
+                                            <br>
+                                            <i class="bi bi-calendar"></i> {{ article.created_at|date:"M d, Y" }}
+                                        </small>
+                                    </p>
+                                </div>
+
+                                <div class="card-footer bg-transparent border-0">
+                                    <a href="{% url 'articles:detail' article.slug %}" class="btn btn-outline-primary btn-sm w-100">
+                                        <i class="bi bi-book-half"></i> {% trans "Read Article" %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="{% url 'articles:list' %}" class="btn btn-primary">
+                        {% trans "View All Articles" %} <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i> {% trans "No articles available yet. Check back later!" %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

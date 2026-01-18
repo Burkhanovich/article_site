@@ -1,0 +1,741 @@
+# ENGLISH TRANSLATION FOR ARTICLE PUBLISHING PLATFORM
+# Copyright (C) 2025
+# This file is distributed under the same license as the Article Platform package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-15 12:00+0500\n"
+"PO-Revision-Date: 2025-01-15 12:00+0500\n"
+"Last-Translator: Article Platform Team\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Navigation
+msgid "Article Publishing Platform"
+msgstr "Article Publishing Platform"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Articles"
+msgstr "Articles"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "My Articles"
+msgstr "My Articles"
+
+msgid "Create Article"
+msgstr "Create Article"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Logout"
+msgstr "Logout"
+
+# User Roles
+msgid "O'quvchi (Reader)"
+msgstr "Reader"
+
+msgid "Avtor (Author)"
+msgstr "Author"
+
+msgid "User Role"
+msgstr "User Role"
+
+msgid "Reader"
+msgstr "Reader"
+
+msgid "Author"
+msgstr "Author"
+
+# Forms and Fields
+msgid "Username"
+msgstr "Username"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "email address"
+msgstr "email address"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Content"
+msgstr "Content"
+
+msgid "Cover Image"
+msgstr "Cover Image"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Draft"
+msgstr "Draft"
+
+msgid "Published"
+msgstr "Published"
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Views"
+msgstr "Views"
+
+msgid "Created At"
+msgstr "Created At"
+
+msgid "Updated At"
+msgstr "Updated At"
+
+# Article Rules
+msgid "Article Rules"
+msgstr "Article Rules"
+
+msgid "Rules Content"
+msgstr "Rules Content"
+
+msgid "Article writing guidelines that authors must accept"
+msgstr "Article writing guidelines that authors must accept"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Only one set of rules should be active at a time"
+msgstr "Only one set of rules should be active at a time"
+
+msgid "Has Accepted Article Rules"
+msgstr "Has Accepted Article Rules"
+
+# Buttons and Actions
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "View"
+msgstr "View"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Accept Rules"
+msgstr "Accept Rules"
+
+msgid "I accept the article writing rules"
+msgstr "I accept the article writing rules"
+
+msgid "Create Account"
+msgstr "Create Account"
+
+msgid "Sign In"
+msgstr "Sign In"
+
+msgid "Sign Up"
+msgstr "Sign Up"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Previous"
+msgstr "Previous"
+
+# Messages
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Welcome back"
+msgstr "Welcome back"
+
+msgid "Thank you"
+msgstr "Thank you"
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Warning"
+msgstr "Warning"
+
+msgid "Info"
+msgstr "Info"
+
+# User Messages
+msgid "Welcome, {username}! Your account has been created successfully."
+msgstr "Welcome, {username}! Your account has been created successfully."
+
+msgid "As an author, you must read and accept our article writing rules before publishing."
+msgstr "As an author, you must read and accept our article writing rules before publishing."
+
+msgid "Registration failed. Please correct the errors below."
+msgstr "Registration failed. Please correct the errors below."
+
+msgid "Invalid username or password. Please try again."
+msgstr "Invalid username or password. Please try again."
+
+msgid "You have been logged out successfully."
+msgstr "You have been logged out successfully."
+
+msgid "Access denied. This page is only for authors."
+msgstr "Access denied. This page is only for authors."
+
+msgid "Article rules have not been configured yet. Please contact the administrator."
+msgstr "Article rules have not been configured yet. Please contact the administrator."
+
+msgid "Thank you for accepting the rules! You can now create articles."
+msgstr "Thank you for accepting the rules! You can now create articles."
+
+msgid "You must accept the rules to proceed."
+msgstr "You must accept the rules to proceed."
+
+msgid "Please accept the article writing rules to start publishing."
+msgstr "Please accept the article writing rules to start publishing."
+
+msgid "Please log in to access this page."
+msgstr "Please log in to access this page."
+
+msgid "Access denied. Only authors can create articles."
+msgstr "Access denied. Only authors can create articles."
+
+msgid "You must accept the article writing rules before creating articles."
+msgstr "You must accept the article writing rules before creating articles."
+
+msgid "Access denied. You can only edit your own articles."
+msgstr "Access denied. You can only edit your own articles."
+
+msgid "Access denied. You can only delete your own articles."
+msgstr "Access denied. You can only delete your own articles."
+
+# Article Messages
+msgid "Article \"{title}\" created successfully!"
+msgstr "Article \"{title}\" created successfully!"
+
+msgid "Failed to create article. Please correct the errors below."
+msgstr "Failed to create article. Please correct the errors below."
+
+msgid "Article \"{title}\" updated successfully!"
+msgstr "Article \"{title}\" updated successfully!"
+
+msgid "Failed to update article. Please correct the errors below."
+msgstr "Failed to update article. Please correct the errors below."
+
+msgid "Article \"{title}\" has been deleted successfully."
+msgstr "Article \"{title}\" has been deleted successfully."
+
+# Article Fields
+msgid "Article title (max 200 characters)"
+msgstr "Article title (max 200 characters)"
+
+msgid "Auto-generated from title, used in URLs"
+msgstr "Auto-generated from title, used in URLs"
+
+msgid "Article content with rich text formatting"
+msgstr "Article content with rich text formatting"
+
+msgid "Allowed formats: jpg, jpeg, png, gif, webp. Max size: 5MB"
+msgstr "Allowed formats: jpg, jpeg, png, gif, webp. Max size: 5MB"
+
+msgid "Number of times this article has been viewed"
+msgstr "Number of times this article has been viewed"
+
+# Statistics
+msgid "Total Articles"
+msgstr "Total Articles"
+
+msgid "Published Articles"
+msgstr "Published Articles"
+
+msgid "Draft Articles"
+msgstr "Draft Articles"
+
+msgid "Recent Articles"
+msgstr "Recent Articles"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Statistics"
+msgstr "Statistics"
+
+msgid "Total views"
+msgstr "Total views"
+
+# Error Pages
+msgid "403 - Access Denied"
+msgstr "403 - Access Denied"
+
+msgid "Access Denied"
+msgstr "Access Denied"
+
+msgid "You don't have permission to access this resource."
+msgstr "You don't have permission to access this resource."
+
+msgid "If you believe this is an error, please contact the administrator."
+msgstr "If you believe this is an error, please contact the administrator."
+
+msgid "Go to Homepage"
+msgstr "Go to Homepage"
+
+msgid "Go to Dashboard"
+msgstr "Go to Dashboard"
+
+msgid "404 - Page Not Found"
+msgstr "404 - Page Not Found"
+
+msgid "Page Not Found"
+msgstr "Page Not Found"
+
+msgid "The page you are looking for doesn't exist or has been moved."
+msgstr "The page you are looking for doesn't exist or has been moved."
+
+msgid "Please check the URL or use the navigation to find what you're looking for."
+msgstr "Please check the URL or use the navigation to find what you're looking for."
+
+msgid "Browse Articles"
+msgstr "Browse Articles"
+
+msgid "500 - Server Error"
+msgstr "500 - Server Error"
+
+msgid "Internal Server Error"
+msgstr "Internal Server Error"
+
+msgid "Something went wrong on our end. We're working to fix it."
+msgstr "Something went wrong on our end. We're working to fix it."
+
+msgid "Please try again later. If the problem persists, contact support."
+msgstr "Please try again later. If the problem persists, contact support."
+
+msgid "Try Again"
+msgstr "Try Again"
+
+# Footer
+msgid "Built with Django & Bootstrap"
+msgstr "Built with Django & Bootstrap"
+
+msgid "Secure"
+msgstr "Secure"
+
+msgid "Scalable"
+msgstr "Scalable"
+
+msgid "Production-Ready"
+msgstr "Production-Ready"
+
+# Validation Errors
+msgid "This field is required."
+msgstr "This field is required."
+
+msgid "Enter a valid email address."
+msgstr "Enter a valid email address."
+
+msgid "A user with that email already exists."
+msgstr "A user with that email already exists."
+
+msgid "The two password fields didn't match."
+msgstr "The two password fields didn't match."
+
+msgid "This password is too short. It must contain at least 8 characters."
+msgstr "This password is too short. It must contain at least 8 characters."
+
+msgid "This password is too common."
+msgstr "This password is too common."
+
+msgid "This password is entirely numeric."
+msgstr "This password is entirely numeric."
+
+# Admin
+msgid "User"
+msgstr "User"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "Article"
+msgstr "Article"
+
+msgid "Articles"
+msgstr "Articles"
+
+# Pagination
+msgid "Page"
+msgstr "Page"
+
+msgid "of"
+msgstr "of"
+
+msgid "Showing"
+msgstr "Showing"
+
+msgid "results"
+msgstr "results"
+
+# Confirmation
+msgid "Are you sure?"
+msgstr "Are you sure?"
+
+msgid "Are you sure you want to delete this article?"
+msgstr "Are you sure you want to delete this article?"
+
+msgid "This action cannot be undone."
+msgstr "This action cannot be undone."
+
+msgid "Yes, delete it"
+msgstr "Yes, delete it"
+
+msgid "No, cancel"
+msgstr "No, cancel"
+
+# Time
+msgid "Today"
+msgstr "Today"
+
+msgid "Yesterday"
+msgstr "Yesterday"
+
+msgid "days ago"
+msgstr "days ago"
+
+msgid "hours ago"
+msgstr "hours ago"
+
+msgid "minutes ago"
+msgstr "minutes ago"
+
+msgid "just now"
+msgstr "just now"
+
+# Author Dashboard
+msgid "My Dashboard"
+msgstr "My Dashboard"
+
+msgid "Article Management"
+msgstr "Article Management"
+
+msgid "Quick Actions"
+msgstr "Quick Actions"
+
+msgid "No articles yet"
+msgstr "No articles yet"
+
+msgid "Start by creating your first article!"
+msgstr "Start by creating your first article!"
+
+# Search
+msgid "Search articles..."
+msgstr "Search articles..."
+
+msgid "Search results for"
+msgstr "Search results for"
+
+msgid "No results found"
+msgstr "No results found"
+
+msgid "Try different keywords"
+msgstr "Try different keywords"
+
+# Upload
+msgid "Choose file"
+msgstr "Choose file"
+
+msgid "No file chosen"
+msgstr "No file chosen"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Remove"
+msgstr "Remove"
+
+# Help Text
+msgid "Enter your username"
+msgstr "Enter your username"
+
+msgid "Enter your email address"
+msgstr "Enter your email address"
+
+msgid "Enter your password"
+msgstr "Enter your password"
+
+msgid "Confirm your password"
+msgstr "Confirm your password"
+
+msgid "Choose your role"
+msgstr "Choose your role"
+
+msgid "Select a language"
+msgstr "Select a language"
+
+# New translations for home page
+msgid "Upload New Article"
+msgstr "Upload New Article"
+
+msgid "Your Articles"
+msgstr "Your Articles"
+
+msgid "Platform Total"
+msgstr "Platform Total"
+
+msgid "Articles Available to Read"
+msgstr "Articles Available to Read"
+
+msgid "Discover amazing articles from talented authors"
+msgstr "Discover amazing articles from talented authors"
+
+msgid "You are registered as a Reader. Browse and enjoy articles!"
+msgstr "You are registered as a Reader. Browse and enjoy articles!"
+
+msgid "Browse All Articles"
+msgstr "Browse All Articles"
+
+msgid "Ready to share your knowledge? Create your next article now!"
+msgstr "Ready to share your knowledge? Create your next article now!"
+
+msgid "Action Required"
+msgstr "Action Required"
+
+msgid "Accept Rules Now"
+msgstr "Accept Rules Now"
+
+msgid "Create New Article"
+msgstr "Create New Article"
+
+msgid "Your Recent Articles"
+msgstr "Your Recent Articles"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Created"
+msgstr "Created"
+
+msgid "View All My Articles"
+msgstr "View All My Articles"
+
+msgid "You haven't created any articles yet."
+msgstr "You haven't created any articles yet."
+
+msgid "Create your first article"
+msgstr "Create your first article"
+
+msgid "Reader Account"
+msgstr "Reader Account"
+
+msgid "You are registered as a Reader. You can browse and read all published articles."
+msgstr "You are registered as a Reader. You can browse and read all published articles."
+
+msgid "To create articles, you need to register as an Author."
+msgstr "To create articles, you need to register as an Author."
+
+msgid "No articles available yet. Check back later!"
+msgstr "No articles available yet. Check back later!"
+
+msgid "Why Choose Our Platform?"
+msgstr "Why Choose Our Platform?"
+
+msgid "Easy Publishing"
+msgstr "Easy Publishing"
+
+msgid "Rich text editor with image support makes writing a breeze."
+msgstr "Rich text editor with image support makes writing a breeze."
+
+msgid "Secure & Safe"
+msgstr "Secure & Safe"
+
+msgid "Your content is protected with enterprise-grade security."
+msgstr "Your content is protected with enterprise-grade security."
+
+msgid "Track Performance"
+msgstr "Track Performance"
+
+msgid "Monitor views and engagement on your articles."
+msgstr "Monitor views and engagement on your articles."
+
+msgid "No articles published yet. Be the first to share your knowledge!"
+msgstr "No articles published yet. Be the first to share your knowledge!"
+
+msgid "View All Articles"
+msgstr "View All Articles"
+
+msgid "Read Article"
+msgstr "Read Article"
+
+msgid "Join as Author"
+msgstr "Join as Author"
+
+msgid "Browse Articles"
+msgstr "Browse Articles"
+
+msgid "Community Driven"
+msgstr "Community Driven"
+
+msgid "Secure Platform"
+msgstr "Secure Platform"
+
+msgid "Welcome to Article Platform"
+msgstr "Welcome to Article Platform"
+
+msgid "Share your knowledge, read amazing articles, and connect with authors worldwide."
+msgstr "Share your knowledge, read amazing articles, and connect with authors worldwide."
+
+msgid "views"
+msgstr "views"
+
+msgid "You need to read and accept our article writing rules before you can start publishing."
+msgstr "You need to read and accept our article writing rules before you can start publishing."
+
+
+# Form Field Translations
+
+msgid "Article Title"
+msgstr "Article Title"
+
+msgid "Article Content"
+msgstr "Article Content"
+
+msgid "Article File"
+msgstr "Article File"
+
+msgid "Maximum 200 characters"
+msgstr "Maximum 200 characters"
+
+msgid "Write your article content with rich text formatting"
+msgstr "Write your article content with rich text formatting"
+
+msgid "Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: 10MB"
+msgstr "Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: 10MB"
+
+msgid "Choose \"Draft\" to save without publishing, or \"Published\" to make it visible to readers"
+msgstr "Choose \"Draft\" to save without publishing, or \"Published\" to make it visible to readers"
+
+msgid "Optional"
+msgstr "Optional"
+
+msgid "Current file"
+msgstr "Current file"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Update Article"
+msgstr "Update Article"
+
+msgid "Writing Tips"
+msgstr "Writing Tips"
+
+msgid "Use a clear, descriptive title that summarizes your article"
+msgstr "Use a clear, descriptive title that summarizes your article"
+
+msgid "Add a cover image to make your article more attractive (optional but recommended)"
+msgstr "Add a cover image to make your article more attractive (optional but recommended)"
+
+msgid "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)"
+msgstr "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)"
+
+msgid "Format your content with headings, lists, and images for better readability"
+msgstr "Format your content with headings, lists, and images for better readability"
+
+msgid "Save as Draft if you want to continue editing later"
+msgstr "Save as Draft if you want to continue editing later"
+
+msgid "Publish when your article is ready for readers"
+msgstr "Publish when your article is ready for readers"
+
+
+# Article File Display Translations
+msgid "Download Article File"
+msgstr "Download Article File"
+
+msgid "Open article file"
+msgstr "Open article file"
+
+msgid "Article File Available"
+msgstr "Article File Available"
+
+msgid "File Type"
+msgstr "File Type"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Open File"
+msgstr "Open File"
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Back to Articles"
+msgstr "Back to Articles"
+
+msgid "Published Articles"
+msgstr "Published Articles"
+
+msgid "Browse our collection of amazing articles"
+msgstr "Browse our collection of amazing articles"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Showing results for"
+msgstr "Showing results for"
+
+msgid "Clear"
+msgstr "Clear"
+
+msgid "Read Article"
+msgstr "Read Article"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "of"
+msgstr "of"
+
+msgid "No articles published yet. Be the first to share your knowledge!"
+msgstr "No articles published yet. Be the first to share your knowledge!"
+
+msgid "Last updated"
+msgstr "Last updated"
+
+msgid "About the Author"
+msgstr "About the Author"
+

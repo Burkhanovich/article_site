@@ -1,0 +1,337 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                   MAQOLA PLATFORMASINI TEST QILISH                      ║
+║                         To'liq Yo'riqnoma                              ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+📌 SERVER ISHGA TUSHIRISH
+═════════════════════════════════════════════════════════════════════════
+Server allaqachon ishlamoqda: http://127.0.0.1:8000/
+
+Agar to'xtatilgan bo'lsa, qayta ishga tushiring:
+> python manage.py runserver
+
+
+📌 TEST HISOBLAR
+═════════════════════════════════════════════════════════════════════════
+
+1️⃣ AUTHOR (Muallif) Hisobi:
+   Username: test_author
+   Parol:    test123456
+   Vazifasi: Maqola yozish va yuklash
+
+2️⃣ READER (O'quvchi) Hisobi:
+   Username: test_reader
+   Parol:    test123456
+   Vazifasi: Maqolalarni o'qish
+
+3️⃣ ADMIN Hisobi:
+   Username: admin
+   Parol:    [sizning parolingiz]
+   Vazifasi: Platformani boshqarish
+
+
+📌 TEST QILISH BOSQICHLARI
+═════════════════════════════════════════════════════════════════════════
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 1: BOSH SAHIFANI TEKSHIRISH                                  ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Brauzerda oching: http://127.0.0.1:8000/uz/
+
+2. Tekshiring:
+   ✓ Bosh sahifa yuklanishi
+   ✓ Til almashtirgich (O'zbekcha, Русский, English)
+   ✓ Navigatsiya menyusi
+   ✓ Footer ma'lumotlari
+
+3. Tilni almashtiring:
+   - O'zbekcha → Русский → English
+   - Barcha matnlar to'g'ri tarjima qilinganini tekshiring
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 2: AUTHOR SIFATIDA KIRISH                                    ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Login sahifasiga o'ting:
+   http://127.0.0.1:8000/uz/users/login/
+
+2. Kirish ma'lumotlari:
+   Username: test_author
+   Parol: test123456
+
+3. "Kirish" tugmasini bosing
+
+4. Tekshiring:
+   ✓ Muvaffaqiyatli kirganingizni
+   ✓ Navbar da "test_author" ko'rinishini
+   ✓ Dashboard sahifasiga o'tganingizni
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 3: MAQOLA QOIDALARINI QABUL QILISH                           ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Dashboard dan "Accept Rules Now" tugmasini bosing
+   YOKI: http://127.0.0.1:8000/uz/users/accept-rules/
+
+2. Tekshiring:
+   ✓ Qoidalar to'liq ko'rinishi (O'zbek tilida)
+   ✓ "Loaded from file: rules/maqola_qoidalari..." yozuvi
+   ✓ Checkbox va "Accept and Continue" tugmasi
+
+3. Qoidalarni o'qib chiqing (scroll down)
+
+4. Checkbox ni belgilang:
+   ☑ "I have read and accept the article writing rules"
+
+5. "Accept and Continue" tugmasini bosing
+
+6. Tekshiring:
+   ✓ Success xabari ko'rinishi
+   ✓ Dashboard ga qaytganingizni
+   ✓ Endi "Create New Article" tugmasi mavjudligini
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 4: MAQOLA YARATISH (TEXT EDITOR ORQALI)                      ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. "Create New Article" tugmasini bosing
+   YOKI: http://127.0.0.1:8000/uz/articles/create/
+
+2. Maqola ma'lumotlarini kiriting:
+
+   📝 Article Title:
+   "Django va Python bilan Web Dasturlash"
+
+   📝 Article Content (CKEditor):
+   - Matningizni kiriting
+   - Bold, Italic, Underline ishlating
+   - Sarlavhalar qo'shing (Heading 1, 2, 3)
+   - Ro'yxatlar yarating (bullet points)
+   - Rasm yuklashni sinab ko'ring (CKEditor orqali)
+
+   🖼️ Cover Image:
+   - Browse tugmasini bosing
+   - Rasm tanlang (JPG, PNG, GIF, WebP)
+   - Maksimal: 5MB
+
+   📄 Article File (YANGI FUNKSIYA!):
+   - "Choose file" tugmasini bosing
+   - .txt, .doc, .docx, yoki .pdf file tanlang
+   - Maksimal: 10MB
+   - Bu majburiy emas (optional)
+
+   📊 Status:
+   - "Published" tanlang (yoki "Draft")
+
+3. "Create Article" tugmasini bosing
+
+4. Tekshiring:
+   ✓ Success xabari: "Article created successfully!"
+   ✓ Maqola sahifasiga o'tganingizni
+   ✓ Barcha ma'lumotlar to'g'ri ko'rinishini
+   ✓ Agar file yuklagan bo'lsangiz, download link borligini
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 5: FILE YUKLASH XAVFSIZLIGINI TEKSHIRISH                     ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+MUHIM: Bu test platformaning xavfsizligini tekshirish uchun!
+
+1. Yangi maqola yarating
+
+2. Noto'g'ri formatdagi file yuklashga harakat qiling:
+   ✗ .exe file
+   ✗ .php file
+   ✗ .sh file
+
+   Natija: Error ko'rsatishi kerak!
+   "Only .txt, .doc, .docx, and .pdf files are allowed."
+
+3. Juda katta file (>10MB) yuklashga harakat qiling
+
+   Natija: Error ko'rsatishi kerak!
+   "Article file size cannot exceed 10MB."
+
+4. To'g'ri formatdagi file yuklang (.txt, .doc, .docx, .pdf)
+
+   Natija: Muvaffaqiyatli yuklangan bo'lishi kerak!
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 6: MAQOLANI TAHRIRLASH                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Maqola sahifasida "Edit" tugmasini bosing
+
+2. Tekshiring:
+   ✓ Barcha maydonlar to'ldirilgan
+   ✓ Agar file yuklangan bo'lsa, "Current file" ko'rinadi
+   ✓ File size va type ko'rsatiladi
+
+3. O'zgartirishlar kiriting:
+   - Sarlavhani o'zgartiring
+   - Yangi file yuklang (eski o'chiriladi)
+
+4. "Update Article" tugmasini bosing
+
+5. Tekshiring:
+   ✓ O'zgarishlar saqlanganini
+   ✓ Yangi file ko'rinishini
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 7: READER SIFATIDA TEKSHIRISH                                ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Chiqing (Logout) va reader sifatida kiring:
+   Username: test_reader
+   Parol: test123456
+
+2. Tekshiring:
+   ✓ Bosh sahifa farq qilishini (reader uchun maxsus)
+   ✓ "Browse All Articles" tugmasi borligini
+   ✓ "Create Article" tugmasi yo'qligini
+
+3. Maqolalarni ko'rish:
+   - "Browse Articles" ga o'ting
+   - Nashr etilgan maqolalarni ko'ring
+   - Maqolaga kiring va o'qing
+   - File yuklangan bo'lsa, yuklab olishni sinang
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 8: ADMIN PANEL ORQALI TEKSHIRISH                             ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Admin panel ga kiring:
+   http://127.0.0.1:8000/uz/admin/
+
+2. ARTICLE RULES ni tekshiring:
+   - Users → Article Rules ga o'ting
+   - "Maqola Yozish Qoidalari" ni oching
+   - Rules File ko'rinishini tekshiring
+   - 3 til uchun sarlavhalar borligini tekshiring
+
+3. ARTICLES ni tekshiring:
+   - Articles → Articles ga o'ting
+   - Yaratilgan maqolalarni ko'ring
+   - Bitta maqolani oching
+   - Media bo'limida article_file borligini tekshiring
+
+4. USERS ni tekshiring:
+   - Users → Custom users ga o'ting
+   - test_author va test_reader ko'rinishini tekshiring
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 9: MULTILINGUAL FUNKSIYANI TEKSHIRISH                        ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Til almashtirgichni ishlating (navbar da)
+
+2. O'zbekcha → Русский:
+   ✓ Barcha static matnlar rus tiliga o'tishi kerak
+   ✓ Tugmalar, label lar, xabarlar
+
+3. Русский → English:
+   ✓ Barcha static matnlar ingliz tiliga o'tishi kerak
+
+4. URL ni tekshiring:
+   - /uz/ → /ru/ → /en/
+
+5. Har bir tilda:
+   - Login qiling
+   - Maqola yarating
+   - Qoidalarni ko'ring
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  BOSQICH 10: ERROR HANDLING NI TEKSHIRISH                             ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+1. Bo'sh sarlavha bilan maqola yaratishga harakat qiling
+   Natija: "Title cannot be empty" error
+
+2. Qoidalarni qabul qilmagan holda maqola yaratish
+   Natija: Accept rules sahifasiga yo'naltiriladi
+
+3. Reader sifatida maqola yaratishga harakat qiling
+   Natija: "Access denied" xabari
+
+4. Mavjud bo'lmagan maqolani ochish:
+   http://127.0.0.1:8000/uz/articles/detail/mavjud-emas/
+   Natija: 404 sahifa
+
+
+═════════════════════════════════════════════════════════════════════════
+✅ MUVAFFAQIYATLI TEST NATIJASI
+═════════════════════════════════════════════════════════════════════════
+
+Agar barcha bosqichlar muvaffaqiyatli bo'lsa:
+
+✓ File upload ishlayapti
+✓ Xavfsizlik tekshiruvi ishlayapti
+✓ Maqola qoidalari to'g'ri ko'rsatilmoqda
+✓ Author va Reader rollari to'g'ri ishlayapti
+✓ Multilingual funksiya ishlayapti
+✓ Admin panel to'liq konfiguratsiya qilingan
+✓ Barcha formalar validatsiya qilinmoqda
+
+🎉 PLATFORMA ISHGA TAYYOR!
+
+
+═════════════════════════════════════════════════════════════════════════
+📋 QISQACHA XULOSA
+═════════════════════════════════════════════════════════════════════════
+
+Yaratilgan funksiyalar:
+• Article Rules file yuklash (.txt format, max 5MB)
+• Article file yuklash (.txt, .doc, .docx, .pdf, max 10MB)
+• Xavfsizlik tekshiruvi (malicious content detection)
+• Author va Reader rollari
+• Multilingual qo'llab-quvvatlash (O'zbek, Rus, Ingliz)
+• CKEditor bilan rich text editing
+• File size va type ko'rsatish
+• Automatic file cleanup
+
+Test fayllar:
+✓ media/rules/maqola_qoidalari.txt - O'zbek tilida qoidalar
+✓ Database da ArticleRules obyekti yaratildi
+✓ test_author va test_reader accountlari yaratildi
+
+
+═════════════════════════════════════════════════════════════════════════
+🔧 MUAMMOLAR YUZAGA KELSA
+═════════════════════════════════════════════════════════════════════════
+
+1. Server to'xtagan bo'lsa:
+   > python manage.py runserver
+
+2. File yuklanmasa:
+   - MEDIA_ROOT va MEDIA_URL to'g'ri sozlanganini tekshiring
+   - media/ papka mavjudligini tekshiring
+
+3. Qoidalar ko'rinmasa:
+   > python load_rules_to_db.py
+
+4. Test userlar yo'q bo'lsa:
+   > python create_test_users.py
+
+5. Database muammosi bo'lsa:
+   > python manage.py migrate
+
+
+═════════════════════════════════════════════════════════════════════════
+📞 QO'SHIMCHA YORDAM
+═════════════════════════════════════════════════════════════════════════
+
+Barcha funksiyalar to'liq ishlayotganligini tekshirdim.
+Agar savol yoki muammo bo'lsa, xabar bering!
+
+Omad! 🚀
+═════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,741 @@
+# RUSSIAN TRANSLATION FOR ARTICLE PUBLISHING PLATFORM
+# Copyright (C) 2025
+# This file is distributed under the same license as the Article Platform package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-15 12:00+0500\n"
+"PO-Revision-Date: 2025-01-15 12:00+0500\n"
+"Last-Translator: Article Platform Team\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+# Navigation
+msgid "Article Publishing Platform"
+msgstr "Платформа публикации статей"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Articles"
+msgstr "Статьи"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "My Articles"
+msgstr "Мои статьи"
+
+msgid "Create Article"
+msgstr "Создать статью"
+
+msgid "Login"
+msgstr "Вход"
+
+msgid "Register"
+msgstr "Регистрация"
+
+msgid "Logout"
+msgstr "Выход"
+
+# User Roles
+msgid "O'quvchi (Reader)"
+msgstr "Читатель"
+
+msgid "Avtor (Author)"
+msgstr "Автор"
+
+msgid "User Role"
+msgstr "Роль пользователя"
+
+msgid "Reader"
+msgstr "Читатель"
+
+msgid "Author"
+msgstr "Автор"
+
+# Forms and Fields
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "email address"
+msgstr "адрес электронной почты"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Confirm Password"
+msgstr "Подтвердите пароль"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Content"
+msgstr "Содержание"
+
+msgid "Cover Image"
+msgstr "Обложка"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Draft"
+msgstr "Черновик"
+
+msgid "Published"
+msgstr "Опубликовано"
+
+msgid "Slug"
+msgstr "URL имя"
+
+msgid "Views"
+msgstr "Просмотры"
+
+msgid "Created At"
+msgstr "Дата создания"
+
+msgid "Updated At"
+msgstr "Дата обновления"
+
+# Article Rules
+msgid "Article Rules"
+msgstr "Правила статей"
+
+msgid "Rules Content"
+msgstr "Текст правил"
+
+msgid "Article writing guidelines that authors must accept"
+msgstr "Правила написания статей, которые должны принять авторы"
+
+msgid "Active"
+msgstr "Активно"
+
+msgid "Only one set of rules should be active at a time"
+msgstr "Только один набор правил должен быть активным одновременно"
+
+msgid "Has Accepted Article Rules"
+msgstr "Принял правила статей"
+
+# Buttons and Actions
+msgid "Submit"
+msgstr "Отправить"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "View"
+msgstr "Просмотр"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Accept Rules"
+msgstr "Принять правила"
+
+msgid "I accept the article writing rules"
+msgstr "Я принимаю правила написания статей"
+
+msgid "Create Account"
+msgstr "Создать аккаунт"
+
+msgid "Sign In"
+msgstr "Войти"
+
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Next"
+msgstr "Следующий"
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+# Messages
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+msgid "Welcome back"
+msgstr "С возвращением"
+
+msgid "Thank you"
+msgstr "Спасибо"
+
+msgid "Success"
+msgstr "Успешно"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Info"
+msgstr "Информация"
+
+# User Messages
+msgid "Welcome, {username}! Your account has been created successfully."
+msgstr "Добро пожаловать, {username}! Ваш аккаунт успешно создан."
+
+msgid "As an author, you must read and accept our article writing rules before publishing."
+msgstr "Как автор, вы должны прочитать и принять наши правила написания статей перед публикацией."
+
+msgid "Registration failed. Please correct the errors below."
+msgstr "Регистрация не удалась. Пожалуйста, исправьте ошибки ниже."
+
+msgid "Invalid username or password. Please try again."
+msgstr "Неверное имя пользователя или пароль. Попробуйте снова."
+
+msgid "You have been logged out successfully."
+msgstr "Вы успешно вышли из системы."
+
+msgid "Access denied. This page is only for authors."
+msgstr "Доступ запрещен. Эта страница только для авторов."
+
+msgid "Article rules have not been configured yet. Please contact the administrator."
+msgstr "Правила статей еще не настроены. Пожалуйста, свяжитесь с администратором."
+
+msgid "Thank you for accepting the rules! You can now create articles."
+msgstr "Спасибо за принятие правил! Теперь вы можете создавать статьи."
+
+msgid "You must accept the rules to proceed."
+msgstr "Вы должны принять правила для продолжения."
+
+msgid "Please accept the article writing rules to start publishing."
+msgstr "Пожалуйста, примите правила написания статей, чтобы начать публикацию."
+
+msgid "Please log in to access this page."
+msgstr "Пожалуйста, войдите в систему для доступа к этой странице."
+
+msgid "Access denied. Only authors can create articles."
+msgstr "Доступ запрещен. Только авторы могут создавать статьи."
+
+msgid "You must accept the article writing rules before creating articles."
+msgstr "Вы должны принять правила написания статей перед созданием статей."
+
+msgid "Access denied. You can only edit your own articles."
+msgstr "Доступ запрещен. Вы можете редактировать только свои статьи."
+
+msgid "Access denied. You can only delete your own articles."
+msgstr "Доступ запрещен. Вы можете удалять только свои статьи."
+
+# Article Messages
+msgid "Article \"{title}\" created successfully!"
+msgstr "Статья \"{title}\" успешно создана!"
+
+msgid "Failed to create article. Please correct the errors below."
+msgstr "Не удалось создать статью. Пожалуйста, исправьте ошибки ниже."
+
+msgid "Article \"{title}\" updated successfully!"
+msgstr "Статья \"{title}\" успешно обновлена!"
+
+msgid "Failed to update article. Please correct the errors below."
+msgstr "Не удалось обновить статью. Пожалуйста, исправьте ошибки ниже."
+
+msgid "Article \"{title}\" has been deleted successfully."
+msgstr "Статья \"{title}\" успешно удалена."
+
+# Article Fields
+msgid "Article title (max 200 characters)"
+msgstr "Заголовок статьи (максимум 200 символов)"
+
+msgid "Auto-generated from title, used in URLs"
+msgstr "Автоматически создается из заголовка, используется в URL"
+
+msgid "Article content with rich text formatting"
+msgstr "Содержание статьи с форматированным текстом"
+
+msgid "Allowed formats: jpg, jpeg, png, gif, webp. Max size: 5MB"
+msgstr "Разрешенные форматы: jpg, jpeg, png, gif, webp. Макс. размер: 5МБ"
+
+msgid "Number of times this article has been viewed"
+msgstr "Количество просмотров этой статьи"
+
+# Statistics
+msgid "Total Articles"
+msgstr "Всего статей"
+
+msgid "Published Articles"
+msgstr "Опубликованные статьи"
+
+msgid "Draft Articles"
+msgstr "Черновики"
+
+msgid "Recent Articles"
+msgstr "Последние статьи"
+
+msgid "Total"
+msgstr "Всего"
+
+msgid "Statistics"
+msgstr "Статистика"
+
+msgid "Total views"
+msgstr "Всего просмотров"
+
+# Error Pages
+msgid "403 - Access Denied"
+msgstr "403 - Доступ запрещен"
+
+msgid "Access Denied"
+msgstr "Доступ запрещен"
+
+msgid "You don't have permission to access this resource."
+msgstr "У вас нет разрешения на доступ к этому ресурсу."
+
+msgid "If you believe this is an error, please contact the administrator."
+msgstr "Если вы считаете, что это ошибка, свяжитесь с администратором."
+
+msgid "Go to Homepage"
+msgstr "Перейти на главную"
+
+msgid "Go to Dashboard"
+msgstr "Перейти к панели управления"
+
+msgid "404 - Page Not Found"
+msgstr "404 - Страница не найдена"
+
+msgid "Page Not Found"
+msgstr "Страница не найдена"
+
+msgid "The page you are looking for doesn't exist or has been moved."
+msgstr "Страница, которую вы ищете, не существует или была перемещена."
+
+msgid "Please check the URL or use the navigation to find what you're looking for."
+msgstr "Пожалуйста, проверьте URL или используйте навигацию, чтобы найти то, что вы ищете."
+
+msgid "Browse Articles"
+msgstr "Просмотреть статьи"
+
+msgid "500 - Server Error"
+msgstr "500 - Ошибка сервера"
+
+msgid "Internal Server Error"
+msgstr "Внутренняя ошибка сервера"
+
+msgid "Something went wrong on our end. We're working to fix it."
+msgstr "Что-то пошло не так с нашей стороны. Мы работаем над исправлением."
+
+msgid "Please try again later. If the problem persists, contact support."
+msgstr "Пожалуйста, попробуйте позже. Если проблема сохраняется, обратитесь в поддержку."
+
+msgid "Try Again"
+msgstr "Попробовать снова"
+
+# Footer
+msgid "Built with Django & Bootstrap"
+msgstr "Создано с Django и Bootstrap"
+
+msgid "Secure"
+msgstr "Безопасно"
+
+msgid "Scalable"
+msgstr "Масштабируемо"
+
+msgid "Production-Ready"
+msgstr "Готово к производству"
+
+# Validation Errors
+msgid "This field is required."
+msgstr "Это поле обязательно для заполнения."
+
+msgid "Enter a valid email address."
+msgstr "Введите действительный адрес электронной почты."
+
+msgid "A user with that email already exists."
+msgstr "Пользователь с таким адресом электронной почты уже существует."
+
+msgid "The two password fields didn't match."
+msgstr "Два поля пароля не совпадают."
+
+msgid "This password is too short. It must contain at least 8 characters."
+msgstr "Этот пароль слишком короткий. Он должен содержать не менее 8 символов."
+
+msgid "This password is too common."
+msgstr "Этот пароль слишком распространен."
+
+msgid "This password is entirely numeric."
+msgstr "Этот пароль полностью состоит из цифр."
+
+# Admin
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Article"
+msgstr "Статья"
+
+msgid "Articles"
+msgstr "Статьи"
+
+# Pagination
+msgid "Page"
+msgstr "Страница"
+
+msgid "of"
+msgstr "из"
+
+msgid "Showing"
+msgstr "Показано"
+
+msgid "results"
+msgstr "результатов"
+
+# Confirmation
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgid "Are you sure you want to delete this article?"
+msgstr "Вы действительно хотите удалить эту статью?"
+
+msgid "This action cannot be undone."
+msgstr "Это действие нельзя отменить."
+
+msgid "Yes, delete it"
+msgstr "Да, удалить"
+
+msgid "No, cancel"
+msgstr "Нет, отменить"
+
+# Time
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Yesterday"
+msgstr "Вчера"
+
+msgid "days ago"
+msgstr "дней назад"
+
+msgid "hours ago"
+msgstr "часов назад"
+
+msgid "minutes ago"
+msgstr "минут назад"
+
+msgid "just now"
+msgstr "только что"
+
+# Author Dashboard
+msgid "My Dashboard"
+msgstr "Моя панель"
+
+msgid "Article Management"
+msgstr "Управление статьями"
+
+msgid "Quick Actions"
+msgstr "Быстрые действия"
+
+msgid "No articles yet"
+msgstr "Пока нет статей"
+
+msgid "Start by creating your first article!"
+msgstr "Начните с создания вашей первой статьи!"
+
+# Search
+msgid "Search articles..."
+msgstr "Искать статьи..."
+
+msgid "Search results for"
+msgstr "Результаты поиска для"
+
+msgid "No results found"
+msgstr "Ничего не найдено"
+
+msgid "Try different keywords"
+msgstr "Попробуйте другие ключевые слова"
+
+# Upload
+msgid "Choose file"
+msgstr "Выбрать файл"
+
+msgid "No file chosen"
+msgstr "Файл не выбран"
+
+msgid "Upload"
+msgstr "Загрузить"
+
+msgid "Remove"
+msgstr "Удалить"
+
+# Help Text
+msgid "Enter your username"
+msgstr "Введите ваше имя пользователя"
+
+msgid "Enter your email address"
+msgstr "Введите ваш адрес электронной почты"
+
+msgid "Enter your password"
+msgstr "Введите ваш пароль"
+
+msgid "Confirm your password"
+msgstr "Подтвердите ваш пароль"
+
+msgid "Choose your role"
+msgstr "Выберите вашу роль"
+
+msgid "Select a language"
+msgstr "Выберите язык"
+
+# New translations for home page
+msgid "Upload New Article"
+msgstr "Загрузить новую статью"
+
+msgid "Your Articles"
+msgstr "Ваши статьи"
+
+msgid "Platform Total"
+msgstr "Всего на платформе"
+
+msgid "Articles Available to Read"
+msgstr "Доступно статей для чтения"
+
+msgid "Discover amazing articles from talented authors"
+msgstr "Откройте для себя удивительные статьи от талантливых авторов"
+
+msgid "You are registered as a Reader. Browse and enjoy articles!"
+msgstr "Вы зарегистрированы как Читатель. Просматривайте и наслаждайтесь статьями!"
+
+msgid "Browse All Articles"
+msgstr "Просмотреть все статьи"
+
+msgid "Ready to share your knowledge? Create your next article now!"
+msgstr "Готовы поделиться знаниями? Создайте вашу следующую статью прямо сейчас!"
+
+msgid "Action Required"
+msgstr "Требуется действие"
+
+msgid "Accept Rules Now"
+msgstr "Принять правила сейчас"
+
+msgid "Create New Article"
+msgstr "Создать новую статью"
+
+msgid "Your Recent Articles"
+msgstr "Ваши последние статьи"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Created"
+msgstr "Создано"
+
+msgid "View All My Articles"
+msgstr "Просмотреть все мои статьи"
+
+msgid "You haven't created any articles yet."
+msgstr "Вы еще не создали ни одной статьи."
+
+msgid "Create your first article"
+msgstr "Создайте вашу первую статью"
+
+msgid "Reader Account"
+msgstr "Аккаунт читателя"
+
+msgid "You are registered as a Reader. You can browse and read all published articles."
+msgstr "Вы зарегистрированы как Читатель. Вы можете просматривать и читать все опубликованные статьи."
+
+msgid "To create articles, you need to register as an Author."
+msgstr "Чтобы создавать статьи, вам нужно зарегистрироваться как Автор."
+
+msgid "No articles available yet. Check back later!"
+msgstr "Пока нет доступных статей. Зайдите позже!"
+
+msgid "Why Choose Our Platform?"
+msgstr "Почему стоит выбрать нашу платформу?"
+
+msgid "Easy Publishing"
+msgstr "Легкая публикация"
+
+msgid "Rich text editor with image support makes writing a breeze."
+msgstr "Редактор с форматированным текстом и поддержкой изображений делает написание легким."
+
+msgid "Secure & Safe"
+msgstr "Безопасно и надежно"
+
+msgid "Your content is protected with enterprise-grade security."
+msgstr "Ваш контент защищен системой безопасности корпоративного уровня."
+
+msgid "Track Performance"
+msgstr "Отслеживание эффективности"
+
+msgid "Monitor views and engagement on your articles."
+msgstr "Отслеживайте просмотры и вовлеченность ваших статей."
+
+msgid "No articles published yet. Be the first to share your knowledge!"
+msgstr "Пока нет опубликованных статей. Станьте первым, кто поделится знаниями!"
+
+msgid "View All Articles"
+msgstr "Просмотреть все статьи"
+
+msgid "Read Article"
+msgstr "Читать статью"
+
+msgid "Join as Author"
+msgstr "Присоединиться как автор"
+
+msgid "Browse Articles"
+msgstr "Просмотреть статьи"
+
+msgid "Community Driven"
+msgstr "Управляется сообществом"
+
+msgid "Secure Platform"
+msgstr "Безопасная платформа"
+
+msgid "Welcome to Article Platform"
+msgstr "Добро пожаловать на платформу статей"
+
+msgid "Share your knowledge, read amazing articles, and connect with authors worldwide."
+msgstr "Делитесь знаниями, читайте удивительные статьи и общайтесь с авторами по всему миру."
+
+msgid "views"
+msgstr "просмотров"
+
+msgid "You need to read and accept our article writing rules before you can start publishing."
+msgstr "Вам нужно прочитать и принять наши правила написания статей, прежде чем вы сможете начать публикацию."
+
+
+# Form Field Translations
+
+msgid "Article Title"
+msgstr "Заголовок Статьи"
+
+msgid "Article Content"
+msgstr "Содержание Статьи"
+
+msgid "Article File"
+msgstr "Файл Статьи"
+
+msgid "Maximum 200 characters"
+msgstr "Максимум 200 символов"
+
+msgid "Write your article content with rich text formatting"
+msgstr "Напишите содержание статьи с форматированным текстом"
+
+msgid "Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: 10MB"
+msgstr "Загрузите статью как файл. Разрешенные форматы: TXT, DOC, DOCX, PDF. Максимальный размер: 10МБ"
+
+msgid "Choose \"Draft\" to save without publishing, or \"Published\" to make it visible to readers"
+msgstr "Выберите \"Черновик\" для сохранения без публикации или \"Опубликовано\" чтобы сделать видимым для читателей"
+
+msgid "Optional"
+msgstr "Необязательно"
+
+msgid "Current file"
+msgstr "Текущий файл"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Update Article"
+msgstr "Обновить Статью"
+
+msgid "Writing Tips"
+msgstr "Советы по Написанию"
+
+msgid "Use a clear, descriptive title that summarizes your article"
+msgstr "Используйте четкий, описательный заголовок, который обобщает вашу статью"
+
+msgid "Add a cover image to make your article more attractive (optional but recommended)"
+msgstr "Добавьте обложку, чтобы сделать статью более привлекательной (необязательно, но рекомендуется)"
+
+msgid "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)"
+msgstr "Загрузите статью как файл (TXT, DOC, DOCX или PDF), если хотите (необязательно)"
+
+msgid "Format your content with headings, lists, and images for better readability"
+msgstr "Форматируйте содержание с заголовками, списками и изображениями для лучшей читаемости"
+
+msgid "Save as Draft if you want to continue editing later"
+msgstr "Сохраните как черновик, если хотите продолжить редактирование позже"
+
+msgid "Publish when your article is ready for readers"
+msgstr "Опубликуйте, когда ваша статья готова для читателей"
+
+
+# Article File Display Translations
+msgid "Download Article File"
+msgstr "Скачать Файл Статьи"
+
+msgid "Open article file"
+msgstr "Открыть файл статьи"
+
+msgid "Article File Available"
+msgstr "Файл Статьи Доступен"
+
+msgid "File Type"
+msgstr "Тип Файла"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Open File"
+msgstr "Открыть Файл"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Back to Articles"
+msgstr "Вернуться к Статьям"
+
+msgid "Published Articles"
+msgstr "Опубликованные Статьи"
+
+msgid "Browse our collection of amazing articles"
+msgstr "Просмотрите нашу коллекцию замечательных статей"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Showing results for"
+msgstr "Показаны результаты для"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Read Article"
+msgstr "Читать Статью"
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "of"
+msgstr "из"
+
+msgid "No articles published yet. Be the first to share your knowledge!"
+msgstr "Пока нет опубликованных статей. Будьте первым, кто поделится своими знаниями!"
+
+msgid "Last updated"
+msgstr "Последнее обновление"
+
+msgid "About the Author"
+msgstr "Об Авторе"
+

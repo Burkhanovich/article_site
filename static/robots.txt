@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private pages
+Disallow: /admin/
+Disallow: /users/login/
+Disallow: /users/register/
+Disallow: /ckeditor/
+
+# Sitemap (update with your actual domain)
+# Sitemap: https://your-domain.com/sitemap.xml

@@ -1,0 +1,25 @@
+# Django Framework
+Django>=5.0,<5.1
+psycopg2-binary>=2.9.9  # PostgreSQL adapter
+
+# Environment Configuration
+python-decouple>=3.8
+
+# Multilingual Support
+django-modeltranslation>=0.18.12
+
+# Rich Text Editor
+django-ckeditor>=6.7.0
+Pillow>=10.0.0  # Required for image processing in CKEditor
+
+# Production Server
+gunicorn>=21.2.0
+
+# Optional but recommended
+whitenoise>=6.6.0  # Static file serving in production
+
+# Development tools (optional)
+django-debug-toolbar>=4.2.0  # Debug toolbar for development
+
+# Security
+django-cors-headers>=4.3.0  # If you plan to add API/CORS support

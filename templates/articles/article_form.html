@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% if form.instance.pk %}{% trans "Edit Article" %}{% else %}{% trans "Create Article" %}{% endif %} - {% trans "Article Publishing Platform" %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                    {% if form.instance.pk %}
+                        <i class="bi bi-pencil-square"></i> {% trans "Edit Article" %}
+                    {% else %}
+                        <i class="bi bi-plus-circle"></i> {% trans "Create New Article" %}
+                    {% endif %}
+                </h3>
+            </div>
+
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="{{ form.title.id_for_label }}" class="form-label">
+                            {{ form.title.label }} <span class="text-danger">*</span>
+                        </label>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="text-danger small">{{ form.title.errors }}</div>
+                        {% endif %}
+                        <small class="form-text text-muted">{{ form.title.help_text }}</small>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="mb-3">
+                        <label for="{{ form.content.id_for_label }}" class="form-label">
+                            {{ form.content.label }} <span class="text-danger">*</span>
+                        </label>
+                        {{ form.content }}
+                        {% if form.content.errors %}
+                            <div class="text-danger small">{{ form.content.errors }}</div>
+                        {% endif %}
+                        <small class="form-text text-muted">{{ form.content.help_text }}</small>
+                    </div>
+
+                    <!-- Cover Image -->
+                    <div class="mb-3">
+                        <label for="{{ form.cover_image.id_for_label }}" class="form-label">
+                            {{ form.cover_image.label }}
+                        </label>
+
+                        {% if form.instance.cover_image %}
+                            <div class="mb-2">
+                                <img src="{{ form.instance.cover_image.url }}" alt="Current cover"
+                                     class="img-thumbnail" style="max-width: 300px;">
+                                <p class="text-muted small">Current cover image</p>
+                            </div>
+                        {% endif %}
+
+                        {{ form.cover_image }}
+                        {% if form.cover_image.errors %}
+                            <div class="text-danger small">{{ form.cover_image.errors }}</div>
+                        {% endif %}
+                        <small class="form-text text-muted">{{ form.cover_image.help_text }}</small>
+                    </div>
+
+                    <!-- Article File -->
+                    <div class="mb-3">
+                        <label for="{{ form.article_file.id_for_label }}" class="form-label">
+                            {{ form.article_file.label }} <small class="text-muted">({% trans "Optional" %})</small>
+                        </label>
+
+                        {% if form.instance.article_file %}
+                            <div class="mb-2 alert alert-info d-flex align-items-center">
+                                <i class="bi bi-file-earmark-text me-2 fs-4"></i>
+                                <div>
+                                    <strong>{% trans "Current file" %}:</strong>
+                                    <a href="{{ form.instance.article_file.url }}" target="_blank" class="alert-link">
+                                        {{ form.instance.article_file.name }}
+                                    </a>
+                                    <br>
+                                    <small class="text-muted">
+                                        {% trans "Type" %}: {{ form.instance.get_file_extension }} |
+                                        {% trans "Size" %}: {{ form.instance.get_file_size }} MB
+                                    </small>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {{ form.article_file }}
+                        {% if form.article_file.errors %}
+                            <div class="text-danger small">{{ form.article_file.errors }}</div>
+                        {% endif %}
+                        <small class="form-text text-muted">
+                            <i class="bi bi-info-circle"></i> {{ form.article_file.help_text }}
+                        </small>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label for="{{ form.status.id_for_label }}" class="form-label">
+                            {{ form.status.label }} <span class="text-danger">*</span>
+                        </label>
+                        {{ form.status }}
+                        {% if form.status.errors %}
+                            <div class="text-danger small">{{ form.status.errors }}</div>
+                        {% endif %}
+                        <small class="form-text text-muted">
+                            {{ form.status.help_text }}
+                        </small>
+                    </div>
+
+                    <!-- Non-field errors -->
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Buttons -->
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success">
+                            {% if form.instance.pk %}
+                                <i class="bi bi-save"></i> {% trans "Update Article" %}
+                            {% else %}
+                                <i class="bi bi-plus-circle"></i> {% trans "Create Article" %}
+                            {% endif %}
+                        </button>
+
+                        <a href="{% if form.instance.pk %}{% url 'articles:detail' form.instance.slug %}{% else %}{% url 'articles:my_articles' %}{% endif %}"
+                           class="btn btn-outline-secondary">
+                            <i class="bi bi-x-circle"></i> {% trans "Cancel" %}
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Help Card -->
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-info-circle"></i> {% trans "Writing Tips" %}
+                </h5>
+                <ul class="mb-0">
+                    <li>{% trans "Use a clear, descriptive title that summarizes your article" %}</li>
+                    <li>{% trans "Add a cover image to make your article more attractive (optional but recommended)" %}</li>
+                    <li>{% trans "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)" %}</li>
+                    <li>{% trans "Format your content with headings, lists, and images for better readability" %}</li>
+                    <li>{% trans "Save as Draft if you want to continue editing later" %}</li>
+                    <li>{% trans "Publish when your article is ready for readers" %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* CKEditor styling */
+    .django-ckeditor-widget {
+        width: 100%;
+    }
+</style>
+{% endblock %}

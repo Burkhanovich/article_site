@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ article.title }} - {% trans "Article Publishing Platform" %}{% endblock %}
+
+{% block content %}
+<!-- Back Button -->
+<div class="row mb-3">
+    <div class="col-12">
+        <a href="{% url 'articles:list' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> {% trans "Back to Articles" %}
+        </a>
+    </div>
+</div>
+
+<!-- Article Content -->
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <article class="card shadow">
+            <!-- Cover Image -->
+            {% if article.cover_image %}
+                <img src="{{ article.cover_image.url }}" class="card-img-top" alt="{{ article.title }}" style="max-height: 400px; object-fit: cover;">
+            {% endif %}
+
+            <div class="card-body">
+                <!-- Article Header -->
+                <div class="mb-4">
+                    <h1 class="mb-3">{{ article.title }}</h1>
+
+                    <div class="d-flex flex-wrap align-items-center text-muted mb-3">
+                        <div class="me-4">
+                            <i class="bi bi-person-circle"></i>
+                            <strong>{{ article.author.username }}</strong>
+                            <span class="badge bg-primary badge-role">{{ article.author.get_role_display }}</span>
+                        </div>
+
+                        <div class="me-4">
+                            <i class="bi bi-calendar"></i>
+                            {{ article.created_at|date:"F d, Y" }}
+                        </div>
+
+                        <div class="me-4">
+                            <i class="bi bi-eye"></i>
+                            {{ article.views }} views
+                        </div>
+
+                        <div>
+                            {% if article.status == 'PUBLISHED' %}
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle"></i> {% trans "Published" %}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-pencil"></i> {% trans "Draft" %}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% if article.created_at != article.updated_at %}
+                        <small class="text-muted">
+                            <i class="bi bi-clock-history"></i>
+                            {% trans "Last updated" %}: {{ article.updated_at|date:"F d, Y" }}
+                        </small>
+                    {% endif %}
+                </div>
+
+                <hr>
+
+                <!-- Article File (if exists) -->
+                {% if article.article_file %}
+                    <div class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+                        <i class="bi bi-file-earmark-arrow-down fs-2 me-3"></i>
+                        <div class="flex-grow-1">
+                            <h5 class="alert-heading mb-2">
+                                <i class="bi bi-download"></i> {% trans "Article File Available" %}
+                            </h5>
+                            <p class="mb-2">
+                                <strong>{% trans "File Type" %}:</strong> {{ article.get_file_extension|upper }}
+                                <span class="mx-2">|</span>
+                                <strong>{% trans "Size" %}:</strong> {{ article.get_file_size }} MB
+                            </p>
+                            <a href="{{ article.article_file.url }}" target="_blank" class="btn btn-danger btn-sm">
+                                <i class="bi bi-box-arrow-up-right"></i> {% trans "Open File" %}
+                            </a>
+                            <a href="{{ article.article_file.url }}" download class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-download"></i> {% trans "Download" %}
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Article Content -->
+                <div class="article-content">
+                    {{ article.content|safe }}
+                </div>
+            </div>
+
+            <!-- Author Actions (if viewing own article) -->
+            {% if user.is_authenticated and user == article.author %}
+                <div class="card-footer">
+                    <div class="btn-group" role="group">
+                        <a href="{% url 'articles:edit' article.slug %}" class="btn btn-primary">
+                            <i class="bi bi-pencil"></i> {% trans "Edit" %}
+                        </a>
+                        <a href="{% url 'articles:delete' article.slug %}" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> {% trans "Delete" %}
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </article>
+
+        <!-- Author Info Card -->
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h5 class="card-title">{% trans "About the Author" %}</h5>
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="bi bi-person-circle text-primary" style="font-size: 3rem;"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-1">{{ article.author.username }}</h6>
+                        <p class="text-muted mb-0">
+                            <span class="badge bg-primary">{{ article.author.get_role_display }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .article-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+        border-radius: 5px;
+    }
+
+    .article-content h1,
+    .article-content h2,
+    .article-content h3 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .article-content p {
+        margin-bottom: 1rem;
+    }
+
+    .article-content ul,
+    .article-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+</style>
+{% endblock %}

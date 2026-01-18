@@ -1,0 +1,313 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║            MAQOLA FAYL KO'RSATISH FUNKSIYASI QILINDI                   ║
+║                    Article File Display Feature                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+✅ SERVER ISHLAMOQDA
+═════════════════════════════════════════════════════════════════════════
+Server manzili: http://127.0.0.1:8000/
+Background task ID: bba213a
+
+
+📋 NIMA O'ZGARDI
+═════════════════════════════════════════════════════════════════════════
+
+✓ 1. MAQOLALAR RO'YXATI (Article List Page)
+   Location: templates/articles/article_list.html
+
+   Agar maqolada article_file mavjud bo'lsa:
+   • Maqola sarlavhasiga bosganda - BEVOSITA FAYLGA O'TADI
+   • Sarlavha yonida fayl turi icon ko'rinadi (🔴)
+   • Fayl turi va hajmi badge shaklida ko'rsatiladi (PDF (2.5 MB))
+   • Qizil "Download Article File" tugmasi chiqadi
+
+   Agar fayl yo'q bo'lsa:
+   • Sarlavhaga bosganda - Article detail sahifasiga o'tadi
+   • "Read Article" tugmasi ko'rinadi
+
+✓ 2. MAQOLA BATAFSIL SAHIFASI (Article Detail Page)
+   Location: templates/articles/article_detail.html
+
+   Agar article_file mavjud bo'lsa:
+   • Katta qizil alert ko'rinadi: "Article File Available"
+   • Fayl turi ko'rsatiladi (PDF, DOCX, TXT, DOC)
+   • Fayl hajmi ko'rsatiladi (MB)
+   • 2 ta tugma:
+     - "Open File" - Yangi tabda ochadi
+     - "Download" - Yuklab oladi
+
+✓ 3. TARJIMALAR QILINDI
+   19 ta yangi tarjima qo'shildi:
+
+   O'zbekcha:
+   • "Maqola Faylini Yuklash"
+   • "Maqola Fayli Mavjud"
+   • "Faylni Ochish"
+   • "Yuklash"
+
+   Русский:
+   • "Скачать Файл Статьи"
+   • "Файл Статьи Доступен"
+   • "Открыть Файл"
+   • "Скачать"
+
+   English:
+   • "Download Article File"
+   • "Article File Available"
+   • "Open File"
+   • "Download"
+
+
+🎯 READER UCHUN QANDAY ISHLAYDI
+═════════════════════════════════════════════════════════════════════════
+
+SCENARIO 1: PDF Fayl bilan Maqola
+────────────────────────────────────────────────────────────────────────
+1. Reader articles ro'yxatiga kiradi: /uz/articles/
+2. Maqola kartasida quyidagilar ko'rinadi:
+
+   ┌─────────────────────────────────────┐
+   │ [Cover Image]                       │
+   ├─────────────────────────────────────┤
+   │ Fizika Asoslari 📄                  │ ← BOSISH = PDF ochiladi!
+   │                                     │
+   │ 👤 test_author (Avtor)              │
+   │ 📅 Jan 18, 2026                     │
+   │ 👁 45 views                          │
+   │ 📥 PDF (2.5 MB) ← Qizil badge       │
+   ├─────────────────────────────────────┤
+   │ [Maqola Faylini Yuklash] ⬇         │ ← Qizil tugma
+   └─────────────────────────────────────┘
+
+3. Reader sarlavha "Fizika Asoslari" ga bosadi
+4. ✅ PDF fayl yangi tabda ochiladi!
+
+5. YOKi "Maqola Faylini Yuklash" tugmasini bosadi
+6. ✅ PDF fayl yuklanyapti!
+
+
+SCENARIO 2: DOCX Fayl bilan Maqola
+────────────────────────────────────────────────────────────────────────
+1. Articles list da ko'rinadi:
+
+   Matematika Darsligi 📄
+   DOCX (1.2 MB)
+   [Maqola Faylini Yuklash]
+
+2. Sarlavhaga bosish → DOCX yuklanadi
+3. Kompyuterda MS Word bilan ochiladi
+
+
+SCENARIO 3: Fayl YO'Q maqola
+────────────────────────────────────────────────────────────────────────
+1. Articles list da ko'rinadi:
+
+   Tarix Haqida Maqola
+   [Read Article]
+
+2. Sarlavhaga bosish → Article detail sahifasiga o'tadi
+3. Faqat content (CKEditor matn) ko'rinadi
+
+
+SCENARIO 4: Article Detail Sahifasida
+────────────────────────────────────────────────────────────────────────
+Reader detail sahifaga kirsa va fayl mavjud bo'lsa:
+
+┌───────────────────────────────────────────────────────────────────┐
+│ Maqola Sarlavhasi                                                 │
+│ Author: test_author | Date: Jan 18, 2026 | 45 views              │
+├───────────────────────────────────────────────────────────────────┤
+│                                                                   │
+│  📥  MAQOLA FAYLI MAVJUD                                         │
+│                                                                   │
+│      Fayl Turi: PDF  |  Hajmi: 2.5 MB                           │
+│                                                                   │
+│      [Faylni Ochish] [Yuklash]                                   │
+│                                                                   │
+├───────────────────────────────────────────────────────────────────┤
+│ Maqola Content (CKEditor matn)...                                │
+└───────────────────────────────────────────────────────────────────┘
+
+
+🧪 TEST QILISH UCHUN QO'LLANMA
+═════════════════════════════════════════════════════════════════════════
+
+BOSQICH 1: BRAUZER CACHENI TOZALASH
+────────────────────────────────────────────────────────────────────────
+MUHIM! Yangi o'zgarishlarni ko'rish uchun:
+
+1. Ctrl + Shift + Delete
+2. "Cached images and files" belgilang
+3. "Clear data" bosing
+
+YOKi:
+- Ctrl + F5 (Hard reload)
+- Private window: Ctrl + Shift + N
+
+
+BOSQICH 2: MAQOLA YARATISH (Author sifatida)
+────────────────────────────────────────────────────────────────────────
+1. Login: http://127.0.0.1:8000/uz/users/login/
+   Username: test_author
+   Password: test123456
+
+2. Create Article: http://127.0.0.1:8000/uz/articles/create/
+
+3. Formani to'ldiring:
+   • Sarlavha: "Test PDF Maqola"
+   • Content: "Bu test maqola"
+   • Cover Image: Rasm yuklang
+   • Article File: PDF fayl yuklang (masalan: test.pdf)
+   • Status: "Published" tanlang
+
+4. "Publish Article" bosing
+
+5. ✅ Maqola yaratildi!
+
+
+BOSQICH 3: READER SIFATIDA TEST QILISH
+────────────────────────────────────────────────────────────────────────
+1. Logout qiling (yoki boshqa brauzerda oching)
+
+2. Articles ro'yxatiga kiring:
+   http://127.0.0.1:8000/uz/articles/
+
+3. Tekshiring:
+   ✓ Maqola kartasida fayl badge ko'rinishi kerak: "PDF (X.X MB)"
+   ✓ Qizil "Maqola Faylini Yuklash" tugmasi ko'rinishi kerak
+   ✓ Sarlavha yonida qizil icon bo'lishi kerak
+
+4. Sarlavhaga bosing:
+   ✓ PDF fayl yangi tabda ochilishi kerak!
+
+5. "Maqola Faylini Yuklash" tugmasini bosing:
+   ✓ PDF fayl yuklanishi kerak!
+
+6. Detail sahifaga kiring (Back to Articles → sarlavha):
+   ✓ Qizil alert "Maqola Fayli Mavjud" ko'rinishi kerak
+   ✓ "Faylni Ochish" va "Yuklash" tugmalari bo'lishi kerak
+
+
+BOSQICH 4: TILLARNI TEST QILISH
+────────────────────────────────────────────────────────────────────────
+1. O'zbekcha: 🌐 O'zbekcha
+   • "Maqola Faylini Yuklash"
+   • "Maqola Fayli Mavjud"
+
+2. Rus tiliga o'tish: 🌐 Русский
+   • "Скачать Файл Статьи"
+   • "Файл Статьи Доступен"
+
+3. Ingliz tiliga o'tish: 🌐 English
+   • "Download Article File"
+   • "Article File Available"
+
+
+═════════════════════════════════════════════════════════════════════════
+📁 O'ZGARGAN FAYLLAR
+═════════════════════════════════════════════════════════════════════════
+
+1. templates/articles/article_list.html
+   - Article file link qo'shildi (sarlavhaga bosish)
+   - File badge qo'shildi (fayl turi va hajmi)
+   - "Download Article File" tugmasi qo'shildi
+   - Barcha static matnlar tarjima qilindi
+
+2. templates/articles/article_detail.html
+   - Article file alert qo'shildi
+   - "Open File" va "Download" tugmalari qo'shildi
+   - Barcha static matnlar tarjima qilindi
+
+3. locale/uz/LC_MESSAGES/django.po & django.mo
+   - 19 ta yangi tarjima qo'shildi
+
+4. locale/ru/LC_MESSAGES/django.po & django.mo
+   - 19 ta yangi tarjima qo'shildi
+
+5. locale/en/LC_MESSAGES/django.po & django.mo
+   - 19 ta yangi tarjima qo'shildi
+
+6. add_article_file_translations.py
+   - Yangi script yaratildi (tarjimalar qo'shish uchun)
+
+
+═════════════════════════════════════════════════════════════════════════
+🔍 FAYL TURLARI QO'LLAB-QUVVATLANADI
+═════════════════════════════════════════════════════════════════════════
+
+✓ .pdf  - PDF Documents
+✓ .doc  - Microsoft Word 2003
+✓ .docx - Microsoft Word 2007+
+✓ .txt  - Text Files
+
+Maksimal hajm: 10 MB
+Security check: ✓ (PHP, JavaScript, Shell script patterns tekshiriladi)
+
+
+═════════════════════════════════════════════════════════════════════════
+❌ AGAR ISHLAMASA
+═════════════════════════════════════════════════════════════════════════
+
+MUAMMO 1: Fayl yuklanmayapti
+────────────────────────────────────────────────────────────────────────
+Yechim:
+1. Article yaratishda "Article File" qismini to'ldirganingizni tekshiring
+2. Fayl hajmi 10 MB dan oshmaganini tekshiring
+3. Fayl turi to'g'ri ekanligini tekshiring (.pdf, .doc, .docx, .txt)
+
+
+MUAMMO 2: Badge va tugmalar ko'rinmayapti
+────────────────────────────────────────────────────────────────────────
+Yechim:
+1. Brauzer cache ni tozalang: Ctrl + F5
+2. Private window oching va qayta sinab ko'ring
+3. Server loglarini tekshiring:
+   > type C:\Users\user\AppData\Local\Temp\claude\...\bba213a.output
+
+
+MUAMMO 3: Sarlavhaga bosganda fayl ochilmayapti
+────────────────────────────────────────────────────────────────────────
+Yechim:
+1. Maqolaga article_file yuklanganini tekshiring
+2. Browser popup blocker o'chirilganini tekshiring
+3. MEDIA_URL sozlamalari to'g'riligini tekshiring
+
+
+MUAMMO 4: Tarjimalar ko'rinmayapti
+────────────────────────────────────────────────────────────────────────
+Yechim:
+1. Translation files kompilyatsiya qilinganini tekshiring:
+   > python compile_translations.py
+
+2. Server qayta ishga tushiring:
+   > Ctrl+C
+   > python manage.py runserver
+
+3. Browser cache tozalang: Ctrl + F5
+
+
+═════════════════════════════════════════════════════════════════════════
+✅ YAKUNIY NATIJA
+═════════════════════════════════════════════════════════════════════════
+
+✓ Server ishlayapti: http://127.0.0.1:8000/
+✓ Article file display qo'shildi
+✓ Reader sarlavhaga bosganda faylga o'tadi
+✓ Barcha sahifalar 3 tilda tarjima qilindi
+✓ File type va size ko'rsatiladi
+✓ Download tugmalari qo'shildi
+
+Platformangiz endi article file larni to'liq qo'llab-quvvatlaydi! 🎉
+
+
+═════════════════════════════════════════════════════════════════════════
+🚀 TEZKOR TEST
+═════════════════════════════════════════════════════════════════════════
+
+1. Ctrl + F5 (cache tozalash)
+2. http://127.0.0.1:8000/uz/articles/create/
+3. PDF yuklang va publish qiling
+4. http://127.0.0.1:8000/uz/articles/
+5. Sarlavhaga bosing → PDF ochiladi ✅
+
+═════════════════════════════════════════════════════════════════════════

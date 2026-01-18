@@ -1,0 +1,741 @@
+# UZBEK TRANSLATION FOR ARTICLE PUBLISHING PLATFORM
+# Copyright (C) 2025
+# This file is distributed under the same license as the Article Platform package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-15 12:00+0500\n"
+"PO-Revision-Date: 2025-01-15 12:00+0500\n"
+"Last-Translator: Article Platform Team\n"
+"Language-Team: Uzbek\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# Navigation
+msgid "Article Publishing Platform"
+msgstr "Maqola Nashri Platformasi"
+
+msgid "Home"
+msgstr "Bosh sahifa"
+
+msgid "Articles"
+msgstr "Maqolalar"
+
+msgid "Dashboard"
+msgstr "Boshqaruv paneli"
+
+msgid "My Articles"
+msgstr "Mening maqolalarim"
+
+msgid "Create Article"
+msgstr "Maqola yaratish"
+
+msgid "Login"
+msgstr "Kirish"
+
+msgid "Register"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Logout"
+msgstr "Chiqish"
+
+# User Roles
+msgid "O'quvchi (Reader)"
+msgstr "O'quvchi"
+
+msgid "Avtor (Author)"
+msgstr "Avtor"
+
+msgid "User Role"
+msgstr "Foydalanuvchi roli"
+
+msgid "Reader"
+msgstr "O'quvchi"
+
+msgid "Author"
+msgstr "Avtor"
+
+# Forms and Fields
+msgid "Username"
+msgstr "Foydalanuvchi nomi"
+
+msgid "Email"
+msgstr "Elektron pochta"
+
+msgid "email address"
+msgstr "elektron pochta manzili"
+
+msgid "Password"
+msgstr "Parol"
+
+msgid "Confirm Password"
+msgstr "Parolni tasdiqlang"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Title"
+msgstr "Sarlavha"
+
+msgid "Content"
+msgstr "Kontent"
+
+msgid "Cover Image"
+msgstr "Muqova rasmi"
+
+msgid "Status"
+msgstr "Holat"
+
+msgid "Draft"
+msgstr "Qoralama"
+
+msgid "Published"
+msgstr "Nashr etilgan"
+
+msgid "Slug"
+msgstr "URL nomi"
+
+msgid "Views"
+msgstr "Ko'rishlar"
+
+msgid "Created At"
+msgstr "Yaratilgan sana"
+
+msgid "Updated At"
+msgstr "Yangilangan sana"
+
+# Article Rules
+msgid "Article Rules"
+msgstr "Maqola qoidalari"
+
+msgid "Rules Content"
+msgstr "Qoidalar matni"
+
+msgid "Article writing guidelines that authors must accept"
+msgstr "Mualliflar qabul qilishi kerak bo'lgan maqola yozish qoidalari"
+
+msgid "Active"
+msgstr "Faol"
+
+msgid "Only one set of rules should be active at a time"
+msgstr "Bir vaqtning o'zida faqat bitta qoidalar to'plami faol bo'lishi kerak"
+
+msgid "Has Accepted Article Rules"
+msgstr "Maqola qoidalarini qabul qildi"
+
+# Buttons and Actions
+msgid "Submit"
+msgstr "Yuborish"
+
+msgid "Save"
+msgstr "Saqlash"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Delete"
+msgstr "O'chirish"
+
+msgid "Edit"
+msgstr "Tahrirlash"
+
+msgid "View"
+msgstr "Ko'rish"
+
+msgid "Search"
+msgstr "Qidirish"
+
+msgid "Accept Rules"
+msgstr "Qoidalarni qabul qilish"
+
+msgid "I accept the article writing rules"
+msgstr "Men maqola yozish qoidalarini qabul qilaman"
+
+msgid "Create Account"
+msgstr "Hisob yaratish"
+
+msgid "Sign In"
+msgstr "Tizimga kirish"
+
+msgid "Sign Up"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Back"
+msgstr "Orqaga"
+
+msgid "Next"
+msgstr "Keyingi"
+
+msgid "Previous"
+msgstr "Oldingi"
+
+# Messages
+msgid "Welcome"
+msgstr "Xush kelibsiz"
+
+msgid "Welcome back"
+msgstr "Qaytib kelganingizdan xursandmiz"
+
+msgid "Thank you"
+msgstr "Rahmat"
+
+msgid "Success"
+msgstr "Muvaffaqiyatli"
+
+msgid "Error"
+msgstr "Xato"
+
+msgid "Warning"
+msgstr "Ogohlantirish"
+
+msgid "Info"
+msgstr "Ma'lumot"
+
+# User Messages
+msgid "Welcome, {username}! Your account has been created successfully."
+msgstr "Xush kelibsiz, {username}! Hisobingiz muvaffaqiyatli yaratildi."
+
+msgid "As an author, you must read and accept our article writing rules before publishing."
+msgstr "Muallif sifatida siz nashr etishdan oldin maqola yozish qoidalarimizni o'qib, qabul qilishingiz kerak."
+
+msgid "Registration failed. Please correct the errors below."
+msgstr "Ro'yxatdan o'tish muvaffaqiyatsiz tugadi. Quyidagi xatolarni tuzating."
+
+msgid "Invalid username or password. Please try again."
+msgstr "Noto'g'ri foydalanuvchi nomi yoki parol. Qayta urinib ko'ring."
+
+msgid "You have been logged out successfully."
+msgstr "Tizimdan muvaffaqiyatli chiqdingiz."
+
+msgid "Access denied. This page is only for authors."
+msgstr "Kirish rad etildi. Bu sahifa faqat mualliflar uchun."
+
+msgid "Article rules have not been configured yet. Please contact the administrator."
+msgstr "Maqola qoidalari hali sozlanmagan. Iltimos, administrator bilan bog'laning."
+
+msgid "Thank you for accepting the rules! You can now create articles."
+msgstr "Qoidalarni qabul qilganingiz uchun rahmat! Endi maqolalar yaratishingiz mumkin."
+
+msgid "You must accept the rules to proceed."
+msgstr "Davom etish uchun qoidalarni qabul qilishingiz kerak."
+
+msgid "Please accept the article writing rules to start publishing."
+msgstr "Nashr etishni boshlash uchun maqola yozish qoidalarini qabul qiling."
+
+msgid "Please log in to access this page."
+msgstr "Ushbu sahifaga kirish uchun tizimga kiring."
+
+msgid "Access denied. Only authors can create articles."
+msgstr "Kirish rad etildi. Faqat mualliflar maqola yaratishi mumkin."
+
+msgid "You must accept the article writing rules before creating articles."
+msgstr "Maqola yaratishdan oldin maqola yozish qoidalarini qabul qilishingiz kerak."
+
+msgid "Access denied. You can only edit your own articles."
+msgstr "Kirish rad etildi. Faqat o'z maqolalaringizni tahrirlashingiz mumkin."
+
+msgid "Access denied. You can only delete your own articles."
+msgstr "Kirish rad etildi. Faqat o'z maqolalaringizni o'chirishingiz mumkin."
+
+# Article Messages
+msgid "Article \"{title}\" created successfully!"
+msgstr "\"{title}\" maqolasi muvaffaqiyatli yaratildi!"
+
+msgid "Failed to create article. Please correct the errors below."
+msgstr "Maqola yaratilmadi. Quyidagi xatolarni tuzating."
+
+msgid "Article \"{title}\" updated successfully!"
+msgstr "\"{title}\" maqolasi muvaffaqiyatli yangilandi!"
+
+msgid "Failed to update article. Please correct the errors below."
+msgstr "Maqola yangilanmadi. Quyidagi xatolarni tuzating."
+
+msgid "Article \"{title}\" has been deleted successfully."
+msgstr "\"{title}\" maqolasi muvaffaqiyatli o'chirildi."
+
+# Article Fields
+msgid "Article title (max 200 characters)"
+msgstr "Maqola sarlavhasi (maksimal 200 belgi)"
+
+msgid "Auto-generated from title, used in URLs"
+msgstr "Sarlavhadan avtomatik yaratiladi, URL manzillarida ishlatiladi"
+
+msgid "Article content with rich text formatting"
+msgstr "Boy matn formatlash bilan maqola kontenti"
+
+msgid "Allowed formats: jpg, jpeg, png, gif, webp. Max size: 5MB"
+msgstr "Ruxsat etilgan formatlar: jpg, jpeg, png, gif, webp. Maksimal hajm: 5MB"
+
+msgid "Number of times this article has been viewed"
+msgstr "Bu maqola ko'rilgan sonlar"
+
+# Statistics
+msgid "Total Articles"
+msgstr "Jami maqolalar"
+
+msgid "Published Articles"
+msgstr "Nashr etilgan maqolalar"
+
+msgid "Draft Articles"
+msgstr "Qoralama maqolalar"
+
+msgid "Recent Articles"
+msgstr "So'nggi maqolalar"
+
+msgid "Total"
+msgstr "Jami"
+
+msgid "Statistics"
+msgstr "Statistika"
+
+msgid "Total views"
+msgstr "Jami ko'rishlar"
+
+# Error Pages
+msgid "403 - Access Denied"
+msgstr "403 - Kirish rad etildi"
+
+msgid "Access Denied"
+msgstr "Kirish rad etildi"
+
+msgid "You don't have permission to access this resource."
+msgstr "Sizda ushbu manbaga kirish huquqi yo'q."
+
+msgid "If you believe this is an error, please contact the administrator."
+msgstr "Agar bu xato deb hisoblasangiz, administrator bilan bog'laning."
+
+msgid "Go to Homepage"
+msgstr "Bosh sahifaga o'tish"
+
+msgid "Go to Dashboard"
+msgstr "Boshqaruv paneliga o'tish"
+
+msgid "404 - Page Not Found"
+msgstr "404 - Sahifa topilmadi"
+
+msgid "Page Not Found"
+msgstr "Sahifa topilmadi"
+
+msgid "The page you are looking for doesn't exist or has been moved."
+msgstr "Siz qidirayotgan sahifa mavjud emas yoki ko'chirilgan."
+
+msgid "Please check the URL or use the navigation to find what you're looking for."
+msgstr "URL manzilini tekshiring yoki qidirayotgan narsangizni topish uchun navigatsiyadan foydalaning."
+
+msgid "Browse Articles"
+msgstr "Maqolalarni ko'rish"
+
+msgid "500 - Server Error"
+msgstr "500 - Server xatosi"
+
+msgid "Internal Server Error"
+msgstr "Ichki server xatosi"
+
+msgid "Something went wrong on our end. We're working to fix it."
+msgstr "Bizning tomonimizda xatolik yuz berdi. Uni tuzatish ustida ishlayapmiz."
+
+msgid "Please try again later. If the problem persists, contact support."
+msgstr "Keyinroq qayta urinib ko'ring. Agar muammo davom etsa, qo'llab-quvvatlash xizmatiga murojaat qiling."
+
+msgid "Try Again"
+msgstr "Qayta urinish"
+
+# Footer
+msgid "Built with Django & Bootstrap"
+msgstr "Django va Bootstrap bilan qurilgan"
+
+msgid "Secure"
+msgstr "Xavfsiz"
+
+msgid "Scalable"
+msgstr "Kengaytirilishi mumkin"
+
+msgid "Production-Ready"
+msgstr "Ishlab chiqarishga tayyor"
+
+# Validation Errors
+msgid "This field is required."
+msgstr "Bu maydon to'ldirilishi shart."
+
+msgid "Enter a valid email address."
+msgstr "To'g'ri elektron pochta manzilini kiriting."
+
+msgid "A user with that email already exists."
+msgstr "Ushbu elektron pochta bilan foydalanuvchi allaqachon mavjud."
+
+msgid "The two password fields didn't match."
+msgstr "Ikki parol maydoni mos kelmadi."
+
+msgid "This password is too short. It must contain at least 8 characters."
+msgstr "Bu parol juda qisqa. U kamida 8 ta belgidan iborat bo'lishi kerak."
+
+msgid "This password is too common."
+msgstr "Bu parol juda oddiy."
+
+msgid "This password is entirely numeric."
+msgstr "Bu parol butunlay raqamlardan iborat."
+
+# Admin
+msgid "User"
+msgstr "Foydalanuvchi"
+
+msgid "Users"
+msgstr "Foydalanuvchilar"
+
+msgid "Article"
+msgstr "Maqola"
+
+msgid "Articles"
+msgstr "Maqolalar"
+
+# Pagination
+msgid "Page"
+msgstr "Sahifa"
+
+msgid "of"
+msgstr "dan"
+
+msgid "Showing"
+msgstr "Ko'rsatilmoqda"
+
+msgid "results"
+msgstr "natija"
+
+# Confirmation
+msgid "Are you sure?"
+msgstr "Ishonchingiz komilmi?"
+
+msgid "Are you sure you want to delete this article?"
+msgstr "Haqiqatan ham bu maqolani o'chirmoqchimisiz?"
+
+msgid "This action cannot be undone."
+msgstr "Bu amalni bekor qilib bo'lmaydi."
+
+msgid "Yes, delete it"
+msgstr "Ha, o'chirish"
+
+msgid "No, cancel"
+msgstr "Yo'q, bekor qilish"
+
+# Time
+msgid "Today"
+msgstr "Bugun"
+
+msgid "Yesterday"
+msgstr "Kecha"
+
+msgid "days ago"
+msgstr "kun oldin"
+
+msgid "hours ago"
+msgstr "soat oldin"
+
+msgid "minutes ago"
+msgstr "daqiqa oldin"
+
+msgid "just now"
+msgstr "hozir"
+
+# Author Dashboard
+msgid "My Dashboard"
+msgstr "Mening paneliim"
+
+msgid "Article Management"
+msgstr "Maqolalarni boshqarish"
+
+msgid "Quick Actions"
+msgstr "Tezkor harakatlar"
+
+msgid "No articles yet"
+msgstr "Hali maqolalar yo'q"
+
+msgid "Start by creating your first article!"
+msgstr "Birinchi maqolangizni yaratish bilan boshlang!"
+
+# Search
+msgid "Search articles..."
+msgstr "Maqolalarni qidirish..."
+
+msgid "Search results for"
+msgstr "Qidiruv natijalari"
+
+msgid "No results found"
+msgstr "Hech narsa topilmadi"
+
+msgid "Try different keywords"
+msgstr "Boshqa kalit so'zlarni sinab ko'ring"
+
+# Upload
+msgid "Choose file"
+msgstr "Fayl tanlash"
+
+msgid "No file chosen"
+msgstr "Hech qanday fayl tanlanmadi"
+
+msgid "Upload"
+msgstr "Yuklash"
+
+msgid "Remove"
+msgstr "Olib tashlash"
+
+# Help Text
+msgid "Enter your username"
+msgstr "Foydalanuvchi nomingizni kiriting"
+
+msgid "Enter your email address"
+msgstr "Elektron pochta manzilingizni kiriting"
+
+msgid "Enter your password"
+msgstr "Parolingizni kiriting"
+
+msgid "Confirm your password"
+msgstr "Parolingizni tasdiqlang"
+
+msgid "Choose your role"
+msgstr "Rolingizni tanlang"
+
+msgid "Select a language"
+msgstr "Tilni tanlang"
+
+# New translations for home page
+msgid "Upload New Article"
+msgstr "Yangi maqola yuklash"
+
+msgid "Your Articles"
+msgstr "Sizning maqolalaringiz"
+
+msgid "Platform Total"
+msgstr "Platformada jami"
+
+msgid "Articles Available to Read"
+msgstr "O'qish uchun mavjud maqolalar"
+
+msgid "Discover amazing articles from talented authors"
+msgstr "Iqtidorli mualliflarning ajoyib maqolalarini kashf eting"
+
+msgid "You are registered as a Reader. Browse and enjoy articles!"
+msgstr "Siz O'quvchi sifatida ro'yxatdan o'tgansiz. Maqolalarni ko'rib, bahramand bo'ling!"
+
+msgid "Browse All Articles"
+msgstr "Barcha maqolalarni ko'rish"
+
+msgid "Ready to share your knowledge? Create your next article now!"
+msgstr "Bilimlaringizni baham ko'rishga tayyormisiz? Keyingi maqolangizni hozir yarating!"
+
+msgid "Action Required"
+msgstr "Harakat talab qilinadi"
+
+msgid "Accept Rules Now"
+msgstr "Qoidalarni hozir qabul qilish"
+
+msgid "Create New Article"
+msgstr "Yangi maqola yaratish"
+
+msgid "Your Recent Articles"
+msgstr "Sizning so'nggi maqolalaringiz"
+
+msgid "Actions"
+msgstr "Harakatlar"
+
+msgid "Created"
+msgstr "Yaratilgan"
+
+msgid "View All My Articles"
+msgstr "Barcha maqolalarimni ko'rish"
+
+msgid "You haven't created any articles yet."
+msgstr "Siz hali birorta maqola yaratmagansiz."
+
+msgid "Create your first article"
+msgstr "Birinchi maqolangizni yarating"
+
+msgid "Reader Account"
+msgstr "O'quvchi akkaunti"
+
+msgid "You are registered as a Reader. You can browse and read all published articles."
+msgstr "Siz O'quvchi sifatida ro'yxatdan o'tgansiz. Barcha nashr etilgan maqolalarni ko'rib chiqishingiz va o'qishingiz mumkin."
+
+msgid "To create articles, you need to register as an Author."
+msgstr "Maqola yaratish uchun Muallif sifatida ro'yxatdan o'tishingiz kerak."
+
+msgid "No articles available yet. Check back later!"
+msgstr "Hali maqolalar mavjud emas. Keyinroq tekshiring!"
+
+msgid "Why Choose Our Platform?"
+msgstr "Nega bizning platformani tanlash kerak?"
+
+msgid "Easy Publishing"
+msgstr "Oson nashr etish"
+
+msgid "Rich text editor with image support makes writing a breeze."
+msgstr "Rasm qo'llab-quvvatlaydigan boy matn muharriri yozishni osonlashtiradi."
+
+msgid "Secure & Safe"
+msgstr "Xavfsiz va ishonchli"
+
+msgid "Your content is protected with enterprise-grade security."
+msgstr "Kontentingiz korxona darajasidagi xavfsizlik bilan himoyalangan."
+
+msgid "Track Performance"
+msgstr "Samaradorlikni kuzatish"
+
+msgid "Monitor views and engagement on your articles."
+msgstr "Maqolalaringizdagi ko'rishlar va faoliyatni kuzatib boring."
+
+msgid "No articles published yet. Be the first to share your knowledge!"
+msgstr "Hali hech qanday maqola nashr etilmagan. Bilimlaringizni baham ko'rgan birinchi odam bo'ling!"
+
+msgid "View All Articles"
+msgstr "Barcha maqolalarni ko'rish"
+
+msgid "Read Article"
+msgstr "Maqolani o'qish"
+
+msgid "Join as Author"
+msgstr "Muallif sifatida qo'shilish"
+
+msgid "Browse Articles"
+msgstr "Maqolalarni ko'rish"
+
+msgid "Community Driven"
+msgstr "Jamiyat tomonidan boshqariladigan"
+
+msgid "Secure Platform"
+msgstr "Xavfsiz platforma"
+
+msgid "Welcome to Article Platform"
+msgstr "Maqola platformasiga xush kelibsiz"
+
+msgid "Share your knowledge, read amazing articles, and connect with authors worldwide."
+msgstr "Bilimlaringizni baham ko'ring, ajoyib maqolalarni o'qing va dunyo bo'ylab mualliflar bilan bog'laning."
+
+msgid "views"
+msgstr "ko'rishlar"
+
+msgid "You need to read and accept our article writing rules before you can start publishing."
+msgstr "Nashr etishni boshlashdan oldin maqola yozish qoidalarimizni o'qib, qabul qilishingiz kerak."
+
+
+# Form Field Translations
+
+msgid "Article Title"
+msgstr "Maqola Sarlavhasi"
+
+msgid "Article Content"
+msgstr "Maqola Kontenti"
+
+msgid "Article File"
+msgstr "Maqola Fayli"
+
+msgid "Maximum 200 characters"
+msgstr "Maksimal 200 belgi"
+
+msgid "Write your article content with rich text formatting"
+msgstr "Maqolangiz kontentini boy matn formatlash bilan yozing"
+
+msgid "Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: 10MB"
+msgstr "Maqolani fayl sifatida yuklang. Ruxsat etilgan formatlar: TXT, DOC, DOCX, PDF. Maksimal hajm: 10MB"
+
+msgid "Choose \"Draft\" to save without publishing, or \"Published\" to make it visible to readers"
+msgstr "\"Qoralama\" ni tanlang nashr etmasdan saqlash uchun, yoki \"Nashr etilgan\" ni tanlang o'quvchilarga ko'rinishi uchun"
+
+msgid "Optional"
+msgstr "Ixtiyoriy"
+
+msgid "Current file"
+msgstr "Joriy fayl"
+
+msgid "Type"
+msgstr "Turi"
+
+msgid "Size"
+msgstr "Hajmi"
+
+msgid "Update Article"
+msgstr "Maqolani Yangilash"
+
+msgid "Writing Tips"
+msgstr "Yozish Maslahatlari"
+
+msgid "Use a clear, descriptive title that summarizes your article"
+msgstr "Maqolangizni umumlashtiruvchi aniq, tavsifiy sarlavhadan foydalaning"
+
+msgid "Add a cover image to make your article more attractive (optional but recommended)"
+msgstr "Maqolangizni jozibador qilish uchun muqova rasmini qo'shing (ixtiyoriy, ammo tavsiya etiladi)"
+
+msgid "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)"
+msgstr "Agar xohlasangiz maqolangizni fayl sifatida yuklang (TXT, DOC, DOCX, yoki PDF) (ixtiyoriy)"
+
+msgid "Format your content with headings, lists, and images for better readability"
+msgstr "Yaxshi o'qilishi uchun kontentingizni sarlavhalar, ro'yxatlar va rasmlar bilan formatlang"
+
+msgid "Save as Draft if you want to continue editing later"
+msgstr "Keyinroq tahrirlashni davom ettirish uchun Qoralama sifatida saqlang"
+
+msgid "Publish when your article is ready for readers"
+msgstr "Maqolangiz o'quvchilar uchun tayyor bo'lganda nashr eting"
+
+
+# Article File Display Translations
+msgid "Download Article File"
+msgstr "Maqola Faylini Yuklash"
+
+msgid "Open article file"
+msgstr "Maqola faylini ochish"
+
+msgid "Article File Available"
+msgstr "Maqola Fayli Mavjud"
+
+msgid "File Type"
+msgstr "Fayl Turi"
+
+msgid "Size"
+msgstr "Hajmi"
+
+msgid "Open File"
+msgstr "Faylni Ochish"
+
+msgid "Download"
+msgstr "Yuklash"
+
+msgid "Back to Articles"
+msgstr "Maqolalarga Qaytish"
+
+msgid "Published Articles"
+msgstr "Nashr Qilingan Maqolalar"
+
+msgid "Browse our collection of amazing articles"
+msgstr "Bizning ajoyib maqolalar to'plamini ko'ring"
+
+msgid "Search"
+msgstr "Qidirish"
+
+msgid "Showing results for"
+msgstr "Qidiruv natijalari"
+
+msgid "Clear"
+msgstr "Tozalash"
+
+msgid "Read Article"
+msgstr "Maqolani O'qish"
+
+msgid "Page"
+msgstr "Sahifa"
+
+msgid "of"
+msgstr "dan"
+
+msgid "No articles published yet. Be the first to share your knowledge!"
+msgstr "Hali maqolalar nashr qilinmagan. Bilimingizni baham ko'radigan birinchi bo'ling!"
+
+msgid "Last updated"
+msgstr "Oxirgi yangilanish"
+
+msgid "About the Author"
+msgstr "Muallif Haqida"
+

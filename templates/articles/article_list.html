@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Articles" %} - {% trans "Article Publishing Platform" %}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>
+            <i class="bi bi-newspaper"></i> {% trans "Published Articles" %}
+        </h1>
+        <p class="lead text-muted">{% trans "Browse our collection of amazing articles" %}</p>
+    </div>
+</div>
+
+<!-- Search Form -->
+<div class="row mb-4">
+    <div class="col-lg-6 mx-auto">
+        <form method="get" class="input-group">
+            {{ search_form.query }}
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-search"></i> {% trans "Search" %}
+            </button>
+        </form>
+        {% if search_query %}
+            <div class="mt-2">
+                <small class="text-muted">
+                    {% trans "Showing results for" %}: <strong>{{ search_query }}</strong>
+                    <a href="{% url 'articles:list' %}" class="text-decoration-none">({% trans "Clear" %})</a>
+                </small>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Articles Grid -->
+{% if articles %}
+    <div class="row g-4 mb-4">
+        {% for article in articles %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <!-- Cover Image -->
+                    {% if article.cover_image %}
+                        <img src="{{ article.cover_image.url }}" class="card-img-top article-cover" alt="{{ article.title }}">
+                    {% else %}
+                        <div class="article-cover d-flex align-items-center justify-content-center bg-secondary text-white">
+                            <i class="bi bi-file-earmark-text" style="font-size: 3rem;"></i>
+                        </div>
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {% if article.article_file %}
+                                <a href="{{ article.article_file.url }}" target="_blank" class="text-decoration-none text-dark" title="{% trans 'Open article file' %}">
+                                    {{ article.title }}
+                                    <i class="bi bi-file-earmark-{{ article.get_file_extension }}-fill text-danger ms-1"></i>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'articles:detail' article.slug %}" class="text-decoration-none text-dark">
+                                    {{ article.title }}
+                                </a>
+                            {% endif %}
+                        </h5>
+
+                        <p class="card-text text-muted">
+                            <small>
+                                <i class="bi bi-person"></i> {{ article.author.username }}
+                                <span class="badge bg-primary badge-role">{{ article.author.get_role_display }}</span>
+                                <br>
+                                <i class="bi bi-calendar"></i> {{ article.created_at|date:"M d, Y" }}
+                                <br>
+                                <i class="bi bi-eye"></i> {{ article.views }} views
+                                {% if article.article_file %}
+                                    <br>
+                                    <i class="bi bi-file-earmark-arrow-down"></i>
+                                    <span class="badge bg-danger">{{ article.get_file_extension|upper }} ({{ article.get_file_size }} MB)</span>
+                                {% endif %}
+                            </small>
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-transparent border-0">
+                        {% if article.article_file %}
+                            <a href="{{ article.article_file.url }}" target="_blank" class="btn btn-danger btn-sm w-100">
+                                <i class="bi bi-download"></i> {% trans "Download Article File" %}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'articles:detail' article.slug %}" class="btn btn-outline-primary btn-sm w-100">
+                                <i class="bi bi-book-half"></i> {% trans "Read Article" %}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+        <nav aria-label="Article pagination">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1{% if search_query %}&query={{ search_query }}{% endif %}">
+                            <i class="bi bi-chevron-bar-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&query={{ search_query }}{% endif %}">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <span class="page-link">
+                        {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+                    </span>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_query %}&query={{ search_query }}{% endif %}">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&query={{ search_query }}{% endif %}">
+                            <i class="bi bi-chevron-bar-right"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% else %}
+    <div class="alert alert-info text-center">
+        <i class="bi bi-info-circle"></i>
+        {% if search_query %}
+            {% blocktrans %}No articles found matching "{{ search_query }}". Try a different search term.{% endblocktrans %}
+        {% else %}
+            {% trans "No articles published yet. Be the first to share your knowledge!" %}
+        {% endif %}
+    </div>
+{% endif %}
+{% endblock %}
