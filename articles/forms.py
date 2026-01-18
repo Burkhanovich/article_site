@@ -102,7 +102,7 @@ class ArticleForm(forms.ModelForm):
 
 class ArticleSearchForm(forms.Form):
     """
-    Form for searching articles.
+    Form for searching articles by title, content, or author.
     """
 
     query = forms.CharField(
@@ -110,7 +110,7 @@ class ArticleSearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Search articles...',
+            'placeholder': _('Search by title, author, or content...'),
             'aria-label': 'Search'
         })
     )

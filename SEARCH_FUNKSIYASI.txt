@@ -1,0 +1,372 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║              QIDIRUV FUNKSIYASI YAXSHILANDI                            ║
+║            Enhanced Search Functionality Added                         ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+✅ SERVER ISHLAMOQDA
+═════════════════════════════════════════════════════════════════════════
+Server manzili: http://127.0.0.1:8000/
+Background task ID: b2dced6
+
+
+📋 NIMA QILINDI
+═════════════════════════════════════════════════════════════════════════
+
+✓ QIDIRUV FUNKSIYASI YAXSHILANDI
+   Endi quyidagilar bo'yicha qidirish mumkin:
+
+   1. ✅ Maqola sarlavhasi (Title)
+      Misol: "Django" yozsa - "Django Tutorial" maqolasini topadi
+
+   2. ✅ Maqola kontenti (Content)
+      Misol: "database" yozsa - matnida "database" bor maqolalarni topadi
+
+   3. ✅ MUALLIF NOMI (Author Username) - YANGI!
+      Misol: "test_author" yozsa - test_author yozgan barcha maqolalarni topadi
+
+
+✓ PLACEHOLDER YANGILANDI
+   Old: "Search articles..."
+   New: "Sarlavha, muallif yoki kontent bo'yicha qidiring..." (O'zbek)
+        "Поиск по заголовку, автору или содержанию..." (Rus)
+        "Search by title, author, or content..." (Ingliz)
+
+
+🎯 QIDIRUV QANDAY ISHLAYDI
+═════════════════════════════════════════════════════════════════════════
+
+MISOL 1: Maqola sarlavhasi bo'yicha qidirish
+────────────────────────────────────────────────────────────────────────
+1. Maqolalar sahifasiga kiring: http://127.0.0.1:8000/uz/articles/
+2. Search box ga "Django" yozing
+3. Search tugmasini bosing
+4. ✅ Natija: Sarlavhasida "Django" so'zi bor barcha maqolalar ko'rinadi
+
+
+MISOL 2: Muallif nomi bo'yicha qidirish (YANGI!)
+────────────────────────────────────────────────────────────────────────
+1. Maqolalar sahifasiga kiring
+2. Search box ga "test_author" yozing
+3. Search tugmasini bosing
+4. ✅ Natija: test_author foydalanuvchisi yozgan barcha maqolalar ko'rinadi
+
+   Bu juda foydali qachonki:
+   - Muayyan muallifning barcha maqolalarini ko'rmoqchisiz
+   - Muallif nomini bilasiz lekin maqola nomini bilmaysiz
+
+
+MISOL 3: Kontent bo'yicha qidirish
+────────────────────────────────────────────────────────────────────────
+1. Maqolalar sahifasiga kiring
+2. Search box ga "python" yozing
+3. Search tugmasini bosing
+4. ✅ Natija: Kontentida "python" so'zi bor maqolalar ko'rinadi
+
+
+MISOL 4: Kombinatsiyalashgan qidiruv
+────────────────────────────────────────────────────────────────────────
+Agar "test" deb qidirsangiz:
+- Sarlavhasida "test" bor maqolalar ✓
+- Kontentida "test" bor maqolalar ✓
+- Username "test" bor mualliflarning maqolalari ✓
+Hammasi bitta natijada!
+
+
+🧪 TEST QILISH
+═════════════════════════════════════════════════════════════════════════
+
+BOSQICH 1: BRAUZER CACHENI TOZALASH
+────────────────────────────────────────────────────────────────────────
+MUHIM! Yangi placeholder ni ko'rish uchun:
+
+1. Ctrl + F5 (Hard reload)
+2. Yoki Private window: Ctrl + Shift + N
+
+
+BOSQICH 2: MAQOLALAR YARATISH (Test uchun)
+────────────────────────────────────────────────────────────────────────
+1. test_author sifatida kiring:
+   Username: test_author
+   Password: test123456
+
+2. 3 ta turli xil maqola yarating:
+
+   Maqola 1:
+   - Title: "Django Tutorial"
+   - Content: "Learn Django framework basics..."
+
+   Maqola 2:
+   - Title: "Python Programming"
+   - Content: "Python is a powerful language..."
+
+   Maqola 3:
+   - Title: "Web Development"
+   - Content: "Building websites with Django..."
+
+3. Publish qiling (Status: "Published")
+
+
+BOSQICH 3: SARLAVHA BO'YICHA QIDIRISH
+────────────────────────────────────────────────────────────────────────
+1. Logout qiling (yoki boshqa brauzerda oching)
+
+2. Articles sahifasiga kiring:
+   http://127.0.0.1:8000/uz/articles/
+
+3. Search box ni tekshiring:
+   ✓ Placeholder: "Sarlavha, muallif yoki kontent bo'yicha qidiring..."
+
+4. "Django" yozing va Search bosing
+
+5. Natija:
+   ✓ "Django Tutorial" ko'rinadi
+   ✓ "Web Development" ko'rinadi (kontentida "Django" bor)
+   ✓ "Python Programming" ko'rinmaydi
+
+
+BOSQICH 4: MUALLIF NOMI BO'YICHA QIDIRISH
+────────────────────────────────────────────────────────────────────────
+1. Search box ni tozalang
+
+2. "test_author" yozing va Search bosing
+
+3. Natija:
+   ✓ test_author yozgan BARCHA maqolalar ko'rinadi:
+     - "Django Tutorial"
+     - "Python Programming"
+     - "Web Development"
+
+4. Boshqa foydalanuvchilar yozgan maqolalar ko'rinmaydi
+
+
+BOSQICH 5: KONTENT BO'YICHA QIDIRISH
+────────────────────────────────────────────────────────────────────────
+1. Search box ni tozalang
+
+2. "Python" yozing va Search bosing
+
+3. Natija:
+   ✓ "Python Programming" ko'rinadi (sarlavhada "Python" bor)
+   ✓ Agar boshqa maqolalarda kontentida "Python" bo'lsa, ular ham ko'rinadi
+
+
+BOSQICH 6: BO'SH QIDIRUV
+────────────────────────────────────────────────────────────────────────
+1. Search box ni bo'sh qoldiring va Search bosing
+
+2. Natija:
+   ✓ BARCHA maqolalar ko'rinadi (hech narsa filtrlanmaydi)
+
+
+BOSQICH 7: TILLARNI TEST QILISH
+────────────────────────────────────────────────────────────────────────
+1. O'zbekcha (default):
+   Placeholder: "Sarlavha, muallif yoki kontent bo'yicha qidiring..."
+
+2. Rus tiliga o'tish: 🌐 Русский
+   Placeholder: "Поиск по заголовку, автору или содержанию..."
+
+3. Ingliz tiliga o'tish: 🌐 English
+   Placeholder: "Search by title, author, or content..."
+
+
+═════════════════════════════════════════════════════════════════════════
+🔧 TEXNIK TAFSILOTLAR
+═════════════════════════════════════════════════════════════════════════
+
+CODE CHANGES:
+────────────────────────────────────────────────────────────────────────
+
+1. articles/views.py - ArticleListView.get_queryset()
+
+   OLD:
+   queryset = queryset.filter(
+       Q(title__icontains=search_query) |
+       Q(content__icontains=search_query)
+   )
+
+   NEW:
+   queryset = queryset.filter(
+       Q(title__icontains=search_query) |
+       Q(content__icontains=search_query) |
+       Q(author__username__icontains=search_query)  ← YANGI!
+   )
+
+2. articles/forms.py - ArticleSearchForm
+
+   Placeholder yangilandi:
+   placeholder: _('Search by title, author, or content...')
+
+
+DJANGO ORM QUERY:
+────────────────────────────────────────────────────────────────────────
+Q objects bilan OR condition:
+- Q(title__icontains='test') → Sarlavhada 'test' bor
+- Q(content__icontains='test') → Kontentda 'test' bor
+- Q(author__username__icontains='test') → Username da 'test' bor
+
+__icontains = case-insensitive qidiruv (katta-kichik harf farqi yo'q)
+
+
+═════════════════════════════════════════════════════════════════════════
+📊 QIDIRUV NATIJASI MISOLLARI
+═════════════════════════════════════════════════════════════════════════
+
+Database:
+┌─────────────────────────────────────────────────────────────────────┐
+│ ID │ Title                │ Author       │ Content                  │
+├─────────────────────────────────────────────────────────────────────┤
+│ 1  │ Django Tutorial      │ test_author  │ Learn Django framework...│
+│ 2  │ Python Programming   │ test_author  │ Python is powerful...    │
+│ 3  │ JavaScript Basics    │ john_doe     │ Learn JS fundamentals... │
+│ 4  │ React Tutorial       │ jane_smith   │ Building UIs with React..│
+└─────────────────────────────────────────────────────────────────────┘
+
+
+TEST 1: Search "Django"
+────────────────────────────────────────────────────────────────────────
+NATIJA:
+✓ ID 1: Django Tutorial (title match)
+
+Sabab:
+- title__icontains='Django' → Match ✓
+- content__icontains='Django' → Match ✓
+
+
+TEST 2: Search "test_author"
+────────────────────────────────────────────────────────────────────────
+NATIJA:
+✓ ID 1: Django Tutorial
+✓ ID 2: Python Programming
+
+Sabab:
+- author__username__icontains='test_author' → Match ✓
+
+
+TEST 3: Search "React"
+────────────────────────────────────────────────────────────────────────
+NATIJA:
+✓ ID 4: React Tutorial
+
+Sabab:
+- title__icontains='React' → Match ✓
+- content__icontains='React' → Match ✓
+
+
+TEST 4: Search "john"
+────────────────────────────────────────────────────────────────────────
+NATIJA:
+✓ ID 3: JavaScript Basics
+
+Sabab:
+- author__username__icontains='john' → Match ✓ (john_doe)
+
+
+═════════════════════════════════════════════════════════════════════════
+📁 O'ZGARGAN FAYLLAR
+═════════════════════════════════════════════════════════════════════════
+
+1. articles/views.py
+   - get_queryset() - author__username qo'shildi
+
+2. articles/forms.py
+   - ArticleSearchForm placeholder yangilandi
+
+3. locale/uz/LC_MESSAGES/django.po & .mo
+   - 1 ta yangi tarjima qo'shildi
+
+4. locale/ru/LC_MESSAGES/django.po & .mo
+   - 1 ta yangi tarjima qo'shildi
+
+5. locale/en/LC_MESSAGES/django.po & .mo
+   - 1 ta yangi tarjima qo'shildi
+
+6. add_search_translations.py
+   - Yangi script yaratildi
+
+
+═════════════════════════════════════════════════════════════════════════
+💡 FOYDALANISH MISOLLARI
+═════════════════════════════════════════════════════════════════════════
+
+SCENARIO 1: Foydalanuvchi muallif topmoqchi
+────────────────────────────────────────────────────────────────────────
+Problem: "Men test_author ning barcha maqolalarini o'qimoqchiman"
+Yechim: Search box ga "test_author" yozing
+Natija: ✓ test_author yozgan barcha maqolalar
+
+
+SCENARIO 2: Muayyan mavzu bo'yicha qidirish
+────────────────────────────────────────────────────────────────────────
+Problem: "Python haqida maqolalar kerak"
+Yechim: Search box ga "Python" yozing
+Natija: ✓ Sarlavhada yoki kontentida "Python" bor maqolalar
+
+
+SCENARIO 3: Kombinatsiyalashgan qidiruv
+────────────────────────────────────────────────────────────────────────
+Problem: "Django bo'yicha yoki test_author yozgan maqolalar kerak"
+Yechim: Ikki marta qidirish:
+  1. "Django" → Django maqolalari
+  2. "test_author" → test_author maqolalari
+
+
+SCENARIO 4: Tez qidiruv
+────────────────────────────────────────────────────────────────────────
+Problem: "Qaysidir maqolada 'security' so'zi bor edi, lekin nomi esimda emas"
+Yechim: Search box ga "security" yozing
+Natija: ✓ Kontentida "security" bor barcha maqolalar
+
+
+═════════════════════════════════════════════════════════════════════════
+❌ AGAR ISHLAMASA
+═════════════════════════════════════════════════════════════════════════
+
+MUAMMO 1: Search ishlayapti lekin placeholder eski
+────────────────────────────────────────────────────────────────────────
+Yechim:
+1. Brauzer cache ni tozalang: Ctrl + F5
+2. Private window oching
+3. Server loglarini tekshiring
+
+
+MUAMMO 2: Muallif nomi bo'yicha qidirilmayapti
+────────────────────────────────────────────────────────────────────────
+Yechim:
+1. Server qayta ishga tushganini tekshiring
+2. articles/views.py da o'zgarishlar borligini tekshiring:
+   grep "author__username__icontains" articles/views.py
+
+
+MUAMMO 3: Natija topilmayapti
+────────────────────────────────────────────────────────────────────────
+Sebablar:
+1. Maqola "Draft" holatida → Faqat "Published" maqolalar ko'rinadi
+2. Username noto'g'ri yozilgan → Katta-kichik harf farqi yo'q, lekin spelling to'g'ri bo'lishi kerak
+3. Database bo'sh → Test maqolalar yarating
+
+
+═════════════════════════════════════════════════════════════════════════
+✅ YAKUNIY NATIJA
+═════════════════════════════════════════════════════════════════════════
+
+✓ Server ishlayapti: http://127.0.0.1:8000/
+✓ Qidiruv funksiyasi yaxshilandi
+✓ Muallif nomi bo'yicha qidirish qo'shildi
+✓ Placeholder 3 tilda tarjima qilindi
+✓ Title, Content va Author bo'yicha qidirish
+
+Platformangiz endi kuchli qidiruv funksiyasiga ega! 🔍
+
+
+═════════════════════════════════════════════════════════════════════════
+🚀 TEZKOR TEST
+═════════════════════════════════════════════════════════════════════════
+
+1. Ctrl + F5 (cache tozalash)
+2. http://127.0.0.1:8000/uz/articles/
+3. Search box ni tekshiring (yangi placeholder ko'rinishi kerak)
+4. "test_author" yozing va Search bosing
+5. test_author maqolalari ko'rinadi ✅
+
+═════════════════════════════════════════════════════════════════════════

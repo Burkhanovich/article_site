@@ -739,3 +739,9 @@ msgstr "Последнее обновление"
 msgid "About the Author"
 msgstr "Об Авторе"
 
+
+
+# Search Functionality Translations
+msgid "Search by title, author, or content..."
+msgstr "Поиск по заголовку, автору или содержанию..."
+

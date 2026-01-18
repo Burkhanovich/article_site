@@ -39,7 +39,8 @@ class ArticleListView(ListView):
         if search_query:
             queryset = queryset.filter(
                 Q(title__icontains=search_query) |
-                Q(content__icontains=search_query)
+                Q(content__icontains=search_query) |
+                Q(author__username__icontains=search_query)
             )
 
         return queryset.order_by('-created_at')

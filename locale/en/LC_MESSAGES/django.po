@@ -739,3 +739,9 @@ msgstr "Last updated"
 msgid "About the Author"
 msgstr "About the Author"
 
+
+
+# Search Functionality Translations
+msgid "Search by title, author, or content..."
+msgstr "Search by title, author, or content..."
+
