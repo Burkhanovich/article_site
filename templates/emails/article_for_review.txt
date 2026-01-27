@@ -1,0 +1,61 @@
+{% load i18n %}{% if language == 'uz' %}Hurmatli {{ user.username }}!
+
+Yangi maqola taqriz uchun tayinlandi.
+
+MAQOLA MA'LUMOTLARI:
+- Sarlavha: {{ article.title_uz }}
+- Muallif: {{ article.author.username }}
+- Kategoriyalar: {{ category_names }}
+{% if article.submitted_at %}- Yuborilgan sana: {{ article.submitted_at|date:"d.m.Y H:i" }}{% endif %}
+
+Iltimos, maqolani ko'rib chiqing va taqriz yozing. Siz quyidagi qarorlardan birini qabul qilishingiz mumkin:
+- Tasdiqlash - Maqola nashrga tayyor
+- O'zgartirishlar talab qilish - Muallif tuzatishlar kiritishi kerak
+- Rad etish - Maqola nashr etilmaydi
+
+Maqolani ko'rish: {{ article_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% elif language == 'ru' %}Уважаемый(ая) {{ user.username }}!
+
+Вам назначена новая статья для рецензирования.
+
+ИНФОРМАЦИЯ О СТАТЬЕ:
+- Заголовок: {{ article.title_uz }}
+- Автор: {{ article.author.username }}
+- Категории: {{ category_names }}
+{% if article.submitted_at %}- Дата подачи: {{ article.submitted_at|date:"d.m.Y H:i" }}{% endif %}
+
+Пожалуйста, просмотрите статью и напишите рецензию. Вы можете принять одно из следующих решений:
+- Одобрить - Статья готова к публикации
+- Запросить изменения - Автор должен внести правки
+- Отклонить - Статья не будет опубликована
+
+Просмотреть статью: {{ article_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% else %}Dear {{ user.username }},
+
+A new article has been assigned for your review.
+
+ARTICLE INFORMATION:
+- Title: {{ article.title_uz }}
+- Author: {{ article.author.username }}
+- Categories: {{ category_names }}
+{% if article.submitted_at %}- Submitted: {{ article.submitted_at|date:"d.m.Y H:i" }}{% endif %}
+
+Please review the article and submit your review. You can make one of the following decisions:
+- Approve - Article is ready for publication
+- Request Changes - Author needs to make revisions
+- Reject - Article will not be published
+
+View article: {{ article_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% endif %}

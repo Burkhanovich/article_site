@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "My Articles" %} - {% trans "Article Publishing Platform" %}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <h2>
+                <i class="bi bi-file-earmark-text"></i> {% trans "My Articles" %}
+            </h2>
+            {% if user.can_create_articles %}
+                <a href="{% url 'articles:create' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> {% trans "Create New Article" %}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card bg-primary text-white h-100">
+            <div class="card-body text-center">
+                <h3 class="mb-0">{{ total_count }}</h3>
+                <small>{% trans "Total Articles" %}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card bg-success text-white h-100">
+            <div class="card-body text-center">
+                <h3 class="mb-0">{{ published_count }}</h3>
+                <small>{% trans "Published" %}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card bg-warning text-dark h-100">
+            <div class="card-body text-center">
+                <h3 class="mb-0">{{ pending_admin_count|default:0|add:in_review_count|default:0 }}</h3>
+                <small>{% trans "Pending Review" %}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card bg-secondary text-white h-100">
+            <div class="card-body text-center">
+                <h3 class="mb-0">{{ draft_count }}</h3>
+                <small>{% trans "Drafts" %}</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if rejected_count > 0 %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="alert alert-danger d-flex align-items-center">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            <strong>{{ rejected_count }}</strong>&nbsp;{% trans "article(s) rejected. Please review and resubmit." %}
+            <a href="?status=REJECTED" class="btn btn-sm btn-danger ms-auto">
+                {% trans "View Rejected" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Status Filter -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="btn-group flex-wrap" role="group">
+            <a href="{% url 'articles:my_articles' %}"
+               class="btn {% if not current_status %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                {% trans "All" %} ({{ total_count }})
+            </a>
+            <a href="?status=DRAFT"
+               class="btn {% if current_status == 'DRAFT' %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+                <i class="bi bi-pencil"></i> {% trans "Draft" %} ({{ draft_count }})
+            </a>
+            <a href="?status=PENDING_ADMIN"
+               class="btn {% if current_status == 'PENDING_ADMIN' %}btn-warning{% else %}btn-outline-warning{% endif %}">
+                <i class="bi bi-hourglass-split"></i> {% trans "Pending" %} ({{ pending_admin_count }})
+            </a>
+            <a href="?status=PUBLISHED"
+               class="btn {% if current_status == 'PUBLISHED' %}btn-success{% else %}btn-outline-success{% endif %}">
+                <i class="bi bi-check-circle"></i> {% trans "Published" %} ({{ published_count }})
+            </a>
+            <a href="?status=REJECTED"
+               class="btn {% if current_status == 'REJECTED' %}btn-danger{% else %}btn-outline-danger{% endif %}">
+                <i class="bi bi-x-circle"></i> {% trans "Rejected" %} ({{ rejected_count }})
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Articles List -->
+{% if articles %}
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <!-- Article Card Header -->
+                    <div class="card-img-top article-cover bg-light d-flex align-items-center justify-content-center">
+                        <i class="bi bi-file-earmark-text text-muted" style="font-size: 3rem;"></i>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Status Badge -->
+                        <div class="mb-2">
+                            {% if article.status == 'PUBLISHED' %}
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle"></i> {% trans "Published" %}
+                                </span>
+                            {% elif article.status == 'PENDING_ADMIN' or article.status == 'IN_REVIEW' %}
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-hourglass-split"></i> {% trans "Pending Review" %}
+                                </span>
+                            {% elif article.status == 'CHANGES_REQUESTED' %}
+                                <span class="badge bg-info">
+                                    <i class="bi bi-pencil-square"></i> {% trans "Changes Requested" %}
+                                </span>
+                            {% elif article.status == 'REJECTED' %}
+                                <span class="badge bg-danger">
+                                    <i class="bi bi-x-circle"></i> {% trans "Rejected" %}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary">
+                                    <i class="bi bi-pencil"></i> {% trans "Draft" %}
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        <h5 class="card-title">
+                            <a href="{% url 'articles:detail' article.slug %}" class="text-decoration-none text-dark">
+                                {{ article.title|truncatewords:10 }}
+                            </a>
+                        </h5>
+
+                        <p class="card-text small text-muted">
+                            <i class="bi bi-calendar"></i> {{ article.created_at|date:"M d, Y" }}
+                            {% if article.status == 'PUBLISHED' %}
+                                <span class="mx-1">|</span>
+                                <i class="bi bi-eye"></i> {{ article.views }}
+                            {% endif %}
+                        </p>
+
+                        <!-- Rejection reason preview -->
+                        {% if article.is_rejected and article.rejection_reason %}
+                            <div class="alert alert-danger py-2 small mb-2">
+                                <strong>{% trans "Reason" %}:</strong> {{ article.rejection_reason|truncatewords:15 }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Submitted date for pending articles -->
+                        {% if article.is_pending_review and article.submitted_at %}
+                            <p class="card-text small text-warning">
+                                <i class="bi bi-clock"></i> {% trans "Submitted" %}: {{ article.submitted_at|date:"M d, Y" }}
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-footer bg-transparent">
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="{% url 'articles:detail' article.slug %}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i> {% trans "View" %}
+                            </a>
+
+                            {% if article.can_be_edited_by_author %}
+                                <a href="{% url 'articles:edit' article.slug %}" class="btn btn-sm btn-outline-secondary">
+                                    <i class="bi bi-pencil"></i> {% trans "Edit" %}
+                                </a>
+                            {% endif %}
+
+                            {% if article.can_be_submitted %}
+                                <form method="post" action="{% url 'articles:submit' article.slug %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-success">
+                                        <i class="bi bi-send"></i> {% trans "Submit" %}
+                                    </button>
+                                </form>
+                            {% endif %}
+
+                            <a href="{% url 'articles:delete' article.slug %}" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if current_status %}status={{ current_status }}&{% endif %}page={{ page_obj.previous_page_number }}">
+                            {% trans "Previous" %}
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if current_status %}status={{ current_status }}&{% endif %}page={{ num }}">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if current_status %}status={{ current_status }}&{% endif %}page={{ page_obj.next_page_number }}">
+                            {% trans "Next" %}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+{% else %}
+    <div class="text-center py-5">
+        <i class="bi bi-file-earmark-x text-muted" style="font-size: 4rem;"></i>
+        <h4 class="mt-3 text-muted">
+            {% if current_status %}
+                {% trans "No articles found with this status." %}
+            {% else %}
+                {% trans "You haven't created any articles yet." %}
+            {% endif %}
+        </h4>
+        {% if user.can_create_articles %}
+            <p class="text-muted">{% trans "Start by creating your first article!" %}</p>
+            <a href="{% url 'articles:create' %}" class="btn btn-success mt-2">
+                <i class="bi bi-plus-circle"></i> {% trans "Create Article" %}
+            </a>
+        {% endif %}
+    </div>
+{% endif %}
+
+<!-- Help Section -->
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <h5 class="card-title">
+            <i class="bi bi-question-circle"></i> {% trans "Article Status Guide" %}
+        </h5>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="d-flex align-items-start">
+                    <span class="badge bg-secondary me-2 mt-1">{% trans "Draft" %}</span>
+                    <small>{% trans "Saved for later editing. Only visible to you." %}</small>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="d-flex align-items-start">
+                    <span class="badge bg-warning text-dark me-2 mt-1">{% trans "Pending" %}</span>
+                    <small>{% trans "Submitted and awaiting admin review." %}</small>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="d-flex align-items-start">
+                    <span class="badge bg-success me-2 mt-1">{% trans "Published" %}</span>
+                    <small>{% trans "Approved and visible to all readers." %}</small>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="d-flex align-items-start">
+                    <span class="badge bg-danger me-2 mt-1">{% trans "Rejected" %}</span>
+                    <small>{% trans "Needs revision. You can edit and resubmit." %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .article-cover {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+    }
+
+    .btn-group .btn {
+        margin-bottom: 0.25rem;
+    }
+</style>
+{% endblock %}

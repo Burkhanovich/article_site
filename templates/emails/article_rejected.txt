@@ -1,0 +1,52 @@
+{% load i18n %}{% if language == 'uz' %}Hurmatli {{ user.username }}!
+
+Afsuski, sizning maqolangiz rad etildi.
+
+MAQOLA: {{ article.title_uz }}
+{% if reason %}
+RAD ETISH SABABI:
+{{ reason }}
+{% endif %}
+Siz maqolangizni takomillashtirib, yangi maqola sifatida qayta yuborishingiz mumkin.
+Savollaringiz bo'lsa, administrator bilan bog'laning.
+
+Maqolani ko'rish: {{ article_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% elif language == 'ru' %}Уважаемый(ая) {{ user.username }}!
+
+К сожалению, ваша статья была отклонена.
+
+СТАТЬЯ: {{ article.title_uz }}
+{% if reason %}
+ПРИЧИНА ОТКЛОНЕНИЯ:
+{{ reason }}
+{% endif %}
+Вы можете улучшить свою статью и отправить её заново как новую статью.
+Если у вас есть вопросы, обратитесь к администратору.
+
+Просмотреть статью: {{ article_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% else %}Dear {{ user.username }},
+
+Unfortunately, your article has been rejected.
+
+ARTICLE: {{ article.title_uz }}
+{% if reason %}
+REASON FOR REJECTION:
+{{ reason }}
+{% endif %}
+You can improve your article and resubmit it as a new article.
+If you have any questions, please contact the administrator.
+
+View article: {{ article_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% endif %}

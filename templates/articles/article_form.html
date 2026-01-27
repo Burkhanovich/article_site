@@ -9,6 +9,47 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-10">
+        <!-- Show rejection reason if editing a rejected article -->
+        {% if form.instance.pk and form.instance.is_rejected %}
+            <div class="alert alert-danger mb-4">
+                <h5 class="alert-heading">
+                    <i class="bi bi-x-circle"></i> {% trans "Article Rejected" %}
+                </h5>
+                <p class="mb-0">
+                    {% if form.instance.admin_note %}
+                        <strong>{% trans "Reason" %}:</strong> {{ form.instance.admin_note }}
+                    {% else %}
+                        {% trans "No specific reason was provided. Please review your article and make necessary improvements before resubmitting." %}
+                    {% endif %}
+                </p>
+                {% if form.instance.admin_decision_at %}
+                    <hr>
+                    <small class="text-muted">
+                        {% trans "Reviewed on" %}: {{ form.instance.admin_decision_at|date:"F d, Y H:i" }}
+                        {% if form.instance.admin_decision_by %}
+                            {% trans "by" %} {{ form.instance.admin_decision_by.username }}
+                        {% endif %}
+                    </small>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <!-- Show changes requested reason if editing -->
+        {% if form.instance.pk and form.instance.is_changes_requested %}
+            <div class="alert alert-info mb-4">
+                <h5 class="alert-heading">
+                    <i class="bi bi-pencil-square"></i> {% trans "Changes Requested" %}
+                </h5>
+                <p class="mb-0">
+                    {% if form.instance.admin_note %}
+                        <strong>{% trans "Feedback" %}:</strong> {{ form.instance.admin_note }}
+                    {% else %}
+                        {% trans "Please review your article and make necessary improvements before resubmitting." %}
+                    {% endif %}
+                </p>
+            </div>
+        {% endif %}
+
         <div class="card shadow">
             <div class="card-header bg-primary text-white">
                 <h3 class="mb-0">
@@ -21,72 +62,93 @@
             </div>
 
             <div class="card-body">
-                <form method="post" enctype="multipart/form-data" novalidate>
+                <form method="post" enctype="multipart/form-data" novalidate id="article-form">
                     {% csrf_token %}
 
-                    <!-- Title -->
+                    <!-- Title (Uzbek) -->
                     <div class="mb-3">
-                        <label for="{{ form.title.id_for_label }}" class="form-label">
-                            {{ form.title.label }} <span class="text-danger">*</span>
+                        <label for="{{ form.title_uz.id_for_label }}" class="form-label">
+                            {{ form.title_uz.label }} <span class="text-danger">*</span>
                         </label>
-                        {{ form.title }}
-                        {% if form.title.errors %}
-                            <div class="text-danger small">{{ form.title.errors }}</div>
+                        {{ form.title_uz }}
+                        {% if form.title_uz.errors %}
+                            <div class="text-danger small">{{ form.title_uz.errors }}</div>
                         {% endif %}
-                        <small class="form-text text-muted">{{ form.title.help_text }}</small>
                     </div>
 
-                    <!-- Content -->
+                    <!-- Title (Russian) -->
                     <div class="mb-3">
-                        <label for="{{ form.content.id_for_label }}" class="form-label">
-                            {{ form.content.label }} <span class="text-danger">*</span>
+                        <label for="{{ form.title_ru.id_for_label }}" class="form-label">
+                            {{ form.title_ru.label }}
                         </label>
-                        {{ form.content }}
-                        {% if form.content.errors %}
-                            <div class="text-danger small">{{ form.content.errors }}</div>
+                        {{ form.title_ru }}
+                        {% if form.title_ru.errors %}
+                            <div class="text-danger small">{{ form.title_ru.errors }}</div>
                         {% endif %}
-                        <small class="form-text text-muted">{{ form.content.help_text }}</small>
                     </div>
 
-                    <!-- Cover Image -->
+                    <!-- Title (English) -->
                     <div class="mb-3">
-                        <label for="{{ form.cover_image.id_for_label }}" class="form-label">
-                            {{ form.cover_image.label }}
+                        <label for="{{ form.title_en.id_for_label }}" class="form-label">
+                            {{ form.title_en.label }}
                         </label>
-
-                        {% if form.instance.cover_image %}
-                            <div class="mb-2">
-                                <img src="{{ form.instance.cover_image.url }}" alt="Current cover"
-                                     class="img-thumbnail" style="max-width: 300px;">
-                                <p class="text-muted small">Current cover image</p>
-                            </div>
+                        {{ form.title_en }}
+                        {% if form.title_en.errors %}
+                            <div class="text-danger small">{{ form.title_en.errors }}</div>
                         {% endif %}
-
-                        {{ form.cover_image }}
-                        {% if form.cover_image.errors %}
-                            <div class="text-danger small">{{ form.cover_image.errors }}</div>
-                        {% endif %}
-                        <small class="form-text text-muted">{{ form.cover_image.help_text }}</small>
                     </div>
 
-                    <!-- Article File -->
+                    <!-- Content (Uzbek) -->
+                    <div class="mb-3">
+                        <label for="{{ form.content_uz.id_for_label }}" class="form-label">
+                            {{ form.content_uz.label }} <span class="text-danger">*</span>
+                        </label>
+                        {{ form.content_uz }}
+                        {% if form.content_uz.errors %}
+                            <div class="text-danger small">{{ form.content_uz.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Content (Russian) -->
+                    <div class="mb-3">
+                        <label for="{{ form.content_ru.id_for_label }}" class="form-label">
+                            {{ form.content_ru.label }}
+                        </label>
+                        {{ form.content_ru }}
+                        {% if form.content_ru.errors %}
+                            <div class="text-danger small">{{ form.content_ru.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Content (English) -->
+                    <div class="mb-3">
+                        <label for="{{ form.content_en.id_for_label }}" class="form-label">
+                            {{ form.content_en.label }}
+                        </label>
+                        {{ form.content_en }}
+                        {% if form.content_en.errors %}
+                            <div class="text-danger small">{{ form.content_en.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Article File Upload -->
                     <div class="mb-3">
                         <label for="{{ form.article_file.id_for_label }}" class="form-label">
-                            {{ form.article_file.label }} <small class="text-muted">({% trans "Optional" %})</small>
+                            <i class="bi bi-file-earmark-arrow-up"></i> {{ form.article_file.label }}
                         </label>
 
                         {% if form.instance.article_file %}
-                            <div class="mb-2 alert alert-info d-flex align-items-center">
+                            <div class="mb-2 alert alert-info d-flex align-items-center py-2">
                                 <i class="bi bi-file-earmark-text me-2 fs-4"></i>
                                 <div>
                                     <strong>{% trans "Current file" %}:</strong>
                                     <a href="{{ form.instance.article_file.url }}" target="_blank" class="alert-link">
-                                        {{ form.instance.article_file.name }}
+                                        {{ form.instance.article_file.name|truncatechars:40 }}
                                     </a>
                                     <br>
                                     <small class="text-muted">
-                                        {% trans "Type" %}: {{ form.instance.get_file_extension }} |
-                                        {% trans "Size" %}: {{ form.instance.get_file_size }} MB
+                                        {% trans "Type" %}: {{ form.instance.get_file_extension }}
+                                        | {% trans "Size" %}: {{ form.instance.get_file_size }} MB
                                     </small>
                                 </div>
                             </div>
@@ -97,22 +159,85 @@
                             <div class="text-danger small">{{ form.article_file.errors }}</div>
                         {% endif %}
                         <small class="form-text text-muted">
-                            <i class="bi bi-info-circle"></i> {{ form.article_file.help_text }}
+                            <i class="bi bi-info-circle"></i>
+                            {% trans "Allowed formats: PDF, DOC, DOCX. Maximum size: 20 MB." %}
                         </small>
                     </div>
 
-                    <!-- Status -->
+                    <!-- Categories -->
                     <div class="mb-3">
-                        <label for="{{ form.status.id_for_label }}" class="form-label">
-                            {{ form.status.label }} <span class="text-danger">*</span>
+                        <label class="form-label">
+                            <i class="bi bi-folder"></i> {{ form.categories.label }} <span class="text-danger">*</span>
                         </label>
-                        {{ form.status }}
-                        {% if form.status.errors %}
-                            <div class="text-danger small">{{ form.status.errors }}</div>
+                        <div class="border rounded p-3">
+                            <div class="row">
+                                {% for widget in form.categories %}
+                                <div class="col-md-4 col-sm-6 mb-2">
+                                    <div class="form-check">
+                                        {{ widget.tag }}
+                                        <label class="form-check-label" for="{{ widget.id_for_label }}">
+                                            {{ widget.choice_label }}
+                                        </label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% if form.categories.errors %}
+                            <div class="text-danger small mt-1">{{ form.categories.errors }}</div>
                         {% endif %}
                         <small class="form-text text-muted">
-                            {{ form.status.help_text }}
+                            <i class="bi bi-info-circle"></i>
+                            {% trans "Select at least one category for your article." %}
                         </small>
+                    </div>
+
+                    <!-- Keywords (Dynamic) -->
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-tags"></i> {% trans "Keywords" %}
+                            <span class="text-danger">*</span>
+                            <small class="text-muted fw-normal">({% trans "minimum 1 required" %})</small>
+                        </label>
+
+                        <!-- Hidden field for collecting keywords -->
+                        {{ form.keywords_json }}
+
+                        <!-- Added keywords container -->
+                        <div id="keywords-container" class="mb-2 d-flex flex-wrap gap-2"></div>
+
+                        <!-- Keyword input row -->
+                        <div class="input-group">
+                            <input type="text" id="keyword-input" class="form-control"
+                                   placeholder="{% trans 'Enter a keyword and press Add or Enter' %}"
+                                   maxlength="100">
+                            <button type="button" id="add-keyword-btn" class="btn btn-outline-primary">
+                                <i class="bi bi-plus-circle"></i> {% trans "Add" %}
+                            </button>
+                        </div>
+
+                        <div id="keyword-error" class="text-danger small mt-1" style="display:none;">
+                            {% trans "Please add at least one keyword." %}
+                        </div>
+
+                        {% if form.keywords_json.errors %}
+                            <div class="text-danger small mt-1">{{ form.keywords_json.errors }}</div>
+                        {% endif %}
+
+                        <small class="form-text text-muted">
+                            {% trans "Type a keyword and click Add (or press Enter). You can add as many as you want." %}
+                        </small>
+                    </div>
+
+                    <!-- Review Mode -->
+                    <div class="mb-3">
+                        <label for="{{ form.review_mode.id_for_label }}" class="form-label">
+                            {{ form.review_mode.label }}
+                        </label>
+                        {{ form.review_mode }}
+                        {% if form.review_mode.errors %}
+                            <div class="text-danger small">{{ form.review_mode.errors }}</div>
+                        {% endif %}
                     </div>
 
                     <!-- Non-field errors -->
@@ -122,14 +247,14 @@
                         </div>
                     {% endif %}
 
-                    <!-- Buttons -->
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-success">
-                            {% if form.instance.pk %}
-                                <i class="bi bi-save"></i> {% trans "Update Article" %}
-                            {% else %}
-                                <i class="bi bi-plus-circle"></i> {% trans "Create Article" %}
-                            {% endif %}
+                    <!-- Action Buttons -->
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <button type="submit" name="action" value="save_draft" class="btn btn-secondary">
+                            <i class="bi bi-save"></i> {% trans "Save as Draft" %}
+                        </button>
+
+                        <button type="submit" name="action" value="submit_review" class="btn btn-success">
+                            <i class="bi bi-send"></i> {% trans "Submit for Review" %}
                         </button>
 
                         <a href="{% if form.instance.pk %}{% url 'articles:detail' form.instance.slug %}{% else %}{% url 'articles:my_articles' %}{% endif %}"
@@ -145,16 +270,27 @@
         <div class="card shadow-sm mt-4">
             <div class="card-body">
                 <h5 class="card-title">
-                    <i class="bi bi-info-circle"></i> {% trans "Writing Tips" %}
+                    <i class="bi bi-info-circle"></i> {% trans "Article Submission Guide" %}
                 </h5>
-                <ul class="mb-0">
-                    <li>{% trans "Use a clear, descriptive title that summarizes your article" %}</li>
-                    <li>{% trans "Add a cover image to make your article more attractive (optional but recommended)" %}</li>
-                    <li>{% trans "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)" %}</li>
-                    <li>{% trans "Format your content with headings, lists, and images for better readability" %}</li>
-                    <li>{% trans "Save as Draft if you want to continue editing later" %}</li>
-                    <li>{% trans "Publish when your article is ready for readers" %}</li>
-                </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary"><i class="bi bi-save"></i> {% trans "Save as Draft" %}</h6>
+                        <ul class="small">
+                            <li>{% trans "Saves your article without submitting for review" %}</li>
+                            <li>{% trans "You can continue editing anytime" %}</li>
+                            <li>{% trans "Only visible to you" %}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-success"><i class="bi bi-send"></i> {% trans "Submit for Review" %}</h6>
+                        <ul class="small">
+                            <li>{% trans "Sends your article to admin for approval" %}</li>
+                            <li>{% trans "Cannot edit while under review" %}</li>
+                            <li>{% trans "Will be published after approval" %}</li>
+                            <li>{% trans "If rejected, you can edit and resubmit" %}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -163,9 +299,168 @@
 
 {% block extra_css %}
 <style>
-    /* CKEditor styling */
     .django-ckeditor-widget {
         width: 100%;
     }
+    .keyword-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background-color: #e9ecef;
+        border: 1px solid #ced4da;
+        font-size: 0.9rem;
+        animation: fadeIn 0.2s ease-in;
+    }
+    .keyword-badge .remove-keyword {
+        cursor: pointer;
+        color: #dc3545;
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1;
+        border: none;
+        background: none;
+        padding: 0 2px;
+    }
+    .keyword-badge .remove-keyword:hover {
+        color: #a71d2a;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
 </style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    'use strict';
+
+    const keywordsContainer = document.getElementById('keywords-container');
+    const keywordInput = document.getElementById('keyword-input');
+    const addBtn = document.getElementById('add-keyword-btn');
+    const hiddenInput = document.getElementById('keywords-json-input');
+    const keywordError = document.getElementById('keyword-error');
+    const articleForm = document.getElementById('article-form');
+
+    let keywords = [];
+
+    // Load existing keywords from hidden field
+    function loadExisting() {
+        try {
+            const raw = hiddenInput.value;
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed)) {
+                    parsed.forEach(function(kw) {
+                        if (kw && kw.trim()) {
+                            keywords.push(kw.trim().toLowerCase());
+                        }
+                    });
+                }
+            }
+        } catch(e) {}
+        renderKeywords();
+    }
+
+    // Render keyword badges
+    function renderKeywords() {
+        keywordsContainer.innerHTML = '';
+        keywords.forEach(function(kw, idx) {
+            const badge = document.createElement('span');
+            badge.className = 'keyword-badge';
+            badge.innerHTML =
+                '<span>' + escapeHtml(kw) + '</span>' +
+                '<button type="button" class="remove-keyword" data-index="' + idx + '" title="{% trans "Remove" %}">&times;</button>';
+            keywordsContainer.appendChild(badge);
+        });
+        syncHidden();
+
+        // Hide/show error
+        if (keywords.length >= 1) {
+            keywordError.style.display = 'none';
+        }
+    }
+
+    // Sync keywords to hidden input
+    function syncHidden() {
+        hiddenInput.value = JSON.stringify(keywords);
+    }
+
+    // Add keyword
+    function addKeyword() {
+        const val = keywordInput.value.trim().toLowerCase();
+        if (!val) return;
+
+        if (val.length > 100) {
+            alert('{% trans "Keyword is too long (max 100 characters)." %}');
+            return;
+        }
+
+        // Check duplicate
+        if (keywords.indexOf(val) !== -1) {
+            keywordInput.value = '';
+            keywordInput.focus();
+            return;
+        }
+
+        keywords.push(val);
+        keywordInput.value = '';
+        keywordInput.focus();
+        renderKeywords();
+    }
+
+    // Remove keyword
+    function removeKeyword(index) {
+        keywords.splice(index, 1);
+        renderKeywords();
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(text));
+        return div.innerHTML;
+    }
+
+    // Event: click Add button
+    addBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        addKeyword();
+    });
+
+    // Event: press Enter in keyword input
+    keywordInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addKeyword();
+        }
+    });
+
+    // Event: click remove on badge
+    keywordsContainer.addEventListener('click', function(e) {
+        var btn = e.target.closest('.remove-keyword');
+        if (btn) {
+            var idx = parseInt(btn.getAttribute('data-index'));
+            removeKeyword(idx);
+        }
+    });
+
+    // Event: validate on form submit
+    articleForm.addEventListener('submit', function(e) {
+        syncHidden();
+        if (keywords.length < 1) {
+            e.preventDefault();
+            keywordError.style.display = 'block';
+            keywordsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            keywordInput.focus();
+        }
+    });
+
+    // Initialize
+    loadExisting();
+})();
+</script>
 {% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Article Rejected" %} - {{ site_name }}{% endblock %}
+
+{% block content %}
+<h2>
+    {% if language == 'uz' %}
+        Hurmatli {{ user.username }}!
+    {% elif language == 'ru' %}
+        Уважаемый(ая) {{ user.username }}!
+    {% else %}
+        Dear {{ user.username }},
+    {% endif %}
+</h2>
+
+<div class="danger-box">
+    {% if language == 'uz' %}
+        Afsuski, sizning maqolangiz rad etildi.
+    {% elif language == 'ru' %}
+        К сожалению, ваша статья была отклонена.
+    {% else %}
+        Unfortunately, your article has been rejected.
+    {% endif %}
+</div>
+
+<div class="info-box">
+    <strong>
+        {% if language == 'uz' %}Maqola:{% elif language == 'ru' %}Статья:{% else %}Article:{% endif %}
+    </strong> {{ article.title_uz }}
+</div>
+
+{% if reason %}
+<div class="warning-box">
+    <strong>
+        {% if language == 'uz' %}Rad etish sababi:{% elif language == 'ru' %}Причина отклонения:{% else %}Reason for rejection:{% endif %}
+    </strong>
+    <br>
+    {{ reason }}
+</div>
+{% endif %}
+
+<p>
+    {% if language == 'uz' %}
+        Siz maqolangizni takomillashtirib, yangi maqola sifatida qayta yuborishingiz mumkin.
+        Savollaringiz bo'lsa, administrator bilan bog'laning.
+    {% elif language == 'ru' %}
+        Вы можете улучшить свою статью и отправить её заново как новую статью.
+        Если у вас есть вопросы, обратитесь к администратору.
+    {% else %}
+        You can improve your article and resubmit it as a new article.
+        If you have any questions, please contact the administrator.
+    {% endif %}
+</p>
+
+<p style="text-align: center;">
+    <a href="{{ article_url }}" class="btn">
+        {% if language == 'uz' %}
+            Maqolani Ko'rish
+        {% elif language == 'ru' %}
+            Просмотреть Статью
+        {% else %}
+            View Article
+        {% endif %}
+    </a>
+</p>
+{% endblock %}

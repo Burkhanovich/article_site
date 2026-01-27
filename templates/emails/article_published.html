@@ -1,0 +1,67 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Article Published" %} - {{ site_name }}{% endblock %}
+
+{% block content %}
+<h2>
+    {% if language == 'uz' %}
+        Hurmatli {{ user.username }}!
+    {% elif language == 'ru' %}
+        Уважаемый(ая) {{ user.username }}!
+    {% else %}
+        Dear {{ user.username }},
+    {% endif %}
+</h2>
+
+<div class="success-box">
+    {% if language == 'uz' %}
+        <strong>Tabriklaymiz!</strong> Sizning maqolangiz nashr etildi!
+    {% elif language == 'ru' %}
+        <strong>Поздравляем!</strong> Ваша статья опубликована!
+    {% else %}
+        <strong>Congratulations!</strong> Your article has been published!
+    {% endif %}
+</div>
+
+<div class="info-box">
+    <strong>
+        {% if language == 'uz' %}Maqola:{% elif language == 'ru' %}Статья:{% else %}Article:{% endif %}
+    </strong> {{ article.title_uz }}
+</div>
+
+<p>
+    {% if language == 'uz' %}
+        Maqolangiz endi barcha foydalanuvchilar uchun ko'rinadigan holga keldi.
+        Maqolangizni ko'rish va ulashish uchun quyidagi tugmani bosing.
+    {% elif language == 'ru' %}
+        Ваша статья теперь доступна для всех пользователей.
+        Нажмите кнопку ниже, чтобы просмотреть и поделиться своей статьей.
+    {% else %}
+        Your article is now visible to all users.
+        Click the button below to view and share your article.
+    {% endif %}
+</p>
+
+<p style="text-align: center;">
+    <a href="{{ article_url }}" class="btn btn-success">
+        {% if language == 'uz' %}
+            Maqolani Ko'rish
+        {% elif language == 'ru' %}
+            Просмотреть Статью
+        {% else %}
+            View Article
+        {% endif %}
+    </a>
+</p>
+
+<p>
+    {% if language == 'uz' %}
+        Maqolangizni ijtimoiy tarmoqlarda ulashing va ko'proq o'quvchilarga yetkazing!
+    {% elif language == 'ru' %}
+        Поделитесь своей статьей в социальных сетях и охватите больше читателей!
+    {% else %}
+        Share your article on social media to reach more readers!
+    {% endif %}
+</p>
+{% endblock %}

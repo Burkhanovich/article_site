@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Reviewer Dashboard" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>
+            <i class="bi bi-clipboard-check"></i> {% trans "Reviewer Dashboard" %}
+        </h1>
+        <p class="text-muted">{% trans "Review articles in your assigned categories" %}</p>
+    </div>
+</div>
+
+<!-- Statistics -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body text-center">
+                <h3>{{ queue.total_pending|default:0 }}</h3>
+                <p class="mb-0">{% trans "Pending Reviews" %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body text-center">
+                <h3>{{ recent_reviews|length|default:0 }}</h3>
+                <p class="mb-0">{% trans "Recent Reviews" %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h3>{{ queue.categories|length|default:0 }}</h3>
+                <p class="mb-0">{% trans "Assigned Categories" %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Review Queue by Category -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-list-task"></i> {% trans "Review Queue" %}</h5>
+    </div>
+    <div class="card-body">
+        {% if queue.categories %}
+            {% for cat_data in queue.categories %}
+                <div class="mb-4">
+                    <h6>
+                        <span class="badge bg-secondary">{{ cat_data.category.name_uz }}</span>
+                        <small class="text-muted">({{ cat_data.pending_count }} {% trans "pending" %})</small>
+                    </h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Title" %}</th>
+                                    <th>{% trans "Author" %}</th>
+                                    <th>{% trans "Submitted" %}</th>
+                                    <th>{% trans "Action" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for article in cat_data.articles %}
+                                    <tr>
+                                        <td>{{ article.title_uz|truncatechars:40 }}</td>
+                                        <td>{{ article.author.username }}</td>
+                                        <td>{{ article.submitted_at|date:"d M Y"|default:"-" }}</td>
+                                        <td>
+                                            <a href="{% url 'articles:article_review' article.slug %}" class="btn btn-sm btn-success">
+                                                <i class="bi bi-pencil-square"></i> {% trans "Review" %}
+                                            </a>
+                                            <a href="{% url 'articles:detail' article.slug %}" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center py-4">
+                <i class="bi bi-check-circle display-4 text-success"></i>
+                <p class="mt-3 text-muted">{% trans "No articles pending review. Great job!" %}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Recent Reviews -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-clock-history"></i> {% trans "Your Recent Reviews" %}</h5>
+    </div>
+    <div class="card-body">
+        {% if recent_reviews %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Article" %}</th>
+                            <th>{% trans "Category" %}</th>
+                            <th>{% trans "Decision" %}</th>
+                            <th>{% trans "Date" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for review in recent_reviews %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'articles:detail' review.article.slug %}">
+                                        {{ review.article.title_uz|truncatechars:40 }}
+                                    </a>
+                                </td>
+                                <td>{{ review.category.name_uz }}</td>
+                                <td>
+                                    <span class="badge
+                                        {% if review.decision == 'APPROVE' %}bg-success
+                                        {% elif review.decision == 'CHANGES' %}bg-warning
+                                        {% elif review.decision == 'REJECT' %}bg-danger
+                                        {% endif %}">
+                                        {{ review.get_decision_display }}
+                                    </span>
+                                </td>
+                                <td>{{ review.created_at|date:"d M Y H:i" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-muted mb-0">{% trans "No reviews yet." %}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

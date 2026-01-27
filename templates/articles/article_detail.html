@@ -13,15 +13,82 @@
     </div>
 </div>
 
+<!-- Status Alert for non-published articles (visible to author/staff only) -->
+{% if article.status != 'PUBLISHED' %}
+    <div class="row mb-3">
+        <div class="col-12">
+            {% if article.status == 'DRAFT' %}
+                <div class="alert alert-secondary">
+                    <i class="bi bi-pencil"></i>
+                    <strong>{% trans "Draft" %}</strong> -
+                    {% trans "This article is saved as a draft and is only visible to you." %}
+                    {% if can_submit %}
+                        <a href="{% url 'articles:edit' article.slug %}" class="alert-link">
+                            {% trans "Edit and submit for review" %}
+                        </a>
+                    {% endif %}
+                </div>
+            {% elif article.status == 'PENDING_ADMIN' or article.status == 'IN_REVIEW' %}
+                <div class="alert alert-warning">
+                    <i class="bi bi-hourglass-split"></i>
+                    <strong>{% trans "Pending Review" %}</strong> -
+                    {% trans "This article is awaiting admin approval and cannot be edited." %}
+                    {% if article.submitted_at %}
+                        <br>
+                        <small class="text-muted">
+                            {% trans "Submitted on" %}: {{ article.submitted_at|date:"F d, Y H:i" }}
+                        </small>
+                    {% endif %}
+                </div>
+            {% elif article.status == 'CHANGES_REQUESTED' %}
+                <div class="alert alert-info">
+                    <i class="bi bi-pencil-square"></i>
+                    <strong>{% trans "Changes Requested" %}</strong> -
+                    {% trans "Please review the feedback and make necessary changes." %}
+                    {% if article.admin_note %}
+                        <br>
+                        <strong>{% trans "Feedback" %}:</strong> {{ article.admin_note }}
+                    {% endif %}
+                    {% if can_edit %}
+                        <hr>
+                        <a href="{% url 'articles:edit' article.slug %}" class="btn btn-info btn-sm">
+                            <i class="bi bi-pencil"></i> {% trans "Edit Article" %}
+                        </a>
+                    {% endif %}
+                </div>
+            {% elif article.status == 'REJECTED' %}
+                <div class="alert alert-danger">
+                    <i class="bi bi-x-circle"></i>
+                    <strong>{% trans "Rejected" %}</strong>
+                    {% if article.rejection_reason %}
+                        <br>
+                        <strong>{% trans "Reason" %}:</strong> {{ article.rejection_reason }}
+                    {% endif %}
+                    {% if article.reviewed_at %}
+                        <br>
+                        <small class="text-muted">
+                            {% trans "Reviewed on" %}: {{ article.reviewed_at|date:"F d, Y H:i" }}
+                            {% if article.reviewed_by %}
+                                {% trans "by" %} {{ article.reviewed_by.username }}
+                            {% endif %}
+                        </small>
+                    {% endif %}
+                    {% if can_edit %}
+                        <hr>
+                        <a href="{% url 'articles:edit' article.slug %}" class="btn btn-danger btn-sm">
+                            <i class="bi bi-pencil"></i> {% trans "Edit and Resubmit" %}
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+
 <!-- Article Content -->
 <div class="row">
     <div class="col-lg-10 mx-auto">
         <article class="card shadow">
-            <!-- Cover Image -->
-            {% if article.cover_image %}
-                <img src="{{ article.cover_image.url }}" class="card-img-top" alt="{{ article.title }}" style="max-height: 400px; object-fit: cover;">
-            {% endif %}
-
             <div class="card-body">
                 <!-- Article Header -->
                 <div class="mb-4">
@@ -41,7 +108,7 @@
 
                         <div class="me-4">
                             <i class="bi bi-eye"></i>
-                            {{ article.views }} views
+                            {{ article.views }} {% trans "views" %}
                         </div>
 
                         <div>
@@ -49,8 +116,20 @@
                                 <span class="badge bg-success">
                                     <i class="bi bi-check-circle"></i> {% trans "Published" %}
                                 </span>
-                            {% else %}
+                            {% elif article.status == 'PENDING_ADMIN' or article.status == 'IN_REVIEW' %}
                                 <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-hourglass-split"></i> {% trans "Pending Review" %}
+                                </span>
+                            {% elif article.status == 'CHANGES_REQUESTED' %}
+                                <span class="badge bg-info">
+                                    <i class="bi bi-pencil-square"></i> {% trans "Changes Requested" %}
+                                </span>
+                            {% elif article.status == 'REJECTED' %}
+                                <span class="badge bg-danger">
+                                    <i class="bi bi-x-circle"></i> {% trans "Rejected" %}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary">
                                     <i class="bi bi-pencil"></i> {% trans "Draft" %}
                                 </span>
                             {% endif %}
@@ -69,21 +148,21 @@
 
                 <!-- Article File (if exists) -->
                 {% if article.article_file %}
-                    <div class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+                    <div class="alert alert-primary d-flex align-items-center mb-4" role="alert">
                         <i class="bi bi-file-earmark-arrow-down fs-2 me-3"></i>
                         <div class="flex-grow-1">
                             <h5 class="alert-heading mb-2">
                                 <i class="bi bi-download"></i> {% trans "Article File Available" %}
                             </h5>
                             <p class="mb-2">
-                                <strong>{% trans "File Type" %}:</strong> {{ article.get_file_extension|upper }}
+                                <strong>{% trans "File Type" %}:</strong> {{ article.get_file_extension }}
                                 <span class="mx-2">|</span>
                                 <strong>{% trans "Size" %}:</strong> {{ article.get_file_size }} MB
                             </p>
-                            <a href="{{ article.article_file.url }}" target="_blank" class="btn btn-danger btn-sm">
+                            <a href="{{ article.article_file.url }}" target="_blank" class="btn btn-primary btn-sm">
                                 <i class="bi bi-box-arrow-up-right"></i> {% trans "Open File" %}
                             </a>
-                            <a href="{{ article.article_file.url }}" download class="btn btn-outline-danger btn-sm">
+                            <a href="{{ article.article_file.url }}" download class="btn btn-outline-primary btn-sm">
                                 <i class="bi bi-download"></i> {% trans "Download" %}
                             </a>
                         </div>
@@ -99,17 +178,161 @@
             <!-- Author Actions (if viewing own article) -->
             {% if user.is_authenticated and user == article.author %}
                 <div class="card-footer">
-                    <div class="btn-group" role="group">
-                        <a href="{% url 'articles:edit' article.slug %}" class="btn btn-primary">
-                            <i class="bi bi-pencil"></i> {% trans "Edit" %}
-                        </a>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% if can_edit %}
+                            <a href="{% url 'articles:edit' article.slug %}" class="btn btn-primary">
+                                <i class="bi bi-pencil"></i> {% trans "Edit" %}
+                            </a>
+                        {% endif %}
+
+                        {% if can_submit %}
+                            <form method="post" action="{% url 'articles:submit' article.slug %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-send"></i> {% trans "Submit for Review" %}
+                                </button>
+                            </form>
+                        {% endif %}
+
                         <a href="{% url 'articles:delete' article.slug %}" class="btn btn-danger">
                             <i class="bi bi-trash"></i> {% trans "Delete" %}
                         </a>
                     </div>
+
+                    {% if not can_edit and article.is_pending_review %}
+                        <small class="text-muted d-block mt-2">
+                            <i class="bi bi-info-circle"></i>
+                            {% trans "You cannot edit this article while it is pending review." %}
+                        </small>
+                    {% endif %}
                 </div>
             {% endif %}
         </article>
+
+        <!-- Review Feedback (visible to author/staff/reviewers) -->
+        {% if user.is_authenticated and article.reviews.exists %}
+            {% if user == article.author or user.is_staff or user.is_superuser or user.is_reviewer %}
+            <div class="card shadow-sm mt-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-chat-left-text"></i> {% trans "Review Feedback" %}
+                        <span class="badge bg-light text-dark">{{ article.reviews.count }}</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% regroup article.reviews.all by category as reviews_by_category %}
+                    {% for category_group in reviews_by_category %}
+                    <div class="mb-4 {% if not forloop.last %}border-bottom pb-3{% endif %}">
+                        <h6 class="text-primary mb-3">
+                            <i class="bi bi-folder"></i> {{ category_group.grouper.name_uz }}
+                        </h6>
+                        {% for review in category_group.list %}
+                        <div class="border rounded p-3 mb-2
+                            {% if review.decision == 'APPROVE' %}bg-success bg-opacity-10 border-success
+                            {% elif review.decision == 'REJECT' %}bg-danger bg-opacity-10 border-danger
+                            {% else %}bg-warning bg-opacity-10 border-warning{% endif %}">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <strong>{{ review.reviewer.username }}</strong>
+                                    <span class="badge ms-2
+                                        {% if review.decision == 'APPROVE' %}bg-success
+                                        {% elif review.decision == 'REJECT' %}bg-danger
+                                        {% else %}bg-warning text-dark{% endif %}">
+                                        {% if review.decision == 'APPROVE' %}
+                                            <i class="bi bi-check-circle"></i> {% trans "Approved" %}
+                                        {% elif review.decision == 'REJECT' %}
+                                            <i class="bi bi-x-circle"></i> {% trans "Rejected" %}
+                                        {% else %}
+                                            <i class="bi bi-pencil"></i> {% trans "Changes Requested" %}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <small class="text-muted">{{ review.created_at|date:"d.m.Y H:i" }}</small>
+                            </div>
+                            {% if review.comment %}
+                            <div class="mt-2">
+                                <strong>{% trans "Comment" %}:</strong>
+                                <p class="mb-0 mt-1">{{ review.comment }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <!-- Status History (visible to author/staff) -->
+        {% if user.is_authenticated %}
+            {% if user == article.author or user.is_staff or user.is_superuser %}
+            <div class="card shadow-sm mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-clock-history"></i> {% trans "Status History" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if article.status_history.exists %}
+                    <ul class="list-unstyled">
+                        {% for history in article.status_history.all %}
+                        <li class="d-flex mb-3">
+                            <div class="me-3 text-center" style="width: 80px;">
+                                <small class="text-muted d-block">{{ history.timestamp|date:"d.m.Y" }}</small>
+                                <small class="text-muted">{{ history.timestamp|date:"H:i" }}</small>
+                            </div>
+                            <div class="flex-grow-1 border-start ps-3">
+                                <span class="badge bg-secondary">{{ history.get_from_status_display }}</span>
+                                <i class="bi bi-arrow-right mx-1"></i>
+                                <span class="badge
+                                    {% if history.to_status == 'PUBLISHED' %}bg-success
+                                    {% elif history.to_status == 'REJECTED' %}bg-danger
+                                    {% elif history.to_status == 'CHANGES_REQUESTED' %}bg-warning text-dark
+                                    {% elif history.to_status == 'IN_REVIEW' %}bg-info
+                                    {% elif history.to_status == 'PENDING_ADMIN' %}bg-primary
+                                    {% else %}bg-secondary{% endif %}">
+                                    {{ history.get_to_status_display }}
+                                </span>
+                                {% if history.changed_by %}
+                                <small class="text-muted ms-2">{% trans "by" %} {{ history.changed_by.username }}</small>
+                                {% endif %}
+                                {% if history.reason %}
+                                <p class="mb-0 mt-1 small text-muted">{{ history.reason }}</p>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p class="text-muted mb-0">{% trans "No status changes recorded." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <!-- Reviewer Action Panel (visible to reviewers who can review) -->
+        {% if can_review and reviewable_categories %}
+        <div class="card shadow-sm mt-4 border-success">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-pencil-square"></i> {% trans "Submit Your Review" %}
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>{% trans "You can review this article for the following categories:" %}</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    {% for cat in reviewable_categories %}
+                    <span class="badge bg-secondary">{{ cat.name_uz }}</span>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'articles:article_review' article.slug %}" class="btn btn-success">
+                    <i class="bi bi-pencil-square"></i> {% trans "Go to Review Page" %}
+                </a>
+            </div>
+        </div>
+        {% endif %}
 
         <!-- Author Info Card -->
         <div class="card shadow-sm mt-4">

@@ -1,0 +1,110 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Review Update" %} - {{ site_name }}{% endblock %}
+
+{% block content %}
+<h2>
+    {% if language == 'uz' %}
+        Hurmatli {{ user.username }}!
+    {% elif language == 'ru' %}
+        Уважаемый(ая) {{ user.username }}!
+    {% else %}
+        Dear {{ user.username }},
+    {% endif %}
+</h2>
+
+<p>
+    {% if language == 'uz' %}
+        Sizning maqolangiz uchun taqriz keldi.
+    {% elif language == 'ru' %}
+        Получена рецензия на вашу статью.
+    {% else %}
+        A review has been submitted for your article.
+    {% endif %}
+</p>
+
+<div class="info-box">
+    <strong>
+        {% if language == 'uz' %}Maqola:{% elif language == 'ru' %}Статья:{% else %}Article:{% endif %}
+    </strong> {{ article.title_uz }}
+</div>
+
+{% if review.decision == 'APPROVE' %}
+<div class="success-box">
+    <strong>
+        {% if language == 'uz' %}Qaror: TASDIQLANDI{% elif language == 'ru' %}Решение: ОДОБРЕНО{% else %}Decision: APPROVED{% endif %}
+    </strong>
+    <br>
+    {% if language == 'uz' %}
+        Maqolangiz "{{ review.category.name_uz }}" kategoriyasi bo'yicha tasdiqlandi.
+    {% elif language == 'ru' %}
+        Ваша статья одобрена по категории "{{ review.category.name_uz }}".
+    {% else %}
+        Your article has been approved for the "{{ review.category.name_uz }}" category.
+    {% endif %}
+</div>
+{% elif review.decision == 'CHANGES' %}
+<div class="warning-box">
+    <strong>
+        {% if language == 'uz' %}Qaror: O'ZGARTIRISHLAR TALAB QILINMOQDA{% elif language == 'ru' %}Решение: ТРЕБУЮТСЯ ИЗМЕНЕНИЯ{% else %}Decision: CHANGES REQUESTED{% endif %}
+    </strong>
+    <br>
+    {% if language == 'uz' %}
+        "{{ review.category.name_uz }}" kategoriyasi bo'yicha taqrizchi o'zgartirishlar kiritishingizni so'ramoqda.
+    {% elif language == 'ru' %}
+        Рецензент по категории "{{ review.category.name_uz }}" запросил внесение изменений.
+    {% else %}
+        The reviewer for "{{ review.category.name_uz }}" category has requested changes.
+    {% endif %}
+</div>
+{% elif review.decision == 'REJECT' %}
+<div class="danger-box">
+    <strong>
+        {% if language == 'uz' %}Qaror: RAD ETILDI{% elif language == 'ru' %}Решение: ОТКЛОНЕНО{% else %}Decision: REJECTED{% endif %}
+    </strong>
+    <br>
+    {% if language == 'uz' %}
+        "{{ review.category.name_uz }}" kategoriyasi bo'yicha taqrizchi maqolani rad etdi.
+    {% elif language == 'ru' %}
+        Рецензент по категории "{{ review.category.name_uz }}" отклонил статью.
+    {% else %}
+        The reviewer for "{{ review.category.name_uz }}" category has rejected the article.
+    {% endif %}
+</div>
+{% endif %}
+
+{% if review.comment %}
+<div class="info-box">
+    <strong>
+        {% if language == 'uz' %}Taqrizchi izohi:{% elif language == 'ru' %}Комментарий рецензента:{% else %}Reviewer Comment:{% endif %}
+    </strong>
+    <br>
+    {{ review.comment }}
+</div>
+{% endif %}
+
+<p style="text-align: center;">
+    <a href="{{ article_url }}" class="btn">
+        {% if language == 'uz' %}
+            Maqolani Ko'rish
+        {% elif language == 'ru' %}
+            Просмотреть Статью
+        {% else %}
+            View Article
+        {% endif %}
+    </a>
+</p>
+
+{% if review.decision == 'CHANGES' %}
+<p>
+    {% if language == 'uz' %}
+        Iltimos, taqrizchi izohlarini ko'rib chiqing va kerakli o'zgartirishlarni kiriting, so'ngra maqolani qayta yuboring.
+    {% elif language == 'ru' %}
+        Пожалуйста, ознакомьтесь с комментариями рецензента, внесите необходимые изменения и повторно отправьте статью.
+    {% else %}
+        Please review the comments, make necessary changes, and resubmit your article.
+    {% endif %}
+</p>
+{% endif %}
+{% endblock %}

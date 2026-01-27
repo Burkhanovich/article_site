@@ -745,3 +745,233 @@ msgstr "About the Author"
 msgid "Search by title, author, or content..."
 msgstr "Search by title, author, or content..."
 
+# Moderation Workflow Translations
+msgid "Pending Review"
+msgstr "Pending Review"
+
+msgid "Rejected"
+msgstr "Rejected"
+
+msgid "Submit for Review"
+msgstr "Submit for Review"
+
+msgid "Save as Draft"
+msgstr "Save as Draft"
+
+msgid "Submitted on"
+msgstr "Submitted on"
+
+msgid "Reviewed on"
+msgstr "Reviewed on"
+
+msgid "by"
+msgstr "by"
+
+msgid "Reason"
+msgstr "Reason"
+
+msgid "Rejection Reason"
+msgstr "Rejection Reason"
+
+msgid "Article Rejected"
+msgstr "Article Rejected"
+
+msgid "No specific reason was provided. Please review your article and make necessary improvements before resubmitting."
+msgstr "No specific reason was provided. Please review your article and make necessary improvements before resubmitting."
+
+msgid "This article is saved as a draft and is only visible to you."
+msgstr "This article is saved as a draft and is only visible to you."
+
+msgid "Edit and submit for review"
+msgstr "Edit and submit for review"
+
+msgid "This article is awaiting admin approval and cannot be edited."
+msgstr "This article is awaiting admin approval and cannot be edited."
+
+msgid "Edit and Resubmit"
+msgstr "Edit and Resubmit"
+
+msgid "You cannot edit this article while it is pending review."
+msgstr "You cannot edit this article while it is pending review."
+
+msgid "Article Submission Guide"
+msgstr "Article Submission Guide"
+
+msgid "Saves your article without submitting for review"
+msgstr "Saves your article without submitting for review"
+
+msgid "You can continue editing anytime"
+msgstr "You can continue editing anytime"
+
+msgid "Only visible to you"
+msgstr "Only visible to you"
+
+msgid "Sends your article to admin for approval"
+msgstr "Sends your article to admin for approval"
+
+msgid "Cannot edit while under review"
+msgstr "Cannot edit while under review"
+
+msgid "Will be published after approval"
+msgstr "Will be published after approval"
+
+msgid "If rejected, you can edit and resubmit"
+msgstr "If rejected, you can edit and resubmit"
+
+msgid "Article \"%(title)s\" has been submitted for review. You will be notified once it is reviewed."
+msgstr "Article \"%(title)s\" has been submitted for review. You will be notified once it is reviewed."
+
+msgid "Article \"%(title)s\" saved as draft."
+msgstr "Article \"%(title)s\" saved as draft."
+
+msgid "Article \"%(title)s\" has been submitted for review."
+msgstr "Article \"%(title)s\" has been submitted for review."
+
+msgid "Article \"%(title)s\" updated and saved as draft."
+msgstr "Article \"%(title)s\" updated and saved as draft."
+
+msgid "Please log in to edit articles."
+msgstr "Please log in to edit articles."
+
+msgid "This article cannot be edited. Only draft or rejected articles can be modified."
+msgstr "This article cannot be edited. Only draft or rejected articles can be modified."
+
+msgid "You cannot submit this article for review."
+msgstr "You cannot submit this article for review."
+
+msgid "This article cannot be submitted for review."
+msgstr "This article cannot be submitted for review."
+
+msgid "Drafts"
+msgstr "Drafts"
+
+msgid "Pending"
+msgstr "Pending"
+
+msgid "All"
+msgstr "All"
+
+msgid "article(s) rejected. Please review and resubmit."
+msgstr "article(s) rejected. Please review and resubmit."
+
+msgid "View Rejected"
+msgstr "View Rejected"
+
+msgid "No articles found with this status."
+msgstr "No articles found with this status."
+
+msgid "Article Status Guide"
+msgstr "Article Status Guide"
+
+msgid "Saved for later editing. Only visible to you."
+msgstr "Saved for later editing. Only visible to you."
+
+msgid "Submitted and awaiting admin review."
+msgstr "Submitted and awaiting admin review."
+
+msgid "Approved and visible to all readers."
+msgstr "Approved and visible to all readers."
+
+msgid "Needs revision. You can edit and resubmit."
+msgstr "Needs revision. You can edit and resubmit."
+
+msgid "Confirm Deletion"
+msgstr "Confirm Deletion"
+
+msgid "This action cannot be undone. The article and all associated files will be permanently deleted."
+msgstr "This action cannot be undone. The article and all associated files will be permanently deleted."
+
+msgid "Article to be deleted"
+msgstr "Article to be deleted"
+
+msgid "Yes, Delete Article"
+msgstr "Yes, Delete Article"
+
+msgid "Delete Article"
+msgstr "Delete Article"
+
+msgid "Submitted At"
+msgstr "Submitted At"
+
+msgid "Reviewed At"
+msgstr "Reviewed At"
+
+msgid "Reviewed By"
+msgstr "Reviewed By"
+
+msgid "When the article was submitted for review"
+msgstr "When the article was submitted for review"
+
+msgid "When the article was reviewed by admin"
+msgstr "When the article was reviewed by admin"
+
+msgid "Admin who reviewed this article"
+msgstr "Admin who reviewed this article"
+
+msgid "Reason for rejection (if rejected)"
+msgstr "Reason for rejection (if rejected)"
+
+msgid "Article not found."
+msgstr "Article not found."
+
+# Admin Actions
+msgid "Approve selected articles"
+msgstr "Approve selected articles"
+
+msgid "Reject selected articles"
+msgstr "Reject selected articles"
+
+msgid "Convert to draft"
+msgstr "Convert to draft"
+
+msgid "Reset view counter"
+msgstr "Reset view counter"
+
+msgid "No pending articles selected. Only articles with 'Pending Review' status can be approved."
+msgstr "No pending articles selected. Only articles with 'Pending Review' status can be approved."
+
+msgid "%(count)d article(s) have been approved and published."
+msgstr "%(count)d article(s) have been approved and published."
+
+msgid "No pending articles selected. Only articles with 'Pending Review' status can be rejected."
+msgstr "No pending articles selected. Only articles with 'Pending Review' status can be rejected."
+
+msgid "%(count)d article(s) have been rejected."
+msgstr "%(count)d article(s) have been rejected."
+
+msgid "Rejected via bulk action. Please contact admin for details."
+msgstr "Rejected via bulk action. Please contact admin for details."
+
+msgid "%(count)d article(s) converted to draft."
+msgstr "%(count)d article(s) converted to draft."
+
+msgid "View counter reset for %(count)d article(s)."
+msgstr "View counter reset for %(count)d article(s)."
+
+msgid "Basic Information"
+msgstr "Basic Information"
+
+msgid "Moderation"
+msgstr "Moderation"
+
+msgid "Moderation workflow information"
+msgstr "Moderation workflow information"
+
+msgid "Timestamps"
+msgstr "Timestamps"
+
+msgid "No image"
+msgstr "No image"
+
+msgid "Cover Preview"
+msgstr "Cover Preview"
+
+msgid "views"
+msgstr "views"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Current cover image"
+msgstr "Current cover image"
+

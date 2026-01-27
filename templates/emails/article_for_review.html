@@ -1,0 +1,78 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "New Article for Review" %} - {{ site_name }}{% endblock %}
+
+{% block content %}
+<h2>
+    {% if language == 'uz' %}
+        Hurmatli {{ user.username }}!
+    {% elif language == 'ru' %}
+        Уважаемый(ая) {{ user.username }}!
+    {% else %}
+        Dear {{ user.username }},
+    {% endif %}
+</h2>
+
+<div class="info-box">
+    {% if language == 'uz' %}
+        Yangi maqola taqriz uchun tayinlandi.
+    {% elif language == 'ru' %}
+        Вам назначена новая статья для рецензирования.
+    {% else %}
+        A new article has been assigned for your review.
+    {% endif %}
+</div>
+
+<div class="info-box">
+    <strong>
+        {% if language == 'uz' %}Maqola ma'lumotlari:{% elif language == 'ru' %}Информация о статье:{% else %}Article Information:{% endif %}
+    </strong>
+    <ul style="list-style: none; padding-left: 0; margin: 10px 0 0 0;">
+        <li><strong>{% if language == 'uz' %}Sarlavha{% elif language == 'ru' %}Заголовок{% else %}Title{% endif %}:</strong> {{ article.title_uz }}</li>
+        <li><strong>{% if language == 'uz' %}Muallif{% elif language == 'ru' %}Автор{% else %}Author{% endif %}:</strong> {{ article.author.username }}</li>
+        <li><strong>{% if language == 'uz' %}Kategoriyalar{% elif language == 'ru' %}Категории{% else %}Categories{% endif %}:</strong> {{ category_names }}</li>
+        {% if article.submitted_at %}
+        <li><strong>{% if language == 'uz' %}Yuborilgan sana{% elif language == 'ru' %}Дата подачи{% else %}Submitted{% endif %}:</strong> {{ article.submitted_at|date:"d.m.Y H:i" }}</li>
+        {% endif %}
+    </ul>
+</div>
+
+<p>
+    {% if language == 'uz' %}
+        Iltimos, maqolani ko'rib chiqing va taqriz yozing. Siz quyidagi qarorlardan birini qabul qilishingiz mumkin:
+    {% elif language == 'ru' %}
+        Пожалуйста, просмотрите статью и напишите рецензию. Вы можете принять одно из следующих решений:
+    {% else %}
+        Please review the article and submit your review. You can make one of the following decisions:
+    {% endif %}
+</p>
+
+<ul>
+    {% if language == 'uz' %}
+        <li><strong>Tasdiqlash</strong> - Maqola nashrga tayyor</li>
+        <li><strong>O'zgartirishlar talab qilish</strong> - Muallif tuzatishlar kiritishi kerak</li>
+        <li><strong>Rad etish</strong> - Maqola nashr etilmaydi</li>
+    {% elif language == 'ru' %}
+        <li><strong>Одобрить</strong> - Статья готова к публикации</li>
+        <li><strong>Запросить изменения</strong> - Автор должен внести правки</li>
+        <li><strong>Отклонить</strong> - Статья не будет опубликована</li>
+    {% else %}
+        <li><strong>Approve</strong> - Article is ready for publication</li>
+        <li><strong>Request Changes</strong> - Author needs to make revisions</li>
+        <li><strong>Reject</strong> - Article will not be published</li>
+    {% endif %}
+</ul>
+
+<p style="text-align: center;">
+    <a href="{{ article_url }}" class="btn">
+        {% if language == 'uz' %}
+            Maqolani Ko'rish va Taqriz Yozish
+        {% elif language == 'ru' %}
+            Просмотреть Статью и Написать Рецензию
+        {% else %}
+            View Article and Write Review
+        {% endif %}
+    </a>
+</p>
+{% endblock %}

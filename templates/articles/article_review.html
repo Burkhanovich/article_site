@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Review Article" %} - {{ article.title }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'articles:reviewer_dashboard' %}">{% trans "Reviewer Dashboard" %}</a></li>
+                <li class="breadcrumb-item active">{% trans "Review Article" %}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-file-earmark-text"></i> {{ title }}
+                </h4>
+            </div>
+            <div class="card-body">
+                <!-- Article Meta -->
+                <div class="mb-4 pb-3 border-bottom">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1">
+                                <strong>{% trans "Author" %}:</strong> {{ article.author.username }}
+                            </p>
+                            <p class="mb-1">
+                                <strong>{% trans "Submitted" %}:</strong>
+                                {{ article.submitted_at|date:"d.m.Y H:i"|default:"-" }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1">
+                                <strong>{% trans "Categories" %}:</strong>
+                                {% for cat in article.categories.all %}
+                                    <span class="badge bg-secondary">{{ cat.name_uz }}</span>
+                                {% endfor %}
+                            </p>
+                            <p class="mb-1">
+                                <strong>{% trans "Status" %}:</strong>
+                                <span class="badge bg-info">{{ article.get_status_display }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keywords -->
+                {% if article.keywords.all %}
+                <div class="mb-3">
+                    <strong>{% trans "Keywords" %}:</strong>
+                    {% for kw in article.keywords.all %}
+                        <span class="badge bg-light text-dark">{{ kw.name }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Article Content -->
+                <div class="article-content">
+                    {{ content|safe }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Existing Reviews -->
+        {% if all_reviews %}
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-chat-left-text"></i> {% trans "All Reviews" %} ({{ all_reviews|length }})
+                </h5>
+            </div>
+            <div class="card-body">
+                {% regroup all_reviews by category as reviews_by_category %}
+                {% for category_group in reviews_by_category %}
+                <div class="mb-4">
+                    <h6 class="text-primary">
+                        <i class="bi bi-folder"></i> {{ category_group.grouper.name_uz }}
+                    </h6>
+                    {% for review in category_group.list %}
+                    <div class="border rounded p-3 mb-2 {% if review.decision == 'APPROVE' %}bg-success bg-opacity-10{% elif review.decision == 'REJECT' %}bg-danger bg-opacity-10{% else %}bg-warning bg-opacity-10{% endif %}">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>{{ review.reviewer.username }}</strong>
+                                <span class="badge ms-2
+                                    {% if review.decision == 'APPROVE' %}bg-success
+                                    {% elif review.decision == 'REJECT' %}bg-danger
+                                    {% else %}bg-warning text-dark{% endif %}">
+                                    {{ review.get_decision_display }}
+                                </span>
+                            </div>
+                            <small class="text-muted">{{ review.created_at|date:"d.m.Y H:i" }}</small>
+                        </div>
+                        {% if review.comment %}
+                        <p class="mt-2 mb-0 small">{{ review.comment }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Review Forms Sidebar -->
+    <div class="col-lg-4">
+        <div class="card shadow sticky-top" style="top: 20px;">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-pencil-square"></i> {% trans "Submit Review" %}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if reviewable_categories %}
+                    {% for item in reviewable_categories %}
+                    <div class="mb-4 pb-3 {% if not forloop.last %}border-bottom{% endif %}">
+                        <h6 class="text-primary">
+                            <i class="bi bi-folder"></i> {{ item.category.name_uz }}
+                        </h6>
+
+                        {% if item.existing_review %}
+                            <div class="alert alert-info py-2 mb-0">
+                                <small>
+                                    <i class="bi bi-check-circle"></i>
+                                    {% trans "You have already submitted a review for this category" %}
+                                </small>
+                                <br>
+                                <strong>{% trans "Decision" %}:</strong>
+                                <span class="badge
+                                    {% if item.existing_review.decision == 'APPROVE' %}bg-success
+                                    {% elif item.existing_review.decision == 'REJECT' %}bg-danger
+                                    {% else %}bg-warning text-dark{% endif %}">
+                                    {{ item.existing_review.get_decision_display }}
+                                </span>
+                            </div>
+                        {% else %}
+                            <form method="post" action="{% url 'articles:submit_review' article.slug item.category.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{% url 'articles:article_review' article.slug %}">
+
+                                <div class="mb-3">
+                                    <label class="form-label"><strong>{% trans "Your Decision" %}</strong></label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="decision" id="approve_{{ item.category.id }}" value="APPROVE" required>
+                                        <label class="form-check-label text-success" for="approve_{{ item.category.id }}">
+                                            <i class="bi bi-check-circle"></i> {% trans "Approve" %}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="decision" id="changes_{{ item.category.id }}" value="CHANGES">
+                                        <label class="form-check-label text-warning" for="changes_{{ item.category.id }}">
+                                            <i class="bi bi-pencil"></i> {% trans "Request Changes" %}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="decision" id="reject_{{ item.category.id }}" value="REJECT">
+                                        <label class="form-check-label text-danger" for="reject_{{ item.category.id }}">
+                                            <i class="bi bi-x-circle"></i> {% trans "Reject" %}
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="comment_{{ item.category.id }}" class="form-label">{% trans "Comment" %}</label>
+                                    <textarea class="form-control" id="comment_{{ item.category.id }}" name="comment" rows="3"
+                                        placeholder="{% trans 'Add your review comments...' %}"></textarea>
+                                    <small class="form-text text-muted">
+                                        {% trans "Comment is required when requesting changes or rejecting." %}
+                                    </small>
+                                </div>
+
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="bi bi-send"></i> {% trans "Submit Review" %}
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-info mb-0">
+                        {% trans "You are not assigned to review any category of this article." %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .article-content {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    .article-content h1, .article-content h2, .article-content h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}

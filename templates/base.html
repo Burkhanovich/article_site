@@ -110,7 +110,7 @@
                             </a>
                         </li>
 
-                        {% if user.is_author %}
+                        {% if user.is_author or user.can_create_articles %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'articles:my_articles' %}">
                                     <i class="bi bi-file-earmark-text"></i> {% trans "My Articles" %}
@@ -126,12 +126,42 @@
                             {% endif %}
                         {% endif %}
 
+                        {% if user.is_reviewer or user.can_review_articles %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'articles:reviewer_dashboard' %}">
+                                    <i class="bi bi-clipboard-check"></i> {% trans "Review" %}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <!-- Notifications -->
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="{% url 'users:notifications' %}">
+                                <i class="bi bi-bell"></i>
+                                {% if unread_notification_count > 0 %}
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ unread_notification_count }}
+                                    <span class="visually-hidden">{% trans "unread notifications" %}</span>
+                                </span>
+                                {% endif %}
+                            </a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-person-circle"></i> {{ user.username }}
                                 <span class="badge bg-primary badge-role">{{ user.get_role_display }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'users:notifications' %}">
+                                        <i class="bi bi-bell"></i> {% trans "Notifications" %}
+                                        {% if unread_notification_count > 0 %}
+                                        <span class="badge bg-danger">{{ unread_notification_count }}</span>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="{% url 'users:logout' %}">
                                         <i class="bi bi-box-arrow-right"></i> {% trans "Logout" %}

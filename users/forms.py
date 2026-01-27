@@ -20,8 +20,15 @@ class CustomUserRegistrationForm(UserCreationForm):
         })
     )
 
+    # Only allow READER and AUTHOR for public registration
+    # REVIEWER and ADMIN roles must be assigned by administrators
+    REGISTRATION_ROLE_CHOICES = [
+        (CustomUser.UserRole.READER, 'Reader'),
+        (CustomUser.UserRole.AUTHOR, 'Author'),
+    ]
+
     role = forms.ChoiceField(
-        choices=CustomUser.UserRole.choices,
+        choices=REGISTRATION_ROLE_CHOICES,
         required=True,
         widget=forms.RadioSelect(attrs={
             'class': 'form-check-input'

@@ -745,3 +745,224 @@ msgstr "Muallif Haqida"
 msgid "Search by title, author, or content..."
 msgstr "Sarlavha, muallif yoki kontent bo'yicha qidiring..."
 
+# Moderation Workflow Translations
+msgid "Pending Review"
+msgstr "Ko'rib chiqish kutilmoqda"
+
+msgid "Rejected"
+msgstr "Rad etildi"
+
+msgid "Submit for Review"
+msgstr "Ko'rib chiqishga yuborish"
+
+msgid "Save as Draft"
+msgstr "Qoralama sifatida saqlash"
+
+msgid "Submitted on"
+msgstr "Yuborilgan sana"
+
+msgid "Reviewed on"
+msgstr "Ko'rib chiqilgan sana"
+
+msgid "by"
+msgstr "tomonidan"
+
+msgid "Reason"
+msgstr "Sabab"
+
+msgid "Rejection Reason"
+msgstr "Rad etish sababi"
+
+msgid "Article Rejected"
+msgstr "Maqola rad etildi"
+
+msgid "No specific reason was provided. Please review your article and make necessary improvements before resubmitting."
+msgstr "Aniq sabab ko'rsatilmagan. Iltimos, maqolangizni ko'rib chiqing va qayta yuborishdan oldin zarur o'zgartirishlarni kiriting."
+
+msgid "This article is saved as a draft and is only visible to you."
+msgstr "Bu maqola qoralama sifatida saqlangan va faqat sizga ko'rinadi."
+
+msgid "Edit and submit for review"
+msgstr "Tahrirlash va ko'rib chiqishga yuborish"
+
+msgid "This article is awaiting admin approval and cannot be edited."
+msgstr "Bu maqola administrator tasdig'ini kutmoqda va tahrirlab bo'lmaydi."
+
+msgid "Edit and Resubmit"
+msgstr "Tahrirlash va qayta yuborish"
+
+msgid "You cannot edit this article while it is pending review."
+msgstr "Ko'rib chiqish davomida bu maqolani tahrirlay olmaysiz."
+
+msgid "Article Submission Guide"
+msgstr "Maqola yuborish qo'llanmasi"
+
+msgid "Saves your article without submitting for review"
+msgstr "Maqolangizni ko'rib chiqishga yubormasdan saqlaydi"
+
+msgid "You can continue editing anytime"
+msgstr "Istalgan vaqtda tahrirlashni davom ettirishingiz mumkin"
+
+msgid "Only visible to you"
+msgstr "Faqat sizga ko'rinadi"
+
+msgid "Sends your article to admin for approval"
+msgstr "Maqolangizni tasdiqlash uchun administratorga yuboradi"
+
+msgid "Cannot edit while under review"
+msgstr "Ko'rib chiqish davomida tahrirlash mumkin emas"
+
+msgid "Will be published after approval"
+msgstr "Tasdiqlangandan so'ng nashr etiladi"
+
+msgid "If rejected, you can edit and resubmit"
+msgstr "Rad etilsa, tahrirlash va qayta yuborishingiz mumkin"
+
+msgid "Article \"%(title)s\" has been submitted for review. You will be notified once it is reviewed."
+msgstr "\"%(title)s\" maqolasi ko'rib chiqishga yuborildi. Ko'rib chiqilganda sizga xabar beriladi."
+
+msgid "Article \"%(title)s\" saved as draft."
+msgstr "\"%(title)s\" maqolasi qoralama sifatida saqlandi."
+
+msgid "Article \"%(title)s\" has been submitted for review."
+msgstr "\"%(title)s\" maqolasi ko'rib chiqishga yuborildi."
+
+msgid "Article \"%(title)s\" updated and saved as draft."
+msgstr "\"%(title)s\" maqolasi yangilandi va qoralama sifatida saqlandi."
+
+msgid "Please log in to edit articles."
+msgstr "Maqolalarni tahrirlash uchun tizimga kiring."
+
+msgid "This article cannot be edited. Only draft or rejected articles can be modified."
+msgstr "Bu maqolani tahrirlash mumkin emas. Faqat qoralama yoki rad etilgan maqolalarni o'zgartirish mumkin."
+
+msgid "You cannot submit this article for review."
+msgstr "Bu maqolani ko'rib chiqishga yuborolmaysiz."
+
+msgid "This article cannot be submitted for review."
+msgstr "Bu maqolani ko'rib chiqishga yuborib bo'lmaydi."
+
+msgid "Drafts"
+msgstr "Qoralamalar"
+
+msgid "Pending"
+msgstr "Kutilmoqda"
+
+msgid "All"
+msgstr "Hammasi"
+
+msgid "article(s) rejected. Please review and resubmit."
+msgstr "ta maqola rad etildi. Ko'rib chiqing va qayta yuboring."
+
+msgid "View Rejected"
+msgstr "Rad etilganlarni ko'rish"
+
+msgid "No articles found with this status."
+msgstr "Bu holatda maqolalar topilmadi."
+
+msgid "Article Status Guide"
+msgstr "Maqola holati qo'llanmasi"
+
+msgid "Saved for later editing. Only visible to you."
+msgstr "Keyinroq tahrirlash uchun saqlangan. Faqat sizga ko'rinadi."
+
+msgid "Submitted and awaiting admin review."
+msgstr "Yuborilgan va administrator ko'rib chiqishini kutmoqda."
+
+msgid "Approved and visible to all readers."
+msgstr "Tasdiqlangan va barcha o'quvchilarga ko'rinadi."
+
+msgid "Needs revision. You can edit and resubmit."
+msgstr "Qayta ko'rib chiqish kerak. Tahrirlash va qayta yuborishingiz mumkin."
+
+msgid "Confirm Deletion"
+msgstr "O'chirishni tasdiqlash"
+
+msgid "This action cannot be undone. The article and all associated files will be permanently deleted."
+msgstr "Bu amalni bekor qilib bo'lmaydi. Maqola va barcha tegishli fayllar butunlay o'chiriladi."
+
+msgid "Article to be deleted"
+msgstr "O'chiriladigan maqola"
+
+msgid "Yes, Delete Article"
+msgstr "Ha, maqolani o'chirish"
+
+msgid "Delete Article"
+msgstr "Maqolani o'chirish"
+
+msgid "Submitted At"
+msgstr "Yuborilgan vaqt"
+
+msgid "Reviewed At"
+msgstr "Ko'rib chiqilgan vaqt"
+
+msgid "Reviewed By"
+msgstr "Ko'rib chiquvchi"
+
+msgid "When the article was submitted for review"
+msgstr "Maqola ko'rib chiqishga yuborilgan vaqt"
+
+msgid "When the article was reviewed by admin"
+msgstr "Maqola administrator tomonidan ko'rib chiqilgan vaqt"
+
+msgid "Admin who reviewed this article"
+msgstr "Bu maqolani ko'rib chiqqan administrator"
+
+msgid "Reason for rejection (if rejected)"
+msgstr "Rad etish sababi (agar rad etilgan bo'lsa)"
+
+msgid "Article not found."
+msgstr "Maqola topilmadi."
+
+# Admin Actions
+msgid "Approve selected articles"
+msgstr "Tanlangan maqolalarni tasdiqlash"
+
+msgid "Reject selected articles"
+msgstr "Tanlangan maqolalarni rad etish"
+
+msgid "Convert to draft"
+msgstr "Qoralamaga aylantirish"
+
+msgid "Reset view counter"
+msgstr "Ko'rishlar hisoblagichini tiklash"
+
+msgid "No pending articles selected. Only articles with 'Pending Review' status can be approved."
+msgstr "Kutilayotgan maqolalar tanlanmagan. Faqat 'Ko'rib chiqish kutilmoqda' holatidagi maqolalarni tasdiqlash mumkin."
+
+msgid "%(count)d article(s) have been approved and published."
+msgstr "%(count)d ta maqola tasdiqlandi va nashr etildi."
+
+msgid "No pending articles selected. Only articles with 'Pending Review' status can be rejected."
+msgstr "Kutilayotgan maqolalar tanlanmagan. Faqat 'Ko'rib chiqish kutilmoqda' holatidagi maqolalarni rad etish mumkin."
+
+msgid "%(count)d article(s) have been rejected."
+msgstr "%(count)d ta maqola rad etildi."
+
+msgid "Rejected via bulk action. Please contact admin for details."
+msgstr "Ommaviy harakat orqali rad etildi. Tafsilotlar uchun administrator bilan bog'laning."
+
+msgid "%(count)d article(s) converted to draft."
+msgstr "%(count)d ta maqola qoralamaga aylantirildi."
+
+msgid "View counter reset for %(count)d article(s)."
+msgstr "%(count)d ta maqola uchun ko'rishlar hisoblagichi tiklandi."
+
+msgid "Basic Information"
+msgstr "Asosiy ma'lumotlar"
+
+msgid "Moderation"
+msgstr "Moderatsiya"
+
+msgid "Moderation workflow information"
+msgstr "Moderatsiya ish oqimi haqida ma'lumot"
+
+msgid "Timestamps"
+msgstr "Vaqt belgilari"
+
+msgid "No image"
+msgstr "Rasm yo'q"
+
+msgid "Cover Preview"
+msgstr "Muqova ko'rinishi"
+

@@ -1,0 +1,88 @@
+{% extends 'emails/base_email.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Reviewer Assignment" %} - {{ site_name }}{% endblock %}
+
+{% block content %}
+<h2>
+    {% if language == 'uz' %}
+        Hurmatli {{ user.username }}!
+    {% elif language == 'ru' %}
+        Уважаемый(ая) {{ user.username }}!
+    {% else %}
+        Dear {{ user.username }},
+    {% endif %}
+</h2>
+
+<div class="success-box">
+    {% if language == 'uz' %}
+        <strong>Tabriklaymiz!</strong> Siz "Red Collegiya" tarkibiga Taqrizchi sifatida tayinlandingiz.
+    {% elif language == 'ru' %}
+        <strong>Поздравляем!</strong> Вы назначены Рецензентом в составе "Редакционной Коллегии".
+    {% else %}
+        <strong>Congratulations!</strong> You have been assigned as a Reviewer (Editorial Board member).
+    {% endif %}
+</div>
+
+<p>
+    {% if language == 'uz' %}
+        Taqrizchi sifatida siz quyidagi vazifalarga ega bo'lasiz:
+    {% elif language == 'ru' %}
+        Как Рецензент вы будете выполнять следующие обязанности:
+    {% else %}
+        As a Reviewer, you will have the following responsibilities:
+    {% endif %}
+</p>
+
+<ul>
+    {% if language == 'uz' %}
+        <li>Tayinlangan kategoriyalardagi maqolalarni ko'rib chiqish</li>
+        <li>Maqolalar uchun taqriz yozish va qaror qabul qilish</li>
+        <li>Mualliflarga takomillashtirish bo'yicha tavsiyalar berish</li>
+    {% elif language == 'ru' %}
+        <li>Рассмотрение статей в назначенных категориях</li>
+        <li>Написание рецензий и принятие решений по статьям</li>
+        <li>Предоставление авторам рекомендаций по улучшению</li>
+    {% else %}
+        <li>Review articles in your assigned categories</li>
+        <li>Write reviews and make decisions on articles</li>
+        <li>Provide authors with recommendations for improvement</li>
+    {% endif %}
+</ul>
+
+<div class="info-box">
+    <strong>
+        {% if language == 'uz' %}
+            Sizga tayinlangan kategoriyalar:
+        {% elif language == 'ru' %}
+            Назначенные вам категории:
+        {% else %}
+            Your assigned categories:
+        {% endif %}
+    </strong>
+    <br>
+    {{ category_names }}
+</div>
+
+<p style="text-align: center;">
+    <a href="{{ dashboard_url }}" class="btn btn-success">
+        {% if language == 'uz' %}
+            Taqrizchi Paneliga O'tish
+        {% elif language == 'ru' %}
+            Перейти в Панель Рецензента
+        {% else %}
+            Go to Reviewer Dashboard
+        {% endif %}
+    </a>
+</p>
+
+<p>
+    {% if language == 'uz' %}
+        Agar savollaringiz bo'lsa, administrator bilan bog'laning.
+    {% elif language == 'ru' %}
+        Если у вас есть вопросы, обратитесь к администратору.
+    {% else %}
+        If you have any questions, please contact the administrator.
+    {% endif %}
+</p>
+{% endblock %}

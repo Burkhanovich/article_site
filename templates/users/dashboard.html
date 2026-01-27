@@ -1,0 +1,332 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="bi bi-speedometer2"></i> {% trans "Dashboard" %}
+        </h1>
+    </div>
+</div>
+
+<!-- Notifications Alert -->
+{% if unread_notifications > 0 %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="alert alert-info d-flex align-items-center justify-content-between">
+            <div>
+                <i class="bi bi-bell"></i>
+                {% blocktrans count counter=unread_notifications %}
+                    You have {{ counter }} unread notification.
+                {% plural %}
+                    You have {{ counter }} unread notifications.
+                {% endblocktrans %}
+            </div>
+            <a href="{% url 'users:notifications' %}" class="btn btn-info btn-sm">
+                {% trans "View All" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if user.is_author or user.can_create_articles %}
+    <!-- Author Dashboard -->
+    <div class="row mb-4">
+        <div class="col-md-2 col-sm-4 col-6 mb-3">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body text-center py-3">
+                    <h3 class="mb-0">{{ total_articles|default:0 }}</h3>
+                    <small>{% trans "Total" %}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6 mb-3">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body text-center py-3">
+                    <h3 class="mb-0">{{ published_articles|default:0 }}</h3>
+                    <small>{% trans "Published" %}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6 mb-3">
+            <div class="card text-dark bg-warning h-100">
+                <div class="card-body text-center py-3">
+                    <h3 class="mb-0">{{ pending_articles|default:0 }}</h3>
+                    <small>{% trans "Pending" %}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6 mb-3">
+            <div class="card text-white bg-secondary h-100">
+                <div class="card-body text-center py-3">
+                    <h3 class="mb-0">{{ draft_articles|default:0 }}</h3>
+                    <small>{% trans "Drafts" %}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6 mb-3">
+            <div class="card text-white bg-info h-100">
+                <div class="card-body text-center py-3">
+                    <h3 class="mb-0">{{ changes_requested_articles|default:0 }}</h3>
+                    <small>{% trans "Changes" %}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6 mb-3">
+            <div class="card bg-light h-100">
+                <div class="card-body text-center py-3">
+                    <a href="{% url 'articles:create' %}" class="btn btn-success">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                    <br><small>{% trans "Create" %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Recent Articles -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="bi bi-clock-history"></i> {% trans "Recent Articles" %}</h5>
+                    <a href="{% url 'articles:my_articles' %}" class="btn btn-sm btn-outline-primary">{% trans "View All" %}</a>
+                </div>
+                <div class="card-body">
+                    {% if recent_articles %}
+                        <div class="list-group list-group-flush">
+                            {% for article in recent_articles %}
+                                <a href="{% url 'articles:detail' article.slug %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>{{ article.title_uz|truncatechars:40 }}</strong>
+                                        <br>
+                                        <small class="text-muted">{{ article.created_at|date:"d.m.Y" }}</small>
+                                    </div>
+                                    <span class="badge
+                                        {% if article.status == 'PUBLISHED' %}bg-success
+                                        {% elif article.status == 'DRAFT' %}bg-secondary
+                                        {% elif article.status == 'PENDING_ADMIN' or article.status == 'IN_REVIEW' %}bg-warning text-dark
+                                        {% elif article.status == 'CHANGES_REQUESTED' %}bg-info
+                                        {% elif article.status == 'REJECTED' %}bg-danger
+                                        {% endif %}">
+                                        {{ article.get_status_display }}
+                                    </span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted mb-0">{% trans "No articles yet. Create your first article!" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Reviews Received -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-chat-left-text"></i> {% trans "Recent Reviews Received" %}</h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_reviews_received %}
+                        <div class="list-group list-group-flush">
+                            {% for review in recent_reviews_received %}
+                                <a href="{% url 'articles:detail' review.article.slug %}" class="list-group-item list-group-item-action">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <strong>{{ review.article.title_uz|truncatechars:30 }}</strong>
+                                            <br>
+                                            <small class="text-muted">
+                                                {{ review.category.name_uz }} - {{ review.reviewer.username }}
+                                            </small>
+                                        </div>
+                                        <span class="badge
+                                            {% if review.decision == 'APPROVE' %}bg-success
+                                            {% elif review.decision == 'REJECT' %}bg-danger
+                                            {% else %}bg-warning text-dark{% endif %}">
+                                            {{ review.get_decision_display }}
+                                        </span>
+                                    </div>
+                                    {% if review.comment %}
+                                    <small class="text-muted d-block mt-1">{{ review.comment|truncatechars:60 }}</small>
+                                    {% endif %}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted mb-0">{% trans "No reviews received yet." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if user.is_reviewer or user.can_review_articles %}
+    <!-- Reviewer Dashboard Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h4 class="border-bottom pb-2">
+                <i class="bi bi-clipboard-check"></i> {% trans "Reviewer Dashboard" %}
+            </h4>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body text-center">
+                    <h3>{{ reviewer_queue.total_pending|default:0 }}</h3>
+                    <p class="mb-0">{% trans "Pending Reviews" %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body text-center">
+                    <h3>{{ total_reviews|default:0 }}</h3>
+                    <p class="mb-0">{% trans "Total Reviews" %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light h-100">
+                <div class="card-body text-center">
+                    <a href="{% url 'articles:reviewer_dashboard' %}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-clipboard-check"></i>
+                    </a>
+                    <br><small>{% trans "Review Queue" %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if reviewer_queue.categories %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="bi bi-list-task"></i> {% trans "Articles Waiting for Review" %}</h5>
+        </div>
+        <div class="card-body">
+            {% for cat_data in reviewer_queue.categories %}
+            <div class="mb-3">
+                <span class="badge bg-secondary">{{ cat_data.category.name_uz }}</span>
+                <span class="text-muted">({{ cat_data.pending_count }} {% trans "pending" %})</span>
+            </div>
+            {% endfor %}
+            <a href="{% url 'articles:reviewer_dashboard' %}" class="btn btn-primary">
+                {% trans "Go to Reviewer Dashboard" %}
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Recent Reviews Made -->
+    {% if my_reviews %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="bi bi-clock-history"></i> {% trans "Your Recent Reviews" %}</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Article" %}</th>
+                            <th>{% trans "Category" %}</th>
+                            <th>{% trans "Decision" %}</th>
+                            <th>{% trans "Date" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for review in my_reviews %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'articles:detail' review.article.slug %}">
+                                    {{ review.article.title_uz|truncatechars:30 }}
+                                </a>
+                            </td>
+                            <td>{{ review.category.name_uz }}</td>
+                            <td>
+                                <span class="badge
+                                    {% if review.decision == 'APPROVE' %}bg-success
+                                    {% elif review.decision == 'REJECT' %}bg-danger
+                                    {% else %}bg-warning text-dark{% endif %}">
+                                    {{ review.get_decision_display }}
+                                </span>
+                            </td>
+                            <td>{{ review.created_at|date:"d.m.Y H:i" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endif %}
+
+{% if not user.is_author and not user.is_reviewer and not user.can_create_articles %}
+    <!-- Reader Dashboard -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="bi bi-newspaper"></i> {% trans "Recent Published Articles" %}</h5>
+        </div>
+        <div class="card-body">
+            {% if recent_articles %}
+                <div class="row">
+                    {% for article in recent_articles %}
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title">{{ article.title_uz|truncatechars:60 }}</h6>
+                                    <p class="card-text small text-muted">
+                                        {% trans "By" %} {{ article.author.username }} | {{ article.created_at|date:"d M Y" }}
+                                    </p>
+                                    <a href="{% url 'articles:detail' article.slug %}" class="btn btn-sm btn-outline-primary">
+                                        {% trans "Read More" %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted mb-0">{% trans "No published articles yet." %}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+
+<!-- Recent Notifications -->
+{% if recent_notifications %}
+<div class="card mt-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-bell"></i> {% trans "Recent Notifications" %}</h5>
+        <a href="{% url 'users:notifications' %}" class="btn btn-sm btn-outline-primary">{% trans "View All" %}</a>
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            {% for notification in recent_notifications %}
+            <a href="{% if notification.link %}{{ notification.link }}{% else %}#{% endif %}"
+               class="list-group-item list-group-item-action {% if not notification.is_read %}list-group-item-light{% endif %}">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        {% if not notification.is_read %}
+                        <span class="badge bg-primary me-1">{% trans "New" %}</span>
+                        {% endif %}
+                        <strong>{{ notification.title }}</strong>
+                        <p class="mb-0 small text-muted">{{ notification.message|truncatechars:80 }}</p>
+                    </div>
+                    <small class="text-muted">{{ notification.created_at|timesince }} {% trans "ago" %}</small>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

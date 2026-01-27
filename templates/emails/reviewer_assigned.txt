@@ -1,0 +1,55 @@
+{% load i18n %}{% if language == 'uz' %}Hurmatli {{ user.username }}!
+
+Tabriklaymiz! Siz "Red Collegiya" tarkibiga Taqrizchi sifatida tayinlandingiz.
+
+Taqrizchi sifatida siz quyidagi vazifalarga ega bo'lasiz:
+- Tayinlangan kategoriyalardagi maqolalarni ko'rib chiqish
+- Maqolalar uchun taqriz yozish va qaror qabul qilish
+- Mualliflarga takomillashtirish bo'yicha tavsiyalar berish
+
+Sizga tayinlangan kategoriyalar: {{ category_names }}
+
+Taqrizchi Paneliga o'tish: {{ dashboard_url }}
+
+Agar savollaringiz bo'lsa, administrator bilan bog'laning.
+
+---
+{{ site_name }}
+{{ site_url }}
+{% elif language == 'ru' %}Уважаемый(ая) {{ user.username }}!
+
+Поздравляем! Вы назначены Рецензентом в составе "Редакционной Коллегии".
+
+Как Рецензент вы будете выполнять следующие обязанности:
+- Рассмотрение статей в назначенных категориях
+- Написание рецензий и принятие решений по статьям
+- Предоставление авторам рекомендаций по улучшению
+
+Назначенные вам категории: {{ category_names }}
+
+Перейти в Панель Рецензента: {{ dashboard_url }}
+
+Если у вас есть вопросы, обратитесь к администратору.
+
+---
+{{ site_name }}
+{{ site_url }}
+{% else %}Dear {{ user.username }},
+
+Congratulations! You have been assigned as a Reviewer (Editorial Board member).
+
+As a Reviewer, you will have the following responsibilities:
+- Review articles in your assigned categories
+- Write reviews and make decisions on articles
+- Provide authors with recommendations for improvement
+
+Your assigned categories: {{ category_names }}
+
+Go to Reviewer Dashboard: {{ dashboard_url }}
+
+If you have any questions, please contact the administrator.
+
+---
+{{ site_name }}
+{{ site_url }}
+{% endif %}

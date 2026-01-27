@@ -1,0 +1,52 @@
+{% load i18n %}{% if language == 'uz' %}Hurmatli {{ user.username }}!
+
+Maqolangizga o'zgartirishlar kiritish talab qilinmoqda.
+
+MAQOLA: {{ article.title_uz }}
+{% if reason %}
+TALAB QILINGAN O'ZGARTIRISHLAR:
+{{ reason }}
+{% endif %}
+Iltimos, yuqoridagi izohlarni ko'rib chiqing va kerakli o'zgartirishlarni kiriting.
+O'zgartirishlarni kiritgandan so'ng, maqolani qayta ko'rib chiqish uchun yuboring.
+
+Maqolani tahrirlash: {{ edit_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% elif language == 'ru' %}Уважаемый(ая) {{ user.username }}!
+
+Требуется внести изменения в вашу статью.
+
+СТАТЬЯ: {{ article.title_uz }}
+{% if reason %}
+ТРЕБУЕМЫЕ ИЗМЕНЕНИЯ:
+{{ reason }}
+{% endif %}
+Пожалуйста, ознакомьтесь с комментариями выше и внесите необходимые изменения.
+После внесения изменений отправьте статью на повторное рассмотрение.
+
+Редактировать статью: {{ edit_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% else %}Dear {{ user.username }},
+
+Changes have been requested for your article.
+
+ARTICLE: {{ article.title_uz }}
+{% if reason %}
+REQUESTED CHANGES:
+{{ reason }}
+{% endif %}
+Please review the comments above and make the necessary changes.
+After making changes, resubmit the article for review.
+
+Edit article: {{ edit_url }}
+
+---
+{{ site_name }}
+{{ site_url }}
+{% endif %}

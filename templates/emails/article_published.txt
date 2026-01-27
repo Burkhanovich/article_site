@@ -1,0 +1,46 @@
+{% load i18n %}{% if language == 'uz' %}Hurmatli {{ user.username }}!
+
+TABRIKLAYMIZ! Sizning maqolangiz nashr etildi!
+
+MAQOLA: {{ article.title_uz }}
+
+Maqolangiz endi barcha foydalanuvchilar uchun ko'rinadigan holga keldi.
+
+Maqolani ko'rish: {{ article_url }}
+
+Maqolangizni ijtimoiy tarmoqlarda ulashing va ko'proq o'quvchilarga yetkazing!
+
+---
+{{ site_name }}
+{{ site_url }}
+{% elif language == 'ru' %}Уважаемый(ая) {{ user.username }}!
+
+ПОЗДРАВЛЯЕМ! Ваша статья опубликована!
+
+СТАТЬЯ: {{ article.title_uz }}
+
+Ваша статья теперь доступна для всех пользователей.
+
+Просмотреть статью: {{ article_url }}
+
+Поделитесь своей статьей в социальных сетях и охватите больше читателей!
+
+---
+{{ site_name }}
+{{ site_url }}
+{% else %}Dear {{ user.username }},
+
+CONGRATULATIONS! Your article has been published!
+
+ARTICLE: {{ article.title_uz }}
+
+Your article is now visible to all users.
+
+View article: {{ article_url }}
+
+Share your article on social media to reach more readers!
+
+---
+{{ site_name }}
+{{ site_url }}
+{% endif %}

@@ -745,3 +745,233 @@ msgstr "Об Авторе"
 msgid "Search by title, author, or content..."
 msgstr "Поиск по заголовку, автору или содержанию..."
 
+# Moderation Workflow Translations
+msgid "Pending Review"
+msgstr "На рассмотрении"
+
+msgid "Rejected"
+msgstr "Отклонено"
+
+msgid "Submit for Review"
+msgstr "Отправить на проверку"
+
+msgid "Save as Draft"
+msgstr "Сохранить как черновик"
+
+msgid "Submitted on"
+msgstr "Отправлено"
+
+msgid "Reviewed on"
+msgstr "Проверено"
+
+msgid "by"
+msgstr "кем"
+
+msgid "Reason"
+msgstr "Причина"
+
+msgid "Rejection Reason"
+msgstr "Причина отклонения"
+
+msgid "Article Rejected"
+msgstr "Статья отклонена"
+
+msgid "No specific reason was provided. Please review your article and make necessary improvements before resubmitting."
+msgstr "Конкретная причина не указана. Пожалуйста, просмотрите свою статью и внесите необходимые изменения перед повторной отправкой."
+
+msgid "This article is saved as a draft and is only visible to you."
+msgstr "Эта статья сохранена как черновик и видна только вам."
+
+msgid "Edit and submit for review"
+msgstr "Редактировать и отправить на проверку"
+
+msgid "This article is awaiting admin approval and cannot be edited."
+msgstr "Эта статья ожидает одобрения администратора и не может быть отредактирована."
+
+msgid "Edit and Resubmit"
+msgstr "Редактировать и отправить повторно"
+
+msgid "You cannot edit this article while it is pending review."
+msgstr "Вы не можете редактировать эту статью, пока она находится на проверке."
+
+msgid "Article Submission Guide"
+msgstr "Руководство по отправке статей"
+
+msgid "Saves your article without submitting for review"
+msgstr "Сохраняет статью без отправки на проверку"
+
+msgid "You can continue editing anytime"
+msgstr "Вы можете продолжить редактирование в любое время"
+
+msgid "Only visible to you"
+msgstr "Видна только вам"
+
+msgid "Sends your article to admin for approval"
+msgstr "Отправляет статью администратору на одобрение"
+
+msgid "Cannot edit while under review"
+msgstr "Нельзя редактировать во время проверки"
+
+msgid "Will be published after approval"
+msgstr "Будет опубликована после одобрения"
+
+msgid "If rejected, you can edit and resubmit"
+msgstr "Если отклонена, вы можете отредактировать и отправить повторно"
+
+msgid "Article \"%(title)s\" has been submitted for review. You will be notified once it is reviewed."
+msgstr "Статья \"%(title)s\" отправлена на проверку. Вы получите уведомление после проверки."
+
+msgid "Article \"%(title)s\" saved as draft."
+msgstr "Статья \"%(title)s\" сохранена как черновик."
+
+msgid "Article \"%(title)s\" has been submitted for review."
+msgstr "Статья \"%(title)s\" отправлена на проверку."
+
+msgid "Article \"%(title)s\" updated and saved as draft."
+msgstr "Статья \"%(title)s\" обновлена и сохранена как черновик."
+
+msgid "Please log in to edit articles."
+msgstr "Пожалуйста, войдите в систему, чтобы редактировать статьи."
+
+msgid "This article cannot be edited. Only draft or rejected articles can be modified."
+msgstr "Эта статья не может быть отредактирована. Можно изменять только черновики или отклонённые статьи."
+
+msgid "You cannot submit this article for review."
+msgstr "Вы не можете отправить эту статью на проверку."
+
+msgid "This article cannot be submitted for review."
+msgstr "Эта статья не может быть отправлена на проверку."
+
+msgid "Drafts"
+msgstr "Черновики"
+
+msgid "Pending"
+msgstr "Ожидает"
+
+msgid "All"
+msgstr "Все"
+
+msgid "article(s) rejected. Please review and resubmit."
+msgstr "статей отклонено. Проверьте и отправьте повторно."
+
+msgid "View Rejected"
+msgstr "Просмотреть отклонённые"
+
+msgid "No articles found with this status."
+msgstr "Статьи с таким статусом не найдены."
+
+msgid "Article Status Guide"
+msgstr "Руководство по статусам статей"
+
+msgid "Saved for later editing. Only visible to you."
+msgstr "Сохранено для дальнейшего редактирования. Видно только вам."
+
+msgid "Submitted and awaiting admin review."
+msgstr "Отправлено и ожидает проверки администратором."
+
+msgid "Approved and visible to all readers."
+msgstr "Одобрено и видно всем читателям."
+
+msgid "Needs revision. You can edit and resubmit."
+msgstr "Требуется доработка. Вы можете отредактировать и отправить повторно."
+
+msgid "Confirm Deletion"
+msgstr "Подтвердите удаление"
+
+msgid "This action cannot be undone. The article and all associated files will be permanently deleted."
+msgstr "Это действие нельзя отменить. Статья и все связанные файлы будут удалены навсегда."
+
+msgid "Article to be deleted"
+msgstr "Статья для удаления"
+
+msgid "Yes, Delete Article"
+msgstr "Да, удалить статью"
+
+msgid "Delete Article"
+msgstr "Удалить статью"
+
+msgid "Submitted At"
+msgstr "Время отправки"
+
+msgid "Reviewed At"
+msgstr "Время проверки"
+
+msgid "Reviewed By"
+msgstr "Проверено"
+
+msgid "When the article was submitted for review"
+msgstr "Когда статья была отправлена на проверку"
+
+msgid "When the article was reviewed by admin"
+msgstr "Когда статья была проверена администратором"
+
+msgid "Admin who reviewed this article"
+msgstr "Администратор, проверивший эту статью"
+
+msgid "Reason for rejection (if rejected)"
+msgstr "Причина отклонения (если отклонена)"
+
+msgid "Article not found."
+msgstr "Статья не найдена."
+
+# Admin Actions
+msgid "Approve selected articles"
+msgstr "Одобрить выбранные статьи"
+
+msgid "Reject selected articles"
+msgstr "Отклонить выбранные статьи"
+
+msgid "Convert to draft"
+msgstr "Преобразовать в черновик"
+
+msgid "Reset view counter"
+msgstr "Сбросить счётчик просмотров"
+
+msgid "No pending articles selected. Only articles with 'Pending Review' status can be approved."
+msgstr "Не выбраны статьи на рассмотрении. Можно одобрить только статьи со статусом 'На рассмотрении'."
+
+msgid "%(count)d article(s) have been approved and published."
+msgstr "%(count)d статей одобрено и опубликовано."
+
+msgid "No pending articles selected. Only articles with 'Pending Review' status can be rejected."
+msgstr "Не выбраны статьи на рассмотрении. Можно отклонить только статьи со статусом 'На рассмотрении'."
+
+msgid "%(count)d article(s) have been rejected."
+msgstr "%(count)d статей отклонено."
+
+msgid "Rejected via bulk action. Please contact admin for details."
+msgstr "Отклонено массовым действием. Свяжитесь с администратором для получения подробностей."
+
+msgid "%(count)d article(s) converted to draft."
+msgstr "%(count)d статей преобразовано в черновик."
+
+msgid "View counter reset for %(count)d article(s)."
+msgstr "Счётчик просмотров сброшен для %(count)d статей."
+
+msgid "Basic Information"
+msgstr "Основная информация"
+
+msgid "Moderation"
+msgstr "Модерация"
+
+msgid "Moderation workflow information"
+msgstr "Информация о процессе модерации"
+
+msgid "Timestamps"
+msgstr "Временные метки"
+
+msgid "No image"
+msgstr "Нет изображения"
+
+msgid "Cover Preview"
+msgstr "Предпросмотр обложки"
+
+msgid "views"
+msgstr "просмотров"
+
+msgid "Submit"
+msgstr "Отправить"
+
+msgid "Current cover image"
+msgstr "Текущее изображение обложки"
+

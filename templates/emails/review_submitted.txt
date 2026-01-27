@@ -1,0 +1,76 @@
+{% load i18n %}{% if language == 'uz' %}Hurmatli {{ user.username }}!
+
+Sizning maqolangiz uchun taqriz keldi.
+
+MAQOLA: {{ article.title_uz }}
+
+{% if review.decision == 'APPROVE' %}QAROR: TASDIQLANDI
+Maqolangiz "{{ review.category.name_uz }}" kategoriyasi bo'yicha tasdiqlandi.
+{% elif review.decision == 'CHANGES' %}QAROR: O'ZGARTIRISHLAR TALAB QILINMOQDA
+"{{ review.category.name_uz }}" kategoriyasi bo'yicha taqrizchi o'zgartirishlar kiritishingizni so'ramoqda.
+{% elif review.decision == 'REJECT' %}QAROR: RAD ETILDI
+"{{ review.category.name_uz }}" kategoriyasi bo'yicha taqrizchi maqolani rad etdi.
+{% endif %}
+{% if review.comment %}
+TAQRIZCHI IZOHI:
+{{ review.comment }}
+{% endif %}
+
+Maqolani ko'rish: {{ article_url }}
+{% if review.decision == 'CHANGES' %}
+Iltimos, taqrizchi izohlarini ko'rib chiqing va kerakli o'zgartirishlarni kiriting, so'ngra maqolani qayta yuboring.
+{% endif %}
+---
+{{ site_name }}
+{{ site_url }}
+{% elif language == 'ru' %}Уважаемый(ая) {{ user.username }}!
+
+Получена рецензия на вашу статью.
+
+СТАТЬЯ: {{ article.title_uz }}
+
+{% if review.decision == 'APPROVE' %}РЕШЕНИЕ: ОДОБРЕНО
+Ваша статья одобрена по категории "{{ review.category.name_uz }}".
+{% elif review.decision == 'CHANGES' %}РЕШЕНИЕ: ТРЕБУЮТСЯ ИЗМЕНЕНИЯ
+Рецензент по категории "{{ review.category.name_uz }}" запросил внесение изменений.
+{% elif review.decision == 'REJECT' %}РЕШЕНИЕ: ОТКЛОНЕНО
+Рецензент по категории "{{ review.category.name_uz }}" отклонил статью.
+{% endif %}
+{% if review.comment %}
+КОММЕНТАРИЙ РЕЦЕНЗЕНТА:
+{{ review.comment }}
+{% endif %}
+
+Просмотреть статью: {{ article_url }}
+{% if review.decision == 'CHANGES' %}
+Пожалуйста, ознакомьтесь с комментариями рецензента, внесите необходимые изменения и повторно отправьте статью.
+{% endif %}
+---
+{{ site_name }}
+{{ site_url }}
+{% else %}Dear {{ user.username }},
+
+A review has been submitted for your article.
+
+ARTICLE: {{ article.title_uz }}
+
+{% if review.decision == 'APPROVE' %}DECISION: APPROVED
+Your article has been approved for the "{{ review.category.name_uz }}" category.
+{% elif review.decision == 'CHANGES' %}DECISION: CHANGES REQUESTED
+The reviewer for "{{ review.category.name_uz }}" category has requested changes.
+{% elif review.decision == 'REJECT' %}DECISION: REJECTED
+The reviewer for "{{ review.category.name_uz }}" category has rejected the article.
+{% endif %}
+{% if review.comment %}
+REVIEWER COMMENT:
+{{ review.comment }}
+{% endif %}
+
+View article: {{ article_url }}
+{% if review.decision == 'CHANGES' %}
+Please review the comments, make necessary changes, and resubmit your article.
+{% endif %}
+---
+{{ site_name }}
+{{ site_url }}
+{% endif %}
