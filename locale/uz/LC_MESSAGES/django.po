@@ -966,3 +966,509 @@ msgstr "Rasm yo'q"
 msgid "Cover Preview"
 msgstr "Muqova ko'rinishi"
 
+# ========== NEW WORKFLOW TRANSLATIONS ==========
+
+# User Roles (New)
+msgid "Reviewer"
+msgstr "Taqrizchi"
+
+msgid "Administrator"
+msgstr "Administrator"
+
+# Article Status (New)
+msgid "Pending Admin Review"
+msgstr "Administrator ko'rib chiqishini kutmoqda"
+
+msgid "In Review"
+msgstr "Ko'rib chiqilmoqda"
+
+msgid "Changes Requested"
+msgstr "O'zgartirishlar so'raldi"
+
+# Review Mode
+msgid "All Categories Required"
+msgstr "Barcha turkumlar talab qilinadi"
+
+msgid "Any Category Sufficient"
+msgstr "Bitta turkum yetarli"
+
+msgid "Review Mode"
+msgstr "Ko'rib chiqish rejimi"
+
+msgid "How multi-category reviews are evaluated"
+msgstr "Ko'p turkumli ko'rib chiqishlar qanday baholanadi"
+
+# Categories
+msgid "Category"
+msgstr "Turkum"
+
+msgid "Categories"
+msgstr "Turkumlar"
+
+msgid "Name (Uzbek)"
+msgstr "Nomi (O'zbekcha)"
+
+msgid "Name (Russian)"
+msgstr "Nomi (Ruscha)"
+
+msgid "Name (English)"
+msgstr "Nomi (Inglizcha)"
+
+msgid "Description"
+msgstr "Tavsif"
+
+msgid "Assigned Reviewers"
+msgstr "Tayinlangan taqrizchilar"
+
+msgid "Reviewers who can review articles in this category"
+msgstr "Bu turkumdagi maqolalarni ko'rib chiqishi mumkin bo'lgan taqrizchilar"
+
+# Category Policy
+msgid "Category Policy"
+msgstr "Turkum siyosati"
+
+msgid "Category Policies"
+msgstr "Turkum siyosatlari"
+
+msgid "Minimum Approvals to Publish"
+msgstr "Nashr etish uchun minimal tasdiqlashlar"
+
+msgid "Number of approval votes required"
+msgstr "Talab qilinadigan tasdiqlash ovozlari soni"
+
+msgid "Maximum Rejections Before Block"
+msgstr "Bloklashdan oldingi maksimal rad etishlar"
+
+msgid "Article is blocked if rejections exceed this"
+msgstr "Rad etishlar bundan oshsa maqola bloklanadi"
+
+msgid "Minimum Required Reviews"
+msgstr "Minimal talab qilinadigan ko'rib chiqishlar"
+
+msgid "Total reviews needed before decision"
+msgstr "Qaror qabul qilishdan oldin kerakli ko'rib chiqishlar soni"
+
+msgid "Allow Admin Override"
+msgstr "Administrator bekor qilishiga ruxsat"
+
+msgid "Admin can override policy and publish/reject directly"
+msgstr "Administrator siyosatni bekor qilib, to'g'ridan-to'g'ri nashr etishi/rad etishi mumkin"
+
+msgid "Review Deadline (Hours)"
+msgstr "Ko'rib chiqish muddati (soat)"
+
+msgid "Optional deadline for reviews"
+msgstr "Ko'rib chiqishlar uchun ixtiyoriy muddat"
+
+msgid "Require Comment for Changes"
+msgstr "O'zgartirish uchun izoh talab qilish"
+
+msgid "Reviewer must provide comment when requesting changes"
+msgstr "O'zgartirish so'raganda taqrizchi izoh berishi shart"
+
+msgid "Require Comment for Rejection"
+msgstr "Rad etish uchun izoh talab qilish"
+
+msgid "Reviewer must provide comment when rejecting"
+msgstr "Rad etayotganda taqrizchi izoh berishi shart"
+
+# Keywords
+msgid "Keyword"
+msgstr "Kalit so'z"
+
+msgid "Keywords"
+msgstr "Kalit so'zlar"
+
+# Reviewer Assignment
+msgid "Reviewer Assignment"
+msgstr "Taqrizchi tayinlash"
+
+msgid "Reviewer Assignments"
+msgstr "Taqrizchi tayinlashlari"
+
+msgid "Pending Review"
+msgstr "Ko'rib chiqish kutilmoqda"
+
+msgid "Approved"
+msgstr "Tasdiqlangan"
+
+msgid "Review Comment"
+msgstr "Ko'rib chiqish izohi"
+
+msgid "Reviewer feedback or comment"
+msgstr "Taqrizchi fikr-mulohazasi yoki izohi"
+
+msgid "Assigned At"
+msgstr "Tayinlangan vaqt"
+
+msgid "Reviewed At"
+msgstr "Ko'rib chiqilgan vaqt"
+
+msgid "Assigned By"
+msgstr "Kim tomonidan tayinlangan"
+
+# Reviews
+msgid "Review"
+msgstr "Ko'rib chiqish"
+
+msgid "Reviews"
+msgstr "Ko'rib chiqishlar"
+
+msgid "Decision"
+msgstr "Qaror"
+
+msgid "Approve"
+msgstr "Tasdiqlash"
+
+msgid "Request Changes"
+msgstr "O'zgartirish so'rash"
+
+msgid "Reject"
+msgstr "Rad etish"
+
+msgid "Comment"
+msgstr "Izoh"
+
+msgid "You are not assigned to review this category."
+msgstr "Siz bu turkumni ko'rib chiqishga tayinlanmagansiz."
+
+msgid "Article does not belong to this category."
+msgstr "Maqola bu turkumga tegishli emas."
+
+msgid "This article cannot be reviewed in its current status."
+msgstr "Bu maqolani joriy holatida ko'rib chiqish mumkin emas."
+
+msgid "Comment is required when requesting changes."
+msgstr "O'zgartirish so'raganda izoh talab qilinadi."
+
+msgid "Comment is required when rejecting."
+msgstr "Rad etayotganda izoh talab qilinadi."
+
+# Admin Article Fields
+msgid "Title (Uzbek)"
+msgstr "Sarlavha (O'zbekcha)"
+
+msgid "Title (Russian)"
+msgstr "Sarlavha (Ruscha)"
+
+msgid "Title (English)"
+msgstr "Sarlavha (Inglizcha)"
+
+msgid "Content (Uzbek)"
+msgstr "Kontent (O'zbekcha)"
+
+msgid "Content (Russian)"
+msgstr "Kontent (Ruscha)"
+
+msgid "Content (English)"
+msgstr "Kontent (Inglizcha)"
+
+msgid "Published At"
+msgstr "Nashr etilgan vaqt"
+
+msgid "Admin Decision By"
+msgstr "Administrator qarori"
+
+msgid "Admin Decision At"
+msgstr "Administrator qarori vaqti"
+
+msgid "Admin Note"
+msgstr "Administrator eslatmasi"
+
+msgid "Upload article file (PDF, DOC, DOCX). Max 20MB."
+msgstr "Maqola faylini yuklang (PDF, DOC, DOCX). Maksimal 20MB."
+
+msgid "Select at least one category"
+msgstr "Kamida bitta turkum tanlang"
+
+# Notifications
+msgid "Reviewer Assigned"
+msgstr "Taqrizchi tayinlandi"
+
+msgid "Article Submitted"
+msgstr "Maqola yuborildi"
+
+msgid "Article For Review"
+msgstr "Ko'rib chiqish uchun maqola"
+
+msgid "Review Submitted"
+msgstr "Ko'rib chiqish yuborildi"
+
+msgid "Article Published"
+msgstr "Maqola nashr etildi"
+
+msgid "Article Rejected"
+msgstr "Maqola rad etildi"
+
+msgid "Article Resubmitted"
+msgstr "Maqola qayta yuborildi"
+
+msgid "Reviewer Assignment"
+msgstr "Taqrizchi tayinlash"
+
+msgid "Status Changed"
+msgstr "Holat o'zgardi"
+
+msgid "General"
+msgstr "Umumiy"
+
+# Notification Messages
+msgid "New article submitted for review"
+msgstr "Yangi maqola ko'rib chiqish uchun yuborildi"
+
+msgid "Author '%(author)s' has submitted article '%(title)s' for review. Please review and assign reviewers or take action."
+msgstr "'%(author)s' muallifning '%(title)s' maqolasi ko'rib chiqish uchun yuborildi. Iltimos, ko'rib chiqing va taqrizchilarni tayinlang yoki harakat qiling."
+
+msgid "You have been assigned to review an article"
+msgstr "Sizga maqolani ko'rib chiqish tayinlandi"
+
+msgid "You have been assigned by %(admin)s to review the article '%(title)s' by %(author)s. Please review the article and provide your feedback."
+msgstr "%(admin)s tomonidan sizga %(author)s ning '%(title)s' maqolasini ko'rib chiqish tayinlandi. Iltimos, maqolani ko'rib chiqing va fikringizni bildiring."
+
+msgid "Article resubmitted after changes"
+msgstr "O'zgartirishlardan so'ng maqola qayta yuborildi"
+
+msgid "Article '%(title)s' by %(author)s has been resubmitted after making requested changes."
+msgstr "%(author)s ning '%(title)s' maqolasi so'ralgan o'zgartirishlardan so'ng qayta yuborildi."
+
+msgid "Article has been published"
+msgstr "Maqola nashr etildi"
+
+msgid "Article '%(title)s' that you reviewed has been published."
+msgstr "Siz ko'rib chiqqan '%(title)s' maqolasi nashr etildi."
+
+msgid "Article '%(title)s' by %(author)s has been published."
+msgstr "%(author)s ning '%(title)s' maqolasi nashr etildi."
+
+msgid "Your article has been published!"
+msgstr "Sizning maqolangiz nashr etildi!"
+
+msgid "Congratulations! Your article '%(title)s' has been published and is now visible to readers."
+msgstr "Tabriklaymiz! '%(title)s' maqolangiz nashr etildi va endi o'quvchilarga ko'rinadi."
+
+msgid "You have been assigned as a Reviewer"
+msgstr "Siz taqrizchi sifatida tayinlandingiz"
+
+msgid "You have been assigned as a reviewer (Red Collegiya member). Your assigned categories: %(categories)s. Please visit the Reviewer Dashboard to see articles waiting for your review."
+msgstr "Siz taqrizchi (Red Kollegiya a'zosi) sifatida tayinlandingiz. Sizga tayinlangan turkumlar: %(categories)s. Sizning ko'rib chiqishingizni kutayotgan maqolalarni ko'rish uchun Taqrizchi paneliga tashrif buyuring."
+
+msgid "New article assigned for review"
+msgstr "Ko'rib chiqish uchun yangi maqola tayinlandi"
+
+msgid "Article '%(title)s' by %(author)s has been assigned for your review. Categories: %(categories)s."
+msgstr "%(author)s ning '%(title)s' maqolasi sizning ko'rib chiqishingiz uchun tayinlandi. Turkumlar: %(categories)s."
+
+msgid "Review received for your article"
+msgstr "Maqolangiz uchun ko'rib chiqish olindi"
+
+msgid "Your article '%(title)s' has received a review. Decision: %(decision)s. Category: %(category)s."
+msgstr "'%(title)s' maqolangiz ko'rib chiqildi. Qaror: %(decision)s. Turkum: %(category)s."
+
+msgid " Comment: %(comment)s"
+msgstr " Izoh: %(comment)s"
+
+msgid "Your article has been rejected"
+msgstr "Maqolangiz rad etildi"
+
+msgid "Your article '%(title)s' has been rejected."
+msgstr "'%(title)s' maqolangiz rad etildi."
+
+msgid " Reason: %(reason)s"
+msgstr " Sabab: %(reason)s"
+
+msgid "Changes requested for your article"
+msgstr "Maqolangiz uchun o'zgartirishlar so'raldi"
+
+msgid "Changes have been requested for your article '%(title)s'. Please review the feedback and make necessary updates."
+msgstr "'%(title)s' maqolangiz uchun o'zgartirishlar so'raldi. Iltimos, fikr-mulohazalarni ko'rib chiqing va zarur yangilanishlarni kiriting."
+
+msgid " Feedback: %(reason)s"
+msgstr " Fikr-mulohaza: %(reason)s"
+
+# Workflow Messages
+msgid "Only the author can submit this article."
+msgstr "Faqat muallif bu maqolani yuborishi mumkin."
+
+msgid "Article cannot be submitted in its current status."
+msgstr "Maqolani joriy holatida yuborib bo'lmaydi."
+
+msgid "Article submitted successfully."
+msgstr "Maqola muvaffaqiyatli yuborildi."
+
+msgid "Maqola tasdiqlandi va nashr qilindi."
+msgstr "Maqola tasdiqlandi va nashr qilindi."
+
+msgid "Maqola tasdiqlandi."
+msgstr "Maqola tasdiqlandi."
+
+msgid "Auto-publish only works when resubmitting after changes requested."
+msgstr "Avtomatik nashr faqat o'zgartirish so'ralgandan so'ng qayta yuborilganda ishlaydi."
+
+msgid "Article has been published successfully."
+msgstr "Maqola muvaffaqiyatli nashr etildi."
+
+msgid "Only pending articles can be sent to review."
+msgstr "Faqat kutilayotgan maqolalar ko'rib chiqishga yuborilishi mumkin."
+
+msgid "Article sent to review successfully."
+msgstr "Maqola ko'rib chiqishga muvaffaqiyatli yuborildi."
+
+msgid "Reviewers can only be assigned to pending or in-review articles."
+msgstr "Taqrizchilar faqat kutilayotgan yoki ko'rib chiqilayotgan maqolalarga tayinlanishi mumkin."
+
+msgid "%(count)d reviewer(s) assigned."
+msgstr "%(count)d taqrizchi tayinlandi."
+
+msgid "Article cannot be published in its current status."
+msgstr "Maqolani joriy holatida nashr etib bo'lmaydi."
+
+msgid "Article published successfully."
+msgstr "Maqola muvaffaqiyatli nashr etildi."
+
+msgid "Article cannot be rejected in its current status."
+msgstr "Maqolani joriy holatida rad etib bo'lmaydi."
+
+msgid "Article rejected."
+msgstr "Maqola rad etildi."
+
+msgid "Cannot request changes for article in its current status."
+msgstr "Maqolani joriy holatida o'zgartirish so'rab bo'lmaydi."
+
+msgid "Changes requested from author."
+msgstr "Muallifdan o'zgartirishlar so'raldi."
+
+# Admin Actions (New)
+msgid "Send to Review (from Pending Admin)"
+msgstr "Ko'rib chiqishga yuborish (kutilayotganlardan)"
+
+msgid "Request Changes from Author"
+msgstr "Muallifdan o'zgartirishlar so'rash"
+
+msgid "Publish Articles"
+msgstr "Maqolalarni nashr etish"
+
+msgid "Reject Articles"
+msgstr "Maqolalarni rad etish"
+
+msgid "Reset to Draft"
+msgstr "Qoralamaga qaytarish"
+
+msgid "%(count)d article(s) sent to review."
+msgstr "%(count)d maqola ko'rib chiqishga yuborildi."
+
+msgid "No pending articles selected."
+msgstr "Kutilayotgan maqolalar tanlanmagan."
+
+msgid "Changes requested for %(count)d article(s)."
+msgstr "%(count)d maqola uchun o'zgartirishlar so'raldi."
+
+msgid "No eligible articles selected."
+msgstr "Tegishli maqolalar tanlanmagan."
+
+msgid "%(count)d article(s) published."
+msgstr "%(count)d maqola nashr etildi."
+
+msgid "%(count)d article(s) rejected."
+msgstr "%(count)d maqola rad etildi."
+
+msgid "%(count)d article(s) reset to draft."
+msgstr "%(count)d maqola qoralamaga qaytarildi."
+
+# Reviewer Dashboard
+msgid "Reviewer Dashboard"
+msgstr "Taqrizchi paneli"
+
+msgid "Articles to Review"
+msgstr "Ko'rib chiqish uchun maqolalar"
+
+msgid "Your review has been submitted."
+msgstr "Sizning ko'rib chiqishingiz yuborildi."
+
+msgid "You have already reviewed this article for this category."
+msgstr "Siz bu maqolani bu turkum uchun allaqachon ko'rib chiqqansiz."
+
+msgid "Access denied. Reviewers only."
+msgstr "Kirish rad etildi. Faqat taqrizchilar uchun."
+
+# Article Views Messages
+msgid "Article \"%(title)s\" has been submitted for admin review."
+msgstr "\"%(title)s\" maqolasi administrator ko'rib chiqishi uchun yuborildi."
+
+msgid "Article \"%(title)s\" has been published!"
+msgstr "\"%(title)s\" maqolasi nashr etildi!"
+
+msgid "Article \"%(title)s\" has been resubmitted for review."
+msgstr "\"%(title)s\" maqolasi qayta ko'rib chiqish uchun yuborildi."
+
+# Publishability
+msgid "Publishability"
+msgstr "Nashr etish imkoniyati"
+
+msgid "Ready to Publish"
+msgstr "Nashr etishga tayyor"
+
+msgid "Blocked"
+msgstr "Bloklangan"
+
+msgid "Review In Progress"
+msgstr "Ko'rib chiqilmoqda"
+
+msgid "Article has no categories assigned"
+msgstr "Maqolaga turkumlar tayinlanmagan"
+
+msgid "Article is ready for publishing"
+msgstr "Maqola nashr etishga tayyor"
+
+msgid "Article is blocked due to rejections in one or more categories"
+msgstr "Bir yoki bir nechta turkumlardagi rad etishlar tufayli maqola bloklangan"
+
+msgid "Changes have been requested - waiting for author revision"
+msgstr "O'zgartirishlar so'raldi - muallif tuzatishini kutilmoqda"
+
+msgid "%(met)d of %(total)d categories meet policy requirements"
+msgstr "%(total)d turkumdan %(met)d tasi siyosat talablariga javob beradi"
+
+msgid "Review in progress"
+msgstr "Ko'rib chiqish davom etmoqda"
+
+msgid "Blocked: Too many rejections (%(rejections)d > %(max)d)"
+msgstr "Bloklangan: Juda ko'p rad etishlar (%(rejections)d > %(max)d)"
+
+msgid "Changes requested by %(count)d reviewer(s)"
+msgstr "%(count)d taqrizchi o'zgartirish so'radi"
+
+msgid "Needs more reviews: %(current)d/%(required)d"
+msgstr "Ko'proq ko'rib chiqish kerak: %(current)d/%(required)d"
+
+msgid "Needs more approvals: %(current)d/%(required)d"
+msgstr "Ko'proq tasdiqlash kerak: %(current)d/%(required)d"
+
+msgid "Ready for publishing"
+msgstr "Nashr etishga tayyor"
+
+msgid "N/A - Article is not in review"
+msgstr "Mavjud emas - Maqola ko'rib chiqilmayapti"
+
+msgid "Review Status by Category"
+msgstr "Turkumlar bo'yicha ko'rib chiqish holati"
+
+# Biography and Organization
+msgid "Biography"
+msgstr "Tarjimai hol"
+
+msgid "Organization"
+msgstr "Tashkilot"
+
+# Notifications Page
+msgid "Notifications"
+msgstr "Bildirishnomalar"
+
+msgid "Mark as Read"
+msgstr "O'qilgan deb belgilash"
+
+msgid "No notifications"
+msgstr "Bildirishnomalar yo'q"
+
+msgid "Read"
+msgstr "O'qilgan"
+

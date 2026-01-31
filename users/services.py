@@ -11,6 +11,8 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _, get_language, activate
 from django.urls import reverse
 
+from django.db.models import Q
+
 from .models import CustomUser, Notification
 
 logger = logging.getLogger(__name__)
@@ -481,6 +483,279 @@ def notify_changes_requested(
         template_name='changes_requested',
         context=context,
     )
+
+
+def notify_admin_article_submitted(article, author: CustomUser) -> int:
+    """
+    Notify all admins when an author submits an article for review.
+
+    Args:
+        article: The Article object that was submitted
+        author: The author who submitted the article
+
+    Returns:
+        Number of admins notified
+    """
+    site_url = get_site_url()
+    article_url = f"{site_url}{article.get_absolute_url()}"
+
+    # Get all admin users
+    admins = CustomUser.objects.filter(
+        Q(role=CustomUser.UserRole.ADMIN) | Q(is_superuser=True),
+        is_active=True
+    ).distinct()
+
+    notified_count = 0
+
+    for admin in admins:
+        # Create in-site notification
+        title = str(_("New article submitted for review"))
+        message = str(_(
+            "Author '%(author)s' has submitted article '%(title)s' for review. "
+            "Please review and assign reviewers or take action."
+        ) % {
+            'author': author.username,
+            'title': article.title_uz,
+        })
+
+        create_notification(
+            user=admin,
+            notification_type=Notification.NotificationType.ARTICLE_SUBMITTED,
+            title=title,
+            message=message,
+            link=article.get_absolute_url(),
+        )
+
+        # Send email notification
+        context = {
+            'article': article,
+            'author': author,
+            'article_url': article_url,
+        }
+
+        subject = str(_("[%(site_name)s] New article submitted: %(title)s") % {
+            'site_name': get_site_name(),
+            'title': article.title_uz[:50],
+        })
+
+        send_email_notification(
+            user=admin,
+            subject=subject,
+            template_name='article_submitted',
+            context=context,
+        )
+
+        notified_count += 1
+
+    logger.info(f"Notified {notified_count} admin(s) about article submission: {article.title_uz}")
+    return notified_count
+
+
+def notify_reviewer_article_assigned(
+    reviewer: CustomUser,
+    article,
+    assigned_by: CustomUser
+) -> bool:
+    """
+    Notify a reviewer that they have been assigned to review a specific article.
+
+    Args:
+        reviewer: The reviewer being assigned
+        article: The Article object
+        assigned_by: The admin who made the assignment
+
+    Returns:
+        True if notification was sent successfully
+    """
+    site_url = get_site_url()
+    article_url = f"{site_url}{article.get_absolute_url()}"
+
+    # Create in-site notification
+    title = str(_("You have been assigned to review an article"))
+    message = str(_(
+        "You have been assigned by %(admin)s to review the article '%(title)s' by %(author)s. "
+        "Please review the article and provide your feedback."
+    ) % {
+        'admin': assigned_by.username,
+        'title': article.title_uz,
+        'author': article.author.username,
+    })
+
+    create_notification(
+        user=reviewer,
+        notification_type=Notification.NotificationType.REVIEWER_ASSIGNMENT,
+        title=title,
+        message=message,
+        link=article.get_absolute_url(),
+    )
+
+    # Send email notification
+    context = {
+        'article': article,
+        'assigned_by': assigned_by,
+        'article_url': article_url,
+    }
+
+    subject = str(_("[%(site_name)s] Article assigned for review: %(title)s") % {
+        'site_name': get_site_name(),
+        'title': article.title_uz[:50],
+    })
+
+    return send_email_notification(
+        user=reviewer,
+        subject=subject,
+        template_name='reviewer_article_assigned',
+        context=context,
+    )
+
+
+def notify_article_resubmitted(article, recipients: list) -> int:
+    """
+    Notify reviewers and admins when an author resubmits an article after changes.
+
+    Args:
+        article: The Article object that was resubmitted
+        recipients: List of CustomUser objects to notify
+
+    Returns:
+        Number of users notified
+    """
+    site_url = get_site_url()
+    article_url = f"{site_url}{article.get_absolute_url()}"
+
+    notified_count = 0
+
+    for user in recipients:
+        # Create in-site notification
+        title = str(_("Article resubmitted after changes"))
+        message = str(_(
+            "Article '%(title)s' by %(author)s has been resubmitted after making requested changes."
+        ) % {
+            'title': article.title_uz,
+            'author': article.author.username,
+        })
+
+        create_notification(
+            user=user,
+            notification_type=Notification.NotificationType.ARTICLE_RESUBMITTED,
+            title=title,
+            message=message,
+            link=article.get_absolute_url(),
+        )
+
+        # Send email notification
+        context = {
+            'article': article,
+            'article_url': article_url,
+        }
+
+        subject = str(_("[%(site_name)s] Article resubmitted: %(title)s") % {
+            'site_name': get_site_name(),
+            'title': article.title_uz[:50],
+        })
+
+        send_email_notification(
+            user=user,
+            subject=subject,
+            template_name='article_resubmitted',
+            context=context,
+        )
+
+        notified_count += 1
+
+    logger.info(f"Notified {notified_count} user(s) about article resubmission: {article.title_uz}")
+    return notified_count
+
+
+def notify_all_parties_published(article) -> int:
+    """
+    Notify all parties (author, reviewers, admins) when an article is published.
+
+    Args:
+        article: The Article object that was published
+
+    Returns:
+        Number of users notified
+    """
+    site_url = get_site_url()
+    article_url = f"{site_url}{article.get_absolute_url()}"
+
+    notified_users = set()
+    notified_count = 0
+
+    # Notify author
+    notify_article_published(article.author, article)
+    notified_users.add(article.author.id)
+    notified_count += 1
+
+    # Get assigned reviewers from ReviewerAssignment
+    from articles.models import ReviewerAssignment
+    assignments = ReviewerAssignment.objects.filter(article=article).select_related('reviewer')
+
+    for assignment in assignments:
+        if assignment.reviewer.id not in notified_users:
+            title = str(_("Article has been published"))
+            message = str(_(
+                "Article '%(title)s' that you reviewed has been published."
+            ) % {'title': article.title_uz})
+
+            create_notification(
+                user=assignment.reviewer,
+                notification_type=Notification.NotificationType.ARTICLE_PUBLISHED,
+                title=title,
+                message=message,
+                link=article.get_absolute_url(),
+            )
+
+            context = {
+                'article': article,
+                'article_url': article_url,
+            }
+
+            subject = str(_("[%(site_name)s] Article published: %(title)s") % {
+                'site_name': get_site_name(),
+                'title': article.title_uz[:50],
+            })
+
+            send_email_notification(
+                user=assignment.reviewer,
+                subject=subject,
+                template_name='article_published_reviewer',
+                context=context,
+            )
+
+            notified_users.add(assignment.reviewer.id)
+            notified_count += 1
+
+    # Notify admins
+    admins = CustomUser.objects.filter(
+        Q(role=CustomUser.UserRole.ADMIN) | Q(is_superuser=True),
+        is_active=True
+    ).distinct()
+
+    for admin in admins:
+        if admin.id not in notified_users:
+            title = str(_("Article has been published"))
+            message = str(_(
+                "Article '%(title)s' by %(author)s has been published."
+            ) % {
+                'title': article.title_uz,
+                'author': article.author.username,
+            })
+
+            create_notification(
+                user=admin,
+                notification_type=Notification.NotificationType.ARTICLE_PUBLISHED,
+                title=title,
+                message=message,
+                link=article.get_absolute_url(),
+            )
+
+            notified_users.add(admin.id)
+            notified_count += 1
+
+    logger.info(f"Notified {notified_count} user(s) about article publication: {article.title_uz}")
+    return notified_count
 
 
 def notify_reviewers_for_article(article, admin_user: CustomUser = None) -> int:

@@ -194,11 +194,14 @@ class Notification(models.Model):
 
     class NotificationType(models.TextChoices):
         REVIEWER_ASSIGNED = 'REVIEWER_ASSIGNED', _('Reviewer Assigned')
+        ARTICLE_SUBMITTED = 'ARTICLE_SUBMITTED', _('Article Submitted')
         ARTICLE_FOR_REVIEW = 'ARTICLE_FOR_REVIEW', _('Article For Review')
         REVIEW_SUBMITTED = 'REVIEW_SUBMITTED', _('Review Submitted')
         ARTICLE_PUBLISHED = 'ARTICLE_PUBLISHED', _('Article Published')
         ARTICLE_REJECTED = 'ARTICLE_REJECTED', _('Article Rejected')
         CHANGES_REQUESTED = 'CHANGES_REQUESTED', _('Changes Requested')
+        ARTICLE_RESUBMITTED = 'ARTICLE_RESUBMITTED', _('Article Resubmitted')
+        REVIEWER_ASSIGNMENT = 'REVIEWER_ASSIGNMENT', _('Reviewer Assignment')
         STATUS_CHANGED = 'STATUS_CHANGED', _('Status Changed')
         GENERAL = 'GENERAL', _('General')
 

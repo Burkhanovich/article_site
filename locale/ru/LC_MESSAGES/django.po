@@ -975,3 +975,509 @@ msgstr "Отправить"
 msgid "Current cover image"
 msgstr "Текущее изображение обложки"
 
+# ========== NEW WORKFLOW TRANSLATIONS ==========
+
+# User Roles (New)
+msgid "Reviewer"
+msgstr "Рецензент"
+
+msgid "Administrator"
+msgstr "Администратор"
+
+# Article Status (New)
+msgid "Pending Admin Review"
+msgstr "Ожидает проверки администратора"
+
+msgid "In Review"
+msgstr "На рассмотрении"
+
+msgid "Changes Requested"
+msgstr "Требуются изменения"
+
+# Review Mode
+msgid "All Categories Required"
+msgstr "Все категории обязательны"
+
+msgid "Any Category Sufficient"
+msgstr "Достаточно любой категории"
+
+msgid "Review Mode"
+msgstr "Режим рецензирования"
+
+msgid "How multi-category reviews are evaluated"
+msgstr "Как оцениваются рецензии по нескольким категориям"
+
+# Categories
+msgid "Category"
+msgstr "Категория"
+
+msgid "Categories"
+msgstr "Категории"
+
+msgid "Name (Uzbek)"
+msgstr "Название (Узбекский)"
+
+msgid "Name (Russian)"
+msgstr "Название (Русский)"
+
+msgid "Name (English)"
+msgstr "Название (Английский)"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Assigned Reviewers"
+msgstr "Назначенные рецензенты"
+
+msgid "Reviewers who can review articles in this category"
+msgstr "Рецензенты, которые могут рецензировать статьи в этой категории"
+
+# Category Policy
+msgid "Category Policy"
+msgstr "Политика категории"
+
+msgid "Category Policies"
+msgstr "Политики категорий"
+
+msgid "Minimum Approvals to Publish"
+msgstr "Минимум одобрений для публикации"
+
+msgid "Number of approval votes required"
+msgstr "Количество необходимых голосов одобрения"
+
+msgid "Maximum Rejections Before Block"
+msgstr "Максимум отклонений до блокировки"
+
+msgid "Article is blocked if rejections exceed this"
+msgstr "Статья блокируется, если отклонений больше этого числа"
+
+msgid "Minimum Required Reviews"
+msgstr "Минимум необходимых рецензий"
+
+msgid "Total reviews needed before decision"
+msgstr "Общее количество рецензий, необходимых перед принятием решения"
+
+msgid "Allow Admin Override"
+msgstr "Разрешить переопределение администратором"
+
+msgid "Admin can override policy and publish/reject directly"
+msgstr "Администратор может переопределить политику и напрямую публиковать/отклонять"
+
+msgid "Review Deadline (Hours)"
+msgstr "Срок рецензирования (часы)"
+
+msgid "Optional deadline for reviews"
+msgstr "Необязательный срок для рецензий"
+
+msgid "Require Comment for Changes"
+msgstr "Требовать комментарий для изменений"
+
+msgid "Reviewer must provide comment when requesting changes"
+msgstr "Рецензент должен предоставить комментарий при запросе изменений"
+
+msgid "Require Comment for Rejection"
+msgstr "Требовать комментарий для отклонения"
+
+msgid "Reviewer must provide comment when rejecting"
+msgstr "Рецензент должен предоставить комментарий при отклонении"
+
+# Keywords
+msgid "Keyword"
+msgstr "Ключевое слово"
+
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+# Reviewer Assignment
+msgid "Reviewer Assignment"
+msgstr "Назначение рецензента"
+
+msgid "Reviewer Assignments"
+msgstr "Назначения рецензентов"
+
+msgid "Pending Review"
+msgstr "Ожидает рецензии"
+
+msgid "Approved"
+msgstr "Одобрено"
+
+msgid "Review Comment"
+msgstr "Комментарий рецензии"
+
+msgid "Reviewer feedback or comment"
+msgstr "Отзыв или комментарий рецензента"
+
+msgid "Assigned At"
+msgstr "Время назначения"
+
+msgid "Reviewed At"
+msgstr "Время рецензии"
+
+msgid "Assigned By"
+msgstr "Кем назначен"
+
+# Reviews
+msgid "Review"
+msgstr "Рецензия"
+
+msgid "Reviews"
+msgstr "Рецензии"
+
+msgid "Decision"
+msgstr "Решение"
+
+msgid "Approve"
+msgstr "Одобрить"
+
+msgid "Request Changes"
+msgstr "Запросить изменения"
+
+msgid "Reject"
+msgstr "Отклонить"
+
+msgid "Comment"
+msgstr "Комментарий"
+
+msgid "You are not assigned to review this category."
+msgstr "Вы не назначены для рецензирования этой категории."
+
+msgid "Article does not belong to this category."
+msgstr "Статья не принадлежит этой категории."
+
+msgid "This article cannot be reviewed in its current status."
+msgstr "Эта статья не может быть рецензирована в текущем статусе."
+
+msgid "Comment is required when requesting changes."
+msgstr "Комментарий обязателен при запросе изменений."
+
+msgid "Comment is required when rejecting."
+msgstr "Комментарий обязателен при отклонении."
+
+# Admin Article Fields
+msgid "Title (Uzbek)"
+msgstr "Заголовок (Узбекский)"
+
+msgid "Title (Russian)"
+msgstr "Заголовок (Русский)"
+
+msgid "Title (English)"
+msgstr "Заголовок (Английский)"
+
+msgid "Content (Uzbek)"
+msgstr "Содержание (Узбекский)"
+
+msgid "Content (Russian)"
+msgstr "Содержание (Русский)"
+
+msgid "Content (English)"
+msgstr "Содержание (Английский)"
+
+msgid "Published At"
+msgstr "Время публикации"
+
+msgid "Admin Decision By"
+msgstr "Решение администратора"
+
+msgid "Admin Decision At"
+msgstr "Время решения администратора"
+
+msgid "Admin Note"
+msgstr "Заметка администратора"
+
+msgid "Upload article file (PDF, DOC, DOCX). Max 20MB."
+msgstr "Загрузить файл статьи (PDF, DOC, DOCX). Макс. 20МБ."
+
+msgid "Select at least one category"
+msgstr "Выберите хотя бы одну категорию"
+
+# Notifications
+msgid "Reviewer Assigned"
+msgstr "Рецензент назначен"
+
+msgid "Article Submitted"
+msgstr "Статья отправлена"
+
+msgid "Article For Review"
+msgstr "Статья для рецензии"
+
+msgid "Review Submitted"
+msgstr "Рецензия отправлена"
+
+msgid "Article Published"
+msgstr "Статья опубликована"
+
+msgid "Article Rejected"
+msgstr "Статья отклонена"
+
+msgid "Article Resubmitted"
+msgstr "Статья отправлена повторно"
+
+msgid "Reviewer Assignment"
+msgstr "Назначение рецензента"
+
+msgid "Status Changed"
+msgstr "Статус изменен"
+
+msgid "General"
+msgstr "Общее"
+
+# Notification Messages
+msgid "New article submitted for review"
+msgstr "Новая статья отправлена на рассмотрение"
+
+msgid "Author '%(author)s' has submitted article '%(title)s' for review. Please review and assign reviewers or take action."
+msgstr "Автор '%(author)s' отправил статью '%(title)s' на рассмотрение. Пожалуйста, рассмотрите и назначьте рецензентов или примите меры."
+
+msgid "You have been assigned to review an article"
+msgstr "Вам назначена статья для рецензирования"
+
+msgid "You have been assigned by %(admin)s to review the article '%(title)s' by %(author)s. Please review the article and provide your feedback."
+msgstr "Вам назначено %(admin)s рецензировать статью '%(title)s' автора %(author)s. Пожалуйста, просмотрите статью и предоставьте свой отзыв."
+
+msgid "Article resubmitted after changes"
+msgstr "Статья отправлена повторно после изменений"
+
+msgid "Article '%(title)s' by %(author)s has been resubmitted after making requested changes."
+msgstr "Статья '%(title)s' автора %(author)s была отправлена повторно после внесения запрошенных изменений."
+
+msgid "Article has been published"
+msgstr "Статья опубликована"
+
+msgid "Article '%(title)s' that you reviewed has been published."
+msgstr "Статья '%(title)s', которую вы рецензировали, опубликована."
+
+msgid "Article '%(title)s' by %(author)s has been published."
+msgstr "Статья '%(title)s' автора %(author)s опубликована."
+
+msgid "Your article has been published!"
+msgstr "Ваша статья опубликована!"
+
+msgid "Congratulations! Your article '%(title)s' has been published and is now visible to readers."
+msgstr "Поздравляем! Ваша статья '%(title)s' опубликована и теперь видна читателям."
+
+msgid "You have been assigned as a Reviewer"
+msgstr "Вы назначены рецензентом"
+
+msgid "You have been assigned as a reviewer (Red Collegiya member). Your assigned categories: %(categories)s. Please visit the Reviewer Dashboard to see articles waiting for your review."
+msgstr "Вы назначены рецензентом (членом Редакционной коллегии). Ваши назначенные категории: %(categories)s. Посетите панель рецензента, чтобы увидеть статьи, ожидающие вашей рецензии."
+
+msgid "New article assigned for review"
+msgstr "Новая статья назначена для рецензии"
+
+msgid "Article '%(title)s' by %(author)s has been assigned for your review. Categories: %(categories)s."
+msgstr "Статья '%(title)s' автора %(author)s назначена для вашей рецензии. Категории: %(categories)s."
+
+msgid "Review received for your article"
+msgstr "Получена рецензия на вашу статью"
+
+msgid "Your article '%(title)s' has received a review. Decision: %(decision)s. Category: %(category)s."
+msgstr "Ваша статья '%(title)s' получила рецензию. Решение: %(decision)s. Категория: %(category)s."
+
+msgid " Comment: %(comment)s"
+msgstr " Комментарий: %(comment)s"
+
+msgid "Your article has been rejected"
+msgstr "Ваша статья отклонена"
+
+msgid "Your article '%(title)s' has been rejected."
+msgstr "Ваша статья '%(title)s' была отклонена."
+
+msgid " Reason: %(reason)s"
+msgstr " Причина: %(reason)s"
+
+msgid "Changes requested for your article"
+msgstr "Запрошены изменения для вашей статьи"
+
+msgid "Changes have been requested for your article '%(title)s'. Please review the feedback and make necessary updates."
+msgstr "Для вашей статьи '%(title)s' запрошены изменения. Пожалуйста, просмотрите отзыв и внесите необходимые обновления."
+
+msgid " Feedback: %(reason)s"
+msgstr " Отзыв: %(reason)s"
+
+# Workflow Messages
+msgid "Only the author can submit this article."
+msgstr "Только автор может отправить эту статью."
+
+msgid "Article cannot be submitted in its current status."
+msgstr "Статья не может быть отправлена в текущем статусе."
+
+msgid "Article submitted successfully."
+msgstr "Статья успешно отправлена."
+
+msgid "Maqola tasdiqlandi va nashr qilindi."
+msgstr "Статья одобрена и опубликована."
+
+msgid "Maqola tasdiqlandi."
+msgstr "Статья одобрена."
+
+msgid "Auto-publish only works when resubmitting after changes requested."
+msgstr "Автоматическая публикация работает только при повторной отправке после запроса изменений."
+
+msgid "Article has been published successfully."
+msgstr "Статья успешно опубликована."
+
+msgid "Only pending articles can be sent to review."
+msgstr "Только ожидающие статьи могут быть отправлены на рецензию."
+
+msgid "Article sent to review successfully."
+msgstr "Статья успешно отправлена на рецензию."
+
+msgid "Reviewers can only be assigned to pending or in-review articles."
+msgstr "Рецензенты могут быть назначены только для ожидающих или рецензируемых статей."
+
+msgid "%(count)d reviewer(s) assigned."
+msgstr "%(count)d рецензент(ов) назначено."
+
+msgid "Article cannot be published in its current status."
+msgstr "Статья не может быть опубликована в текущем статусе."
+
+msgid "Article published successfully."
+msgstr "Статья успешно опубликована."
+
+msgid "Article cannot be rejected in its current status."
+msgstr "Статья не может быть отклонена в текущем статусе."
+
+msgid "Article rejected."
+msgstr "Статья отклонена."
+
+msgid "Cannot request changes for article in its current status."
+msgstr "Невозможно запросить изменения для статьи в текущем статусе."
+
+msgid "Changes requested from author."
+msgstr "Запрошены изменения от автора."
+
+# Admin Actions (New)
+msgid "Send to Review (from Pending Admin)"
+msgstr "Отправить на рецензию (из ожидающих)"
+
+msgid "Request Changes from Author"
+msgstr "Запросить изменения от автора"
+
+msgid "Publish Articles"
+msgstr "Опубликовать статьи"
+
+msgid "Reject Articles"
+msgstr "Отклонить статьи"
+
+msgid "Reset to Draft"
+msgstr "Вернуть в черновик"
+
+msgid "%(count)d article(s) sent to review."
+msgstr "%(count)d статей отправлено на рецензию."
+
+msgid "No pending articles selected."
+msgstr "Ожидающие статьи не выбраны."
+
+msgid "Changes requested for %(count)d article(s)."
+msgstr "Запрошены изменения для %(count)d статей."
+
+msgid "No eligible articles selected."
+msgstr "Подходящие статьи не выбраны."
+
+msgid "%(count)d article(s) published."
+msgstr "%(count)d статей опубликовано."
+
+msgid "%(count)d article(s) rejected."
+msgstr "%(count)d статей отклонено."
+
+msgid "%(count)d article(s) reset to draft."
+msgstr "%(count)d статей возвращено в черновик."
+
+# Reviewer Dashboard
+msgid "Reviewer Dashboard"
+msgstr "Панель рецензента"
+
+msgid "Articles to Review"
+msgstr "Статьи для рецензии"
+
+msgid "Your review has been submitted."
+msgstr "Ваша рецензия отправлена."
+
+msgid "You have already reviewed this article for this category."
+msgstr "Вы уже рецензировали эту статью для этой категории."
+
+msgid "Access denied. Reviewers only."
+msgstr "Доступ запрещен. Только для рецензентов."
+
+# Article Views Messages
+msgid "Article \"%(title)s\" has been submitted for admin review."
+msgstr "Статья \"%(title)s\" отправлена на рассмотрение администратора."
+
+msgid "Article \"%(title)s\" has been published!"
+msgstr "Статья \"%(title)s\" опубликована!"
+
+msgid "Article \"%(title)s\" has been resubmitted for review."
+msgstr "Статья \"%(title)s\" повторно отправлена на рецензию."
+
+# Publishability
+msgid "Publishability"
+msgstr "Возможность публикации"
+
+msgid "Ready to Publish"
+msgstr "Готово к публикации"
+
+msgid "Blocked"
+msgstr "Заблокировано"
+
+msgid "Review In Progress"
+msgstr "Рецензия в процессе"
+
+msgid "Article has no categories assigned"
+msgstr "Статье не назначены категории"
+
+msgid "Article is ready for publishing"
+msgstr "Статья готова к публикации"
+
+msgid "Article is blocked due to rejections in one or more categories"
+msgstr "Статья заблокирована из-за отклонений в одной или нескольких категориях"
+
+msgid "Changes have been requested - waiting for author revision"
+msgstr "Запрошены изменения - ожидание правок автора"
+
+msgid "%(met)d of %(total)d categories meet policy requirements"
+msgstr "%(met)d из %(total)d категорий соответствуют требованиям политики"
+
+msgid "Review in progress"
+msgstr "Рецензия в процессе"
+
+msgid "Blocked: Too many rejections (%(rejections)d > %(max)d)"
+msgstr "Заблокировано: Слишком много отклонений (%(rejections)d > %(max)d)"
+
+msgid "Changes requested by %(count)d reviewer(s)"
+msgstr "Изменения запрошены %(count)d рецензентом(ами)"
+
+msgid "Needs more reviews: %(current)d/%(required)d"
+msgstr "Нужно больше рецензий: %(current)d/%(required)d"
+
+msgid "Needs more approvals: %(current)d/%(required)d"
+msgstr "Нужно больше одобрений: %(current)d/%(required)d"
+
+msgid "Ready for publishing"
+msgstr "Готово к публикации"
+
+msgid "N/A - Article is not in review"
+msgstr "Н/Д - Статья не на рецензии"
+
+msgid "Review Status by Category"
+msgstr "Статус рецензии по категориям"
+
+# Biography and Organization
+msgid "Biography"
+msgstr "Биография"
+
+msgid "Organization"
+msgstr "Организация"
+
+# Notifications Page
+msgid "Notifications"
+msgstr "Уведомления"
+
+msgid "Mark as Read"
+msgstr "Отметить как прочитанное"
+
+msgid "No notifications"
+msgstr "Нет уведомлений"
+
+msgid "Read"
+msgstr "Прочитано"
+

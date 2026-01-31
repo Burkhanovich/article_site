@@ -196,22 +196,29 @@ class ArticleCreateView(AuthorRequiredMixin, CreateView):
 
     def form_valid(self, form):
         """Set the author and handle submission action."""
+        from .workflow import ArticleWorkflow
+
         form.instance.author = self.request.user
 
         # Check if user wants to submit for admin review
         action = self.request.POST.get('action', 'save_draft')
 
         if action == 'submit_review':
-            form.instance.status = Article.ArticleStatus.PENDING_ADMIN
-            from django.utils import timezone
-            form.instance.submitted_at = timezone.now()
+            # First save as draft, then submit through workflow
+            form.instance.status = Article.ArticleStatus.DRAFT
             response = super().form_valid(form)
-            messages.success(
-                self.request,
-                _('Article "%(title)s" has been submitted for admin review.') % {
-                    'title': form.instance.title_uz
-                }
-            )
+
+            # Now submit through workflow (this handles notifications)
+            success, message = ArticleWorkflow.submit_article(self.object, self.request.user)
+            if success:
+                messages.success(
+                    self.request,
+                    _('Article "%(title)s" has been submitted for admin review.') % {
+                        'title': form.instance.title_uz
+                    }
+                )
+            else:
+                messages.warning(self.request, message)
             return response
         else:
             form.instance.status = Article.ArticleStatus.DRAFT
@@ -273,16 +280,51 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         """Handle save action (draft or submit for review)."""
+        from .workflow import ArticleWorkflow
+
         action = self.request.POST.get('action', 'save_draft')
+        was_changes_requested = form.instance.status == Article.ArticleStatus.CHANGES_REQUESTED
 
         if action == 'submit_review':
-            form.instance.submit_to_admin()
-            messages.success(
-                self.request,
-                _('Article "%(title)s" has been submitted for admin review.') % {
-                    'title': form.instance.title_uz
-                }
-            )
+            # Save changes first
+            response = super().form_valid(form)
+
+            # Check if this is a resubmission after changes requested
+            if was_changes_requested:
+                # Auto-publish on resubmission
+                success, message = ArticleWorkflow.submit_and_auto_publish(self.object, self.request.user)
+                if success:
+                    messages.success(
+                        self.request,
+                        _('Article "%(title)s" has been published!') % {
+                            'title': form.instance.title_uz
+                        }
+                    )
+                else:
+                    # Fallback to regular submission if auto-publish fails
+                    success, message = ArticleWorkflow.submit_article(self.object, self.request.user)
+                    if success:
+                        messages.success(
+                            self.request,
+                            _('Article "%(title)s" has been resubmitted for review.') % {
+                                'title': form.instance.title_uz
+                            }
+                        )
+                    else:
+                        messages.warning(self.request, message)
+            else:
+                # Regular submission from draft
+                success, message = ArticleWorkflow.submit_article(self.object, self.request.user)
+                if success:
+                    messages.success(
+                        self.request,
+                        _('Article "%(title)s" has been submitted for admin review.') % {
+                            'title': form.instance.title_uz
+                        }
+                    )
+                else:
+                    messages.warning(self.request, message)
+            return response
         else:
             form.instance.status = Article.ArticleStatus.DRAFT
             messages.success(
@@ -292,7 +334,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 }
             )
 
-        return super().form_valid(form)
+            return super().form_valid(form)
 
     def form_invalid(self, form):
         """Display error message."""
@@ -430,20 +472,35 @@ class SubmitArticleView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def post(self, request, slug):
         """Handle article submission."""
-        article = get_object_or_404(Article, slug=slug)
+        from .workflow import ArticleWorkflow
 
-        if article.submit_to_admin():
-            messages.success(
-                request,
-                _('Article "%(title)s" has been submitted for admin review.') % {
-                    'title': article.title_uz
-                }
-            )
+        article = get_object_or_404(Article, slug=slug)
+        was_changes_requested = article.status == Article.ArticleStatus.CHANGES_REQUESTED
+
+        if was_changes_requested:
+            # Auto-publish on resubmission after changes requested
+            success, message = ArticleWorkflow.submit_and_auto_publish(article, request.user)
+            if success:
+                messages.success(
+                    request,
+                    _('Article "%(title)s" has been published!') % {
+                        'title': article.title_uz
+                    }
+                )
+            else:
+                messages.error(request, message)
         else:
-            messages.error(
-                request,
-                _('This article cannot be submitted for review.')
-            )
+            # Regular submission
+            success, message = ArticleWorkflow.submit_article(article, request.user)
+            if success:
+                messages.success(
+                    request,
+                    _('Article "%(title)s" has been submitted for admin review.') % {
+                        'title': article.title_uz
+                    }
+                )
+            else:
+                messages.error(request, message)
 
         return redirect('articles:detail', slug=slug)
 
@@ -555,7 +612,7 @@ class SubmitReviewView(ReviewerRequiredMixin, View):
 
     def post(self, request, slug, category_id):
         """Handle review submission."""
-        from users.services import notify_review_submitted
+        from .workflow import ArticleWorkflow
 
         article = get_object_or_404(Article, slug=slug)
         category = get_object_or_404(Category, id=category_id)
@@ -592,17 +649,25 @@ class SubmitReviewView(ReviewerRequiredMixin, View):
         form.instance.category = category
 
         if form.is_valid():
-            review = form.save()
+            decision = form.cleaned_data.get('decision')
+            comment = form.cleaned_data.get('comment', '')
 
+            # Use workflow for the review action
+            if decision == Review.Decision.APPROVE:
+                success, message = ArticleWorkflow.reviewer_approve(article, request.user, comment)
+            elif decision == Review.Decision.CHANGES:
+                success, message = ArticleWorkflow.reviewer_request_changes(article, request.user, comment)
+            else:
+                # For REJECT, save the review directly
+                review = form.save()
+                from users.services import notify_review_submitted
+                notify_review_submitted(article.author, article, review, request.user)
+                success = True
 
-            # Update article status if needed
-            from .services import update_article_status_from_reviews
-            update_article_status_from_reviews(article)
-
-            # Send notification to author
-            notify_review_submitted(article.author, article, review, request.user)
-
-            messages.success(request, _('Your review has been submitted.'))
+            if success:
+                messages.success(request, _('Your review has been submitted.'))
+            else:
+                messages.error(request, message)
         else:
             for error in form.errors.values():
                 messages.error(request, error)

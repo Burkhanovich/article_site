@@ -552,6 +552,116 @@ class Review(models.Model):
                     raise ValidationError(_('Comment is required when rejecting.'))
 
 
+class ReviewerAssignment(models.Model):
+    """
+    Model to track reviewer assignments to specific articles.
+    This allows admin to assign specific reviewers to articles,
+    independent of category-based reviewer assignments.
+    """
+
+    class AssignmentStatus(models.TextChoices):
+        PENDING = 'PENDING', _('Pending Review')
+        APPROVED = 'APPROVED', _('Approved')
+        CHANGES_REQUESTED = 'CHANGES_REQUESTED', _('Changes Requested')
+        REJECTED = 'REJECTED', _('Rejected')
+
+    article = models.ForeignKey(
+        Article,
+        on_delete=models.CASCADE,
+        related_name='reviewer_assignments',
+        verbose_name=_('Article')
+    )
+
+    reviewer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='article_assignments',
+        verbose_name=_('Reviewer'),
+        limit_choices_to={'role': 'REVIEWER'}
+    )
+
+    assigned_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='reviewer_assignments_made',
+        verbose_name=_('Assigned By')
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=AssignmentStatus.choices,
+        default=AssignmentStatus.PENDING,
+        verbose_name=_('Status')
+    )
+
+    review_comment = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name=_('Review Comment'),
+        help_text=_('Reviewer feedback or comment')
+    )
+
+    assigned_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Assigned At')
+    )
+
+    reviewed_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_('Reviewed At')
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('Updated At')
+    )
+
+    class Meta:
+        verbose_name = _('Reviewer Assignment')
+        verbose_name_plural = _('Reviewer Assignments')
+        ordering = ['-assigned_at']
+        # One assignment per reviewer per article
+        unique_together = ['article', 'reviewer']
+        indexes = [
+            models.Index(fields=['article', 'status']),
+            models.Index(fields=['reviewer', 'status']),
+        ]
+
+    def __str__(self):
+        return f"{self.reviewer.username} -> {self.article.title_uz[:30]} ({self.get_status_display()})"
+
+    def mark_approved(self, comment=None):
+        """Mark the assignment as approved."""
+        self.status = self.AssignmentStatus.APPROVED
+        if comment:
+            self.review_comment = comment
+        self.reviewed_at = timezone.now()
+        self.save()
+
+    def mark_changes_requested(self, comment):
+        """Mark the assignment as changes requested."""
+        self.status = self.AssignmentStatus.CHANGES_REQUESTED
+        self.review_comment = comment
+        self.reviewed_at = timezone.now()
+        self.save()
+
+    def mark_rejected(self, comment=None):
+        """Mark the assignment as rejected."""
+        self.status = self.AssignmentStatus.REJECTED
+        if comment:
+            self.review_comment = comment
+        self.reviewed_at = timezone.now()
+        self.save()
+
+    def reset_to_pending(self):
+        """Reset assignment to pending (e.g., when author resubmits)."""
+        self.status = self.AssignmentStatus.PENDING
+        self.reviewed_at = None
+        self.save()
+
+
 class ArticleStatusHistory(models.Model):
     """
     Audit log for article status changes.

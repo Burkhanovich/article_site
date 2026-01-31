@@ -8,7 +8,7 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
-from .models import Category, CategoryPolicy, Keyword, Article, Review, ArticleStatusHistory
+from .models import Category, CategoryPolicy, Keyword, Article, Review, ReviewerAssignment, ArticleStatusHistory
 from .services import is_article_publishable
 
 
@@ -169,6 +169,24 @@ class ReviewInline(admin.TabularInline):
         return False
 
 
+class ReviewerAssignmentInline(admin.TabularInline):
+    """Inline for reviewer assignments on Article admin."""
+    model = ReviewerAssignment
+    extra = 1
+    readonly_fields = ('assigned_at', 'reviewed_at', 'updated_at')
+    raw_id_fields = ('reviewer',)
+    fields = ('reviewer', 'status', 'review_comment', 'assigned_at', 'reviewed_at')
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('reviewer', 'assigned_by')
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "reviewer":
+            from users.models import CustomUser
+            kwargs["queryset"] = CustomUser.objects.filter(role=CustomUser.UserRole.REVIEWER)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+
 class StatusHistoryInline(admin.TabularInline):
     """Inline for status history on Article admin."""
     model = ArticleStatusHistory
@@ -259,7 +277,7 @@ class ArticleAdmin(admin.ModelAdmin):
         }),
     )
 
-    inlines = [ReviewInline, StatusHistoryInline]
+    inlines = [ReviewerAssignmentInline, ReviewInline, StatusHistoryInline]
     ordering = ('-created_at',)
     list_per_page = 25
     date_hierarchy = 'created_at'
@@ -361,24 +379,19 @@ class ArticleAdmin(admin.ModelAdmin):
     @admin.action(description=_("Send to Review (from Pending Admin)"))
     def send_to_review(self, request, queryset):
         """Send pending articles to review and notify reviewers."""
-        from users.services import notify_reviewers_for_article
+        from .workflow import ArticleWorkflow
 
         pending = queryset.filter(status=Article.ArticleStatus.PENDING_ADMIN)
         count = 0
-        reviewers_notified = 0
         for article in pending:
-            if article.send_to_review(request.user, note='Sent to review by admin'):
+            success, message = ArticleWorkflow.send_to_review(article, request.user)
+            if success:
                 count += 1
-                # Notify all eligible reviewers
-                reviewers_notified += notify_reviewers_for_article(article, request.user)
 
         if count:
             self.message_user(
                 request,
-                _("%(count)d article(s) sent to review. %(reviewers)d reviewer(s) notified.") % {
-                    'count': count,
-                    'reviewers': reviewers_notified
-                },
+                _("%(count)d article(s) sent to review.") % {'count': count},
                 messages.SUCCESS
             )
         else:
@@ -387,15 +400,16 @@ class ArticleAdmin(admin.ModelAdmin):
     @admin.action(description=_("Request Changes from Author"))
     def request_changes(self, request, queryset):
         """Request changes from author and send notification."""
-        from users.services import notify_changes_requested
+        from .workflow import ArticleWorkflow
 
         reviewable = queryset.filter(status__in=[Article.ArticleStatus.IN_REVIEW, Article.ArticleStatus.PENDING_ADMIN])
         count = 0
         for article in reviewable:
-            if article.request_changes(request.user, note='Changes requested by admin'):
+            success, message = ArticleWorkflow.request_changes_from_author(
+                article, request.user, note='Changes requested by admin'
+            )
+            if success:
                 count += 1
-                # Notify author
-                notify_changes_requested(article.author, article, article.admin_note)
 
         if count:
             self.message_user(request, _("Changes requested for %(count)d article(s).") % {'count': count}, messages.SUCCESS)
@@ -405,15 +419,13 @@ class ArticleAdmin(admin.ModelAdmin):
     @admin.action(description=_("Publish Articles"))
     def publish_articles(self, request, queryset):
         """Publish articles and notify authors."""
-        from users.services import notify_article_published
+        from .workflow import ArticleWorkflow
 
         count = 0
         for article in queryset:
-            if article.status in [Article.ArticleStatus.IN_REVIEW, Article.ArticleStatus.PENDING_ADMIN]:
-                if article.publish(request.user, note='Published by admin'):
-                    count += 1
-                    # Notify author
-                    notify_article_published(article.author, article)
+            success, message = ArticleWorkflow.publish_article(article, request.user, note='Published by admin')
+            if success:
+                count += 1
 
         if count:
             self.message_user(request, _("%(count)d article(s) published.") % {'count': count}, messages.SUCCESS)
@@ -423,15 +435,13 @@ class ArticleAdmin(admin.ModelAdmin):
     @admin.action(description=_("Reject Articles"))
     def reject_articles(self, request, queryset):
         """Reject articles and notify authors."""
-        from users.services import notify_article_rejected
+        from .workflow import ArticleWorkflow
 
         count = 0
         for article in queryset:
-            if article.status in [Article.ArticleStatus.IN_REVIEW, Article.ArticleStatus.PENDING_ADMIN]:
-                if article.reject(request.user, note='Rejected by admin'):
-                    count += 1
-                    # Notify author
-                    notify_article_rejected(article.author, article, article.admin_note, request.user)
+            success, message = ArticleWorkflow.reject_article(article, request.user, reason='Rejected by admin')
+            if success:
+                count += 1
 
         if count:
             self.message_user(request, _("%(count)d article(s) rejected.") % {'count': count}, messages.SUCCESS)
@@ -460,6 +470,35 @@ class ArticleAdmin(admin.ModelAdmin):
         if not change and not obj.author_id:
             obj.author = request.user
         super().save_model(request, obj, form, change)
+
+    def save_formset(self, request, form, formset, change):
+        """Handle reviewer assignment notifications when saving inlines."""
+        instances = formset.save(commit=False)
+
+        # Handle deletions
+        for obj in formset.deleted_objects:
+            obj.delete()
+
+        # Handle new/modified instances
+        for instance in instances:
+            if isinstance(instance, ReviewerAssignment):
+                is_new = instance.pk is None
+                if is_new:
+                    instance.assigned_by = request.user
+                instance.save()
+
+                # Notify reviewer if this is a new assignment
+                if is_new:
+                    from users.services import notify_reviewer_article_assigned
+                    notify_reviewer_article_assigned(
+                        reviewer=instance.reviewer,
+                        article=instance.article,
+                        assigned_by=request.user
+                    )
+            else:
+                instance.save()
+
+        formset.save_m2m()
 
     def get_queryset(self, request):
         """Optimize queryset with select_related and prefetch_related."""
@@ -536,6 +575,76 @@ class ReviewAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('article', 'reviewer', 'category')
+
+
+@admin.register(ReviewerAssignment)
+class ReviewerAssignmentAdmin(admin.ModelAdmin):
+    """Admin for ReviewerAssignment model."""
+    list_display = (
+        'article_title',
+        'reviewer',
+        'assigned_by',
+        'status_badge',
+        'assigned_at',
+        'reviewed_at',
+    )
+    list_filter = ('status', 'assigned_at', 'reviewed_at')
+    search_fields = (
+        'article__title_uz',
+        'article__title_ru',
+        'reviewer__username',
+        'assigned_by__username',
+    )
+    readonly_fields = ('assigned_at', 'reviewed_at', 'updated_at')
+    raw_id_fields = ('article', 'reviewer', 'assigned_by')
+    date_hierarchy = 'assigned_at'
+
+    fieldsets = (
+        (_('Assignment Details'), {
+            'fields': ('article', 'reviewer', 'assigned_by', 'status')
+        }),
+        (_('Review'), {
+            'fields': ('review_comment',)
+        }),
+        (_('Timestamps'), {
+            'fields': ('assigned_at', 'reviewed_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def article_title(self, obj):
+        return obj.article.title_uz[:50]
+    article_title.short_description = _('Article')
+
+    def status_badge(self, obj):
+        """Display status as a colored badge."""
+        colors = {
+            'PENDING': '#17a2b8',
+            'APPROVED': '#28a745',
+            'CHANGES_REQUESTED': '#ffc107',
+            'REJECTED': '#dc3545',
+        }
+        text_colors = {
+            'PENDING': 'white',
+            'APPROVED': 'white',
+            'CHANGES_REQUESTED': 'black',
+            'REJECTED': 'white',
+        }
+        color = colors.get(obj.status, '#6c757d')
+        text_color = text_colors.get(obj.status, 'white')
+        return format_html(
+            '<span style="background-color: {}; color: {}; '
+            'padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">'
+            '{}</span>',
+            color,
+            text_color,
+            obj.get_status_display()
+        )
+    status_badge.short_description = _('Status')
+    status_badge.admin_order_field = 'status'
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('article', 'reviewer', 'assigned_by')
 
 
 @admin.register(ArticleStatusHistory)
