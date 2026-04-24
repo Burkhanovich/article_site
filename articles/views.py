@@ -3,7 +3,8 @@ Views for article management with editorial workflow.
 """
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.db.models import Q
+from django.db.models import Q, Count, F
+from django.db import models
 from django.http import Http404
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -37,6 +38,7 @@ class ArticleListView(ListView):
         """Only show PUBLISHED articles, ordered by creation date."""
         lang = get_language() or 'uz'
         search_query = self.request.GET.get('query')
+        journal_id = self.request.GET.get('journal')
 
         if search_query:
             queryset = search_published_articles(search_query, lang)
@@ -45,15 +47,46 @@ class ArticleListView(ListView):
                 status=Article.ArticleStatus.PUBLISHED
             )
 
+        # Filter by journal if selected
+        if journal_id:
+            try:
+                from .models import Journal
+                journal = Journal.objects.get(id=journal_id, is_active=True)
+                queryset = queryset.filter(
+                    publication_year=journal.year,
+                    publication_number=journal.number
+                )
+            except Journal.DoesNotExist:
+                pass
+
         return queryset.select_related('author').prefetch_related(
             'keywords'
         ).order_by('-published_at', '-created_at').distinct()
 
     def get_context_data(self, **kwargs):
-        """Add search form to context."""
+        """Add search form and journals to context."""
         context = super().get_context_data(**kwargs)
         context['search_form'] = ArticleSearchForm(self.request.GET or None)
         context['search_query'] = self.request.GET.get('query', '')
+
+        # Get all active journals with article counts
+        from .models import Journal
+
+        journals_list = []
+        for journal in Journal.objects.filter(is_active=True).order_by('-year', '-number'):
+            article_count = Article.objects.filter(
+                publication_year=journal.year,
+                publication_number=journal.number,
+                status=Article.ArticleStatus.PUBLISHED
+            ).count()
+
+            if article_count > 0:
+                journal.article_count = article_count
+                journals_list.append(journal)
+
+        context['journals'] = journals_list
+        context['selected_journal'] = self.request.GET.get('journal', '')
+
         return context
 
 

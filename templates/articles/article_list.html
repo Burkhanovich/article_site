@@ -16,7 +16,7 @@
 
 <!-- Search Form -->
 <div class="row mb-4">
-    <div class="col-lg-6 mx-auto">
+    <div class="col-lg-8 mx-auto">
         <form method="get" class="input-group">
             {{ search_form.query }}
             <button class="btn btn-primary" type="submit">
@@ -34,8 +34,23 @@
     </div>
 </div>
 
-<!-- Articles Grid -->
-{% if articles %}
+<!-- Main Content with Sidebar -->
+<div class="row">
+    <!-- Articles Grid - Left Side -->
+    <div class="col-lg-9 mb-4">
+        {% if selected_journal %}
+        <div class="alert alert-info d-flex justify-content-between align-items-center">
+            <span>
+                <i class="bi bi-filter"></i>
+                {% trans "Filtered by journal" %}
+            </span>
+            <a href="{% url 'articles:list' %}{% if search_query %}?query={{ search_query }}{% endif %}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-x"></i> {% trans "Clear Filter" %}
+            </a>
+        </div>
+        {% endif %}
+
+        {% if articles %}
     <div class="row g-4 mb-4">
         {% for article in articles %}
             <div class="col-md-6 col-lg-4">
@@ -125,14 +140,57 @@
             </ul>
         </nav>
     {% endif %}
-{% else %}
-    <div class="alert alert-info text-center">
-        <i class="bi bi-info-circle"></i>
-        {% if search_query %}
-            {% blocktrans %}No articles found matching "{{ search_query }}". Try a different search term.{% endblocktrans %}
         {% else %}
-            {% trans "No articles published yet. Be the first to share your knowledge!" %}
+            <div class="alert alert-info text-center">
+                <i class="bi bi-info-circle"></i>
+                {% if search_query %}
+                    {% blocktrans %}No articles found matching "{{ search_query }}". Try a different search term.{% endblocktrans %}
+                {% else %}
+                    {% trans "No articles published yet. Be the first to share your knowledge!" %}
+                {% endif %}
+            </div>
         {% endif %}
     </div>
-{% endif %}
+
+    <!-- Sidebar - Journal Filter - Right Side -->
+    <div class="col-lg-3 mb-4">
+        <div class="card shadow-sm sticky-top" style="top: 100px;">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-journal-text"></i> {% trans "Journals" %}
+                </h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush">
+                    <!-- All Articles -->
+                    <a href="{% url 'articles:list' %}{% if search_query %}?query={{ search_query }}{% endif %}"
+                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {% if not selected_journal %}active{% endif %}">
+                        <span>
+                            <i class="bi bi-grid-3x3-gap"></i> {% trans "All Articles" %}
+                        </span>
+                        <span class="badge bg-primary rounded-pill">{{ page_obj.paginator.count }}</span>
+                    </a>
+
+                    <!-- Journal List -->
+                    {% for journal in journals %}
+                    <a href="?journal={{ journal.id }}{% if search_query %}&query={{ search_query }}{% endif %}"
+                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {% if selected_journal == journal.id|stringformat:'s' %}active{% endif %}">
+                        <div>
+                            <div class="fw-bold">
+                                <i class="bi bi-calendar-event"></i> {{ journal.year }}
+                            </div>
+                            <small class="text-muted">{% trans "Issue" %} {{ journal.number }}</small>
+                        </div>
+                        <span class="badge bg-secondary rounded-pill">{{ journal.article_count }}</span>
+                    </a>
+                    {% empty %}
+                    <div class="list-group-item text-muted text-center">
+                        <small>{% trans "No journals available" %}</small>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
