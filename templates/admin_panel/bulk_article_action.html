@@ -1,0 +1,110 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Bulk Article Action" %} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="bulk-article-action-content">
+    <h2 class="mb-4">{% trans "Bulk Article Action" %}</h2>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Selected Articles -->
+            <div class="card p-4 mb-4">
+                <h4 class="mb-3">{% trans "Selected Articles" %}</h4>
+                {% if articles %}
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Title" %}</th>
+                                <th>{% trans "Author" %}</th>
+                                <th>{% trans "Status" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for article in articles %}
+                            <tr>
+                                <td>{{ article.title_uz }}</td>
+                                <td>{{ article.author.get_full_name|default:article.author.username }}</td>
+                                <td>
+                                    {% if article.status == 'PUBLISHED' %}
+                                    <span class="badge badge-success">{% trans "Published" %}</span>
+                                    {% elif article.status == 'PENDING_ADMIN' %}
+                                    <span class="badge badge-danger">{% trans "Pending" %}</span>
+                                    {% elif article.status == 'IN_REVIEW' %}
+                                    <span class="badge badge-info">{% trans "In Review" %}</span>
+                                    {% elif article.status == 'REJECTED' %}
+                                    <span class="badge badge-dark">{% trans "Rejected" %}</span>
+                                    {% else %}
+                                    <span class="badge badge-secondary">{{ article.get_status_display }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-muted small mt-2">
+                    {% trans "Total selected:" %} <strong>{{ articles.count }}</strong>
+                </p>
+                {% else %}
+                <div class="alert alert-info">
+                    {% trans "No articles selected." %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Action Form -->
+        <div class="col-md-4">
+            <div class="card p-4 sticky-top">
+                <h4 class="mb-3">{% trans "Perform Action" %}</h4>
+                
+                <form method="post" data-test="bulk-action-form">
+                    {% csrf_token %}
+                    
+                    {% for article in articles %}
+                    <input type="hidden" name="article_ids" value="{{ article.id }}">
+                    {% endfor %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.action.id_for_label }}">{{ form.action.label }}</label>
+                        {{ form.action }}
+                        {% if form.action.errors %}
+                        <div class="invalid-feedback d-block">{{ form.action.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.note.id_for_label }}">{{ form.note.label }}</label>
+                        {{ form.note }}
+                        <small class="form-text text-muted d-block mt-1">
+                            {% trans "Use this for rejection or change requests (optional)" %}
+                        </small>
+                        {% if form.note.errors %}
+                        <div class="invalid-feedback d-block">{{ form.note.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <button type="submit" class="btn btn-success btn-block" data-test="bulk-apply">
+                        {% trans "Apply Action to All" %}
+                    </button>
+                </form>
+                
+                <a href="{% url 'admin_panel:article_manage' %}" class="btn btn-secondary btn-block mt-2">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

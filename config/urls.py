@@ -31,6 +31,7 @@ urlpatterns += i18n_patterns(
     path('', include('core.urls')),
     path('users/', include('users.urls')),
     path('articles/', include('articles.urls')),
+    path('admin-panel/', include('admin_panel.urls')),
 
     # Redirect root to home (with language prefix)
     path('', RedirectView.as_view(pattern_name='core:home', permanent=False)),

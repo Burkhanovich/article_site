@@ -1,0 +1,20 @@
+{% extends 'admin_panel/base.html' %}
+{% load i18n %}
+
+{% block admin_content %}
+<div class="container">
+    <h2 class="mb-4">{% trans "Deactivate Journal" %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>{% trans "Are you sure you want to deactivate this journal?" %}</p>
+        <div class="mb-3">
+            <strong>{% trans "Year" %}:</strong> {{ object.year }}<br>
+            <strong>{% trans "Number" %}:</strong> {{ object.number }}
+        </div>
+        <p class="text-muted">{% trans "This journal will no longer be available for article submission." %}</p>
+        <button type="submit" class="btn btn-warning">{% trans "Deactivate" %}</button>
+        <a href="{% url 'admin_panel:journal_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}
+

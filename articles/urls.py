@@ -20,9 +20,6 @@ urlpatterns = [
     path('reviewer/dashboard/', views.ReviewerDashboardView.as_view(), name='reviewer_dashboard'),
     path('reviewer/article/<slug:slug>/', views.ArticleReviewPageView.as_view(), name='article_review'),
 
-    # Category articles
-    path('category/<slug:slug>/', views.CategoryArticlesView.as_view(), name='category_articles'),
-
     # Article detail and actions (slug-based - must be after specific paths)
     path('<slug:slug>/', views.ArticleDetailView.as_view(), name='detail'),
     path('<slug:slug>/edit/', views.ArticleUpdateView.as_view(), name='edit'),
@@ -30,5 +27,5 @@ urlpatterns = [
     path('<slug:slug>/submit/', views.SubmitArticleView.as_view(), name='submit'),
 
     # Review submission
-    path('<slug:slug>/review/<int:category_id>/', views.SubmitReviewView.as_view(), name='submit_review'),
+    path('<slug:slug>/review/', views.SubmitReviewView.as_view(), name='submit_review'),
 ]

@@ -176,9 +176,7 @@ class Article(models.Model):
         REJECTED = 'REJECTED', _('Rejected')
         PUBLISHED = 'PUBLISHED', _('Published')
 
-    class ReviewMode(models.TextChoices):
-        ALL_CATEGORIES = 'ALL', _('All Categories Required')
-        ANY_CATEGORY = 'ANY', _('Any Category Sufficient')
+
 
     # Multilingual title
     title_uz = models.CharField(max_length=300, verbose_name=_('Title (Uzbek)'))
@@ -200,14 +198,6 @@ class Article(models.Model):
         verbose_name=_('Author')
     )
 
-    # Categories (M2M - article can belong to multiple categories)
-    categories = models.ManyToManyField(
-        Category,
-        related_name='articles',
-        verbose_name=_('Categories'),
-        help_text=_('Select at least one category')
-    )
-
     # Keywords
     keywords = models.ManyToManyField(
         Keyword,
@@ -216,21 +206,24 @@ class Article(models.Model):
         verbose_name=_('Keywords')
     )
 
+    # Publication Information (set by admin)
+    publication_year = models.IntegerField(
+        null=True,
+        blank=True,
+        verbose_name=_('Publication Year')
+    )
+    publication_number = models.IntegerField(
+        null=True,
+        blank=True,
+        verbose_name=_('Publication Number')
+    )
+
     # Status
     status = models.CharField(
         max_length=20,
         choices=ArticleStatus.choices,
         default=ArticleStatus.DRAFT,
         verbose_name=_('Status')
-    )
-
-    # Review mode for multi-category articles
-    review_mode = models.CharField(
-        max_length=10,
-        choices=ReviewMode.choices,
-        default=ReviewMode.ALL_CATEGORIES,
-        verbose_name=_('Review Mode'),
-        help_text=_('How multi-category reviews are evaluated')
     )
 
     # Timestamps
@@ -313,6 +306,21 @@ class Article(models.Model):
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('articles:detail', kwargs={'slug': self.slug})
+
+    def get_first_reviewer_info(self):
+        """
+        Get information about the first reviewer who submitted a review.
+        Returns dict with reviewer name and review date, or None if no reviews.
+        """
+        first_review = self.reviews.order_by('created_at').first()
+        if first_review:
+            return {
+                'reviewer': first_review.reviewer,
+                'reviewer_name': first_review.reviewer.get_full_name() or first_review.reviewer.username,
+                'reviewed_at': first_review.created_at,
+                'decision': first_review.get_decision_display(),
+            }
+        return None
 
     def increment_views(self):
         self.views += 1
@@ -497,7 +505,9 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviews',
         verbose_name=_('Category'),
-        help_text=_('The category this review is for')
+        help_text=_('The category this review is for'),
+        null=True,
+        blank=True
     )
 
     decision = models.CharField(
@@ -519,8 +529,8 @@ class Review(models.Model):
         verbose_name = _('Review')
         verbose_name_plural = _('Reviews')
         ordering = ['-created_at']
-        # One active review per reviewer per article per category
-        unique_together = ['article', 'reviewer', 'category']
+        # One active review per reviewer per article
+        unique_together = ['article', 'reviewer']
 
     def __str__(self):
         return f"{self.reviewer.username} - {self.article.title_uz[:30]} ({self.category.name_uz})"
@@ -528,28 +538,26 @@ class Review(models.Model):
     def clean(self):
         from django.core.exceptions import ValidationError
 
-        # Check reviewer is assigned to category
-        if not self.category.reviewers.filter(pk=self.reviewer.pk).exists():
-            if not self.reviewer.is_superuser:
-                raise ValidationError(_('You are not assigned to review this category.'))
-
-        # Check article has this category
-        if not self.article.categories.filter(pk=self.category.pk).exists():
-            raise ValidationError(_('Article does not belong to this category.'))
+        # Check reviewer is assigned to category (if category is specified)
+        if self.category:
+            if not self.category.reviewers.filter(pk=self.reviewer.pk).exists():
+                if not self.reviewer.is_superuser:
+                    raise ValidationError(_('You are not assigned to review this category.'))
 
         # Check article is reviewable
         if not self.article.can_be_reviewed:
             raise ValidationError(_('This article cannot be reviewed in its current status.'))
 
-        # Check comment requirements
-        policy = getattr(self.category, 'policy', None)
-        if policy:
-            if self.decision == self.Decision.CHANGES and policy.require_changes_comment:
-                if not self.comment:
-                    raise ValidationError(_('Comment is required when requesting changes.'))
-            if self.decision == self.Decision.REJECT and policy.require_reject_comment:
-                if not self.comment:
-                    raise ValidationError(_('Comment is required when rejecting.'))
+        # Check comment requirements (if category has policy)
+        if self.category:
+            policy = getattr(self.category, 'policy', None)
+            if policy:
+                if self.decision == self.Decision.CHANGES and policy.require_changes_comment:
+                    if not self.comment:
+                        raise ValidationError(_('Comment is required when requesting changes.'))
+                if self.decision == self.Decision.REJECT and policy.require_reject_comment:
+                    if not self.comment:
+                        raise ValidationError(_('Comment is required when rejecting.'))
 
 
 class ReviewerAssignment(models.Model):
@@ -611,6 +619,13 @@ class ReviewerAssignment(models.Model):
         null=True,
         blank=True,
         verbose_name=_('Reviewed At')
+    )
+
+    review_deadline = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_('Review Deadline'),
+        help_text=_('Deadline by which the reviewer should complete the review')
     )
 
     updated_at = models.DateTimeField(
@@ -702,3 +717,49 @@ class ArticleStatusHistory(models.Model):
 
     def __str__(self):
         return f"{self.article.title_uz[:30]}: {self.from_status} → {self.to_status}"
+
+class Journal(models.Model):
+    """
+    Journal model to track publication journals by year and number.
+    Admins manage journals and articles are submitted for specific journals.
+    """
+    year = models.PositiveIntegerField(
+        verbose_name=_('Year'),
+        help_text=_('Publication year (e.g., 2026)')
+    )
+
+    number = models.PositiveIntegerField(
+        verbose_name=_('Number'),
+        help_text=_('Journal issue number')
+    )
+
+    description = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name=_('Description')
+    )
+
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_('Active'),
+        help_text=_('Active journals are available for article submission')
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Created At')
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('Updated At')
+    )
+
+    class Meta:
+        verbose_name = _('Journal')
+        verbose_name_plural = _('Journals')
+        ordering = ['-year', '-number']
+        unique_together = ['year', 'number']
+
+    def __str__(self):
+        return f"{_('Journal')} {self.number}/{self.year}"

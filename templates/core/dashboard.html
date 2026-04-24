@@ -16,7 +16,40 @@
     </div>
 </div>
 
-{% if user.is_author %}
+{% if user.is_admin_user %}
+<!-- Admin Dashboard -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="alert alert-dark border-2 border-warning">
+            <h4><i class="bi bi-shield-lock"></i> {% trans "Admin Dashboard" %}</h4>
+            <p class="mb-0">{% trans "You are logged in as an administrator. Use the Admin Panel below to manage journals, reviewers, articles, and view system statistics." %}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="btn-group d-flex" role="group" style="flex-wrap: wrap; gap: 10px;">
+            <a href="{% url 'admin_panel:dashboard' %}" class="btn btn-primary">
+                <i class="bi bi-bar-chart"></i> {% trans "View Admin Panel" %}
+            </a>
+            <a href="{% url 'admin_panel:reviewer_list' %}" class="btn btn-info">
+                <i class="bi bi-people"></i> {% trans "Manage Reviewers" %}
+            </a>
+            <a href="{% url 'admin_panel:article_manage' %}" class="btn btn-warning">
+                <i class="bi bi-file-text"></i> {% trans "Manage Articles" %}
+            </a>
+            <a href="{% url 'admin_panel:journal_list' %}" class="btn btn-success">
+                <i class="bi bi-journal-text"></i> {% trans "Manage Journals" %}
+            </a>
+            <a href="{% url 'admin_panel:system_stats' %}" class="btn btn-secondary">
+                <i class="bi bi-graph-up"></i> {% trans "View Statistics" %}
+            </a>
+        </div>
+    </div>
+</div>
+
+{% elif user.is_author %}
     <!-- Author Dashboard -->
 
     {% if not user.has_accepted_rules %}
@@ -182,14 +215,6 @@
                     {% for article in recent_articles %}
                         <div class="col-md-6 col-lg-4">
                             <div class="card h-100 shadow-sm">
-                                {% if article.cover_image %}
-                                    <img src="{{ article.cover_image.url }}" class="card-img-top article-cover" alt="{{ article.title }}">
-                                {% else %}
-                                    <div class="article-cover d-flex align-items-center justify-content-center bg-secondary text-white">
-                                        <i class="bi bi-file-earmark-text" style="font-size: 3rem;"></i>
-                                    </div>
-                                {% endif %}
-
                                 <div class="card-body">
                                     <h5 class="card-title">{{ article.title }}</h5>
                                     <p class="card-text text-muted">

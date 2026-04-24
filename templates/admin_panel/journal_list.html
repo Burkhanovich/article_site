@@ -1,0 +1,36 @@
+{% extends 'admin_panel/base.html' %}
+{% load i18n %}
+
+{% block admin_content %}
+<div class="container">
+    <h2 class="mb-4">{% trans "Journals" %}</h2>
+    <a href="{% url 'admin_panel:journal_create' %}" class="btn btn-success mb-3">{% trans "Add Journal" %}</a>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>{% trans "Year" %}</th>
+                <th>{% trans "Number" %}</th>
+                <th>{% trans "Active" %}</th>
+                <th>{% trans "Actions" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for journal in journals %}
+            <tr>
+                <td>{{ journal.year }}</td>
+                <td>{{ journal.number }}</td>
+                <td>{% if journal.is_active %}<span class="badge bg-success">{% trans "Yes" %}</span>{% else %}<span class="badge bg-danger">{% trans "No" %}</span>{% endif %}</td>
+                <td>
+                    <a href="{% url 'admin_panel:journal_edit' journal.pk %}" class="btn btn-sm btn-primary">{% trans "Edit" %}</a>
+                    {% if journal.is_active %}
+                    <a href="{% url 'admin_panel:journal_deactivate' journal.pk %}" class="btn btn-sm btn-warning">{% trans "Deactivate" %}</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" class="text-center">{% trans "No journals found." %}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

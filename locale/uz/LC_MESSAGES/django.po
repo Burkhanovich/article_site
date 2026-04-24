@@ -200,11 +200,16 @@ msgstr "Ma'lumot"
 msgid "Welcome, {username}! Your account has been created successfully."
 msgstr "Xush kelibsiz, {username}! Hisobingiz muvaffaqiyatli yaratildi."
 
-msgid "As an author, you must read and accept our article writing rules before publishing."
-msgstr "Muallif sifatida siz nashr etishdan oldin maqola yozish qoidalarimizni o'qib, qabul qilishingiz kerak."
+msgid ""
+"As an author, you must read and accept our article writing rules before "
+"publishing."
+msgstr ""
+"Muallif sifatida siz nashr etishdan oldin maqola yozish qoidalarimizni "
+"o'qib, qabul qilishingiz kerak."
 
 msgid "Registration failed. Please correct the errors below."
-msgstr "Ro'yxatdan o'tish muvaffaqiyatsiz tugadi. Quyidagi xatolarni tuzating."
+msgstr ""
+"Ro'yxatdan o'tish muvaffaqiyatsiz tugadi. Quyidagi xatolarni tuzating."
 
 msgid "Invalid username or password. Please try again."
 msgstr "Noto'g'ri foydalanuvchi nomi yoki parol. Qayta urinib ko'ring."
@@ -215,11 +220,16 @@ msgstr "Tizimdan muvaffaqiyatli chiqdingiz."
 msgid "Access denied. This page is only for authors."
 msgstr "Kirish rad etildi. Bu sahifa faqat mualliflar uchun."
 
-msgid "Article rules have not been configured yet. Please contact the administrator."
-msgstr "Maqola qoidalari hali sozlanmagan. Iltimos, administrator bilan bog'laning."
+msgid ""
+"Article rules have not been configured yet. Please contact the "
+"administrator."
+msgstr ""
+"Maqola qoidalari hali sozlanmagan. Iltimos, administrator bilan bog'laning."
 
 msgid "Thank you for accepting the rules! You can now create articles."
-msgstr "Qoidalarni qabul qilganingiz uchun rahmat! Endi maqolalar yaratishingiz mumkin."
+msgstr ""
+"Qoidalarni qabul qilganingiz uchun rahmat! Endi maqolalar yaratishingiz "
+"mumkin."
 
 msgid "You must accept the rules to proceed."
 msgstr "Davom etish uchun qoidalarni qabul qilishingiz kerak."
@@ -234,7 +244,8 @@ msgid "Access denied. Only authors can create articles."
 msgstr "Kirish rad etildi. Faqat mualliflar maqola yaratishi mumkin."
 
 msgid "You must accept the article writing rules before creating articles."
-msgstr "Maqola yaratishdan oldin maqola yozish qoidalarini qabul qilishingiz kerak."
+msgstr ""
+"Maqola yaratishdan oldin maqola yozish qoidalarini qabul qilishingiz kerak."
 
 msgid "Access denied. You can only edit your own articles."
 msgstr "Kirish rad etildi. Faqat o'z maqolalaringizni tahrirlashingiz mumkin."
@@ -269,7 +280,8 @@ msgid "Article content with rich text formatting"
 msgstr "Boy matn formatlash bilan maqola kontenti"
 
 msgid "Allowed formats: jpg, jpeg, png, gif, webp. Max size: 5MB"
-msgstr "Ruxsat etilgan formatlar: jpg, jpeg, png, gif, webp. Maksimal hajm: 5MB"
+msgstr ""
+"Ruxsat etilgan formatlar: jpg, jpeg, png, gif, webp. Maksimal hajm: 5MB"
 
 msgid "Number of times this article has been viewed"
 msgstr "Bu maqola ko'rilgan sonlar"
@@ -324,8 +336,11 @@ msgstr "Sahifa topilmadi"
 msgid "The page you are looking for doesn't exist or has been moved."
 msgstr "Siz qidirayotgan sahifa mavjud emas yoki ko'chirilgan."
 
-msgid "Please check the URL or use the navigation to find what you're looking for."
-msgstr "URL manzilini tekshiring yoki qidirayotgan narsangizni topish uchun navigatsiyadan foydalaning."
+msgid ""
+"Please check the URL or use the navigation to find what you're looking for."
+msgstr ""
+"URL manzilini tekshiring yoki qidirayotgan narsangizni topish uchun "
+"navigatsiyadan foydalaning."
 
 msgid "Browse Articles"
 msgstr "Maqolalarni ko'rish"
@@ -337,10 +352,13 @@ msgid "Internal Server Error"
 msgstr "Ichki server xatosi"
 
 msgid "Something went wrong on our end. We're working to fix it."
-msgstr "Bizning tomonimizda xatolik yuz berdi. Uni tuzatish ustida ishlayapmiz."
+msgstr ""
+"Bizning tomonimizda xatolik yuz berdi. Uni tuzatish ustida ishlayapmiz."
 
 msgid "Please try again later. If the problem persists, contact support."
-msgstr "Keyinroq qayta urinib ko'ring. Agar muammo davom etsa, qo'llab-quvvatlash xizmatiga murojaat qiling."
+msgstr ""
+"Keyinroq qayta urinib ko'ring. Agar muammo davom etsa, qo'llab-quvvatlash "
+"xizmatiga murojaat qiling."
 
 msgid "Try Again"
 msgstr "Qayta urinish"
@@ -519,13 +537,17 @@ msgid "Discover amazing articles from talented authors"
 msgstr "Iqtidorli mualliflarning ajoyib maqolalarini kashf eting"
 
 msgid "You are registered as a Reader. Browse and enjoy articles!"
-msgstr "Siz O'quvchi sifatida ro'yxatdan o'tgansiz. Maqolalarni ko'rib, bahramand bo'ling!"
+msgstr ""
+"Siz O'quvchi sifatida ro'yxatdan o'tgansiz. Maqolalarni ko'rib, bahramand "
+"bo'ling!"
 
 msgid "Browse All Articles"
 msgstr "Barcha maqolalarni ko'rish"
 
 msgid "Ready to share your knowledge? Create your next article now!"
-msgstr "Bilimlaringizni baham ko'rishga tayyormisiz? Keyingi maqolangizni hozir yarating!"
+msgstr ""
+"Bilimlaringizni baham ko'rishga tayyormisiz? Keyingi maqolangizni hozir "
+"yarating!"
 
 msgid "Action Required"
 msgstr "Harakat talab qilinadi"
@@ -557,8 +579,12 @@ msgstr "Birinchi maqolangizni yarating"
 msgid "Reader Account"
 msgstr "O'quvchi akkaunti"
 
-msgid "You are registered as a Reader. You can browse and read all published articles."
-msgstr "Siz O'quvchi sifatida ro'yxatdan o'tgansiz. Barcha nashr etilgan maqolalarni ko'rib chiqishingiz va o'qishingiz mumkin."
+msgid ""
+"You are registered as a Reader. You can browse and read all published "
+"articles."
+msgstr ""
+"Siz O'quvchi sifatida ro'yxatdan o'tgansiz. Barcha nashr etilgan maqolalarni"
+" ko'rib chiqishingiz va o'qishingiz mumkin."
 
 msgid "To create articles, you need to register as an Author."
 msgstr "Maqola yaratish uchun Muallif sifatida ro'yxatdan o'tishingiz kerak."
@@ -573,7 +599,8 @@ msgid "Easy Publishing"
 msgstr "Oson nashr etish"
 
 msgid "Rich text editor with image support makes writing a breeze."
-msgstr "Rasm qo'llab-quvvatlaydigan boy matn muharriri yozishni osonlashtiradi."
+msgstr ""
+"Rasm qo'llab-quvvatlaydigan boy matn muharriri yozishni osonlashtiradi."
 
 msgid "Secure & Safe"
 msgstr "Xavfsiz va ishonchli"
@@ -588,7 +615,9 @@ msgid "Monitor views and engagement on your articles."
 msgstr "Maqolalaringizdagi ko'rishlar va faoliyatni kuzatib boring."
 
 msgid "No articles published yet. Be the first to share your knowledge!"
-msgstr "Hali hech qanday maqola nashr etilmagan. Bilimlaringizni baham ko'rgan birinchi odam bo'ling!"
+msgstr ""
+"Hali hech qanday maqola nashr etilmagan. Bilimlaringizni baham ko'rgan "
+"birinchi odam bo'ling!"
 
 msgid "View All Articles"
 msgstr "Barcha maqolalarni ko'rish"
@@ -611,18 +640,24 @@ msgstr "Xavfsiz platforma"
 msgid "Welcome to Article Platform"
 msgstr "Maqola platformasiga xush kelibsiz"
 
-msgid "Share your knowledge, read amazing articles, and connect with authors worldwide."
-msgstr "Bilimlaringizni baham ko'ring, ajoyib maqolalarni o'qing va dunyo bo'ylab mualliflar bilan bog'laning."
+msgid ""
+"Share your knowledge, read amazing articles, and connect with authors "
+"worldwide."
+msgstr ""
+"Bilimlaringizni baham ko'ring, ajoyib maqolalarni o'qing va dunyo bo'ylab "
+"mualliflar bilan bog'laning."
 
 msgid "views"
 msgstr "ko'rishlar"
 
-msgid "You need to read and accept our article writing rules before you can start publishing."
-msgstr "Nashr etishni boshlashdan oldin maqola yozish qoidalarimizni o'qib, qabul qilishingiz kerak."
-
+msgid ""
+"You need to read and accept our article writing rules before you can start "
+"publishing."
+msgstr ""
+"Nashr etishni boshlashdan oldin maqola yozish qoidalarimizni o'qib, qabul "
+"qilishingiz kerak."
 
 # Form Field Translations
-
 msgid "Article Title"
 msgstr "Maqola Sarlavhasi"
 
@@ -638,11 +673,19 @@ msgstr "Maksimal 200 belgi"
 msgid "Write your article content with rich text formatting"
 msgstr "Maqolangiz kontentini boy matn formatlash bilan yozing"
 
-msgid "Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: 10MB"
-msgstr "Maqolani fayl sifatida yuklang. Ruxsat etilgan formatlar: TXT, DOC, DOCX, PDF. Maksimal hajm: 10MB"
+msgid ""
+"Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: "
+"10MB"
+msgstr ""
+"Maqolani fayl sifatida yuklang. Ruxsat etilgan formatlar: TXT, DOC, DOCX, "
+"PDF. Maksimal hajm: 10MB"
 
-msgid "Choose \"Draft\" to save without publishing, or \"Published\" to make it visible to readers"
-msgstr "\"Qoralama\" ni tanlang nashr etmasdan saqlash uchun, yoki \"Nashr etilgan\" ni tanlang o'quvchilarga ko'rinishi uchun"
+msgid ""
+"Choose \"Draft\" to save without publishing, or \"Published\" to make it "
+"visible to readers"
+msgstr ""
+"\"Qoralama\" ni tanlang nashr etmasdan saqlash uchun, yoki \"Nashr etilgan\""
+" ni tanlang o'quvchilarga ko'rinishi uchun"
 
 msgid "Optional"
 msgstr "Ixtiyoriy"
@@ -665,21 +708,31 @@ msgstr "Yozish Maslahatlari"
 msgid "Use a clear, descriptive title that summarizes your article"
 msgstr "Maqolangizni umumlashtiruvchi aniq, tavsifiy sarlavhadan foydalaning"
 
-msgid "Add a cover image to make your article more attractive (optional but recommended)"
-msgstr "Maqolangizni jozibador qilish uchun muqova rasmini qo'shing (ixtiyoriy, ammo tavsiya etiladi)"
+msgid ""
+"Add a cover image to make your article more attractive (optional but "
+"recommended)"
+msgstr ""
+"Maqolangizni jozibador qilish uchun muqova rasmini qo'shing (ixtiyoriy, ammo"
+" tavsiya etiladi)"
 
-msgid "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)"
-msgstr "Agar xohlasangiz maqolangizni fayl sifatida yuklang (TXT, DOC, DOCX, yoki PDF) (ixtiyoriy)"
+msgid ""
+"Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer "
+"(optional)"
+msgstr ""
+"Agar xohlasangiz maqolangizni fayl sifatida yuklang (TXT, DOC, DOCX, yoki "
+"PDF) (ixtiyoriy)"
 
-msgid "Format your content with headings, lists, and images for better readability"
-msgstr "Yaxshi o'qilishi uchun kontentingizni sarlavhalar, ro'yxatlar va rasmlar bilan formatlang"
+msgid ""
+"Format your content with headings, lists, and images for better readability"
+msgstr ""
+"Yaxshi o'qilishi uchun kontentingizni sarlavhalar, ro'yxatlar va rasmlar "
+"bilan formatlang"
 
 msgid "Save as Draft if you want to continue editing later"
 msgstr "Keyinroq tahrirlashni davom ettirish uchun Qoralama sifatida saqlang"
 
 msgid "Publish when your article is ready for readers"
 msgstr "Maqolangiz o'quvchilar uchun tayyor bo'lganda nashr eting"
-
 
 # Article File Display Translations
 msgid "Download Article File"
@@ -731,15 +784,15 @@ msgid "of"
 msgstr "dan"
 
 msgid "No articles published yet. Be the first to share your knowledge!"
-msgstr "Hali maqolalar nashr qilinmagan. Bilimingizni baham ko'radigan birinchi bo'ling!"
+msgstr ""
+"Hali maqolalar nashr qilinmagan. Bilimingizni baham ko'radigan birinchi "
+"bo'ling!"
 
 msgid "Last updated"
 msgstr "Oxirgi yangilanish"
 
 msgid "About the Author"
 msgstr "Muallif Haqida"
-
-
 
 # Search Functionality Translations
 msgid "Search by title, author, or content..."
@@ -776,8 +829,12 @@ msgstr "Rad etish sababi"
 msgid "Article Rejected"
 msgstr "Maqola rad etildi"
 
-msgid "No specific reason was provided. Please review your article and make necessary improvements before resubmitting."
-msgstr "Aniq sabab ko'rsatilmagan. Iltimos, maqolangizni ko'rib chiqing va qayta yuborishdan oldin zarur o'zgartirishlarni kiriting."
+msgid ""
+"No specific reason was provided. Please review your article and make "
+"necessary improvements before resubmitting."
+msgstr ""
+"Aniq sabab ko'rsatilmagan. Iltimos, maqolangizni ko'rib chiqing va qayta "
+"yuborishdan oldin zarur o'zgartirishlarni kiriting."
 
 msgid "This article is saved as a draft and is only visible to you."
 msgstr "Bu maqola qoralama sifatida saqlangan va faqat sizga ko'rinadi."
@@ -818,8 +875,12 @@ msgstr "Tasdiqlangandan so'ng nashr etiladi"
 msgid "If rejected, you can edit and resubmit"
 msgstr "Rad etilsa, tahrirlash va qayta yuborishingiz mumkin"
 
-msgid "Article \"%(title)s\" has been submitted for review. You will be notified once it is reviewed."
-msgstr "\"%(title)s\" maqolasi ko'rib chiqishga yuborildi. Ko'rib chiqilganda sizga xabar beriladi."
+msgid ""
+"Article \"%(title)s\" has been submitted for review. You will be notified "
+"once it is reviewed."
+msgstr ""
+"\"%(title)s\" maqolasi ko'rib chiqishga yuborildi. Ko'rib chiqilganda sizga "
+"xabar beriladi."
 
 msgid "Article \"%(title)s\" saved as draft."
 msgstr "\"%(title)s\" maqolasi qoralama sifatida saqlandi."
@@ -833,8 +894,12 @@ msgstr "\"%(title)s\" maqolasi yangilandi va qoralama sifatida saqlandi."
 msgid "Please log in to edit articles."
 msgstr "Maqolalarni tahrirlash uchun tizimga kiring."
 
-msgid "This article cannot be edited. Only draft or rejected articles can be modified."
-msgstr "Bu maqolani tahrirlash mumkin emas. Faqat qoralama yoki rad etilgan maqolalarni o'zgartirish mumkin."
+msgid ""
+"This article cannot be edited. Only draft or rejected articles can be "
+"modified."
+msgstr ""
+"Bu maqolani tahrirlash mumkin emas. Faqat qoralama yoki rad etilgan "
+"maqolalarni o'zgartirish mumkin."
 
 msgid "You cannot submit this article for review."
 msgstr "Bu maqolani ko'rib chiqishga yuborolmaysiz."
@@ -878,8 +943,12 @@ msgstr "Qayta ko'rib chiqish kerak. Tahrirlash va qayta yuborishingiz mumkin."
 msgid "Confirm Deletion"
 msgstr "O'chirishni tasdiqlash"
 
-msgid "This action cannot be undone. The article and all associated files will be permanently deleted."
-msgstr "Bu amalni bekor qilib bo'lmaydi. Maqola va barcha tegishli fayllar butunlay o'chiriladi."
+msgid ""
+"This action cannot be undone. The article and all associated files will be "
+"permanently deleted."
+msgstr ""
+"Bu amalni bekor qilib bo'lmaydi. Maqola va barcha tegishli fayllar butunlay "
+"o'chiriladi."
 
 msgid "Article to be deleted"
 msgstr "O'chiriladigan maqola"
@@ -927,20 +996,30 @@ msgstr "Qoralamaga aylantirish"
 msgid "Reset view counter"
 msgstr "Ko'rishlar hisoblagichini tiklash"
 
-msgid "No pending articles selected. Only articles with 'Pending Review' status can be approved."
-msgstr "Kutilayotgan maqolalar tanlanmagan. Faqat 'Ko'rib chiqish kutilmoqda' holatidagi maqolalarni tasdiqlash mumkin."
+msgid ""
+"No pending articles selected. Only articles with 'Pending Review' status can"
+" be approved."
+msgstr ""
+"Kutilayotgan maqolalar tanlanmagan. Faqat 'Ko'rib chiqish kutilmoqda' "
+"holatidagi maqolalarni tasdiqlash mumkin."
 
 msgid "%(count)d article(s) have been approved and published."
 msgstr "%(count)d ta maqola tasdiqlandi va nashr etildi."
 
-msgid "No pending articles selected. Only articles with 'Pending Review' status can be rejected."
-msgstr "Kutilayotgan maqolalar tanlanmagan. Faqat 'Ko'rib chiqish kutilmoqda' holatidagi maqolalarni rad etish mumkin."
+msgid ""
+"No pending articles selected. Only articles with 'Pending Review' status can"
+" be rejected."
+msgstr ""
+"Kutilayotgan maqolalar tanlanmagan. Faqat 'Ko'rib chiqish kutilmoqda' "
+"holatidagi maqolalarni rad etish mumkin."
 
 msgid "%(count)d article(s) have been rejected."
 msgstr "%(count)d ta maqola rad etildi."
 
 msgid "Rejected via bulk action. Please contact admin for details."
-msgstr "Ommaviy harakat orqali rad etildi. Tafsilotlar uchun administrator bilan bog'laning."
+msgstr ""
+"Ommaviy harakat orqali rad etildi. Tafsilotlar uchun administrator bilan "
+"bog'laning."
 
 msgid "%(count)d article(s) converted to draft."
 msgstr "%(count)d ta maqola qoralamaga aylantirildi."
@@ -967,7 +1046,6 @@ msgid "Cover Preview"
 msgstr "Muqova ko'rinishi"
 
 # ========== NEW WORKFLOW TRANSLATIONS ==========
-
 # User Roles (New)
 msgid "Reviewer"
 msgstr "Taqrizchi"
@@ -1052,7 +1130,9 @@ msgid "Allow Admin Override"
 msgstr "Administrator bekor qilishiga ruxsat"
 
 msgid "Admin can override policy and publish/reject directly"
-msgstr "Administrator siyosatni bekor qilib, to'g'ridan-to'g'ri nashr etishi/rad etishi mumkin"
+msgstr ""
+"Administrator siyosatni bekor qilib, to'g'ridan-to'g'ri nashr etishi/rad "
+"etishi mumkin"
 
 msgid "Review Deadline (Hours)"
 msgstr "Ko'rib chiqish muddati (soat)"
@@ -1216,20 +1296,34 @@ msgstr "Umumiy"
 msgid "New article submitted for review"
 msgstr "Yangi maqola ko'rib chiqish uchun yuborildi"
 
-msgid "Author '%(author)s' has submitted article '%(title)s' for review. Please review and assign reviewers or take action."
-msgstr "'%(author)s' muallifning '%(title)s' maqolasi ko'rib chiqish uchun yuborildi. Iltimos, ko'rib chiqing va taqrizchilarni tayinlang yoki harakat qiling."
+msgid ""
+"Author '%(author)s' has submitted article '%(title)s' for review. Please "
+"review and assign reviewers or take action."
+msgstr ""
+"'%(author)s' muallifning '%(title)s' maqolasi ko'rib chiqish uchun "
+"yuborildi. Iltimos, ko'rib chiqing va taqrizchilarni tayinlang yoki harakat "
+"qiling."
 
 msgid "You have been assigned to review an article"
 msgstr "Sizga maqolani ko'rib chiqish tayinlandi"
 
-msgid "You have been assigned by %(admin)s to review the article '%(title)s' by %(author)s. Please review the article and provide your feedback."
-msgstr "%(admin)s tomonidan sizga %(author)s ning '%(title)s' maqolasini ko'rib chiqish tayinlandi. Iltimos, maqolani ko'rib chiqing va fikringizni bildiring."
+msgid ""
+"You have been assigned by %(admin)s to review the article '%(title)s' by "
+"%(author)s. Please review the article and provide your feedback."
+msgstr ""
+"%(admin)s tomonidan sizga %(author)s ning '%(title)s' maqolasini ko'rib "
+"chiqish tayinlandi. Iltimos, maqolani ko'rib chiqing va fikringizni "
+"bildiring."
 
 msgid "Article resubmitted after changes"
 msgstr "O'zgartirishlardan so'ng maqola qayta yuborildi"
 
-msgid "Article '%(title)s' by %(author)s has been resubmitted after making requested changes."
-msgstr "%(author)s ning '%(title)s' maqolasi so'ralgan o'zgartirishlardan so'ng qayta yuborildi."
+msgid ""
+"Article '%(title)s' by %(author)s has been resubmitted after making "
+"requested changes."
+msgstr ""
+"%(author)s ning '%(title)s' maqolasi so'ralgan o'zgartirishlardan so'ng "
+"qayta yuborildi."
 
 msgid "Article has been published"
 msgstr "Maqola nashr etildi"
@@ -1243,26 +1337,44 @@ msgstr "%(author)s ning '%(title)s' maqolasi nashr etildi."
 msgid "Your article has been published!"
 msgstr "Sizning maqolangiz nashr etildi!"
 
-msgid "Congratulations! Your article '%(title)s' has been published and is now visible to readers."
-msgstr "Tabriklaymiz! '%(title)s' maqolangiz nashr etildi va endi o'quvchilarga ko'rinadi."
+msgid ""
+"Congratulations! Your article '%(title)s' has been published and is now "
+"visible to readers."
+msgstr ""
+"Tabriklaymiz! '%(title)s' maqolangiz nashr etildi va endi o'quvchilarga "
+"ko'rinadi."
 
 msgid "You have been assigned as a Reviewer"
 msgstr "Siz taqrizchi sifatida tayinlandingiz"
 
-msgid "You have been assigned as a reviewer (Red Collegiya member). Your assigned categories: %(categories)s. Please visit the Reviewer Dashboard to see articles waiting for your review."
-msgstr "Siz taqrizchi (Red Kollegiya a'zosi) sifatida tayinlandingiz. Sizga tayinlangan turkumlar: %(categories)s. Sizning ko'rib chiqishingizni kutayotgan maqolalarni ko'rish uchun Taqrizchi paneliga tashrif buyuring."
+msgid ""
+"You have been assigned as a reviewer (Red Collegiya member). Your assigned "
+"categories: %(categories)s. Please visit the Reviewer Dashboard to see "
+"articles waiting for your review."
+msgstr ""
+"Siz taqrizchi (Red Kollegiya a'zosi) sifatida tayinlandingiz. Sizga "
+"tayinlangan turkumlar: %(categories)s. Sizning ko'rib chiqishingizni "
+"kutayotgan maqolalarni ko'rish uchun Taqrizchi paneliga tashrif buyuring."
 
 msgid "New article assigned for review"
 msgstr "Ko'rib chiqish uchun yangi maqola tayinlandi"
 
-msgid "Article '%(title)s' by %(author)s has been assigned for your review. Categories: %(categories)s."
-msgstr "%(author)s ning '%(title)s' maqolasi sizning ko'rib chiqishingiz uchun tayinlandi. Turkumlar: %(categories)s."
+msgid ""
+"Article '%(title)s' by %(author)s has been assigned for your review. "
+"Categories: %(categories)s."
+msgstr ""
+"%(author)s ning '%(title)s' maqolasi sizning ko'rib chiqishingiz uchun "
+"tayinlandi. Turkumlar: %(categories)s."
 
 msgid "Review received for your article"
 msgstr "Maqolangiz uchun ko'rib chiqish olindi"
 
-msgid "Your article '%(title)s' has received a review. Decision: %(decision)s. Category: %(category)s."
-msgstr "'%(title)s' maqolangiz ko'rib chiqildi. Qaror: %(decision)s. Turkum: %(category)s."
+msgid ""
+"Your article '%(title)s' has received a review. Decision: %(decision)s. "
+"Category: %(category)s."
+msgstr ""
+"'%(title)s' maqolangiz ko'rib chiqildi. Qaror: %(decision)s. Turkum: "
+"%(category)s."
 
 msgid " Comment: %(comment)s"
 msgstr " Izoh: %(comment)s"
@@ -1279,8 +1391,12 @@ msgstr " Sabab: %(reason)s"
 msgid "Changes requested for your article"
 msgstr "Maqolangiz uchun o'zgartirishlar so'raldi"
 
-msgid "Changes have been requested for your article '%(title)s'. Please review the feedback and make necessary updates."
-msgstr "'%(title)s' maqolangiz uchun o'zgartirishlar so'raldi. Iltimos, fikr-mulohazalarni ko'rib chiqing va zarur yangilanishlarni kiriting."
+msgid ""
+"Changes have been requested for your article '%(title)s'. Please review the "
+"feedback and make necessary updates."
+msgstr ""
+"'%(title)s' maqolangiz uchun o'zgartirishlar so'raldi. Iltimos, fikr-"
+"mulohazalarni ko'rib chiqing va zarur yangilanishlarni kiriting."
 
 msgid " Feedback: %(reason)s"
 msgstr " Fikr-mulohaza: %(reason)s"
@@ -1302,7 +1418,9 @@ msgid "Maqola tasdiqlandi."
 msgstr "Maqola tasdiqlandi."
 
 msgid "Auto-publish only works when resubmitting after changes requested."
-msgstr "Avtomatik nashr faqat o'zgartirish so'ralgandan so'ng qayta yuborilganda ishlaydi."
+msgstr ""
+"Avtomatik nashr faqat o'zgartirish so'ralgandan so'ng qayta yuborilganda "
+"ishlaydi."
 
 msgid "Article has been published successfully."
 msgstr "Maqola muvaffaqiyatli nashr etildi."
@@ -1314,7 +1432,9 @@ msgid "Article sent to review successfully."
 msgstr "Maqola ko'rib chiqishga muvaffaqiyatli yuborildi."
 
 msgid "Reviewers can only be assigned to pending or in-review articles."
-msgstr "Taqrizchilar faqat kutilayotgan yoki ko'rib chiqilayotgan maqolalarga tayinlanishi mumkin."
+msgstr ""
+"Taqrizchilar faqat kutilayotgan yoki ko'rib chiqilayotgan maqolalarga "
+"tayinlanishi mumkin."
 
 msgid "%(count)d reviewer(s) assigned."
 msgstr "%(count)d taqrizchi tayinlandi."
@@ -1420,7 +1540,8 @@ msgid "Article is ready for publishing"
 msgstr "Maqola nashr etishga tayyor"
 
 msgid "Article is blocked due to rejections in one or more categories"
-msgstr "Bir yoki bir nechta turkumlardagi rad etishlar tufayli maqola bloklangan"
+msgstr ""
+"Bir yoki bir nechta turkumlardagi rad etishlar tufayli maqola bloklangan"
 
 msgid "Changes have been requested - waiting for author revision"
 msgstr "O'zgartirishlar so'raldi - muallif tuzatishini kutilmoqda"
@@ -1472,3 +1593,1042 @@ msgstr "Bildirishnomalar yo'q"
 msgid "Read"
 msgstr "O'qilgan"
 
+# ========== JURNAL TARJIMALARI ==========
+msgid "Journal"
+msgstr "Jurnal"
+
+msgid "Journals"
+msgstr "Jurnallar"
+
+msgid "Journal issue number"
+msgstr "Jurnal soni raqami"
+
+msgid "Active journals are available for article submission"
+msgstr "Faol jurnallar maqola yuborish uchun mavjud"
+
+msgid "Manage Journals"
+msgstr "Jurnallarni boshqarish"
+
+msgid "Add Journal"
+msgstr "Jurnal qo'shish"
+
+msgid "Add New Journal"
+msgstr "Yangi jurnal qo'shish"
+
+msgid "Deactivate"
+msgstr "Faolsizlantirish"
+
+msgid "No journals found."
+msgstr "Jurnallar topilmadi."
+
+msgid "Year"
+msgstr "Yil"
+
+msgid "Number"
+msgstr "Son"
+
+msgid "Journal (Year / Issue)"
+msgstr "Jurnal (Yil / Son)"
+
+msgid "Issue"
+msgstr "Son"
+
+msgid "No active journals available. Please contact the administrator."
+msgstr "Faol jurnallar mavjud emas. Iltimos, administrator bilan bog'laning."
+
+msgid "Manage journals, reviewers, and publication workflow"
+msgstr "Jurnallar, taqrizchilar va nashr jarayonini boshqarish"
+
+msgid "Active Journals"
+msgstr "Faol jurnallar"
+
+msgid "Total Journals"
+msgstr "Jami jurnallar"
+
+msgid "Confirm Deactivation"
+msgstr "Faolsizlantirishi tasdiqlash"
+
+msgid "Are you sure you want to deactivate this journal?"
+msgstr "Haqiqatan ham bu jurnalni faolsizlantirmoqchimisiz?"
+
+msgid "This journal will no longer be available for article submission."
+msgstr "Bu jurnal endi maqola yuborish uchun mavjud bo'lmaydi."
+
+msgid "Yes, Deactivate"
+msgstr "Ha, faolsizlantirish"
+
+msgid "No, Cancel"
+msgstr "Yo'q, bekor qilish"
+
+# ========== LOGIN/REGISTER/QOIDALAR TARJIMALARI ==========
+msgid "Don't have an account?"
+msgstr "Hisobingiz yo'qmi?"
+
+msgid "Register here"
+msgstr "Bu yerda ro'yxatdan o'ting"
+
+msgid "Email Address"
+msgstr "Elektron pochta manzili"
+
+msgid "Select Your Role"
+msgstr "Rolingizni tanlang"
+
+msgid "Browse and read articles"
+msgstr "Maqolalarni ko'rib, o'qing"
+
+msgid "Create and publish articles"
+msgstr "Maqolalar yarating va nashr eting"
+
+msgid "Already have an account?"
+msgstr "Hisobingiz bormi?"
+
+msgid "Login here"
+msgstr "Bu yerda kiring"
+
+msgid "Accept Article Writing Rules"
+msgstr "Maqola yozish qoidalarini qabul qilish"
+
+msgid "Article Writing Rules"
+msgstr "Maqola yozish qoidalari"
+
+msgid ""
+"As an author, you must read and accept these rules before creating articles."
+msgstr ""
+"Muallif sifatida maqola yaratishdan oldin ushbu qoidalarni o'qib, qabul "
+"qilishingiz kerak."
+
+msgid "Loaded from file:"
+msgstr "Fayldan yuklangan:"
+
+msgid "Accept and Continue"
+msgstr "Qabul qilish va davom etish"
+
+msgid "Return to Home"
+msgstr "Bosh sahifaga qaytish"
+
+msgid "Rules Not Configured"
+msgstr "Qoidalar sozlanmagan"
+
+msgid ""
+"Article writing rules have not been set up yet. Please contact the "
+"administrator."
+msgstr ""
+"Maqola yozish qoidalari hali sozlanmagan. Iltimos, administrator bilan "
+"bog'laning."
+
+msgid ""
+"You are logged in as an administrator. Access the Admin Panel to manage "
+"journals, reviewers, articles, and view system statistics."
+msgstr ""
+"Siz administrator sifatida tizimga kirgansiz. Jurnallar, taqrizchilar, "
+"maqolalarni boshqarish va tizim statistikasini ko'rish uchun Admin Paneliga "
+"o'ting."
+
+msgid ""
+"You are logged in as an administrator. Access the Admin Panel to manage "
+"reviewers, articles, categories, and view system statistics."
+msgstr "Siz administrator sifatida tizimga kirgansiz. Admin Paneliga o'ting."
+
+msgid "Select the journal you are submitting to"
+msgstr "Yuborayotgan jurnallingizni tanlang"
+
+msgid "Select Journal"
+msgstr "Jurnalni tanlang"
+
+msgid "Deactivate Journal"
+msgstr "Jurnalni faolsizlantirish"
+
+msgid ""
+"You are logged in as an administrator. Use the Admin Panel below to manage "
+"journals, reviewers, articles, and view system statistics."
+msgstr ""
+"Siz administrator sifatida tizimga kirgansiz. Jurnallar, taqrizchilar, "
+"maqolalarni boshqarish va tizim statistikasini ko'rish uchun Admin Paneliga "
+"o'ting."
+
+msgid ""
+"You are logged in as an administrator. Use the Admin Panel below to manage "
+"reviewers, articles, categories, and view system statistics."
+msgstr "Siz administrator sifatida tizimga kirgansiz. Admin Paneliga o'ting."
+
+msgid "View Admin Panel"
+msgstr "Admin Panelni ko'rish"
+
+msgid "View Statistics"
+msgstr "Statistikani ko'rish"
+
+msgid "No reviewers assigned yet."
+msgstr "Hali hech qanday taqrizchi tayinlanmagan."
+
+msgid "Assign Reviewers"
+msgstr "Taqrizchi tayinlash"
+
+msgid "Assign Selected Reviewers"
+msgstr "Tanlangan taqrizchilarni tayinlash"
+
+msgid "Select Reviewers"
+msgstr "Taqrizchilarni tanlang"
+
+msgid "Hold Ctrl or Cmd to select multiple reviewers"
+msgstr ""
+"Bir nechta taqrizchini tanlash uchun Ctrl yoki Cmd tugmasini ushlab turing"
+
+msgid "Selected reviewers are already assigned."
+msgstr "Tanlangan taqrizchilar allaqachon tayinlangan."
+
+msgid "Review submitted for article"
+msgstr "Maqolaga taqriz yuborildi"
+
+msgid ""
+"Reviewer %(reviewer)s has submitted a review for article '%(title)s'. "
+"Decision: %(decision)s."
+msgstr ""
+"Taqrizchi %(reviewer)s '%(title)s' maqolasiga taqriz yubordi. Qaror: "
+"%(decision)s."
+
+msgid "[%(site_name)s] Review submitted: %(title)s"
+msgstr "[%(site_name)s] Taqriz yuborildi: %(title)s"
+
+msgid "Accept Rules to Start Writing"
+msgstr "Yozishni boshlash uchun qoidalarni qabul qiling"
+
+msgid "Action"
+msgstr "Amal"
+
+msgid "Action performed on {} articles."
+msgstr "{} ta maqolaga amal bajarildi."
+
+msgid "Active Reviewers"
+msgstr "Faol taqrizchilar"
+
+msgid "Active Users"
+msgstr "Faol foydalanuvchilar"
+
+msgid "Add"
+msgstr "Qo'shish"
+
+msgid "Add New Reviewer"
+msgstr "Yangi taqrizchi qo'shish"
+
+msgid "Add your review comments here..."
+msgstr "Taqriz izohlaringizni shu yerga yozing..."
+
+msgid "Additional Info"
+msgstr "Qo'shimcha ma'lumot"
+
+msgid "Admin Account"
+msgstr "Admin hisobi"
+
+msgid "Admin Control Panel"
+msgstr "Admin boshqaruv paneli"
+
+msgid "Admin Dashboard"
+msgstr "Admin boshqaruv paneli"
+
+msgid "Admin Decision"
+msgstr "Admin qarori"
+
+msgid "Admin Panel"
+msgstr "Admin panel"
+
+msgid "Administrators"
+msgstr "Administratorlar"
+
+msgid "All Articles"
+msgstr "Barcha maqolalar"
+
+msgid "All Status"
+msgstr "Barcha holatlar"
+
+msgid "All notifications marked as read."
+msgstr "Barcha bildirishnomalar o'qilgan deb belgilandi."
+
+msgid "All rights reserved."
+msgstr "Barcha huquqlar himoyalangan."
+
+msgid "Allowed file types: %(types)s"
+msgstr "Ruxsat berilgan fayl turlari: %(types)s"
+
+msgid "Allowed formats: PDF, DOC, DOCX. Maximum size: 20 MB."
+msgstr "Ruxsat berilgan formatlar: PDF, DOC, DOCX. Maksimal hajm: 20 MB."
+
+msgid "Apply"
+msgstr "Qo'llash"
+
+msgid "Apply Action"
+msgstr "Amalni qo'llash"
+
+msgid "Apply Action to All"
+msgstr "Hammasiga amalni qo'llash"
+
+msgid "Approval Requirements"
+msgstr "Tasdiqlash talablari"
+
+msgid "Article \"%(title)s\" has been deleted successfully."
+msgstr "\"%(title)s\" maqolasi muvaffaqiyatli o'chirildi."
+
+msgid "Article Action"
+msgstr "Maqola amali"
+
+msgid "Article Information"
+msgstr "Maqola ma'lumotlari"
+
+msgid "Article Statistics"
+msgstr "Maqola statistikasi"
+
+msgid "Article Status Breakdown"
+msgstr "Maqola holatlari taqsimoti"
+
+msgid "Article Status Histories"
+msgstr "Maqola holati tarixi"
+
+msgid "Article Status History"
+msgstr "Maqola holati tarixi"
+
+msgid "Article has been rejected"
+msgstr "Maqola rad etildi"
+
+msgid "Article not available for review."
+msgstr "Maqola ko'rib chiqish uchun mavjud emas."
+
+msgid "Article status reset to In Review."
+msgstr "Maqola holati Ko'rib chiqilmoqda holatiga qaytarildi."
+
+msgid "Article writing guidelines (text format)"
+msgstr "Maqola yozish qoidalari (matn formati)"
+
+msgid "Articles Assigned"
+msgstr "Tayinlangan maqolalar"
+
+msgid "Articles Waiting for Review"
+msgstr "Ko'rib chiqishni kutayotgan maqolalar"
+
+msgid "Articles by Status"
+msgstr "Maqolalar holat bo'yicha"
+
+msgid ""
+"Assign categories for reviewers. Only relevant for users with Reviewer role."
+msgstr ""
+"Taqrizchilar uchun kategoriyalar tayinlang. Faqat Taqrizchi rolidagi "
+"foydalanuvchilar uchun."
+
+msgid "Assign reviewers who can review articles in this category"
+msgstr ""
+"Ushbu kategoriyada maqolalarni ko'rib chiqishi mumkin bo'lgan taqrizchilarni"
+" tayinlang"
+
+msgid "Assigned"
+msgstr "Tayinlangan"
+
+msgid "Assigned Categories"
+msgstr "Tayinlangan kategoriyalar"
+
+msgid "Assignment Details"
+msgstr "Tayinlov tafsilotlari"
+
+msgid "Attached File:"
+msgstr "Biriktirma fayl:"
+
+msgid "Author:"
+msgstr "Muallif:"
+
+msgid "Authors"
+msgstr "Mualliflar"
+
+msgid "Back to All Articles"
+msgstr "Barcha maqolalarga qaytish"
+
+msgid "Biography:"
+msgstr "Biografiya:"
+
+msgid "Built with"
+msgstr "Yaratildi"
+
+msgid "Bulk Article Action"
+msgstr "Ommaviy maqola amali"
+
+msgid "By"
+msgstr "Muallif"
+
+msgid ""
+"Categories this reviewer can review. Only applies to users with Reviewer "
+"role."
+msgstr ""
+"Bu taqrizchi ko'rib chiqishi mumkin bo'lgan kategoriyalar. Faqat Taqrizchi "
+"rolidagi foydalanuvchilar uchun."
+
+msgid "Change request sent to author."
+msgstr "O'zgartirish so'rovi muallifga yuborildi."
+
+msgid "Change selected users to Admin"
+msgstr "Tanlangan foydalanuvchilarni Admin qilish"
+
+msgid "Change selected users to Author"
+msgstr "Tanlangan foydalanuvchilarni Muallif qilish"
+
+msgid "Change selected users to Reader"
+msgstr "Tanlangan foydalanuvchilarni O'quvchi qilish"
+
+msgid "Changed By"
+msgstr "O'zgartirgan"
+
+msgid "Changes"
+msgstr "O'zgartirishlar"
+
+msgid "Changes have been requested"
+msgstr "O'zgartirishlar so'raldi"
+
+msgid "Classification"
+msgstr "Tasnif"
+
+msgid "Confirm password"
+msgstr "Parolni tasdiqlang"
+
+msgid "Content Preview"
+msgstr "Kontent ko'rinishi"
+
+msgid "Content cannot be empty."
+msgstr "Kontent bo'sh bo'lishi mumkin emas."
+
+msgid "Create"
+msgstr "Yaratish"
+
+msgid "Create New Reviewer"
+msgstr "Yangi taqrizchi yaratish"
+
+msgid "Created:"
+msgstr "Yaratilgan:"
+
+msgid "Date"
+msgstr "Sana"
+
+msgid "Deadline"
+msgstr "Muddat"
+
+msgid "Deadline by which the reviewer should complete the review"
+msgstr "Taqrizchi ko'rib chiqishni yakunlashi kerak bo'lgan muddat"
+
+msgid "Delete Reviewer"
+msgstr "Taqrizchini o'chirish"
+
+msgid "Delete reviewer"
+msgstr "Taqrizchini o'chirish"
+
+msgid "Details"
+msgstr "Tafsilotlar"
+
+msgid "Download PDF/Document"
+msgstr "PDF/Hujjatni yuklab olish"
+
+msgid "E.g., 1, 2, 3..."
+msgstr "Masalan, 1, 2, 3..."
+
+msgid "E.g., 2024"
+msgstr "Masalan, 2024"
+
+msgid "Edit Article"
+msgstr "Maqolani tahrirlash"
+
+msgid "Edit Journal"
+msgstr "Jurnalni tahrirlash"
+
+msgid "Edit Reviewer"
+msgstr "Taqrizchini tahrirlash"
+
+msgid "Edit reviewer"
+msgstr "Taqrizchini tahrirlash"
+
+msgid "Email address"
+msgstr "Elektron pochta manzili"
+
+msgid "Email:"
+msgstr "Elektron pochta:"
+
+msgid "Enter a keyword and press Add or Enter"
+msgstr "Kalit so'zni kiriting va Qo'shish yoki Enter tugmasini bosing"
+
+msgid "Enter admin note (visible to author)"
+msgstr "Admin izohini kiriting (muallifga ko'rinadi)"
+
+msgid "Enter password"
+msgstr "Parolni kiriting"
+
+msgid "Enter publication number (e.g., 1, 2, 3...)"
+msgstr "Nashr raqamini kiriting (masalan, 1, 2, 3...)"
+
+msgid "Enter publication year (e.g., 2024)"
+msgstr "Nashr yilini kiriting (masalan, 2024)"
+
+msgid "Enter title in English (optional)"
+msgstr "Sarlavhani ingliz tilida kiriting (ixtiyoriy)"
+
+msgid "Enter title in Russian (optional)"
+msgstr "Sarlavhani rus tilida kiriting (ixtiyoriy)"
+
+msgid "Enter title in Uzbek"
+msgstr "Sarlavhani o'zbek tilida kiriting"
+
+msgid "Feedback"
+msgstr "Fikr-mulohaza"
+
+msgid "File size must not exceed %(size)s MB."
+msgstr "Fayl hajmi %(size)s MB dan oshmasligi kerak."
+
+msgid "Filter"
+msgstr "Filtrlash"
+
+msgid "First"
+msgstr "Birinchi"
+
+msgid "First name"
+msgstr "Ism"
+
+msgid "From Status"
+msgstr "Oldingi holat"
+
+msgid "Go to Admin Panel"
+msgstr "Admin panelga o'tish"
+
+msgid "Go to Review Page"
+msgstr "Ko'rib chiqish sahifasiga o'tish"
+
+msgid "Go to Reviewer Dashboard"
+msgstr "Taqrizchi paneliga o'tish"
+
+msgid "Inactive"
+msgstr "Nofaol"
+
+msgid "Information"
+msgstr "Ma'lumot"
+
+msgid "Invalid keyword data."
+msgstr "Noto'g'ri kalit so'z ma'lumoti."
+
+msgid "Journal Information"
+msgstr "Jurnal ma'lumotlari"
+
+msgid "Journal created successfully."
+msgstr "Jurnal muvaffaqiyatli yaratildi."
+
+msgid "Journal deactivated."
+msgstr "Jurnal o'chirildi."
+
+msgid "Journal updated successfully."
+msgstr "Jurnal muvaffaqiyatli yangilandi."
+
+msgid "Keyword is too long (max 100 characters)."
+msgstr "Kalit so'z juda uzun (maksimum 100 belgi)."
+
+msgid "Last"
+msgstr "Oxirgi"
+
+msgid "Last Modified:"
+msgstr "Oxirgi o'zgartirilgan:"
+
+msgid "Last name"
+msgstr "Familiya"
+
+msgid "Link"
+msgstr "Havola"
+
+msgid "Make Reviewer and Send Notification"
+msgstr "Taqrizchi qilib tayinlash va bildirishnoma yuborish"
+
+msgid "Manage Articles"
+msgstr "Maqolalarni boshqarish"
+
+msgid "Manage Reviewers"
+msgstr "Taqrizchilarni boshqarish"
+
+msgid "Manage your assigned article reviews"
+msgstr "Sizga tayinlangan maqola taqrizlarini boshqaring"
+
+msgid "Mark All as Read"
+msgstr "Hammasini o'qilgan deb belgilash"
+
+msgid "Mark Read"
+msgstr "O'qilgan"
+
+msgid "Mark selected as read"
+msgstr "Tanlanganlarni o'qilgan deb belgilash"
+
+msgid "Mark selected as unread"
+msgstr "Tanlanganlarni o'qilmagan deb belgilash"
+
+msgid "Message"
+msgstr "Xabar"
+
+msgid "Name"
+msgstr "Nomi"
+
+msgid "Names (Multilingual)"
+msgstr "Nomlar (Ko'p tilli)"
+
+msgid "New"
+msgstr "Yangi"
+
+msgid "No"
+msgstr "Yo'q"
+
+msgid "No articles assigned from any journal."
+msgstr "Hech qanday jurnaldan maqola tayinlanmagan."
+
+msgid "No articles found."
+msgstr "Maqolalar topilmadi."
+
+msgid "No articles in this category yet."
+msgstr "Bu kategoriyada hali maqola yo'q."
+
+msgid "No articles selected."
+msgstr "Maqola tanlanmagan."
+
+msgid "No articles yet. Create your first article!"
+msgstr "Hali maqola yo'q. Birinchi maqolangizni yarating!"
+
+msgid "No pending articles to review."
+msgstr "Ko'rib chiqish uchun kutilayotgan maqola yo'q."
+
+msgid "No pending articles. Great job!"
+msgstr "Kutayotgan maqola yo'q. Ajoyib!"
+
+msgid "No pending reviewer assignments"
+msgstr "Kutayotgan taqrizchi tayinlovlari yo'q"
+
+msgid "No published articles yet."
+msgstr "Hali nashr qilingan maqola yo'q."
+
+msgid "No reviewers found."
+msgstr "Taqrizchilar topilmadi."
+
+msgid "No reviews received yet."
+msgstr "Hali taqriz olinmagan."
+
+msgid "No reviews yet."
+msgstr "Hali taqrizlar yo'q."
+
+msgid "No status changes recorded."
+msgstr "Holat o'zgarishlari qayd etilmagan."
+
+msgid "Not submitted"
+msgstr "Yuborilmagan"
+
+msgid "Note (for rejection/changes)"
+msgstr "Izoh (rad etish/o'zgartirish uchun)"
+
+msgid "Notification"
+msgstr "Bildirishnoma"
+
+msgid "Only .txt files are allowed for rules."
+msgstr "Qoidalar uchun faqat .txt fayllar ruxsat etiladi."
+
+msgid "Optional: Publication issue number"
+msgstr "Ixtiyoriy: Nashr raqami"
+
+msgid "Optional: Year the article was published"
+msgstr "Ixtiyoriy: Maqola nashr etilgan yil"
+
+msgid "Options"
+msgstr "Amallar"
+
+msgid "Organization:"
+msgstr "Tashkilot:"
+
+msgid "Overview"
+msgstr "Umumiy ko'rinish"
+
+msgid "Passwords do not match."
+msgstr "Parollar mos kelmadi."
+
+msgid "Pending Admin"
+msgstr "Admin kutmoqda"
+
+msgid "Pending Articles"
+msgstr "Kutayotgan maqolalar"
+
+msgid "Pending Reviews"
+msgstr "Kutayotgan taqrizlar"
+
+msgid "Perform Action"
+msgstr "Amalni bajarish"
+
+msgid "Please add at least one keyword."
+msgstr "Iltimos, kamida bitta kalit so'z qo'shing."
+
+msgid "Please provide a comment explaining the reason for rejection."
+msgstr "Iltimos, rad etish sababini tushuntirib izoh yozing."
+
+msgid "Please provide a comment explaining what changes are needed."
+msgstr "Iltimos, qanday o'zgartirishlar kerakligini tushuntirib izoh yozing."
+
+msgid "Please provide constructive feedback for the author."
+msgstr "Iltimos, muallif uchun konstruktiv fikr-mulohaza bering."
+
+msgid "Please review the feedback and make necessary changes."
+msgstr ""
+"Iltimos, fikr-mulohazani ko'rib chiqing va kerakli o'zgartirishlarni "
+"kiriting."
+
+msgid ""
+"Please review your article and make necessary improvements before "
+"resubmitting."
+msgstr ""
+"Iltimos, maqolangizni ko'rib chiqing va qayta yuborishdan oldin kerakli "
+"yaxshilanishlarni kiriting."
+
+msgid "Professional Review Process"
+msgstr "Professional ko'rib chiqish jarayoni"
+
+msgid "Professional article publishing platform for quality content."
+msgstr "Sifatli kontent uchun professional maqola nashr etish platformasi."
+
+msgid "Publication Info"
+msgstr "Nashr ma'lumotlari"
+
+msgid "Publication Number"
+msgstr "Nashr raqami"
+
+msgid "Publication Year"
+msgstr "Nashr yili"
+
+msgid "Publication year (e.g., 2026)"
+msgstr "Nashr yili (masalan, 2026)"
+
+msgid "Publish Article"
+msgstr "Maqolani nashr qilish"
+
+msgid "Publish Selected"
+msgstr "Tanlanganlarni nashr qilish"
+
+msgid "Publishable"
+msgstr "Nashr qilish mumkin"
+
+msgid "Publishing Quality Content"
+msgstr "Sifatli kontent nashr qilish"
+
+msgid "Publishing Status"
+msgstr "Nashr holati"
+
+msgid "Quick Links"
+msgstr "Tezkor havolalar"
+
+msgid "Read More"
+msgstr "Batafsil o'qish"
+
+msgid "Readers"
+msgstr "O'quvchilar"
+
+msgid "Recent Notifications"
+msgstr "So'nggi bildirishnomalar"
+
+msgid "Recent Published Articles"
+msgstr "So'nggi nashr qilingan maqolalar"
+
+msgid "Recent Reviews"
+msgstr "So'nggi taqrizlar"
+
+msgid "Recent Reviews Received"
+msgstr "So'nggi olingan taqrizlar"
+
+msgid "Reject Article"
+msgstr "Maqolani rad etish"
+
+msgid "Reject Selected"
+msgstr "Tanlanganlarni rad etish"
+
+msgid "Request Changes on Selected"
+msgstr "Tanlanganlarga o'zgartirish so'rash"
+
+msgid "Reset to In Review"
+msgstr "Ko'rib chiqish holatiga qaytarish"
+
+msgid "Review Article"
+msgstr "Maqolani ko'rib chiqish"
+
+msgid "Review Deadline"
+msgstr "Ko'rib chiqish muddati"
+
+msgid "Review Details"
+msgstr "Taqriz tafsilotlari"
+
+msgid "Review Feedback"
+msgstr "Taqriz fikr-mulohazasi"
+
+msgid "Review Queue"
+msgstr "Ko'rib chiqish navbati"
+
+msgid "Review Statistics"
+msgstr "Taqriz statistikasi"
+
+msgid "Review submitted for your article"
+msgstr "Maqolangiz uchun taqriz yuborildi"
+
+msgid "Reviewed"
+msgstr "Ko'rib chiqilgan"
+
+msgid "Reviewer Categories"
+msgstr "Taqrizchi kategoriyalari"
+
+msgid "Reviewer Information"
+msgstr "Taqrizchi ma'lumotlari"
+
+msgid "Reviewer created successfully."
+msgstr "Taqrizchi muvaffaqiyatli yaratildi."
+
+msgid "Reviewer deleted successfully."
+msgstr "Taqrizchi muvaffaqiyatli o'chirildi."
+
+msgid "Reviewer updated successfully."
+msgstr "Taqrizchi muvaffaqiyatli yangilandi."
+
+msgid "Reviewers"
+msgstr "Taqrizchilar"
+
+msgid "Reviews by Decision"
+msgstr "Qaror bo'yicha taqrizlar"
+
+msgid "Role & Profile"
+msgstr "Rol va profil"
+
+msgid "Rules File"
+msgstr "Qoidalar fayli"
+
+msgid "Rules file size cannot exceed 5MB."
+msgstr "Qoidalar fayli hajmi 5MB dan oshmasligi kerak."
+
+msgid "Search by name, username, or email..."
+msgstr "Ism, foydalanuvchi nomi yoki email bo'yicha qidiring..."
+
+msgid "Search by title, content, keywords..."
+msgstr "Sarlavha, mazmun, kalit so'zlar bo'yicha qidiring..."
+
+msgid "Secure & Scalable"
+msgstr "Xavfsiz va kengaytiriluvchan"
+
+msgid "Select bulk action..."
+msgstr "Ommaviy amalni tanlang..."
+
+msgid "Selected Articles"
+msgstr "Tanlangan maqolalar"
+
+msgid "Status Change"
+msgstr "Holat o'zgarishi"
+
+msgid "Status History"
+msgstr "Holat tarixi"
+
+msgid "Status:"
+msgstr "Holat:"
+
+msgid "Submit Review"
+msgstr "Taqrizni yuborish"
+
+msgid "Submit Your Review"
+msgstr "Taqrizingizni yuboring"
+
+msgid "Submitted"
+msgstr "Yuborilgan"
+
+msgid "Submitted:"
+msgstr "Yuborilgan:"
+
+msgid "System"
+msgstr "Tizim"
+
+msgid "System Statistics"
+msgstr "Tizim statistikasi"
+
+msgid "System Statistics and Analytics"
+msgstr "Tizim statistikasi va tahlili"
+
+msgid "Take Action"
+msgstr "Amal bajarish"
+
+msgid "The category this review is for"
+msgstr "Ushbu taqriz tegishli bo'lgan kategoriya"
+
+msgid "This action cannot be undone. All review assignments will be removed."
+msgstr ""
+"Bu amalni bekor qilib bo'lmaydi. Barcha taqriz tayinlovlari o'chiriladi."
+
+msgid "This article cannot be edited in its current status."
+msgstr "Bu maqolani joriy holatda tahrirlash mumkin emas."
+
+msgid "This note will be visible to the author"
+msgstr "Bu izoh muallifga ko'rinadi"
+
+msgid "Timestamp"
+msgstr "Vaqt"
+
+msgid "Title (English):"
+msgstr "Sarlavha (inglizcha):"
+
+msgid "Title (Russian):"
+msgstr "Sarlavha (ruscha):"
+
+msgid "Title (Uzbek):"
+msgstr "Sarlavha (o'zbekcha):"
+
+msgid "Title cannot be empty."
+msgstr "Sarlavha bo'sh bo'lishi mumkin emas."
+
+msgid "Title cannot exceed 300 characters."
+msgstr "Sarlavha 300 belgidan oshmasligi kerak."
+
+msgid "To Status"
+msgstr "Yangi holat"
+
+msgid "Top Reviewers"
+msgstr "Eng yaxshi taqrizchilar"
+
+msgid "Total Reviews"
+msgstr "Jami taqrizlar"
+
+msgid "Total Users"
+msgstr "Jami foydalanuvchilar"
+
+msgid "Total selected:"
+msgstr "Jami tanlangan:"
+
+msgid ""
+"Type a keyword and click Add (or press Enter). You can add as many as you "
+"want."
+msgstr ""
+"Kalit so'zni yozing va Qo'shish tugmasini bosing (yoki Enter). "
+"Xohlaganingizcha qo'shishingiz mumkin."
+
+msgid "Updated"
+msgstr "Yangilangan"
+
+msgid "Upload rules as .txt file (optional, max 5MB)"
+msgstr ".txt fayl sifatida qoidalarni yuklang (ixtiyoriy, maks 5MB)"
+
+msgid "Use this for rejection or change requests (optional)"
+msgstr "Buni rad etish yoki o'zgartirish so'rovi uchun ishlating (ixtiyoriy)"
+
+msgid "User Management Statistics"
+msgstr "Foydalanuvchilarni boshqarish statistikasi"
+
+msgid "Username:"
+msgstr "Foydalanuvchi nomi:"
+
+msgid "Users by Role"
+msgstr "Foydalanuvchilar rol bo'yicha"
+
+msgid "View All"
+msgstr "Hammasini ko'rish"
+
+msgid "View Article"
+msgstr "Maqolani ko'rish"
+
+msgid "View Full Article"
+msgstr "To'liq maqolani ko'rish"
+
+msgid "View details"
+msgstr "Tafsilotlarni ko'rish"
+
+msgid "Waiting for reviewer approval"
+msgstr "Taqrizchi tasdig'ini kutmoqda"
+
+msgid "Waiting for reviewer submissions"
+msgstr "Taqrizchi javoblarini kutmoqda"
+
+msgid "Write article content in English (optional)"
+msgstr "Maqola mazmunini ingliz tilida yozing (ixtiyoriy)"
+
+msgid "Write article content in Russian (optional)"
+msgstr "Maqola mazmunini rus tilida yozing (ixtiyoriy)"
+
+msgid "Write article content in Uzbek"
+msgstr "Maqola mazmunini o'zbek tilida yozing"
+
+msgid "Write your review comments..."
+msgstr "Taqriz izohlaringizni yozing..."
+
+msgid "Yes"
+msgstr "Ha"
+
+msgid "Yes, Delete This Reviewer"
+msgstr "Ha, bu taqrizchini o'chirish"
+
+msgid "You are about to delete the reviewer:"
+msgstr "Siz quyidagi taqrizchini o'chirmoqchisiz:"
+
+msgid "You are not assigned to review this article."
+msgstr "Sizga bu maqolani ko'rib chiqish tayinlanmagan."
+
+msgid "You can review this article for the following categories:"
+msgstr ""
+"Siz bu maqolani quyidagi kategoriyalar uchun ko'rib chiqishingiz mumkin:"
+
+msgid "You do not have permission to access the admin panel."
+msgstr "Sizda admin panelga kirish huquqi yo'q."
+
+msgid "You don't have any notifications yet."
+msgstr "Sizda hali bildirishnomalar yo'q."
+
+msgid "You have already reviewed this article."
+msgstr "Siz bu maqolani allaqachon ko'rib chiqqansiz."
+
+msgid "You have not reviewed any articles yet."
+msgstr "Siz hali hech qanday maqolani ko'rib chiqmagansiz."
+
+msgid "Your Comment"
+msgstr "Sizning izohingiz"
+
+msgid "Your Decision"
+msgstr "Sizning qaroringiz"
+
+msgid "Your Feedback"
+msgstr "Sizning fikr-mulohazangiz"
+
+msgid "Your Recent Reviews"
+msgstr "So'nggi taqrizlaringiz"
+
+msgid "[%(site_name)s] Article assigned for review: %(title)s"
+msgstr "[%(site_name)s] Maqola ko'rib chiqish uchun tayinlandi: %(title)s"
+
+msgid "[%(site_name)s] Article published: %(title)s"
+msgstr "[%(site_name)s] Maqola nashr qilindi: %(title)s"
+
+msgid "[%(site_name)s] Article resubmitted: %(title)s"
+msgstr "[%(site_name)s] Maqola qayta yuborildi: %(title)s"
+
+msgid "[%(site_name)s] Changes requested for your article: %(title)s"
+msgstr "[%(site_name)s] Maqolangizga o'zgartirishlar so'raldi: %(title)s"
+
+msgid "[%(site_name)s] New article assigned for review: %(title)s"
+msgstr ""
+"[%(site_name)s] Yangi maqola ko'rib chiqish uchun tayinlandi: %(title)s"
+
+msgid "[%(site_name)s] New article submitted: %(title)s"
+msgstr "[%(site_name)s] Yangi maqola yuborildi: %(title)s"
+
+msgid "[%(site_name)s] Review update for your article: %(title)s"
+msgstr "[%(site_name)s] Maqolangiz uchun taqriz yangilandi: %(title)s"
+
+msgid "[%(site_name)s] You have been assigned as a Reviewer"
+msgstr "[%(site_name)s] Siz taqrizchi sifatida tayinlandingiz"
+
+msgid "[%(site_name)s] Your article has been published: %(title)s"
+msgstr "[%(site_name)s] Maqolangiz nashr qilindi: %(title)s"
+
+msgid "[%(site_name)s] Your article has been rejected: %(title)s"
+msgstr "[%(site_name)s] Maqolangiz rad etildi: %(title)s"
+
+msgid "ago"
+msgstr "oldin"
+
+msgid "assignment(s)"
+msgstr "tayinlov(lar)"
+
+msgid "minimum 1 required"
+msgstr "kamida 1 ta talab qilinadi"
+
+msgid "pending"
+msgstr "kutilmoqda"
+
+msgid "unread notifications"
+msgstr "o'qilmagan bildirishnomalar"
+
+msgid "using Django & Bootstrap"
+msgstr "Django va Bootstrap yordamida"

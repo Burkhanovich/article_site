@@ -39,6 +39,22 @@
                             {% trans "Submitted on" %}: {{ article.submitted_at|date:"F d, Y H:i" }}
                         </small>
                     {% endif %}
+                    {% with first_reviewer=article.get_first_reviewer_info %}
+                    {% if first_reviewer %}
+                        <hr>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-person-check-fill text-success me-2"></i>
+                            <div>
+                                <strong>{% trans "Reviewed by" %}:</strong> {{ first_reviewer.reviewer_name }}
+                                <br>
+                                <small class="text-muted">
+                                    {% trans "Decision" %}: <span class="badge bg-info">{{ first_reviewer.decision }}</span>
+                                    | {% trans "Date" %}: {{ first_reviewer.reviewed_at|date:"d.m.Y H:i" }}
+                                </small>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endwith %}
                 </div>
             {% elif article.status == 'CHANGES_REQUESTED' %}
                 <div class="alert alert-info">

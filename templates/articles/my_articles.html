@@ -103,11 +103,6 @@
         {% for article in articles %}
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <!-- Article Card Header -->
-                    <div class="card-img-top article-cover bg-light d-flex align-items-center justify-content-center">
-                        <i class="bi bi-file-earmark-text text-muted" style="font-size: 3rem;"></i>
-                    </div>
-
                     <div class="card-body">
                         <!-- Status Badge -->
                         <div class="mb-2">
@@ -288,14 +283,9 @@
 
 {% block extra_css %}
 <style>
-    .article-cover {
-        height: 180px;
-        object-fit: cover;
-    }
-
     .card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+        box-shadow: 0 4px 15px rgba(26, 36, 33, 0.1) !important;
     }
 
     .btn-group .btn {

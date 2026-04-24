@@ -1,0 +1,146 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "System Statistics" %} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="system-stats-content">
+    <h2 class="mb-4">{% trans "System Statistics and Analytics" %}</h2>
+    
+    <!-- Article Statistics -->
+    <h3 class="mt-5 mb-3">{% trans "Article Statistics" %}</h3>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <h5>{% trans "Total Articles" %}</h5>
+                <div class="stat-number">{{ article_stats.total }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card info">
+                <h5>{% trans "Published" %}</h5>
+                <div class="stat-number">{{ article_stats.by_status.PUBLISHED|default:0 }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card warning">
+                <h5>{% trans "In Review" %}</h5>
+                <div class="stat-number">{{ article_stats.by_status.IN_REVIEW|default:0 }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card danger">
+                <h5>{% trans "Rejected" %}</h5>
+                <div class="stat-number">{{ article_stats.by_status.REJECTED|default:0 }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Status Breakdown -->
+    <div class="card p-4 mb-4">
+        <h4 class="mb-3">{% trans "Articles by Status" %}</h4>
+        <div class="list-group">
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Draft" %}</span>
+                <strong>{{ article_stats.by_status.DRAFT|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Pending Admin Review" %}</span>
+                <strong>{{ article_stats.by_status.PENDING_ADMIN|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "In Review" %}</span>
+                <strong>{{ article_stats.by_status.IN_REVIEW|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Changes Requested" %}</span>
+                <strong>{{ article_stats.by_status.CHANGES_REQUESTED|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Rejected" %}</span>
+                <strong>{{ article_stats.by_status.REJECTED|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Published" %}</span>
+                <strong>{{ article_stats.by_status.PUBLISHED|default:0 }}</strong>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Statistics -->
+    <h3 class="mt-5 mb-3">{% trans "User Management Statistics" %}</h3>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="stat-card info">
+                <h5>{% trans "Total Users" %}</h5>
+                <div class="stat-number">{{ user_stats.total_users }}</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card success">
+                <h5>{% trans "Active Users" %}</h5>
+                <div class="stat-number">{{ user_stats.active_users }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Users by Role -->
+    <div class="card p-4 mb-4">
+        <h4 class="mb-3">{% trans "Users by Role" %}</h4>
+        <div class="list-group">
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Readers" %}</span>
+                <strong>{{ user_stats.by_role.READER|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Authors" %}</span>
+                <strong>{{ user_stats.by_role.AUTHOR|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Reviewers" %}</span>
+                <strong>{{ user_stats.by_role.REVIEWER|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Administrators" %}</span>
+                <strong>{{ user_stats.by_role.ADMIN|default:0 }}</strong>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Review Statistics -->
+    <h3 class="mt-5 mb-3">{% trans "Review Statistics" %}</h3>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="stat-card info">
+                <h5>{% trans "Total Reviews" %}</h5>
+                <div class="stat-number">{{ review_stats.total_reviews }}</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card success">
+                <h5>{% trans "Approved" %}</h5>
+                <div class="stat-number">{{ review_stats.by_decision.APPROVED|default:0 }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Reviews by Decision -->
+    <div class="card p-4">
+        <h4 class="mb-3">{% trans "Reviews by Decision" %}</h4>
+        <div class="list-group">
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Approved" %}</span>
+                <strong class="text-success">{{ review_stats.by_decision.APPROVED|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Changes Requested" %}</span>
+                <strong class="text-warning">{{ review_stats.by_decision.CHANGES_REQUESTED|default:0 }}</strong>
+            </div>
+            <div class="list-group-item d-flex justify-content-between">
+                <span>{% trans "Rejected" %}</span>
+                <strong class="text-danger">{{ review_stats.by_decision.REJECTED|default:0 }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

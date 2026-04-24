@@ -18,7 +18,7 @@ from django.views.generic import (
     TemplateView
 )
 
-from .models import Article, Category, Review
+from .models import Article, Review
 from .forms import ArticleForm, ArticleSearchForm, ReviewForm
 from .services import is_article_publishable, get_reviewer_queue, search_published_articles
 
@@ -37,7 +37,6 @@ class ArticleListView(ListView):
         """Only show PUBLISHED articles, ordered by creation date."""
         lang = get_language() or 'uz'
         search_query = self.request.GET.get('query')
-        category_id = self.request.GET.get('category')
 
         if search_query:
             queryset = search_published_articles(search_query, lang)
@@ -46,21 +45,15 @@ class ArticleListView(ListView):
                 status=Article.ArticleStatus.PUBLISHED
             )
 
-        # Filter by category if specified
-        if category_id:
-            queryset = queryset.filter(categories__id=category_id)
-
         return queryset.select_related('author').prefetch_related(
-            'categories', 'keywords'
+            'keywords'
         ).order_by('-published_at', '-created_at').distinct()
 
     def get_context_data(self, **kwargs):
-        """Add search form and categories to context."""
+        """Add search form to context."""
         context = super().get_context_data(**kwargs)
         context['search_form'] = ArticleSearchForm(self.request.GET or None)
         context['search_query'] = self.request.GET.get('query', '')
-        context['categories'] = Category.objects.filter(is_active=True)
-        context['selected_category'] = self.request.GET.get('category', '')
         return context
 
 
@@ -78,7 +71,7 @@ class ArticleDetailView(DetailView):
         """Build queryset based on user permissions."""
         return Article.objects.select_related(
             'author', 'admin_decision_by'
-        ).prefetch_related('categories', 'keywords', 'reviews__reviewer')
+        ).prefetch_related('keywords', 'reviews__reviewer')
 
     def get_object(self, queryset=None):
         """Get article with permission check."""
@@ -92,15 +85,15 @@ class ArticleDetailView(DetailView):
         elif self.request.user.is_authenticated:
             if self.request.user == obj.author:
                 can_view = True
-            elif self.request.user.is_staff or self.request.user.is_superuser:
+            elif self.request.user.is_staff or self.request.user.is_superuser or self.request.user.is_admin_user:
                 can_view = True
             elif self.request.user.is_reviewer:
-                # Reviewer can view if article is in review and in their category
-                if obj.can_be_reviewed:
-                    for cat in obj.categories.all():
-                        if self.request.user.can_review_category(cat):
-                            can_view = True
-                            break
+                # Reviewer can view if assigned to this article
+                is_assigned = obj.reviewer_assignments.filter(
+                    reviewer=self.request.user,
+                ).exists()
+                if is_assigned:
+                    can_view = True
 
         if not can_view:
             raise Http404(_("Article not found."))
@@ -137,19 +130,19 @@ class ArticleDetailView(DetailView):
 
         # Determine if user can review
         context['can_review'] = False
-        context['reviewable_categories'] = []
         if self.request.user.is_authenticated and article.can_be_reviewed:
             if self.request.user.is_reviewer or self.request.user.is_superuser:
-                for cat in article.categories.all():
-                    if self.request.user.can_review_category(cat):
-                        # Check if user hasn't already reviewed this category
-                        existing = article.reviews.filter(
-                            reviewer=self.request.user,
-                            category=cat
-                        ).exists()
-                        if not existing:
-                            context['reviewable_categories'].append(cat)
-                            context['can_review'] = True
+                # Check if user is assigned to review this article
+                is_assigned = article.reviewer_assignments.filter(
+                    reviewer=self.request.user,
+                    status='PENDING'
+                ).exists()
+                # Check if user hasn't already reviewed
+                already_reviewed = article.reviews.filter(
+                    reviewer=self.request.user
+                ).exists()
+                if is_assigned and not already_reviewed:
+                    context['can_review'] = True
 
         # Get publishability info for admins
         if self.request.user.is_authenticated and (
@@ -250,6 +243,20 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
     form_class = ArticleForm
     template_name = 'articles/article_form.html'
+
+    def get_initial(self):
+        """Pre-select the journal matching the article's publication year/number."""
+        from .models import Journal
+        initial = super().get_initial()
+        article = self.get_object()
+        if article.publication_year and article.publication_number:
+            journal = Journal.objects.filter(
+                year=article.publication_year,
+                number=article.publication_number,
+            ).first()
+            if journal:
+                initial['journal'] = journal
+        return initial
 
     def test_func(self):
         """Only article author can edit, and only editable articles."""
@@ -408,7 +415,7 @@ class MyArticlesView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         """Get only current user's articles."""
         queryset = Article.objects.filter(
             author=self.request.user
-        ).prefetch_related('categories', 'keywords').order_by('-created_at')
+        ).prefetch_related('keywords').order_by('-created_at')
 
         # Filter by status if provided
         status_filter = self.request.GET.get('status')
@@ -522,17 +529,39 @@ class ReviewerRequiredMixin(UserPassesTestMixin):
 
 
 class ReviewerDashboardView(ReviewerRequiredMixin, TemplateView):
-    """Dashboard for reviewers showing their review queue."""
+    """Dashboard for reviewers showing their assigned articles."""
     template_name = 'articles/reviewer_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['queue'] = get_reviewer_queue(self.request.user)
-
-        # Recent reviews by this user
-        context['recent_reviews'] = Review.objects.filter(
-            reviewer=self.request.user
-        ).select_related('article', 'category').order_by('-created_at')[:10]
+        from .models import ReviewerAssignment
+        
+        # Get all assignments for this reviewer
+        user = self.request.user
+        all_assignments = ReviewerAssignment.objects.filter(
+            reviewer=user
+        ).select_related('article', 'article__author').order_by('-assigned_at')
+        
+        # Separate by status
+        pending_assignments = all_assignments.filter(status=ReviewerAssignment.AssignmentStatus.PENDING)
+        reviewed_assignments = all_assignments.exclude(status=ReviewerAssignment.AssignmentStatus.PENDING)
+        
+        # Get counts by status
+        status_counts = {
+            'pending': pending_assignments.count(),
+            'approved': all_assignments.filter(status=ReviewerAssignment.AssignmentStatus.APPROVED).count(),
+            'changes': all_assignments.filter(status=ReviewerAssignment.AssignmentStatus.CHANGES_REQUESTED).count(),
+            'rejected': all_assignments.filter(status=ReviewerAssignment.AssignmentStatus.REJECTED).count(),
+        }
+        
+        context['pending_assignments'] = pending_assignments
+        context['reviewed_assignments'] = reviewed_assignments
+        context['pending_count'] = status_counts['pending']
+        context['approved_count'] = status_counts['approved']
+        context['changes_count'] = status_counts['changes']
+        context['rejected_count'] = status_counts['rejected']
+        context['reviewed_count'] = reviewed_assignments.count()
+        context['total_assignments'] = all_assignments.count()
 
         return context
 
@@ -540,7 +569,7 @@ class ReviewerDashboardView(ReviewerRequiredMixin, TemplateView):
 class ArticleReviewPageView(ReviewerRequiredMixin, DetailView):
     """
     Dedicated article review page for reviewers.
-    Shows article content and review form for each assigned category.
+    Shows article content and review form.
     """
     model = Article
     template_name = 'articles/article_review.html'
@@ -550,30 +579,25 @@ class ArticleReviewPageView(ReviewerRequiredMixin, DetailView):
         """Get article with permission check."""
         article = get_object_or_404(
             Article.objects.select_related('author').prefetch_related(
-                'categories', 'keywords', 'reviews__reviewer', 'reviews__category'
+                'keywords'
             ),
             slug=self.kwargs['slug']
         )
 
-        # Check if article can be reviewed
-        if not article.can_be_reviewed:
-            messages.error(self.request, _('This article cannot be reviewed in its current status.'))
-            raise Http404(_("Article not available for review."))
+        # Check if user is assigned to review this article
+        is_assigned = article.reviewer_assignments.filter(
+            reviewer=self.request.user,
+        ).exists() or self.request.user.is_superuser
 
-        # Check if user can review at least one category
-        can_review_any = False
-        for cat in article.categories.all():
-            if self.request.user.can_review_category(cat):
-                can_review_any = True
-                break
-
-        if not can_review_any and not self.request.user.is_superuser:
-            messages.error(self.request, _('You are not assigned to review any category of this article.'))
+        if not is_assigned:
+            messages.error(self.request, _('You are not assigned to review this article.'))
             raise Http404(_("Article not available for review."))
 
         return article
 
     def get_context_data(self, **kwargs):
+        from .models import ReviewerAssignment
+        
         context = super().get_context_data(**kwargs)
         article = self.object
         lang = get_language() or 'uz'
@@ -582,92 +606,57 @@ class ArticleReviewPageView(ReviewerRequiredMixin, DetailView):
         context['title'] = article.get_title(lang)
         context['content'] = article.get_content(lang)
 
-        # Get reviewable categories with their review forms
-        reviewable_categories = []
-        for category in article.categories.all():
-            if self.request.user.can_review_category(category) or self.request.user.is_superuser:
-                existing_review = article.reviews.filter(
-                    reviewer=self.request.user,
-                    category=category
-                ).first()
+        # Check if already reviewed
+        existing_review = article.reviewer_assignments.filter(
+            reviewer=self.request.user
+        ).exclude(status=ReviewerAssignment.AssignmentStatus.PENDING).first()
 
-                reviewable_categories.append({
-                    'category': category,
-                    'existing_review': existing_review,
-                    'form': ReviewForm(category=category) if not existing_review else None,
-                })
-
-        context['reviewable_categories'] = reviewable_categories
-
-        # Get all existing reviews for this article (grouped by category)
-        context['all_reviews'] = article.reviews.select_related(
-            'reviewer', 'category'
-        ).order_by('category__name_uz', '-created_at')
+        context['existing_review'] = existing_review
+        context['can_review'] = not existing_review
+        context['form'] = None if existing_review else ReviewForm()
 
         return context
 
 
 class SubmitReviewView(ReviewerRequiredMixin, View):
-    """Submit a review for an article in a specific category."""
+    """Submit a review for an article."""
 
-    def post(self, request, slug, category_id):
+    def post(self, request, slug):
         """Handle review submission."""
-        from .workflow import ArticleWorkflow
-
         article = get_object_or_404(Article, slug=slug)
-        category = get_object_or_404(Category, id=category_id)
 
-        # Verify reviewer can review this category
-        if not request.user.can_review_category(category):
-            messages.error(request, _('You are not assigned to review this category.'))
-            return redirect('articles:detail', slug=slug)
+        # Verify reviewer is assigned to this article
+        is_assigned = article.reviewer_assignments.filter(
+            reviewer=request.user,
+        ).exists() or request.user.is_superuser
 
-        # Verify article has this category
-        if not article.categories.filter(pk=category.pk).exists():
-            messages.error(request, _('Article does not belong to this category.'))
-            return redirect('articles:detail', slug=slug)
-
-        # Verify article is reviewable
-        if not article.can_be_reviewed:
-            messages.error(request, _('This article cannot be reviewed in its current status.'))
+        if not is_assigned:
+            messages.error(request, _('You are not assigned to review this article.'))
             return redirect('articles:detail', slug=slug)
 
         # Check for existing review
         existing = Review.objects.filter(
             article=article,
-            reviewer=request.user,
-            category=category
+            reviewer=request.user
         ).exists()
 
         if existing:
-            messages.warning(request, _('You have already reviewed this article for this category.'))
+            messages.warning(request, _('You have already reviewed this article.'))
             return redirect('articles:detail', slug=slug)
 
-        form = ReviewForm(request.POST, category=category)
+        form = ReviewForm(request.POST)
         form.instance.article = article
         form.instance.reviewer = request.user
-        form.instance.category = category
 
         if form.is_valid():
-            decision = form.cleaned_data.get('decision')
-            comment = form.cleaned_data.get('comment', '')
-
-            # Use workflow for the review action
-            if decision == Review.Decision.APPROVE:
-                success, message = ArticleWorkflow.reviewer_approve(article, request.user, comment)
-            elif decision == Review.Decision.CHANGES:
-                success, message = ArticleWorkflow.reviewer_request_changes(article, request.user, comment)
-            else:
-                # For REJECT, save the review directly
-                review = form.save()
-                from users.services import notify_review_submitted
-                notify_review_submitted(article.author, article, review, request.user)
-                success = True
-
-            if success:
-                messages.success(request, _('Your review has been submitted.'))
-            else:
-                messages.error(request, message)
+            # Save the Review object — the post_save signal
+            # triggers process_review_result() which handles:
+            #   - ReviewerAssignment sync
+            #   - Article status update
+            #   - Author notification + email
+            #   - Admin notification + email
+            form.save()
+            messages.success(request, _('Your review has been submitted.'))
         else:
             for error in form.errors.values():
                 messages.error(request, error)
@@ -678,22 +667,3 @@ class SubmitReviewView(ReviewerRequiredMixin, View):
             return redirect(next_url)
         return redirect('articles:detail', slug=slug)
 
-
-class CategoryArticlesView(ListView):
-    """List articles in a specific category."""
-    model = Article
-    template_name = 'articles/category_articles.html'
-    context_object_name = 'articles'
-    paginate_by = 12
-
-    def get_queryset(self):
-        self.category = get_object_or_404(Category, slug=self.kwargs['slug'], is_active=True)
-        return Article.objects.filter(
-            status=Article.ArticleStatus.PUBLISHED,
-            categories=self.category
-        ).select_related('author').prefetch_related('keywords').order_by('-published_at')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = self.category
-        return context

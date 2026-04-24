@@ -4,12 +4,33 @@
 {% block title %}{% trans "Home" %} - {% trans "Article Publishing Platform" %}{% endblock %}
 
 {% block content %}
+<!-- Admin Users Only Section -->
+{% if user.is_authenticated and user.is_admin_user %}
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="alert alert-dark border-2 border-warning" role="alert">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <h4><i class="bi bi-shield-lock"></i> {% trans "Admin Account" %}</h4>
+                    <p class="mb-0">{% trans "You are logged in as an administrator. Access the Admin Panel to manage journals, reviewers, articles, and view system statistics." %}</p>
+                </div>
+                <a href="{% url 'admin_panel:dashboard' %}" class="btn btn-warning btn-lg">
+                    <i class="bi bi-sliders"></i> {% trans "Go to Admin Panel" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 <!-- Hero Section -->
 <div class="row mb-5">
     <div class="col-12">
-        {% if user.is_authenticated and user.is_author %}
+        {% if user.is_authenticated and user.is_admin_user %}
+            <!-- Admin users don't see content sections -->
+        {% elif user.is_authenticated and user.is_author %}
             <!-- AUTHOR HERO -->
-            <div class="p-5 bg-gradient rounded-3 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <div class="p-5 bg-gradient rounded-3 text-center" style="background: linear-gradient(135deg, #1A2421 0%, #3D6B4F 100%); color: white;">
                 <h1 class="display-4 fw-bold">{% trans "Welcome" %}, {{ user.username }}!</h1>
                 <p class="lead">{% trans "Ready to share your knowledge? Create your next article now!" %}</p>
 
@@ -136,7 +157,8 @@
     </div>
 </div>
 
-<!-- Recent Articles -->
+<!-- Recent Articles (Hidden for Admin) -->
+{% if not user.is_admin_user %}
 <div class="row mb-4">
     <div class="col-12">
         <h2 class="mb-4">
@@ -150,14 +172,6 @@
         {% for article in recent_articles %}
             <div class="col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm">
-                    {% if article.cover_image %}
-                        <img src="{{ article.cover_image.url }}" class="card-img-top article-cover" alt="{{ article.title }}">
-                    {% else %}
-                        <div class="article-cover d-flex align-items-center justify-content-center bg-secondary text-white">
-                            <i class="bi bi-file-earmark-text" style="font-size: 3rem;"></i>
-                        </div>
-                    {% endif %}
-
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text text-muted">
@@ -224,4 +238,5 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,152 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ reviewer.get_full_name|default:reviewer.username }} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="reviewer-detail-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ reviewer.get_full_name|default:reviewer.username }}</h2>
+        <div>
+            <a href="{% url 'admin_panel:reviewer_edit' reviewer.pk %}" class="btn btn-warning">
+                {% trans "Edit" %}
+            </a>
+            <a href="{% url 'admin_panel:reviewer_list' %}" class="btn btn-secondary">
+                {% trans "Back" %}
+            </a>
+        </div>
+    </div>
+    
+    <!-- Reviewer Information -->
+    <div class="card p-4 mb-4">
+        <h4 class="mb-3">{% trans "Reviewer Information" %}</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>{% trans "Username:" %}</strong> {{ reviewer.username }}</p>
+                <p><strong>{% trans "Email:" %}</strong> <a href="mailto:{{ reviewer.email }}">{{ reviewer.email }}</a></p>
+                <p><strong>{% trans "Organization:" %}</strong> {{ reviewer.organization|default:"—" }}</p>
+                <p>
+                    <strong>{% trans "Status:" %}</strong>
+                    {% if reviewer.is_active %}
+                    <span class="badge badge-success">{% trans "Active" %}</span>
+                    {% else %}
+                    <span class="badge badge-danger">{% trans "Inactive" %}</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>{% trans "Created:" %}</strong> {{ reviewer.created_at|date:"Y-m-d H:i" }}</p>
+                <p><strong>{% trans "Last Modified:" %}</strong> {{ reviewer.updated_at|date:"Y-m-d H:i" }}</p>
+            </div>
+        </div>
+        
+        {% if reviewer.bio %}
+        <hr>
+        <p><strong>{% trans "Biography:" %}</strong></p>
+        <p>{{ reviewer.bio }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card info">
+                <h5>{% trans "Total Reviews" %}</h5>
+                <div class="stat-number">{{ total_assignments }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card success">
+                <h5>{% trans "Approved" %}</h5>
+                <div class="stat-number">{{ approved_count }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card warning">
+                <h5>{% trans "Changes Requested" %}</h5>
+                <div class="stat-number">{{ changes_count }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card danger">
+                <h5>{% trans "Rejected" %}</h5>
+                <div class="stat-number">{{ rejected_count }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Assigned Journals -->
+    <div class="card p-4 mb-4">
+        <h4 class="mb-3">{% trans "Journals" %}</h4>
+        {% if journals %}
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>{% trans "Year" %}</th>
+                        <th>{% trans "Number" %}</th>
+                        <th>{% trans "Articles Assigned" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for journal_info in journals %}
+                    <tr>
+                        <td><strong>{{ journal_info.year }}</strong></td>
+                        <td>{{ journal_info.number }}</td>
+                        <td><span class="badge badge-info">{{ journal_info.count }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted">{% trans "No articles assigned from any journal." %}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Recent Reviews -->
+    <div class="card p-4">
+        <h4 class="mb-3">{% trans "Recent Reviews" %}</h4>
+        {% if recent_assignments %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>{% trans "Article" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Deadline" %}</th>
+                        <th>{% trans "Action" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assignment in recent_assignments %}
+                    <tr>
+                        <td>{{ assignment.article.title_uz }}</td>
+                        <td>
+                            {% if assignment.status == 'APPROVED' %}
+                            <span class="badge badge-success">{% trans "Approved" %}</span>
+                            {% elif assignment.status == 'REJECTED' %}
+                            <span class="badge badge-danger">{% trans "Rejected" %}</span>
+                            {% elif assignment.status == 'CHANGES_REQUESTED' %}
+                            <span class="badge badge-warning">{% trans "Changes Requested" %}</span>
+                            {% else %}
+                            <span class="badge badge-secondary">{% trans "Pending" %}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ assignment.review_deadline|date:"Y-m-d" }}</td>
+                        <td>
+                            <a href="{% url 'articles:detail' assignment.article.slug %}" class="btn btn-sm btn-info">
+                                {% trans "View" %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted">{% trans "No reviews yet." %}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

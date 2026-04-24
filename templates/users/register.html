@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Register - Article Publishing Platform{% endblock %}
+{% block title %}{% trans "Register" %} - {% trans "Article Publishing Platform" %}{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
@@ -8,7 +9,7 @@
         <div class="card shadow">
             <div class="card-header bg-primary text-white">
                 <h3 class="mb-0">
-                    <i class="bi bi-person-plus"></i> Create Account
+                    <i class="bi bi-person-plus"></i> {% trans "Create Account" %}
                 </h3>
             </div>
 
@@ -19,7 +20,7 @@
                     <!-- Username -->
                     <div class="mb-3">
                         <label for="{{ form.username.id_for_label }}" class="form-label">
-                            Username <span class="text-danger">*</span>
+                            {% trans "Username" %} <span class="text-danger">*</span>
                         </label>
                         {{ form.username }}
                         {% if form.username.errors %}
@@ -31,7 +32,7 @@
                     <!-- Email -->
                     <div class="mb-3">
                         <label for="{{ form.email.id_for_label }}" class="form-label">
-                            Email Address <span class="text-danger">*</span>
+                            {% trans "Email Address" %} <span class="text-danger">*</span>
                         </label>
                         {{ form.email }}
                         {% if form.email.errors %}
@@ -42,7 +43,7 @@
                     <!-- Role Selection -->
                     <div class="mb-3">
                         <label class="form-label">
-                            Select Your Role <span class="text-danger">*</span>
+                            {% trans "Select Your Role" %} <span class="text-danger">*</span>
                         </label>
 
                         <div class="row g-3">
@@ -64,9 +65,9 @@
                                                     </h5>
                                                     <small class="text-muted">
                                                         {% if value == 'READER' %}
-                                                            Browse and read articles
+                                                            {% trans "Browse and read articles" %}
                                                         {% else %}
-                                                            Create and publish articles
+                                                            {% trans "Create and publish articles" %}
                                                         {% endif %}
                                                     </small>
                                                 </label>
@@ -85,7 +86,7 @@
                     <!-- Password -->
                     <div class="mb-3">
                         <label for="{{ form.password1.id_for_label }}" class="form-label">
-                            Password <span class="text-danger">*</span>
+                            {% trans "Password" %} <span class="text-danger">*</span>
                         </label>
                         {{ form.password1 }}
                         {% if form.password1.errors %}
@@ -97,7 +98,7 @@
                     <!-- Confirm Password -->
                     <div class="mb-3">
                         <label for="{{ form.password2.id_for_label }}" class="form-label">
-                            Confirm Password <span class="text-danger">*</span>
+                            {% trans "Confirm Password" %} <span class="text-danger">*</span>
                         </label>
                         {{ form.password2 }}
                         {% if form.password2.errors %}
@@ -115,17 +116,18 @@
                     <!-- Submit Button -->
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="bi bi-person-plus"></i> Create Account
+                            <i class="bi bi-person-plus"></i> {% trans "Create Account" %}
                         </button>
                     </div>
                 </form>
             </div>
 
             <div class="card-footer text-center">
-                Already have an account?
-                <a href="{% url 'users:login' %}" class="text-decoration-none">Login here</a>
+                {% trans "Already have an account?" %}
+                <a href="{% url 'users:login' %}" class="text-decoration-none">{% trans "Login here" %}</a>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
+

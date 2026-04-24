@@ -1,0 +1,27 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete Reviewer" %} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="reviewer-delete-content">
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">{% trans "Warning" %}</h4>
+        <p>
+            {% trans "You are about to delete the reviewer:" %}
+            <strong>{{ object.get_full_name|default:object.username }}</strong>
+        </p>
+        <p>{% trans "This action cannot be undone. All review assignments will be removed." %}</p>
+    </div>
+    
+    <form method="post" data-test="delete-confirm-form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-test="confirm-delete">
+            {% trans "Yes, Delete This Reviewer" %}
+        </button>
+        <a href="{% url 'admin_panel:reviewer_detail' object.pk %}" class="btn btn-secondary">
+            {% trans "Cancel" %}
+        </a>
+    </form>
+</div>
+{% endblock %}

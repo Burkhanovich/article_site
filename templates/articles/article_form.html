@@ -65,10 +65,44 @@
                 <form method="post" enctype="multipart/form-data" novalidate id="article-form">
                     {% csrf_token %}
 
-                    <!-- Title (Uzbek) -->
+                    <!-- Journal Selection -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-journal-text"></i> {% trans "Journal (Year / Issue)" %} <span class="text-danger">*</span>
+                        </label>
+                        {% if form.journal.errors %}
+                            <div class="text-danger small mb-1">{{ form.journal.errors }}</div>
+                        {% endif %}
+                        {% with journals=form.journal.field.queryset %}
+                        {% if journals %}
+                        <div class="row g-2" id="journal-cards">
+                            {% for journal in journals %}
+                            <div class="col-auto">
+                                <input type="radio" class="btn-check" name="journal"
+                                       id="journal_{{ journal.pk }}"
+                                       value="{{ journal.pk }}"
+                                       {% if form.journal.value|stringformat:'s' == journal.pk|stringformat:'s' %}checked{% endif %}
+                                       required>
+                                <label class="btn btn-outline-primary px-4 py-3" for="journal_{{ journal.pk }}">
+                                    <div class="fw-bold fs-5">{{ journal.year }}</div>
+                                    <div class="small">{% trans "Issue" %} {{ journal.number }}</div>
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-warning mb-0">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            {% trans "No active journals available. Please contact the administrator." %}
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+                    <!-- Title -->
                     <div class="mb-3">
                         <label for="{{ form.title_uz.id_for_label }}" class="form-label">
-                            {{ form.title_uz.label }} <span class="text-danger">*</span>
+                            <i class="bi bi-card-heading"></i> {{ form.title_uz.label }} <span class="text-danger">*</span>
                         </label>
                         {{ form.title_uz }}
                         {% if form.title_uz.errors %}
@@ -76,58 +110,14 @@
                         {% endif %}
                     </div>
 
-                    <!-- Title (Russian) -->
-                    <div class="mb-3">
-                        <label for="{{ form.title_ru.id_for_label }}" class="form-label">
-                            {{ form.title_ru.label }}
-                        </label>
-                        {{ form.title_ru }}
-                        {% if form.title_ru.errors %}
-                            <div class="text-danger small">{{ form.title_ru.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Title (English) -->
-                    <div class="mb-3">
-                        <label for="{{ form.title_en.id_for_label }}" class="form-label">
-                            {{ form.title_en.label }}
-                        </label>
-                        {{ form.title_en }}
-                        {% if form.title_en.errors %}
-                            <div class="text-danger small">{{ form.title_en.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Content (Uzbek) -->
+                    <!-- Content -->
                     <div class="mb-3">
                         <label for="{{ form.content_uz.id_for_label }}" class="form-label">
-                            {{ form.content_uz.label }} <span class="text-danger">*</span>
+                            <i class="bi bi-file-text"></i> {{ form.content_uz.label }} <span class="text-danger">*</span>
                         </label>
                         {{ form.content_uz }}
                         {% if form.content_uz.errors %}
                             <div class="text-danger small">{{ form.content_uz.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Content (Russian) -->
-                    <div class="mb-3">
-                        <label for="{{ form.content_ru.id_for_label }}" class="form-label">
-                            {{ form.content_ru.label }}
-                        </label>
-                        {{ form.content_ru }}
-                        {% if form.content_ru.errors %}
-                            <div class="text-danger small">{{ form.content_ru.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Content (English) -->
-                    <div class="mb-3">
-                        <label for="{{ form.content_en.id_for_label }}" class="form-label">
-                            {{ form.content_en.label }}
-                        </label>
-                        {{ form.content_en }}
-                        {% if form.content_en.errors %}
-                            <div class="text-danger small">{{ form.content_en.errors }}</div>
                         {% endif %}
                     </div>
 
@@ -161,34 +151,6 @@
                         <small class="form-text text-muted">
                             <i class="bi bi-info-circle"></i>
                             {% trans "Allowed formats: PDF, DOC, DOCX. Maximum size: 20 MB." %}
-                        </small>
-                    </div>
-
-                    <!-- Categories -->
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <i class="bi bi-folder"></i> {{ form.categories.label }} <span class="text-danger">*</span>
-                        </label>
-                        <div class="border rounded p-3">
-                            <div class="row">
-                                {% for widget in form.categories %}
-                                <div class="col-md-4 col-sm-6 mb-2">
-                                    <div class="form-check">
-                                        {{ widget.tag }}
-                                        <label class="form-check-label" for="{{ widget.id_for_label }}">
-                                            {{ widget.choice_label }}
-                                        </label>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        {% if form.categories.errors %}
-                            <div class="text-danger small mt-1">{{ form.categories.errors }}</div>
-                        {% endif %}
-                        <small class="form-text text-muted">
-                            <i class="bi bi-info-circle"></i>
-                            {% trans "Select at least one category for your article." %}
                         </small>
                     </div>
 
@@ -227,17 +189,6 @@
                         <small class="form-text text-muted">
                             {% trans "Type a keyword and click Add (or press Enter). You can add as many as you want." %}
                         </small>
-                    </div>
-
-                    <!-- Review Mode -->
-                    <div class="mb-3">
-                        <label for="{{ form.review_mode.id_for_label }}" class="form-label">
-                            {{ form.review_mode.label }}
-                        </label>
-                        {{ form.review_mode }}
-                        {% if form.review_mode.errors %}
-                            <div class="text-danger small">{{ form.review_mode.errors }}</div>
-                        {% endif %}
                     </div>
 
                     <!-- Non-field errors -->
@@ -308,14 +259,15 @@
         gap: 6px;
         padding: 6px 12px;
         border-radius: 20px;
-        background-color: #e9ecef;
-        border: 1px solid #ced4da;
+        background-color: var(--light-bg, #F1F3F0);
+        border: 1px solid var(--border-color, #D5D9D3);
         font-size: 0.9rem;
         animation: fadeIn 0.2s ease-in;
+        color: var(--text-primary, #1A2421);
     }
     .keyword-badge .remove-keyword {
         cursor: pointer;
-        color: #dc3545;
+        color: var(--danger-color, #C04E3A);
         font-weight: bold;
         font-size: 1rem;
         line-height: 1;
@@ -324,7 +276,7 @@
         padding: 0 2px;
     }
     .keyword-badge .remove-keyword:hover {
-        color: #a71d2a;
+        color: #A43E2E;
     }
     @keyframes fadeIn {
         from { opacity: 0; transform: scale(0.9); }
@@ -338,12 +290,32 @@
 (function() {
     'use strict';
 
+    console.log('=== Keyword Script Starting ===');
+
     const keywordsContainer = document.getElementById('keywords-container');
     const keywordInput = document.getElementById('keyword-input');
     const addBtn = document.getElementById('add-keyword-btn');
-    const hiddenInput = document.getElementById('keywords-json-input');
+    const hiddenInput = document.getElementById('id_keywords_json');
     const keywordError = document.getElementById('keyword-error');
     const articleForm = document.getElementById('article-form');
+
+    console.log('Elements found:');
+    console.log('- keywordsContainer:', keywordsContainer ? 'YES' : 'NO');
+    console.log('- keywordInput:', keywordInput ? 'YES' : 'NO');
+    console.log('- addBtn:', addBtn ? 'YES' : 'NO');
+    console.log('- hiddenInput:', hiddenInput ? 'YES' : 'NO');
+    console.log('- keywordError:', keywordError ? 'YES' : 'NO');
+    console.log('- articleForm:', articleForm ? 'YES' : 'NO');
+
+    if (!hiddenInput) {
+        console.error('CRITICAL: hiddenInput not found!');
+        console.log('Looking for all hidden inputs:');
+        document.querySelectorAll('input[type="hidden"]').forEach(function(input) {
+            console.log('  - ID:', input.id, 'Name:', input.name);
+        });
+        alert('ERROR: Hidden input field not found! Check console.');
+        return;
+    }
 
     let keywords = [];
 
@@ -351,6 +323,7 @@
     function loadExisting() {
         try {
             const raw = hiddenInput.value;
+            console.log('Loading existing keywords:', raw);
             if (raw) {
                 const parsed = JSON.parse(raw);
                 if (Array.isArray(parsed)) {
@@ -361,19 +334,22 @@
                     });
                 }
             }
-        } catch(e) {}
+        } catch(e) {
+            console.error('Error loading keywords:', e);
+        }
         renderKeywords();
     }
 
     // Render keyword badges
     function renderKeywords() {
+        console.log('Rendering keywords:', keywords);
         keywordsContainer.innerHTML = '';
         keywords.forEach(function(kw, idx) {
             const badge = document.createElement('span');
             badge.className = 'keyword-badge';
             badge.innerHTML =
                 '<span>' + escapeHtml(kw) + '</span>' +
-                '<button type="button" class="remove-keyword" data-index="' + idx + '" title="{% trans "Remove" %}">&times;</button>';
+                '<button type="button" class="remove-keyword" data-index="' + idx + '" title="O\'chirish">&times;</button>';
             keywordsContainer.appendChild(badge);
         });
         syncHidden();
@@ -386,27 +362,37 @@
 
     // Sync keywords to hidden input
     function syncHidden() {
-        hiddenInput.value = JSON.stringify(keywords);
+        const jsonValue = JSON.stringify(keywords);
+        hiddenInput.value = jsonValue;
+        console.log('Hidden input synced:', jsonValue);
     }
 
     // Add keyword
     function addKeyword() {
+        console.log('addKeyword called');
         const val = keywordInput.value.trim().toLowerCase();
-        if (!val) return;
+        console.log('Input value:', val);
+
+        if (!val) {
+            console.log('Empty value, returning');
+            return;
+        }
 
         if (val.length > 100) {
-            alert('{% trans "Keyword is too long (max 100 characters)." %}');
+            alert('Keyword juda uzun (maksimal 100 belgi).');
             return;
         }
 
         // Check duplicate
         if (keywords.indexOf(val) !== -1) {
+            console.log('Duplicate keyword');
             keywordInput.value = '';
             keywordInput.focus();
             return;
         }
 
         keywords.push(val);
+        console.log('Keyword added. Total:', keywords.length);
         keywordInput.value = '';
         keywordInput.focus();
         renderKeywords();
@@ -414,6 +400,7 @@
 
     // Remove keyword
     function removeKeyword(index) {
+        console.log('Removing keyword at index:', index);
         keywords.splice(index, 1);
         renderKeywords();
     }
@@ -427,6 +414,7 @@
 
     // Event: click Add button
     addBtn.addEventListener('click', function(e) {
+        console.log('Add button clicked');
         e.preventDefault();
         addKeyword();
     });
@@ -434,6 +422,7 @@
     // Event: press Enter in keyword input
     keywordInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
+            console.log('Enter key pressed');
             e.preventDefault();
             addKeyword();
         }
@@ -450,17 +439,21 @@
 
     // Event: validate on form submit
     articleForm.addEventListener('submit', function(e) {
+        console.log('Form submitting, keywords:', keywords);
         syncHidden();
         if (keywords.length < 1) {
             e.preventDefault();
             keywordError.style.display = 'block';
             keywordsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
             keywordInput.focus();
+            console.log('Form submission blocked: no keywords');
         }
     });
 
     // Initialize
+    console.log('Initializing...');
     loadExisting();
+    console.log('=== Keyword Script Ready ===');
 })();
 </script>
 {% endblock %}

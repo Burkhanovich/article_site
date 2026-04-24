@@ -1,143 +1,253 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
-{% block title %}{% trans "Reviewer Dashboard" %} - {{ block.super }}{% endblock %}
+{% block title %}{% trans 'Reviewer Dashboard' %} - Maqola Publishing Platform{% endblock %}
 
 {% block content %}
-<div class="row mb-4">
-    <div class="col-12">
-        <h1>
-            <i class="bi bi-clipboard-check"></i> {% trans "Reviewer Dashboard" %}
-        </h1>
-        <p class="text-muted">{% trans "Review articles in your assigned categories" %}</p>
+<div class="container my-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col">
+            <h1 class="display-5 fw-bold">{% trans 'Reviewer Dashboard' %}</h1>
+            <p class="text-secondary">{% trans 'Manage your assigned article reviews' %}</p>
+        </div>
+        <div class="col-auto">
+            <span class="badge bg-primary-custom fs-6">
+                {{ total_assignments }} {% trans 'assignment(s)' %}
+            </span>
+        </div>
     </div>
-</div>
 
-<!-- Statistics -->
-<div class="row mb-4">
-    <div class="col-md-4">
-        <div class="card text-white bg-primary">
-            <div class="card-body text-center">
-                <h3>{{ queue.total_pending|default:0 }}</h3>
-                <p class="mb-0">{% trans "Pending Reviews" %}</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card text-white bg-success">
-            <div class="card-body text-center">
-                <h3>{{ recent_reviews|length|default:0 }}</h3>
-                <p class="mb-0">{% trans "Recent Reviews" %}</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card bg-light">
-            <div class="card-body text-center">
-                <h3>{{ queue.categories|length|default:0 }}</h3>
-                <p class="mb-0">{% trans "Assigned Categories" %}</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Review Queue by Category -->
-<div class="card mb-4">
-    <div class="card-header">
-        <h5 class="mb-0"><i class="bi bi-list-task"></i> {% trans "Review Queue" %}</h5>
-    </div>
-    <div class="card-body">
-        {% if queue.categories %}
-            {% for cat_data in queue.categories %}
-                <div class="mb-4">
-                    <h6>
-                        <span class="badge bg-secondary">{{ cat_data.category.name_uz }}</span>
-                        <small class="text-muted">({{ cat_data.pending_count }} {% trans "pending" %})</small>
-                    </h6>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-hover">
-                            <thead>
-                                <tr>
-                                    <th>{% trans "Title" %}</th>
-                                    <th>{% trans "Author" %}</th>
-                                    <th>{% trans "Submitted" %}</th>
-                                    <th>{% trans "Action" %}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for article in cat_data.articles %}
-                                    <tr>
-                                        <td>{{ article.title_uz|truncatechars:40 }}</td>
-                                        <td>{{ article.author.username }}</td>
-                                        <td>{{ article.submitted_at|date:"d M Y"|default:"-" }}</td>
-                                        <td>
-                                            <a href="{% url 'articles:article_review' article.slug %}" class="btn btn-sm btn-success">
-                                                <i class="bi bi-pencil-square"></i> {% trans "Review" %}
-                                            </a>
-                                            <a href="{% url 'articles:detail' article.slug %}" class="btn btn-sm btn-outline-primary">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+    <!-- Stats Row -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-secondary small">{% trans 'Pending' %}</h6>
+                            <h3 class="mb-0">{{ pending_count }}</h3>
+                        </div>
+                        <div class="text-warning fs-2">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
                     </div>
                 </div>
-            {% endfor %}
-        {% else %}
-            <div class="text-center py-4">
-                <i class="bi bi-check-circle display-4 text-success"></i>
-                <p class="mt-3 text-muted">{% trans "No articles pending review. Great job!" %}</p>
             </div>
-        {% endif %}
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-secondary small">{% trans 'Approved' %}</h6>
+                            <h3 class="mb-0 text-success">{{ approved_count }}</h3>
+                        </div>
+                        <div class="text-success fs-2">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-secondary small">{% trans 'Changes Requested' %}</h6>
+                            <h3 class="mb-0 text-info">{{ changes_count }}</h3>
+                        </div>
+                        <div class="text-info fs-2">
+                            <i class="bi bi-pencil-square"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-secondary small">{% trans 'Rejected' %}</h6>
+                            <h3 class="mb-0 text-danger">{{ rejected_count }}</h3>
+                        </div>
+                        <div class="text-danger fs-2">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs for different statuses -->
+    <ul class="nav nav-tabs nav-fill mb-4" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#pending" role="tab">
+                <i class="bi bi-hourglass-split me-2"></i>{% trans 'Pending' %}
+                <span class="badge bg-secondary ms-2">{{ pending_count }}</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#reviewed" role="tab">
+                <i class="bi bi-check-circle me-2"></i>{% trans 'Reviewed' %}
+                <span class="badge bg-secondary ms-2">{{ reviewed_count }}</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <!-- Pending Reviews Tab -->
+        <div class="tab-pane fade show active" id="pending" role="tabpanel">
+            {% if pending_assignments %}
+                <div class="row">
+                    {% for assignment in pending_assignments %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm hover-lift">
+                            <div class="card-header bg-gradient-warning border-0">
+                                <h5 class="card-title mb-0 text-white">
+                                    <i class="bi bi-file-earmark-text me-2"></i>
+                                    {{ assignment.article.title_uz|truncatewords:10 }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-2">
+                                    <strong>{% trans 'Author' %}:</strong>
+                                    {{ assignment.article.author.get_full_name|default:assignment.article.author.username }}
+                                </p>
+                                <p class="mb-2">
+                                    <strong>{% trans 'Journal' %}:</strong>
+                                    <span class="badge bg-info">{{ assignment.article.publication_number }}/{{ assignment.article.publication_year }}</span>
+                                </p>
+                                <p class="mb-2">
+                                    <strong>{% trans 'Assigned' %}:</strong>
+                                    {{ assignment.assigned_at|date:'d.m.Y H:i' }}
+                                </p>
+                                {% if assignment.review_deadline %}
+                                <p class="mb-3">
+                                    <strong>{% trans 'Deadline' %}:</strong>
+                                    <span class="badge bg-danger">
+                                        {{ assignment.review_deadline|date:'d.m.Y H:i' }}
+                                    </span>
+                                </p>
+                                {% endif %}
+                                <a href="{% url 'articles:article_review' assignment.article.slug %}" class="btn btn-sm btn-primary-custom">
+                                    <i class="bi bi-eye me-2"></i>{% trans 'Review Article' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    {% trans 'No pending articles to review.' %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Reviewed Articles Tab -->
+        <div class="tab-pane fade" id="reviewed" role="tabpanel">
+            {% if reviewed_assignments %}
+                <div class="row">
+                    {% for assignment in reviewed_assignments %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header {% if assignment.status == 'APPROVED' %}bg-gradient-success{% elif assignment.status == 'CHANGES_REQUESTED' %}bg-gradient-info{% elif assignment.status == 'REJECTED' %}bg-gradient-danger{% endif %} border-0">
+                                <h5 class="card-title mb-0 text-white">
+                                    {% if assignment.status == 'APPROVED' %}
+                                        <i class="bi bi-check-circle me-2"></i>
+                                    {% elif assignment.status == 'CHANGES_REQUESTED' %}
+                                        <i class="bi bi-pencil-square me-2"></i>
+                                    {% elif assignment.status == 'REJECTED' %}
+                                        <i class="bi bi-x-circle me-2"></i>
+                                    {% endif %}
+                                    {{ assignment.article.title_uz|truncatewords:10 }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-2">
+                                    <strong>{% trans 'Status' %}:</strong>
+                                    <span class="badge {% if assignment.status == 'APPROVED' %}bg-success{% elif assignment.status == 'CHANGES_REQUESTED' %}bg-info{% elif assignment.status == 'REJECTED' %}bg-danger{% endif %}">
+                                        {{ assignment.get_status_display }}
+                                    </span>
+                                </p>
+                                <p class="mb-2">
+                                    <strong>{% trans 'Reviewed' %}:</strong>
+                                    {{ assignment.reviewed_at|date:'d.m.Y H:i' }}
+                                </p>
+                                {% if assignment.review_comment %}
+                                <div class="alert alert-light border">
+                                    <p class="mb-0 small text-secondary">
+                                        <strong>{% trans 'Your Comment' %}:</strong>
+                                    </p>
+                                    <p class="mb-0">{{ assignment.review_comment }}</p>
+                                </div>
+                                {% endif %}
+                                <a href="{% url 'articles:detail' assignment.article.slug %}" class="btn btn-sm btn-outline-secondary">
+                                    <i class="bi bi-eye me-2"></i>{% trans 'View Article' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    {% trans 'You have not reviewed any articles yet.' %}
+                </div>
+            {% endif %}
+        </div>
     </div>
 </div>
 
-<!-- Recent Reviews -->
-<div class="card">
-    <div class="card-header">
-        <h5 class="mb-0"><i class="bi bi-clock-history"></i> {% trans "Your Recent Reviews" %}</h5>
-    </div>
-    <div class="card-body">
-        {% if recent_reviews %}
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>{% trans "Article" %}</th>
-                            <th>{% trans "Category" %}</th>
-                            <th>{% trans "Decision" %}</th>
-                            <th>{% trans "Date" %}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for review in recent_reviews %}
-                            <tr>
-                                <td>
-                                    <a href="{% url 'articles:detail' review.article.slug %}">
-                                        {{ review.article.title_uz|truncatechars:40 }}
-                                    </a>
-                                </td>
-                                <td>{{ review.category.name_uz }}</td>
-                                <td>
-                                    <span class="badge
-                                        {% if review.decision == 'APPROVE' %}bg-success
-                                        {% elif review.decision == 'CHANGES' %}bg-warning
-                                        {% elif review.decision == 'REJECT' %}bg-danger
-                                        {% endif %}">
-                                        {{ review.get_decision_display }}
-                                    </span>
-                                </td>
-                                <td>{{ review.created_at|date:"d M Y H:i" }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% else %}
-            <p class="text-muted mb-0">{% trans "No reviews yet." %}</p>
-        {% endif %}
-    </div>
-</div>
+<style>
+    .bg-gradient-warning {
+        background: linear-gradient(135deg, #D4982C 0%, #B87E24 100%) !important;
+    }
+    
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #4A8C5C 0%, #3D7A4E 100%) !important;
+    }
+    
+    .bg-gradient-info {
+        background: linear-gradient(135deg, #3B8686 0%, #2D6E6E 100%) !important;
+    }
+    
+    .bg-gradient-danger {
+        background: linear-gradient(135deg, #C04E3A 0%, #A43E2E 100%) !important;
+    }
+    
+    .hover-lift {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .hover-lift:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1rem rgba(26, 36, 33, 0.12) !important;
+    }
+    
+    .btn-primary-custom {
+        background: linear-gradient(135deg, #3D6B4F 0%, #2E5240 100%);
+        border: none;
+        color: white;
+    }
+    
+    .btn-primary-custom:hover {
+        background: linear-gradient(135deg, #2E5240 0%, #1A2421 100%);
+        color: white;
+    }
+    
+    .badge {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+    }
+</style>
 {% endblock %}
+

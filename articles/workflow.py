@@ -247,6 +247,20 @@ class ArticleWorkflow:
                 notify_reviewer_article_assigned(reviewer, article, admin_user)
                 count_assigned += 1
 
+        # Always transition PENDING_ADMIN → IN_REVIEW when article has reviewers
+        if article.status == Article.ArticleStatus.PENDING_ADMIN:
+            has_reviewers = ReviewerAssignment.objects.filter(article=article).exists()
+            if has_reviewers:
+                old_status = article.status
+                article.status = Article.ArticleStatus.IN_REVIEW
+                article.save(update_fields=['status', 'updated_at'])
+                article._log_status_change(
+                    old_status,
+                    Article.ArticleStatus.IN_REVIEW,
+                    admin_user,
+                    f'Sent to review: {count_assigned} new reviewer(s) assigned'
+                )
+
         logger.info(f"Assigned {count_assigned} reviewer(s) to article '{article.title_uz}'")
         return True, str(_("%(count)d reviewer(s) assigned.") % {'count': count_assigned}), count_assigned
 
@@ -278,24 +292,8 @@ class ArticleWorkflow:
 
         assignment.mark_approved(comment)
 
-        # Create a Review record for legacy compatibility
-        from .models import Review, Category
-        # Use the first category from the article for the review
-        category = article.categories.first()
-        if category:
-            Review.objects.update_or_create(
-                article=article,
-                reviewer=reviewer,
-                category=category,
-                defaults={
-                    'decision': Review.Decision.APPROVE,
-                    'comment': comment,
-                }
-            )
-
-            # Notify author about review
-            review = Review.objects.get(article=article, reviewer=reviewer, category=category)
-            notify_review_submitted(article.author, article, review, reviewer)
+        # Notify author about review approval
+        notify_review_submitted(article.author, article, None, reviewer)
 
         # AUTO-PUBLISH: When reviewer approves, article is automatically published
         if article.status in [Article.ArticleStatus.IN_REVIEW, Article.ArticleStatus.PENDING_ADMIN]:
@@ -352,8 +350,11 @@ class ArticleWorkflow:
 
         assignment.mark_changes_requested(comment)
 
-        # Update article status if it's in review
-        if article.status == Article.ArticleStatus.IN_REVIEW:
+        # Update article status to CHANGES_REQUESTED
+        if article.status in [
+            Article.ArticleStatus.IN_REVIEW,
+            Article.ArticleStatus.PENDING_ADMIN,
+        ]:
             old_status = article.status
             article.status = Article.ArticleStatus.CHANGES_REQUESTED
             article.save(update_fields=['status', 'updated_at'])
@@ -364,24 +365,7 @@ class ArticleWorkflow:
                 f'Changes requested: {comment[:100]}'
             )
 
-        # Create a Review record for legacy compatibility
-        from .models import Review
-        category = article.categories.first()
-        if category:
-            Review.objects.update_or_create(
-                article=article,
-                reviewer=reviewer,
-                category=category,
-                defaults={
-                    'decision': Review.Decision.CHANGES,
-                    'comment': comment,
-                }
-            )
-
-            review = Review.objects.get(article=article, reviewer=reviewer, category=category)
-            notify_review_submitted(article.author, article, review, reviewer)
-
-        # Notify author about changes requested
+        # Notify author about changes requested  
         notify_changes_requested(article.author, article, comment)
 
         logger.info(f"Reviewer {reviewer.username} requested changes for article '{article.title_uz}'")

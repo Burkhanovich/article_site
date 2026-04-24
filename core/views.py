@@ -18,6 +18,10 @@ class HomeView(TemplateView):
         """Add recent articles to context."""
         context = super().get_context_data(**kwargs)
 
+        # Admin users don't see regular content
+        if self.request.user.is_authenticated and self.request.user.is_admin_user:
+            return context
+
         # Get latest published articles
         context['recent_articles'] = Article.objects.filter(
             status=Article.ArticleStatus.PUBLISHED
@@ -31,6 +35,13 @@ class HomeView(TemplateView):
         return context
 
 
+class UXDemoView(TemplateView):
+    """
+    UX Demo page - showcases all interactive features.
+    """
+    template_name = 'core/ux_demo.html'
+
+
 class DashboardRedirectView(LoginRequiredMixin, TemplateView):
     """
     Dashboard view that redirects based on user role.
@@ -42,6 +53,10 @@ class DashboardRedirectView(LoginRequiredMixin, TemplateView):
         """Add role-specific data to context."""
         context = super().get_context_data(**kwargs)
         user = self.request.user
+
+        # Admin users don't need article context - they use admin panel
+        if user.is_admin_user:
+            return context
 
         if user.is_author:
             # Author statistics

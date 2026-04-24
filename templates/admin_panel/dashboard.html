@@ -1,0 +1,256 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Admin Dashboard" %} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="container-fluid py-5">
+    <!-- Header -->
+    <div class="mb-5">
+        <h1 class="display-5 fw-bold mb-2">{% trans "Admin Dashboard" %}</h1>
+        <p class="text-secondary">{% trans "Manage journals, reviewers, and publication workflow" %}</p>
+    </div>
+
+    <!-- Quick Stats Row -->
+    <div class="row mb-4">
+        <div class="col-lg-3 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-secondary small mb-1">{% trans "Total Articles" %}</h6>
+                            <h2 class="mb-0 fw-bold">{{ total_articles }}</h2>
+                        </div>
+                        <div class="text-primary fs-3">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-secondary small mb-1">{% trans "Pending Review" %}</h6>
+                            <h2 class="mb-0 fw-bold text-warning">{{ pending_articles }}</h2>
+                        </div>
+                        <div class="text-warning fs-3">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-secondary small mb-1">{% trans "Published" %}</h6>
+                            <h2 class="mb-0 fw-bold text-success">{{ published_articles }}</h2>
+                        </div>
+                        <div class="text-success fs-3">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-secondary small mb-1">{% trans "Active Reviewers" %}</h6>
+                            <h2 class="mb-0 fw-bold">{{ active_reviewers }}/{{ total_reviewers }}</h2>
+                        </div>
+                        <div class="text-info fs-3">
+                            <i class="bi bi-people"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Status Breakdown -->
+    <h5 class="fw-bold mb-3 mt-4">{% trans "Article Status Breakdown" %}</h5>
+    <div class="row mb-5">
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <p class="text-secondary small mb-1">{% trans "In Review" %}</p>
+                    <h3 class="mb-0 text-info">{{ in_review_articles }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <p class="text-secondary small mb-1">{% trans "Changes Requested" %}</p>
+                    <h3 class="mb-0 text-warning">{{ changes_requested }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <p class="text-secondary small mb-1">{% trans "Rejected" %}</p>
+                    <h3 class="mb-0 text-danger">{{ rejected_articles }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <p class="text-secondary small mb-1">{% trans "Draft" %}</p>
+                    <h3 class="mb-0 text-secondary">{{ draft_articles }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <p class="text-secondary small mb-1">{% trans "Authors" %}</p>
+                    <h3 class="mb-0 text-primary">{{ total_authors }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <p class="text-secondary small mb-1">{% trans "Journals" %}</p>
+                    <h3 class="mb-0 text-info">{{ active_journals }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Pending Articles Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-light border-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-hourglass-split text-warning me-2"></i>
+                        {% trans "Pending Articles" %} ({{ pending_articles }})
+                    </h6>
+                </div>
+                <div class="card-body">
+                    {% if recent_pending %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "Article" %}</th>
+                                    <th>{% trans "Author" %}</th>
+                                    <th>{% trans "Submitted" %}</th>
+                                    <th>{% trans "Action" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for article in recent_pending %}
+                                <tr>
+                                    <td class="fw-500">{{ article.title_uz|truncatewords:6 }}</td>
+                                    <td>{{ article.author.get_full_name|default:article.author.username }}</td>
+                                    <td><small>{{ article.submitted_at|date:"d.m.Y" }}</small></td>
+                                    <td>
+                                        <a href="{% url 'admin_panel:article_action' article.slug %}" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-eye"></i> {% trans "Review" %}
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted mb-0">{% trans "No pending articles. Great job!" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-light border-0">
+                    <h6 class="mb-0 fw-bold">
+                        <i class="bi bi-people text-info me-2"></i>
+                        {% trans "Top Reviewers" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    {% if top_reviewers %}
+                    <div class="list-group list-group-flush">
+                        {% for reviewer in top_reviewers %}
+                        <a href="{% url 'admin_panel:reviewer_detail' reviewer.pk %}" class="list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h6 class="mb-1">{{ reviewer.get_full_name|default:reviewer.username }}</h6>
+                                    <small class="text-muted">@{{ reviewer.username }}</small>
+                                </div>
+                                <span class="badge bg-success">{{ reviewer.review_count }}</span>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-muted mb-0">{% trans "No reviewers assigned yet." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-12">
+            <h6 class="fw-bold mb-3">{% trans "Quick Actions" %}</h6>
+            <div class="btn-group" role="group" aria-label="Quick actions">
+                <a href="{% url 'admin_panel:journal_list' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-journal"></i> {% trans "Manage Journals" %}
+                </a>
+                <a href="{% url 'admin_panel:reviewer_list' %}" class="btn btn-outline-success">
+                    <i class="bi bi-people"></i> {% trans "Manage Reviewers" %}
+                </a>
+                <a href="{% url 'admin:articles_reviewerassignment_changelist' %}" class="btn btn-outline-info">
+                    <i class="bi bi-briefcase"></i> {% trans "Reviewer Assignments" %}
+                </a>
+                <a href="{% url 'admin:articles_article_changelist' %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-list-check"></i> {% trans "All Articles" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .fw-500 {
+        font-weight: 500;
+    }
+    
+    .card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1rem rgba(26, 36, 33, 0.1) !important;
+    }
+    
+    .list-group-item {
+        border-left: 3px solid transparent;
+        transition: all 0.2s;
+    }
+    
+    .list-group-item:hover {
+        border-left-color: var(--accent-color, #D4772C);
+        background-color: var(--light-bg, #F1F3F0);
+    }
+</style>
+{% endblock %}

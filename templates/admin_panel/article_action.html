@@ -1,0 +1,204 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Article Action" %}: {{ article.title_uz }} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="article-action-content">
+    <h2 class="mb-4">{{ article.title_uz }}</h2>
+    
+    <div class="row">
+        <!-- Article Information -->
+        <div class="col-md-8">
+            <div class="card p-4 mb-4">
+                <h4 class="mb-3">{% trans "Article Information" %}</h4>
+                
+                <p><strong>{% trans "Title (Uzbek):" %}</strong> {{ article.title_uz }}</p>
+                <p><strong>{% trans "Title (Russian):" %}</strong> {{ article.title_ru }}</p>
+                <p><strong>{% trans "Title (English):" %}</strong> {{ article.title_en }}</p>
+                
+                <p><strong>{% trans "Author:" %}</strong> {{ article.author.get_full_name|default:article.author.username }}</p>
+                
+                <p><strong>{% trans "Status:" %}</strong>
+                    {% if article.status == 'DRAFT' %}
+                    <span class="badge badge-secondary">{% trans "Draft" %}</span>
+                    {% elif article.status == 'PENDING_ADMIN' %}
+                    <span class="badge badge-danger">{% trans "Pending Admin" %}</span>
+                    {% elif article.status == 'IN_REVIEW' %}
+                    <span class="badge badge-info">{% trans "In Review" %}</span>
+                    {% elif article.status == 'CHANGES_REQUESTED' %}
+                    <span class="badge badge-warning">{% trans "Changes Requested" %}</span>
+                    {% elif article.status == 'REJECTED' %}
+                    <span class="badge badge-danger">{% trans "Rejected" %}</span>
+                    {% elif article.status == 'PUBLISHED' %}
+                    <span class="badge badge-success">{% trans "Published" %}</span>
+                    {% endif %}
+                </p>
+                
+                <p><strong>{% trans "Created:" %}</strong> {{ article.created_at|date:"Y-m-d H:i" }}</p>
+                <p><strong>{% trans "Submitted:" %}</strong> 
+                    {% if article.submitted_at %}
+                    {{ article.submitted_at|date:"Y-m-d H:i" }}
+                    {% else %}
+                    {% trans "Not submitted" %}
+                    {% endif %}
+                </p>
+                
+                {% if article.article_file %}
+                <p><strong>{% trans "Attached File:" %}</strong> 
+                    <a href="{{ article.article_file.url }}" target="_blank" class="btn btn-sm btn-secondary">
+                        📎 {{ article.article_file.name|truncatechars:30 }}
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+            
+            <!-- Article Content Preview -->
+            <div class="card p-4 mb-4">
+                <h4 class="mb-3">{% trans "Content Preview" %}</h4>
+                <div class="article-preview" style="max-height: 300px; overflow-y: auto; border: 1px solid var(--border-color, #D5D9D3); padding: 15px; border-radius: 4px;">
+                    {{ article.content_uz|truncatewords:100 }}
+                </div>
+                <a href="{% url 'articles:detail' article.slug %}" target="_blank" class="btn btn-sm btn-secondary mt-3">
+                    {% trans "View Full Article" %}
+                </a>
+            </div>
+            
+            <!-- Reviews -->
+            <div class="card p-4">
+                <h4 class="mb-3">{% trans "Reviews" %}</h4>
+                {% if reviews %}
+                <div class="reviews-list">
+                    {% for review in reviews %}
+                    <div class="card p-3 mb-3" style="background: var(--light-bg, #F1F3F0);">
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>{{ review.reviewer.get_full_name|default:review.reviewer.username }}</strong>
+                            {% if review.decision == 'APPROVED' %}
+                            <span class="badge badge-success">{% trans "Approved" %}</span>
+                            {% elif review.decision == 'REJECTED' %}
+                            <span class="badge badge-danger">{% trans "Rejected" %}</span>
+                            {% elif review.decision == 'CHANGES_REQUESTED' %}
+                            <span class="badge badge-warning">{% trans "Changes Requested" %}</span>
+                            {% endif %}
+                        </div>
+                        <small class="text-muted">{{ review.created_at|date:"Y-m-d H:i" }}</small>
+                        {% if review.comment %}
+                        <p class="mt-2">{{ review.comment }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted">{% trans "No reviews yet." %}</p>
+                {% endif %}
+            </div>
+
+            <!-- Reviewer Assignments -->
+            <div class="card p-4 mt-4">
+                <h4 class="mb-3">{% trans "Reviewer Assignments" %}</h4>
+                {% if assignments %}
+                <div class="assignments-list">
+                    {% for assignment in assignments %}
+                    <div class="border rounded p-3 mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ assignment.reviewer.get_full_name|default:assignment.reviewer.username }}</strong>
+                                <div class="text-muted small">
+                                    {% trans "Assigned At" %}: {{ assignment.assigned_at|date:"Y-m-d H:i" }}
+                                    {% if assignment.assigned_by %}
+                                    · {% trans "Assigned By" %}: {{ assignment.assigned_by.get_full_name|default:assignment.assigned_by.username }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <span class="badge badge-info">{{ assignment.get_status_display }}</span>
+                        </div>
+                        {% if assignment.review_comment %}
+                        <p class="mt-2 mb-0">{{ assignment.review_comment }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted mb-0">{% trans "No reviewers assigned yet." %}</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Admin Action Form -->
+        <div class="col-md-4">
+            <div class="card p-4 mb-4">
+                <h4 class="mb-3">{% trans "Take Action" %}</h4>
+                
+                <form method="post" data-test="action-form">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.action.id_for_label }}">{{ form.action.label }}</label>
+                        {{ form.action }}
+                        {% if form.action.errors %}
+                        <div class="invalid-feedback d-block">{{ form.action.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.note.id_for_label }}">{{ form.note.label }}</label>
+                        {{ form.note }}
+                        <small class="form-text text-muted">
+                            {% trans "This note will be visible to the author" %}
+                        </small>
+                        {% if form.note.errors %}
+                        <div class="invalid-feedback d-block">{{ form.note.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <button type="submit" class="btn btn-success btn-block" data-test="action-submit">
+                        {% trans "Apply Action" %}
+                    </button>
+                </form>
+                
+                <a href="{% url 'admin_panel:article_manage' %}" class="btn btn-secondary btn-block mt-2">
+                    {% trans "Back" %}
+                </a>
+            </div>
+
+            <div class="card p-4">
+                <h4 class="mb-3">{% trans "Assign Reviewers" %}</h4>
+                <form method="post" data-test="assign-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="assign_reviewers" value="1">
+                    <div class="form-group">
+                        <label for="{{ assignment_form.reviewers.id_for_label }}">{{ assignment_form.reviewers.label }}</label>
+                        {{ assignment_form.reviewers }}
+                        {% if assignment_form.reviewers.help_text %}
+                        <small class="form-text text-muted">{{ assignment_form.reviewers.help_text }}</small>
+                        {% endif %}
+                        {% if assignment_form.reviewers.errors %}
+                        <div class="invalid-feedback d-block">{{ assignment_form.reviewers.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    {% if assignment_form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in assignment_form.non_field_errors %}
+                        <p class="mb-1">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-primary btn-block" data-test="assign-submit">
+                        {% trans "Assign Selected Reviewers" %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

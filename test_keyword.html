@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyword Test</title>
+</head>
+<body>
+    <h1>Keyword Qo'shish Test</h1>
+
+    <!-- Hidden field -->
+    <input type="hidden" id="id_keywords_json" value="">
+
+    <!-- Keywords container -->
+    <div id="keywords-container" style="margin: 10px 0; display: flex; flex-wrap: wrap; gap: 10px;"></div>
+
+    <!-- Input -->
+    <div>
+        <input type="text" id="keyword-input" placeholder="Keyword kiriting">
+        <button type="button" id="add-keyword-btn">Add</button>
+    </div>
+
+    <div id="keyword-error" style="color: red; display: none;">Kamida 1 ta keyword kerak</div>
+
+    <hr>
+    <h3>Debug Info:</h3>
+    <div id="debug"></div>
+
+<script>
+(function() {
+    'use strict';
+
+    const keywordsContainer = document.getElementById('keywords-container');
+    const keywordInput = document.getElementById('keyword-input');
+    const addBtn = document.getElementById('add-keyword-btn');
+    const hiddenInput = document.getElementById('id_keywords_json');
+    const keywordError = document.getElementById('keyword-error');
+    const debugDiv = document.getElementById('debug');
+
+    let keywords = [];
+
+    // Debug
+    function debug(msg) {
+        console.log(msg);
+        debugDiv.innerHTML += '<p>' + msg + '</p>';
+    }
+
+    debug('Script loaded');
+    debug('hiddenInput: ' + (hiddenInput ? 'FOUND' : 'NOT FOUND'));
+    debug('addBtn: ' + (addBtn ? 'FOUND' : 'NOT FOUND'));
+
+    // Render keyword badges
+    function renderKeywords() {
+        debug('renderKeywords called, count: ' + keywords.length);
+        keywordsContainer.innerHTML = '';
+        keywords.forEach(function(kw, idx) {
+            const badge = document.createElement('span');
+            badge.style.cssText = 'display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; background-color: #F1F3F0; border: 1px solid #D5D9D3;';
+            badge.innerHTML =
+                '<span>' + escapeHtml(kw) + '</span>' +
+                '<button type="button" class="remove-keyword" data-index="' + idx + '" style="cursor: pointer; color: red; border: none; background: none;">&times;</button>';
+            keywordsContainer.appendChild(badge);
+        });
+        syncHidden();
+    }
+
+    // Sync keywords to hidden input
+    function syncHidden() {
+        if (hiddenInput) {
+            hiddenInput.value = JSON.stringify(keywords);
+            debug('Hidden input updated: ' + hiddenInput.value);
+        } else {
+            debug('ERROR: hiddenInput is null!');
+        }
+    }
+
+    // Add keyword
+    function addKeyword() {
+        debug('addKeyword called');
+        const val = keywordInput.value.trim().toLowerCase();
+        debug('Input value: "' + val + '"');
+
+        if (!val) {
+            debug('Empty value, returning');
+            return;
+        }
+
+        // Check duplicate
+        if (keywords.indexOf(val) !== -1) {
+            debug('Duplicate keyword');
+            keywordInput.value = '';
+            keywordInput.focus();
+            return;
+        }
+
+        keywords.push(val);
+        debug('Keyword added: ' + val);
+        keywordInput.value = '';
+        keywordInput.focus();
+        renderKeywords();
+    }
+
+    // Remove keyword
+    function removeKeyword(index) {
+        debug('removeKeyword called, index: ' + index);
+        keywords.splice(index, 1);
+        renderKeywords();
+    }
+
+    // Escape HTML
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(text));
+        return div.innerHTML;
+    }
+
+    // Event: click Add button
+    if (addBtn) {
+        addBtn.addEventListener('click', function(e) {
+            debug('Add button clicked');
+            e.preventDefault();
+            addKeyword();
+        });
+        debug('Add button listener attached');
+    }
+
+    // Event: press Enter
+    if (keywordInput) {
+        keywordInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                debug('Enter pressed');
+                e.preventDefault();
+                addKeyword();
+            }
+        });
+        debug('Keydown listener attached');
+    }
+
+    // Event: click remove
+    keywordsContainer.addEventListener('click', function(e) {
+        var btn = e.target.closest('.remove-keyword');
+        if (btn) {
+            var idx = parseInt(btn.getAttribute('data-index'));
+            removeKeyword(idx);
+        }
+    });
+
+    debug('All listeners attached, ready!');
+})();
+</script>
+
+</body>
+</html>

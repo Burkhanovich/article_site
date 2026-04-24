@@ -1,0 +1,25 @@
+{% extends 'admin_panel/base.html' %}
+{% load i18n %}
+
+{% block admin_content %}
+<div class="container">
+    <h2 class="mb-4">{% if form.instance.pk %}{% trans "Edit Journal" %}{% else %}{% trans "Add Journal" %}{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_year" class="form-label">{% trans "Year" %}</label>
+            {{ form.year }}
+        </div>
+        <div class="mb-3">
+            <label for="id_number" class="form-label">{% trans "Number" %}</label>
+            {{ form.number }}
+        </div>
+        <div class="form-check mb-3">
+            {{ form.is_active }}
+            <label for="id_is_active" class="form-check-label">{% trans "Active" %}</label>
+        </div>
+        <button type="submit" class="btn btn-success">{% trans "Save" %}</button>
+        <a href="{% url 'admin_panel:journal_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}

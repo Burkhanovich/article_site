@@ -111,133 +111,96 @@ def get_category_review_status(article: Article, category: Category) -> Category
 
 def is_article_publishable(article: Article) -> ArticlePublishability:
     """
-    Determine if an article is ready to be published based on all category policies.
+    Determine if an article is ready to be published based on reviewer assignments.
 
     Args:
         article: The article to check
 
     Returns:
-        ArticlePublishability with detailed status for each category
+        ArticlePublishability with detailed status
     """
-    categories = article.categories.all()
+    # Check if article has reviewer assignments
+    pending_assignments = article.reviewer_assignments.filter(status='PENDING')
 
-    if not categories.exists():
+    if not pending_assignments.exists():
+        return ArticlePublishability(
+            is_publishable=True,
+            can_admin_override=True,
+            category_statuses=[],
+            overall_message=str(_('No pending reviewer assignments')),
+            requires_all_categories=False
+        )
+
+    # Check reviews from assigned reviewers
+    assigned_reviewers = pending_assignments.values_list('reviewer_id', flat=True)
+    reviews = article.reviews.filter(reviewer_id__in=assigned_reviewers)
+
+    if not reviews.exists():
         return ArticlePublishability(
             is_publishable=False,
             can_admin_override=True,
             category_statuses=[],
-            overall_message=str(_('Article has no categories assigned')),
-            requires_all_categories=True
+            overall_message=str(_('Waiting for reviewer submissions')),
+            requires_all_categories=False
         )
 
-    # Check status for each category
-    category_statuses = []
-    all_meet_policy = True
-    any_meets_policy = False
-    any_blocked = False
-    can_override_all = True
-    has_changes_requested = False
+    # Check if all required reviews are approvals
+    approvals = reviews.filter(decision=Review.Decision.APPROVE).count()
+    rejections = reviews.filter(decision=Review.Decision.REJECT).count()
+    changes = reviews.filter(decision=Review.Decision.CHANGES).count()
 
-    for category in categories:
-        status = get_category_review_status(article, category)
-        category_statuses.append(status)
+    is_publishable = rejections == 0 and changes == 0
 
-        if status.meets_policy:
-            any_meets_policy = True
-        else:
-            all_meet_policy = False
-
-        if status.is_blocked:
-            any_blocked = True
-
-        if status.changes_requested > 0:
-            has_changes_requested = True
-
-        # Check if admin can override for this category
-        try:
-            if not category.policy.allow_admin_override:
-                can_override_all = False
-        except CategoryPolicy.DoesNotExist:
-            pass  # Default allows override
-
-    # Determine publishability based on review mode
-    requires_all = article.review_mode == Article.ReviewMode.ALL_CATEGORIES
-
-    if requires_all:
-        is_publishable = all_meet_policy and not any_blocked and not has_changes_requested
+    # Generate message
+    if rejections > 0:
+        message = str(_('Article has been rejected'))
+    elif changes > 0:
+        message = str(_('Changes have been requested'))
+    elif approvals == reviews.count():
+        message = str(_('Article is ready for publishing'))
     else:
-        is_publishable = any_meets_policy and not any_blocked and not has_changes_requested
-
-    # Generate overall message
-    if is_publishable:
-        message = _('Article is ready for publishing')
-    elif any_blocked:
-        message = _('Article is blocked due to rejections in one or more categories')
-    elif has_changes_requested:
-        message = _('Changes have been requested - waiting for author revision')
-    elif requires_all and not all_meet_policy:
-        met_count = sum(1 for s in category_statuses if s.meets_policy)
-        message = _('%(met)d of %(total)d categories meet policy requirements') % {
-            'met': met_count,
-            'total': len(category_statuses)
-        }
-    else:
-        message = _('Review in progress')
+        message = str(_('Waiting for reviewer approval'))
 
     return ArticlePublishability(
         is_publishable=is_publishable,
-        can_admin_override=can_override_all,
-        category_statuses=category_statuses,
-        overall_message=str(message),
-        requires_all_categories=requires_all
+        can_admin_override=True,
+        category_statuses=[],
+        overall_message=message,
+        requires_all_categories=False
     )
 
 
 def get_reviewer_queue(user) -> Dict:
     """
-    Get the review queue for a reviewer, organized by category.
+    Get the review queue for a reviewer.
 
     Returns dict with:
-        - categories: list of assigned categories with pending articles
+        - articles: list of articles assigned to reviewer
         - total_pending: total count of articles needing review
     """
-    from .models import Article
+    from .models import Article, ReviewerAssignment
 
     if not user.is_reviewer and not user.is_superuser:
-        return {'categories': [], 'total_pending': 0}
+        return {'articles': [], 'total_pending': 0}
 
-    # Get assigned categories
+    # Get articles assigned to this reviewer that are in review status
     if user.is_superuser:
-        categories = Category.objects.filter(is_active=True)
+        # Superuser can see all articles in review
+        reviewable_assignments = ReviewerAssignment.objects.filter(
+            status='PENDING'
+        ).select_related('article')
     else:
-        categories = user.assigned_categories.filter(is_active=True)
+        # Get assignments for this reviewer
+        reviewable_assignments = ReviewerAssignment.objects.filter(
+            reviewer=user,
+            status='PENDING'
+        ).select_related('article')
 
-    result = []
-    total_pending = 0
-
-    for category in categories:
-        # Get articles in this category that can be reviewed
-        reviewable_articles = Article.objects.filter(
-            categories=category,
-            status__in=[Article.ArticleStatus.IN_REVIEW, Article.ArticleStatus.CHANGES_REQUESTED]
-        ).exclude(
-            # Exclude articles already reviewed by this user for this category
-            reviews__reviewer=user,
-            reviews__category=category
-        ).distinct()
-
-        count = reviewable_articles.count()
-        if count > 0:
-            result.append({
-                'category': category,
-                'pending_count': count,
-                'articles': reviewable_articles[:5]  # Preview first 5
-            })
-            total_pending += count
+    articles = [assignment.article for assignment in reviewable_assignments]
 
     return {
-        'categories': result,
-        'total_pending': total_pending
+        'articles': articles,
+        'total_pending': len(articles)
     }
 
 

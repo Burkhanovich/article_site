@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#1A2421"/>
+
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7DB88A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4772C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Pencil Icon -->
+  <g transform="translate(50, 50)">
+    <!-- Pencil Body -->
+    <path d="M 20 80 L 40 20 L 60 30 L 40 90 Z" fill="url(#logoGradient)"/>
+
+    <!-- Pencil Tip -->
+    <path d="M 20 80 L 30 95 L 40 90 Z" fill="#3D6B4F"/>
+
+    <!-- Pencil Eraser -->
+    <rect x="38" y="15" width="24" height="12" rx="2" fill="#D4772C"/>
+
+    <!-- Paper Lines -->
+    <line x1="65" y1="40" x2="95" y2="40" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="65" y1="55" x2="90" y2="55" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="65" y1="70" x2="95" y2="70" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text -->
+  <text x="100" y="165" font-family="Poppins, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="url(#logoGradient)">Maqola</text>
+</svg>

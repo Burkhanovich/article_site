@@ -8,7 +8,7 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
-from .models import Category, CategoryPolicy, Keyword, Article, Review, ReviewerAssignment, ArticleStatusHistory
+from .models import Category, CategoryPolicy, Keyword, Article, Review, ReviewerAssignment, ArticleStatusHistory, Journal
 from .services import is_article_publishable
 
 
@@ -175,7 +175,7 @@ class ReviewerAssignmentInline(admin.TabularInline):
     extra = 1
     readonly_fields = ('assigned_at', 'reviewed_at', 'updated_at')
     raw_id_fields = ('reviewer',)
-    fields = ('reviewer', 'status', 'review_comment', 'assigned_at', 'reviewed_at')
+    fields = ('reviewer', 'status', 'review_comment', 'review_deadline', 'assigned_at', 'reviewed_at')
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('reviewer', 'assigned_by')
@@ -208,7 +208,6 @@ class ArticleAdmin(admin.ModelAdmin):
         'author',
         'status_badge',
         'publishability_badge',
-        'category_list',
         'review_count',
         'submitted_at',
         'views',
@@ -218,9 +217,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = (
         StatusFilter,
         PublishabilityFilter,
-        'categories',
         'author',
-        'review_mode',
         'created_at',
         'submitted_at',
     )
@@ -247,17 +244,20 @@ class ArticleAdmin(admin.ModelAdmin):
         'publishability_info',
     )
 
-    filter_horizontal = ('categories', 'keywords')
+    filter_horizontal = ('keywords',)
 
     fieldsets = (
         (_('Basic Information'), {
             'fields': ('title_uz', 'title_ru', 'title_en', 'slug', 'author', 'status')
         }),
+        (_('Publication Info'), {
+            'fields': ('publication_year', 'publication_number')
+        }),
         (_('Content'), {
             'fields': ('content_uz', 'content_ru', 'content_en')
         }),
         (_('Classification'), {
-            'fields': ('categories', 'keywords', 'review_mode')
+            'fields': ('keywords',)
         }),
         (_('Publishing Status'), {
             'fields': ('publishability_info',),
@@ -330,15 +330,6 @@ class ArticleAdmin(admin.ModelAdmin):
                 'In Progress</span>'
             )
     publishability_badge.short_description = _('Publishable')
-
-    def category_list(self, obj):
-        """Display categories as a comma-separated list."""
-        categories = obj.categories.all()[:3]
-        names = [c.name_uz for c in categories]
-        if obj.categories.count() > 3:
-            names.append('...')
-        return ', '.join(names) if names else '-'
-    category_list.short_description = _('Categories')
 
     def review_count(self, obj):
         """Display review count."""
@@ -504,7 +495,7 @@ class ArticleAdmin(admin.ModelAdmin):
         """Optimize queryset with select_related and prefetch_related."""
         return super().get_queryset(request).select_related(
             'author', 'admin_decision_by'
-        ).prefetch_related('categories', 'keywords', 'reviews')
+        ).prefetch_related('keywords', 'reviews')
 
 
 @admin.register(Review)
@@ -585,10 +576,11 @@ class ReviewerAssignmentAdmin(admin.ModelAdmin):
         'reviewer',
         'assigned_by',
         'status_badge',
+        'review_deadline',
         'assigned_at',
         'reviewed_at',
     )
-    list_filter = ('status', 'assigned_at', 'reviewed_at')
+    list_filter = ('status', 'assigned_at', 'reviewed_at', 'review_deadline')
     search_fields = (
         'article__title_uz',
         'article__title_ru',
@@ -604,7 +596,7 @@ class ReviewerAssignmentAdmin(admin.ModelAdmin):
             'fields': ('article', 'reviewer', 'assigned_by', 'status')
         }),
         (_('Review'), {
-            'fields': ('review_comment',)
+            'fields': ('review_comment', 'review_deadline')
         }),
         (_('Timestamps'), {
             'fields': ('assigned_at', 'reviewed_at', 'updated_at'),
@@ -691,3 +683,40 @@ class ArticleStatusHistoryAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('article', 'changed_by')
+
+@admin.register(Journal)
+class JournalAdmin(admin.ModelAdmin):
+    """Admin for Journal model."""
+    list_display = (
+        'year',
+        'number',
+        'is_active',
+        'article_count',
+        'created_at',
+    )
+    list_filter = ('is_active', 'year', 'number')
+    search_fields = ('description',)
+    readonly_fields = ('created_at', 'updated_at')
+    list_editable = ('is_active',)
+
+    fieldsets = (
+        (_('Journal Information'), {
+            'fields': ('year', 'number', 'is_active')
+        }),
+        (_('Details'), {
+            'fields': ('description',)
+        }),
+        (_('Timestamps'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def article_count(self, obj):
+        """Count articles submitted for this journal."""
+        count = Article.objects.filter(
+            publication_year=obj.year,
+            publication_number=obj.number
+        ).count()
+        return format_html('<span style="font-weight:bold;">{}</span>', count)
+    article_count.short_description = _('Articles')

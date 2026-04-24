@@ -200,8 +200,12 @@ msgstr "Info"
 msgid "Welcome, {username}! Your account has been created successfully."
 msgstr "Welcome, {username}! Your account has been created successfully."
 
-msgid "As an author, you must read and accept our article writing rules before publishing."
-msgstr "As an author, you must read and accept our article writing rules before publishing."
+msgid ""
+"As an author, you must read and accept our article writing rules before "
+"publishing."
+msgstr ""
+"As an author, you must read and accept our article writing rules before "
+"publishing."
 
 msgid "Registration failed. Please correct the errors below."
 msgstr "Registration failed. Please correct the errors below."
@@ -215,8 +219,12 @@ msgstr "You have been logged out successfully."
 msgid "Access denied. This page is only for authors."
 msgstr "Access denied. This page is only for authors."
 
-msgid "Article rules have not been configured yet. Please contact the administrator."
-msgstr "Article rules have not been configured yet. Please contact the administrator."
+msgid ""
+"Article rules have not been configured yet. Please contact the "
+"administrator."
+msgstr ""
+"Article rules have not been configured yet. Please contact the "
+"administrator."
 
 msgid "Thank you for accepting the rules! You can now create articles."
 msgstr "Thank you for accepting the rules! You can now create articles."
@@ -324,8 +332,10 @@ msgstr "Page Not Found"
 msgid "The page you are looking for doesn't exist or has been moved."
 msgstr "The page you are looking for doesn't exist or has been moved."
 
-msgid "Please check the URL or use the navigation to find what you're looking for."
-msgstr "Please check the URL or use the navigation to find what you're looking for."
+msgid ""
+"Please check the URL or use the navigation to find what you're looking for."
+msgstr ""
+"Please check the URL or use the navigation to find what you're looking for."
 
 msgid "Browse Articles"
 msgstr "Browse Articles"
@@ -557,8 +567,12 @@ msgstr "Create your first article"
 msgid "Reader Account"
 msgstr "Reader Account"
 
-msgid "You are registered as a Reader. You can browse and read all published articles."
-msgstr "You are registered as a Reader. You can browse and read all published articles."
+msgid ""
+"You are registered as a Reader. You can browse and read all published "
+"articles."
+msgstr ""
+"You are registered as a Reader. You can browse and read all published "
+"articles."
 
 msgid "To create articles, you need to register as an Author."
 msgstr "To create articles, you need to register as an Author."
@@ -611,18 +625,24 @@ msgstr "Secure Platform"
 msgid "Welcome to Article Platform"
 msgstr "Welcome to Article Platform"
 
-msgid "Share your knowledge, read amazing articles, and connect with authors worldwide."
-msgstr "Share your knowledge, read amazing articles, and connect with authors worldwide."
+msgid ""
+"Share your knowledge, read amazing articles, and connect with authors "
+"worldwide."
+msgstr ""
+"Share your knowledge, read amazing articles, and connect with authors "
+"worldwide."
 
 msgid "views"
 msgstr "views"
 
-msgid "You need to read and accept our article writing rules before you can start publishing."
-msgstr "You need to read and accept our article writing rules before you can start publishing."
-
+msgid ""
+"You need to read and accept our article writing rules before you can start "
+"publishing."
+msgstr ""
+"You need to read and accept our article writing rules before you can start "
+"publishing."
 
 # Form Field Translations
-
 msgid "Article Title"
 msgstr "Article Title"
 
@@ -638,11 +658,19 @@ msgstr "Maximum 200 characters"
 msgid "Write your article content with rich text formatting"
 msgstr "Write your article content with rich text formatting"
 
-msgid "Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: 10MB"
-msgstr "Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: 10MB"
+msgid ""
+"Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: "
+"10MB"
+msgstr ""
+"Upload article as file. Allowed formats: TXT, DOC, DOCX, PDF. Maximum size: "
+"10MB"
 
-msgid "Choose \"Draft\" to save without publishing, or \"Published\" to make it visible to readers"
-msgstr "Choose \"Draft\" to save without publishing, or \"Published\" to make it visible to readers"
+msgid ""
+"Choose \"Draft\" to save without publishing, or \"Published\" to make it "
+"visible to readers"
+msgstr ""
+"Choose \"Draft\" to save without publishing, or \"Published\" to make it "
+"visible to readers"
 
 msgid "Optional"
 msgstr "Optional"
@@ -665,21 +693,30 @@ msgstr "Writing Tips"
 msgid "Use a clear, descriptive title that summarizes your article"
 msgstr "Use a clear, descriptive title that summarizes your article"
 
-msgid "Add a cover image to make your article more attractive (optional but recommended)"
-msgstr "Add a cover image to make your article more attractive (optional but recommended)"
+msgid ""
+"Add a cover image to make your article more attractive (optional but "
+"recommended)"
+msgstr ""
+"Add a cover image to make your article more attractive (optional but "
+"recommended)"
 
-msgid "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)"
-msgstr "Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer (optional)"
+msgid ""
+"Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer "
+"(optional)"
+msgstr ""
+"Upload your article as a file (TXT, DOC, DOCX, or PDF) if you prefer "
+"(optional)"
 
-msgid "Format your content with headings, lists, and images for better readability"
-msgstr "Format your content with headings, lists, and images for better readability"
+msgid ""
+"Format your content with headings, lists, and images for better readability"
+msgstr ""
+"Format your content with headings, lists, and images for better readability"
 
 msgid "Save as Draft if you want to continue editing later"
 msgstr "Save as Draft if you want to continue editing later"
 
 msgid "Publish when your article is ready for readers"
 msgstr "Publish when your article is ready for readers"
-
 
 # Article File Display Translations
 msgid "Download Article File"
@@ -739,8 +776,6 @@ msgstr "Last updated"
 msgid "About the Author"
 msgstr "About the Author"
 
-
-
 # Search Functionality Translations
 msgid "Search by title, author, or content..."
 msgstr "Search by title, author, or content..."
@@ -776,8 +811,12 @@ msgstr "Rejection Reason"
 msgid "Article Rejected"
 msgstr "Article Rejected"
 
-msgid "No specific reason was provided. Please review your article and make necessary improvements before resubmitting."
-msgstr "No specific reason was provided. Please review your article and make necessary improvements before resubmitting."
+msgid ""
+"No specific reason was provided. Please review your article and make "
+"necessary improvements before resubmitting."
+msgstr ""
+"No specific reason was provided. Please review your article and make "
+"necessary improvements before resubmitting."
 
 msgid "This article is saved as a draft and is only visible to you."
 msgstr "This article is saved as a draft and is only visible to you."
@@ -818,8 +857,12 @@ msgstr "Will be published after approval"
 msgid "If rejected, you can edit and resubmit"
 msgstr "If rejected, you can edit and resubmit"
 
-msgid "Article \"%(title)s\" has been submitted for review. You will be notified once it is reviewed."
-msgstr "Article \"%(title)s\" has been submitted for review. You will be notified once it is reviewed."
+msgid ""
+"Article \"%(title)s\" has been submitted for review. You will be notified "
+"once it is reviewed."
+msgstr ""
+"Article \"%(title)s\" has been submitted for review. You will be notified "
+"once it is reviewed."
 
 msgid "Article \"%(title)s\" saved as draft."
 msgstr "Article \"%(title)s\" saved as draft."
@@ -833,8 +876,12 @@ msgstr "Article \"%(title)s\" updated and saved as draft."
 msgid "Please log in to edit articles."
 msgstr "Please log in to edit articles."
 
-msgid "This article cannot be edited. Only draft or rejected articles can be modified."
-msgstr "This article cannot be edited. Only draft or rejected articles can be modified."
+msgid ""
+"This article cannot be edited. Only draft or rejected articles can be "
+"modified."
+msgstr ""
+"This article cannot be edited. Only draft or rejected articles can be "
+"modified."
 
 msgid "You cannot submit this article for review."
 msgstr "You cannot submit this article for review."
@@ -878,8 +925,12 @@ msgstr "Needs revision. You can edit and resubmit."
 msgid "Confirm Deletion"
 msgstr "Confirm Deletion"
 
-msgid "This action cannot be undone. The article and all associated files will be permanently deleted."
-msgstr "This action cannot be undone. The article and all associated files will be permanently deleted."
+msgid ""
+"This action cannot be undone. The article and all associated files will be "
+"permanently deleted."
+msgstr ""
+"This action cannot be undone. The article and all associated files will be "
+"permanently deleted."
 
 msgid "Article to be deleted"
 msgstr "Article to be deleted"
@@ -927,14 +978,22 @@ msgstr "Convert to draft"
 msgid "Reset view counter"
 msgstr "Reset view counter"
 
-msgid "No pending articles selected. Only articles with 'Pending Review' status can be approved."
-msgstr "No pending articles selected. Only articles with 'Pending Review' status can be approved."
+msgid ""
+"No pending articles selected. Only articles with 'Pending Review' status can"
+" be approved."
+msgstr ""
+"No pending articles selected. Only articles with 'Pending Review' status can"
+" be approved."
 
 msgid "%(count)d article(s) have been approved and published."
 msgstr "%(count)d article(s) have been approved and published."
 
-msgid "No pending articles selected. Only articles with 'Pending Review' status can be rejected."
-msgstr "No pending articles selected. Only articles with 'Pending Review' status can be rejected."
+msgid ""
+"No pending articles selected. Only articles with 'Pending Review' status can"
+" be rejected."
+msgstr ""
+"No pending articles selected. Only articles with 'Pending Review' status can"
+" be rejected."
 
 msgid "%(count)d article(s) have been rejected."
 msgstr "%(count)d article(s) have been rejected."
@@ -975,3 +1034,1433 @@ msgstr "Submit"
 msgid "Current cover image"
 msgstr "Current cover image"
 
+# ========== JOURNAL TRANSLATIONS ==========
+msgid "Journal"
+msgstr "Journal"
+
+msgid "Journals"
+msgstr "Journals"
+
+msgid "Journal issue number"
+msgstr "Journal issue number"
+
+msgid "Active journals are available for article submission"
+msgstr "Active journals are available for article submission"
+
+msgid "Manage Journals"
+msgstr "Manage Journals"
+
+msgid "Add Journal"
+msgstr "Add Journal"
+
+msgid "Add New Journal"
+msgstr "Add New Journal"
+
+msgid "Deactivate"
+msgstr "Deactivate"
+
+msgid "No journals found."
+msgstr "No journals found."
+
+msgid "Year"
+msgstr "Year"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Journal (Year / Issue)"
+msgstr "Journal (Year / Issue)"
+
+msgid "Issue"
+msgstr "Issue"
+
+msgid "No active journals available. Please contact the administrator."
+msgstr "No active journals available. Please contact the administrator."
+
+msgid "Manage journals, reviewers, and publication workflow"
+msgstr "Manage journals, reviewers, and publication workflow"
+
+msgid "Active Journals"
+msgstr "Active Journals"
+
+msgid "Total Journals"
+msgstr "Total Journals"
+
+msgid "Confirm Deactivation"
+msgstr "Confirm Deactivation"
+
+msgid "Are you sure you want to deactivate this journal?"
+msgstr "Are you sure you want to deactivate this journal?"
+
+msgid "This journal will no longer be available for article submission."
+msgstr "This journal will no longer be available for article submission."
+
+msgid "Yes, Deactivate"
+msgstr "Yes, Deactivate"
+
+msgid "No, Cancel"
+msgstr "No, Cancel"
+
+# ========== LOGIN/REGISTER/RULES TRANSLATIONS ==========
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+msgid "Register here"
+msgstr "Register here"
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Select Your Role"
+msgstr "Select Your Role"
+
+msgid "Browse and read articles"
+msgstr "Browse and read articles"
+
+msgid "Create and publish articles"
+msgstr "Create and publish articles"
+
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+msgid "Login here"
+msgstr "Login here"
+
+msgid "Accept Article Writing Rules"
+msgstr "Accept Article Writing Rules"
+
+msgid "Article Writing Rules"
+msgstr "Article Writing Rules"
+
+msgid ""
+"As an author, you must read and accept these rules before creating articles."
+msgstr ""
+"As an author, you must read and accept these rules before creating articles."
+
+msgid "Loaded from file:"
+msgstr "Loaded from file:"
+
+msgid "Accept and Continue"
+msgstr "Accept and Continue"
+
+msgid "Return to Home"
+msgstr "Return to Home"
+
+msgid "Rules Not Configured"
+msgstr "Rules Not Configured"
+
+msgid ""
+"Article writing rules have not been set up yet. Please contact the "
+"administrator."
+msgstr ""
+"Article writing rules have not been set up yet. Please contact the "
+"administrator."
+
+msgid ""
+"You are logged in as an administrator. Access the Admin Panel to manage "
+"journals, reviewers, articles, and view system statistics."
+msgstr ""
+"You are logged in as an administrator. Access the Admin Panel to manage "
+"journals, reviewers, articles, and view system statistics."
+
+msgid ""
+"You are logged in as an administrator. Access the Admin Panel to manage "
+"reviewers, articles, categories, and view system statistics."
+msgstr ""
+"You are logged in as an administrator. Access the Admin Panel to manage "
+"reviewers, articles, and view system statistics."
+
+msgid "Select the journal you are submitting to"
+msgstr "Select the journal you are submitting to"
+
+msgid "Select Journal"
+msgstr "Select Journal"
+
+msgid "Deactivate Journal"
+msgstr "Deactivate Journal"
+
+msgid ""
+"You are logged in as an administrator. Use the Admin Panel below to manage "
+"journals, reviewers, articles, and view system statistics."
+msgstr ""
+"You are logged in as an administrator. Use the Admin Panel below to manage "
+"journals, reviewers, articles, and view system statistics."
+
+msgid ""
+"You are logged in as an administrator. Use the Admin Panel below to manage "
+"reviewers, articles, categories, and view system statistics."
+msgstr ""
+"You are logged in as an administrator. Use the Admin Panel below to manage "
+"reviewers, articles, and view system statistics."
+
+msgid "View Admin Panel"
+msgstr "View Admin Panel"
+
+msgid "View Statistics"
+msgstr "View Statistics"
+
+msgid "Reviewer Assignments"
+msgstr "Reviewer Assignments"
+
+msgid "Assigned At"
+msgstr "Assigned At"
+
+msgid "Assigned By"
+msgstr "Assigned By"
+
+msgid "No reviewers assigned yet."
+msgstr "No reviewers assigned yet."
+
+msgid "Assign Reviewers"
+msgstr "Assign Reviewers"
+
+msgid "Assign Selected Reviewers"
+msgstr "Assign Selected Reviewers"
+
+msgid "Select Reviewers"
+msgstr "Select Reviewers"
+
+msgid "Hold Ctrl or Cmd to select multiple reviewers"
+msgstr "Hold Ctrl or Cmd to select multiple reviewers"
+
+msgid "Selected reviewers are already assigned."
+msgstr "Selected reviewers are already assigned."
+
+msgid "Review submitted for article"
+msgstr "Review submitted for article"
+
+msgid ""
+"Reviewer %(reviewer)s has submitted a review for article '%(title)s'. "
+"Decision: %(decision)s."
+msgstr ""
+"Reviewer %(reviewer)s has submitted a review for article '%(title)s'. "
+"Decision: %(decision)s."
+
+msgid "[%(site_name)s] Review submitted: %(title)s"
+msgstr "[%(site_name)s] Review submitted: %(title)s"
+
+msgid "Accept Rules to Start Writing"
+msgstr "Accept Rules to Start Writing"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action performed on {} articles."
+msgstr "Action performed on {} articles."
+
+msgid "Active Reviewers"
+msgstr "Active Reviewers"
+
+msgid "Active Users"
+msgstr "Active Users"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Add New Reviewer"
+msgstr "Add New Reviewer"
+
+msgid "Add your review comments here..."
+msgstr "Add your review comments here..."
+
+msgid "Additional Info"
+msgstr "Additional Info"
+
+msgid "Admin Account"
+msgstr "Admin Account"
+
+msgid "Admin Control Panel"
+msgstr "Admin Control Panel"
+
+msgid "Admin Dashboard"
+msgstr "Admin Dashboard"
+
+msgid "Admin Decision"
+msgstr "Admin Decision"
+
+msgid "Admin Panel"
+msgstr "Admin Panel"
+
+msgid "Administrators"
+msgstr "Administrators"
+
+msgid "All Articles"
+msgstr "All Articles"
+
+msgid "All Status"
+msgstr "All Status"
+
+msgid "All notifications marked as read."
+msgstr "All notifications marked as read."
+
+msgid "All rights reserved."
+msgstr "All rights reserved."
+
+msgid "Allowed file types: %(types)s"
+msgstr "Allowed file types: %(types)s"
+
+msgid "Allowed formats: PDF, DOC, DOCX. Maximum size: 20 MB."
+msgstr "Allowed formats: PDF, DOC, DOCX. Maximum size: 20 MB."
+
+msgid "Apply"
+msgstr "Apply"
+
+msgid "Apply Action"
+msgstr "Apply Action"
+
+msgid "Apply Action to All"
+msgstr "Apply Action to All"
+
+msgid "Approval Requirements"
+msgstr "Approval Requirements"
+
+msgid "Article \"%(title)s\" has been deleted successfully."
+msgstr "Article \"%(title)s\" has been deleted successfully."
+
+msgid "Article Action"
+msgstr "Article Action"
+
+msgid "Article Information"
+msgstr "Article Information"
+
+msgid "Article Statistics"
+msgstr "Article Statistics"
+
+msgid "Article Status Breakdown"
+msgstr "Article Status Breakdown"
+
+msgid "Article Status Histories"
+msgstr "Article Status Histories"
+
+msgid "Article Status History"
+msgstr "Article Status History"
+
+msgid "Article has been rejected"
+msgstr "Article has been rejected"
+
+msgid "Article not available for review."
+msgstr "Article not available for review."
+
+msgid "Article status reset to In Review."
+msgstr "Article status reset to In Review."
+
+msgid "Article writing guidelines (text format)"
+msgstr "Article writing guidelines (text format)"
+
+msgid "Articles Assigned"
+msgstr "Articles Assigned"
+
+msgid "Articles Waiting for Review"
+msgstr "Articles Waiting for Review"
+
+msgid "Articles by Status"
+msgstr "Articles by Status"
+
+msgid ""
+"Assign categories for reviewers. Only relevant for users with Reviewer role."
+msgstr ""
+"Assign categories for reviewers. Only relevant for users with Reviewer role."
+
+msgid "Assign reviewers who can review articles in this category"
+msgstr "Assign reviewers who can review articles in this category"
+
+msgid "Assigned"
+msgstr "Assigned"
+
+msgid "Assigned Categories"
+msgstr "Assigned Categories"
+
+msgid "Assignment Details"
+msgstr "Assignment Details"
+
+msgid "Attached File:"
+msgstr "Attached File:"
+
+msgid "Author:"
+msgstr "Author:"
+
+msgid "Authors"
+msgstr "Authors"
+
+msgid "Back to All Articles"
+msgstr "Back to All Articles"
+
+msgid "Biography:"
+msgstr "Biography:"
+
+msgid "Built with"
+msgstr "Built with"
+
+msgid "Bulk Article Action"
+msgstr "Bulk Article Action"
+
+msgid "By"
+msgstr "By"
+
+msgid ""
+"Categories this reviewer can review. Only applies to users with Reviewer "
+"role."
+msgstr ""
+"Categories this reviewer can review. Only applies to users with Reviewer "
+"role."
+
+msgid "Change request sent to author."
+msgstr "Change request sent to author."
+
+msgid "Change selected users to Admin"
+msgstr "Change selected users to Admin"
+
+msgid "Change selected users to Author"
+msgstr "Change selected users to Author"
+
+msgid "Change selected users to Reader"
+msgstr "Change selected users to Reader"
+
+msgid "Changed By"
+msgstr "Changed By"
+
+msgid "Changes"
+msgstr "Changes"
+
+msgid "Changes have been requested"
+msgstr "Changes have been requested"
+
+msgid "Classification"
+msgstr "Classification"
+
+msgid "Confirm password"
+msgstr "Confirm password"
+
+msgid "Content Preview"
+msgstr "Content Preview"
+
+msgid "Content cannot be empty."
+msgstr "Content cannot be empty."
+
+msgid "Create"
+msgstr "Create"
+
+msgid "Create New Reviewer"
+msgstr "Create New Reviewer"
+
+msgid "Created:"
+msgstr "Created:"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Deadline"
+msgstr "Deadline"
+
+msgid "Deadline by which the reviewer should complete the review"
+msgstr "Deadline by which the reviewer should complete the review"
+
+msgid "Delete Reviewer"
+msgstr "Delete Reviewer"
+
+msgid "Delete reviewer"
+msgstr "Delete reviewer"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Download PDF/Document"
+msgstr "Download PDF/Document"
+
+msgid "E.g., 1, 2, 3..."
+msgstr "E.g., 1, 2, 3..."
+
+msgid "E.g., 2024"
+msgstr "E.g., 2024"
+
+msgid "Edit Article"
+msgstr "Edit Article"
+
+msgid "Edit Journal"
+msgstr "Edit Journal"
+
+msgid "Edit Reviewer"
+msgstr "Edit Reviewer"
+
+msgid "Edit reviewer"
+msgstr "Edit reviewer"
+
+msgid "Email address"
+msgstr "Email address"
+
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Enter a keyword and press Add or Enter"
+msgstr "Enter a keyword and press Add or Enter"
+
+msgid "Enter admin note (visible to author)"
+msgstr "Enter admin note (visible to author)"
+
+msgid "Enter password"
+msgstr "Enter password"
+
+msgid "Enter publication number (e.g., 1, 2, 3...)"
+msgstr "Enter publication number (e.g., 1, 2, 3...)"
+
+msgid "Enter publication year (e.g., 2024)"
+msgstr "Enter publication year (e.g., 2024)"
+
+msgid "Enter title in English (optional)"
+msgstr "Enter title in English (optional)"
+
+msgid "Enter title in Russian (optional)"
+msgstr "Enter title in Russian (optional)"
+
+msgid "Enter title in Uzbek"
+msgstr "Enter title in Uzbek"
+
+msgid "Feedback"
+msgstr "Feedback"
+
+msgid "File size must not exceed %(size)s MB."
+msgstr "File size must not exceed %(size)s MB."
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "First"
+msgstr "First"
+
+msgid "First name"
+msgstr "First name"
+
+msgid "From Status"
+msgstr "From Status"
+
+msgid "Go to Admin Panel"
+msgstr "Go to Admin Panel"
+
+msgid "Go to Review Page"
+msgstr "Go to Review Page"
+
+msgid "Go to Reviewer Dashboard"
+msgstr "Go to Reviewer Dashboard"
+
+msgid "Inactive"
+msgstr "Inactive"
+
+msgid "Information"
+msgstr "Information"
+
+msgid "Invalid keyword data."
+msgstr "Invalid keyword data."
+
+msgid "Journal Information"
+msgstr "Journal Information"
+
+msgid "Journal created successfully."
+msgstr "Journal created successfully."
+
+msgid "Journal deactivated."
+msgstr "Journal deactivated."
+
+msgid "Journal updated successfully."
+msgstr "Journal updated successfully."
+
+msgid "Keyword is too long (max 100 characters)."
+msgstr "Keyword is too long (max 100 characters)."
+
+msgid "Last"
+msgstr "Last"
+
+msgid "Last Modified:"
+msgstr "Last Modified:"
+
+msgid "Last name"
+msgstr "Last name"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Make Reviewer and Send Notification"
+msgstr "Make Reviewer and Send Notification"
+
+msgid "Manage Articles"
+msgstr "Manage Articles"
+
+msgid "Manage Reviewers"
+msgstr "Manage Reviewers"
+
+msgid "Manage your assigned article reviews"
+msgstr "Manage your assigned article reviews"
+
+msgid "Mark All as Read"
+msgstr "Mark All as Read"
+
+msgid "Mark Read"
+msgstr "Mark Read"
+
+msgid "Mark selected as read"
+msgstr "Mark selected as read"
+
+msgid "Mark selected as unread"
+msgstr "Mark selected as unread"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Names (Multilingual)"
+msgstr "Names (Multilingual)"
+
+msgid "New"
+msgstr "New"
+
+msgid "No"
+msgstr "No"
+
+msgid "No articles assigned from any journal."
+msgstr "No articles assigned from any journal."
+
+msgid "No articles found."
+msgstr "No articles found."
+
+msgid "No articles in this category yet."
+msgstr "No articles in this category yet."
+
+msgid "No articles selected."
+msgstr "No articles selected."
+
+msgid "No articles yet. Create your first article!"
+msgstr "No articles yet. Create your first article!"
+
+msgid "No pending articles to review."
+msgstr "No pending articles to review."
+
+msgid "No pending articles. Great job!"
+msgstr "No pending articles. Great job!"
+
+msgid "No pending reviewer assignments"
+msgstr "No pending reviewer assignments"
+
+msgid "No published articles yet."
+msgstr "No published articles yet."
+
+msgid "No reviewers found."
+msgstr "No reviewers found."
+
+msgid "No reviews received yet."
+msgstr "No reviews received yet."
+
+msgid "No reviews yet."
+msgstr "No reviews yet."
+
+msgid "No status changes recorded."
+msgstr "No status changes recorded."
+
+msgid "Not submitted"
+msgstr "Not submitted"
+
+msgid "Note (for rejection/changes)"
+msgstr "Note (for rejection/changes)"
+
+msgid "Notification"
+msgstr "Notification"
+
+msgid "Only .txt files are allowed for rules."
+msgstr "Only .txt files are allowed for rules."
+
+msgid "Optional: Publication issue number"
+msgstr "Optional: Publication issue number"
+
+msgid "Optional: Year the article was published"
+msgstr "Optional: Year the article was published"
+
+msgid "Options"
+msgstr "Options"
+
+msgid "Organization:"
+msgstr "Organization:"
+
+msgid "Overview"
+msgstr "Overview"
+
+msgid "Passwords do not match."
+msgstr "Passwords do not match."
+
+msgid "Pending Admin"
+msgstr "Pending Admin"
+
+msgid "Pending Articles"
+msgstr "Pending Articles"
+
+msgid "Pending Reviews"
+msgstr "Pending Reviews"
+
+msgid "Perform Action"
+msgstr "Perform Action"
+
+msgid "Please add at least one keyword."
+msgstr "Please add at least one keyword."
+
+msgid "Please provide a comment explaining the reason for rejection."
+msgstr "Please provide a comment explaining the reason for rejection."
+
+msgid "Please provide a comment explaining what changes are needed."
+msgstr "Please provide a comment explaining what changes are needed."
+
+msgid "Please provide constructive feedback for the author."
+msgstr "Please provide constructive feedback for the author."
+
+msgid "Please review the feedback and make necessary changes."
+msgstr "Please review the feedback and make necessary changes."
+
+msgid ""
+"Please review your article and make necessary improvements before "
+"resubmitting."
+msgstr ""
+"Please review your article and make necessary improvements before "
+"resubmitting."
+
+msgid "Professional Review Process"
+msgstr "Professional Review Process"
+
+msgid "Professional article publishing platform for quality content."
+msgstr "Professional article publishing platform for quality content."
+
+msgid "Publication Info"
+msgstr "Publication Info"
+
+msgid "Publication Number"
+msgstr "Publication Number"
+
+msgid "Publication Year"
+msgstr "Publication Year"
+
+msgid "Publication year (e.g., 2026)"
+msgstr "Publication year (e.g., 2026)"
+
+msgid "Publish Article"
+msgstr "Publish Article"
+
+msgid "Publish Selected"
+msgstr "Publish Selected"
+
+msgid "Publishable"
+msgstr "Publishable"
+
+msgid "Publishing Quality Content"
+msgstr "Publishing Quality Content"
+
+msgid "Publishing Status"
+msgstr "Publishing Status"
+
+msgid "Quick Links"
+msgstr "Quick Links"
+
+msgid "Read More"
+msgstr "Read More"
+
+msgid "Readers"
+msgstr "Readers"
+
+msgid "Recent Notifications"
+msgstr "Recent Notifications"
+
+msgid "Recent Published Articles"
+msgstr "Recent Published Articles"
+
+msgid "Recent Reviews"
+msgstr "Recent Reviews"
+
+msgid "Recent Reviews Received"
+msgstr "Recent Reviews Received"
+
+msgid "Reject Article"
+msgstr "Reject Article"
+
+msgid "Reject Selected"
+msgstr "Reject Selected"
+
+msgid "Request Changes on Selected"
+msgstr "Request Changes on Selected"
+
+msgid "Reset to In Review"
+msgstr "Reset to In Review"
+
+msgid "Review Article"
+msgstr "Review Article"
+
+msgid "Review Deadline"
+msgstr "Review Deadline"
+
+msgid "Review Details"
+msgstr "Review Details"
+
+msgid "Review Feedback"
+msgstr "Review Feedback"
+
+msgid "Review Queue"
+msgstr "Review Queue"
+
+msgid "Review Statistics"
+msgstr "Review Statistics"
+
+msgid "Review submitted for your article"
+msgstr "Review submitted for your article"
+
+msgid "Reviewed"
+msgstr "Reviewed"
+
+msgid "Reviewer Categories"
+msgstr "Reviewer Categories"
+
+msgid "Reviewer Information"
+msgstr "Reviewer Information"
+
+msgid "Reviewer created successfully."
+msgstr "Reviewer created successfully."
+
+msgid "Reviewer deleted successfully."
+msgstr "Reviewer deleted successfully."
+
+msgid "Reviewer updated successfully."
+msgstr "Reviewer updated successfully."
+
+msgid "Reviewers"
+msgstr "Reviewers"
+
+msgid "Reviews by Decision"
+msgstr "Reviews by Decision"
+
+msgid "Role & Profile"
+msgstr "Role & Profile"
+
+msgid "Rules File"
+msgstr "Rules File"
+
+msgid "Rules file size cannot exceed 5MB."
+msgstr "Rules file size cannot exceed 5MB."
+
+msgid "Search by name, username, or email..."
+msgstr "Search by name, username, or email..."
+
+msgid "Search by title, content, keywords..."
+msgstr "Search by title, content, keywords..."
+
+msgid "Secure & Scalable"
+msgstr "Secure & Scalable"
+
+msgid "Select bulk action..."
+msgstr "Select bulk action..."
+
+msgid "Selected Articles"
+msgstr "Selected Articles"
+
+msgid "Status Change"
+msgstr "Status Change"
+
+msgid "Status History"
+msgstr "Status History"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Submit Review"
+msgstr "Submit Review"
+
+msgid "Submit Your Review"
+msgstr "Submit Your Review"
+
+msgid "Submitted"
+msgstr "Submitted"
+
+msgid "Submitted:"
+msgstr "Submitted:"
+
+msgid "System"
+msgstr "System"
+
+msgid "System Statistics"
+msgstr "System Statistics"
+
+msgid "System Statistics and Analytics"
+msgstr "System Statistics and Analytics"
+
+msgid "Take Action"
+msgstr "Take Action"
+
+msgid "The category this review is for"
+msgstr "The category this review is for"
+
+msgid "This action cannot be undone. All review assignments will be removed."
+msgstr "This action cannot be undone. All review assignments will be removed."
+
+msgid "This article cannot be edited in its current status."
+msgstr "This article cannot be edited in its current status."
+
+msgid "This note will be visible to the author"
+msgstr "This note will be visible to the author"
+
+msgid "Timestamp"
+msgstr "Timestamp"
+
+msgid "Title (English):"
+msgstr "Title (English):"
+
+msgid "Title (Russian):"
+msgstr "Title (Russian):"
+
+msgid "Title (Uzbek):"
+msgstr "Title (Uzbek):"
+
+msgid "Title cannot be empty."
+msgstr "Title cannot be empty."
+
+msgid "Title cannot exceed 300 characters."
+msgstr "Title cannot exceed 300 characters."
+
+msgid "To Status"
+msgstr "To Status"
+
+msgid "Top Reviewers"
+msgstr "Top Reviewers"
+
+msgid "Total Reviews"
+msgstr "Total Reviews"
+
+msgid "Total Users"
+msgstr "Total Users"
+
+msgid "Total selected:"
+msgstr "Total selected:"
+
+msgid ""
+"Type a keyword and click Add (or press Enter). You can add as many as you "
+"want."
+msgstr ""
+"Type a keyword and click Add (or press Enter). You can add as many as you "
+"want."
+
+msgid "Updated"
+msgstr "Updated"
+
+msgid "Upload rules as .txt file (optional, max 5MB)"
+msgstr "Upload rules as .txt file (optional, max 5MB)"
+
+msgid "Use this for rejection or change requests (optional)"
+msgstr "Use this for rejection or change requests (optional)"
+
+msgid "User Management Statistics"
+msgstr "User Management Statistics"
+
+msgid "Username:"
+msgstr "Username:"
+
+msgid "Users by Role"
+msgstr "Users by Role"
+
+msgid "View All"
+msgstr "View All"
+
+msgid "View Article"
+msgstr "View Article"
+
+msgid "View Full Article"
+msgstr "View Full Article"
+
+msgid "View details"
+msgstr "View details"
+
+msgid "Waiting for reviewer approval"
+msgstr "Waiting for reviewer approval"
+
+msgid "Waiting for reviewer submissions"
+msgstr "Waiting for reviewer submissions"
+
+msgid "Write article content in English (optional)"
+msgstr "Write article content in English (optional)"
+
+msgid "Write article content in Russian (optional)"
+msgstr "Write article content in Russian (optional)"
+
+msgid "Write article content in Uzbek"
+msgstr "Write article content in Uzbek"
+
+msgid "Write your review comments..."
+msgstr "Write your review comments..."
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "Yes, Delete This Reviewer"
+msgstr "Yes, Delete This Reviewer"
+
+msgid "You are about to delete the reviewer:"
+msgstr "You are about to delete the reviewer:"
+
+msgid "You are not assigned to review this article."
+msgstr "You are not assigned to review this article."
+
+msgid "You can review this article for the following categories:"
+msgstr "You can review this article for the following categories:"
+
+msgid "You do not have permission to access the admin panel."
+msgstr "You do not have permission to access the admin panel."
+
+msgid "You don't have any notifications yet."
+msgstr "You don't have any notifications yet."
+
+msgid "You have already reviewed this article."
+msgstr "You have already reviewed this article."
+
+msgid "You have not reviewed any articles yet."
+msgstr "You have not reviewed any articles yet."
+
+msgid "Your Comment"
+msgstr "Your Comment"
+
+msgid "Your Decision"
+msgstr "Your Decision"
+
+msgid "Your Feedback"
+msgstr "Your Feedback"
+
+msgid "Your Recent Reviews"
+msgstr "Your Recent Reviews"
+
+msgid "[%(site_name)s] Article assigned for review: %(title)s"
+msgstr "[%(site_name)s] Article assigned for review: %(title)s"
+
+msgid "[%(site_name)s] Article published: %(title)s"
+msgstr "[%(site_name)s] Article published: %(title)s"
+
+msgid "[%(site_name)s] Article resubmitted: %(title)s"
+msgstr "[%(site_name)s] Article resubmitted: %(title)s"
+
+msgid "[%(site_name)s] Changes requested for your article: %(title)s"
+msgstr "[%(site_name)s] Changes requested for your article: %(title)s"
+
+msgid "[%(site_name)s] New article assigned for review: %(title)s"
+msgstr "[%(site_name)s] New article assigned for review: %(title)s"
+
+msgid "[%(site_name)s] New article submitted: %(title)s"
+msgstr "[%(site_name)s] New article submitted: %(title)s"
+
+msgid "[%(site_name)s] Review update for your article: %(title)s"
+msgstr "[%(site_name)s] Review update for your article: %(title)s"
+
+msgid "[%(site_name)s] You have been assigned as a Reviewer"
+msgstr "[%(site_name)s] You have been assigned as a Reviewer"
+
+msgid "[%(site_name)s] Your article has been published: %(title)s"
+msgstr "[%(site_name)s] Your article has been published: %(title)s"
+
+msgid "[%(site_name)s] Your article has been rejected: %(title)s"
+msgstr "[%(site_name)s] Your article has been rejected: %(title)s"
+
+msgid "ago"
+msgstr "ago"
+
+msgid "assignment(s)"
+msgstr "assignment(s)"
+
+msgid "minimum 1 required"
+msgstr "minimum 1 required"
+
+msgid "pending"
+msgstr "pending"
+
+msgid "unread notifications"
+msgstr "unread notifications"
+
+msgid "using Django & Bootstrap"
+msgstr "using Django & Bootstrap"
+
+msgid " Comment: %(comment)s"
+msgstr " Comment: %(comment)s"
+
+msgid " Feedback: %(reason)s"
+msgstr " Feedback: %(reason)s"
+
+msgid " Reason: %(reason)s"
+msgstr " Reason: %(reason)s"
+
+msgid "%(count)d article(s) published."
+msgstr "%(count)d article(s) published."
+
+msgid "%(count)d article(s) rejected."
+msgstr "%(count)d article(s) rejected."
+
+msgid "%(count)d article(s) reset to draft."
+msgstr "%(count)d article(s) reset to draft."
+
+msgid "%(count)d article(s) sent to review."
+msgstr "%(count)d article(s) sent to review."
+
+msgid "%(count)d reviewer(s) assigned."
+msgstr "%(count)d reviewer(s) assigned."
+
+msgid "Access denied. Reviewers only."
+msgstr "Access denied. Reviewers only."
+
+msgid "Admin Decision At"
+msgstr "Admin Decision At"
+
+msgid "Admin Decision By"
+msgstr "Admin Decision By"
+
+msgid "Admin Note"
+msgstr "Admin Note"
+
+msgid "Admin can override policy and publish/reject directly"
+msgstr "Admin can override policy and publish/reject directly"
+
+msgid "Administrator"
+msgstr "Administrator"
+
+msgid "Allow Admin Override"
+msgstr "Allow Admin Override"
+
+msgid "Approve"
+msgstr "Approve"
+
+msgid "Approved"
+msgstr "Approved"
+
+msgid "Article \"%(title)s\" has been published!"
+msgstr "Article \"%(title)s\" has been published!"
+
+msgid "Article \"%(title)s\" has been resubmitted for review."
+msgstr "Article \"%(title)s\" has been resubmitted for review."
+
+msgid "Article \"%(title)s\" has been submitted for admin review."
+msgstr "Article \"%(title)s\" has been submitted for admin review."
+
+msgid "Article For Review"
+msgstr "Article For Review"
+
+msgid "Article Published"
+msgstr "Article Published"
+
+msgid "Article Resubmitted"
+msgstr "Article Resubmitted"
+
+msgid "Article Submitted"
+msgstr "Article Submitted"
+
+msgid "Article cannot be published in its current status."
+msgstr "Article cannot be published in its current status."
+
+msgid "Article cannot be rejected in its current status."
+msgstr "Article cannot be rejected in its current status."
+
+msgid "Article cannot be submitted in its current status."
+msgstr "Article cannot be submitted in its current status."
+
+msgid "Article has been published successfully."
+msgstr "Article has been published successfully."
+
+msgid "Article is blocked if rejections exceed this"
+msgstr "Article is blocked if rejections exceed this"
+
+msgid "Article is ready for publishing"
+msgstr "Article is ready for publishing"
+
+msgid "Article published successfully."
+msgstr "Article published successfully."
+
+msgid "Article rejected."
+msgstr "Article rejected."
+
+msgid "Article resubmitted after changes"
+msgstr "Article resubmitted after changes"
+
+msgid "Article sent to review successfully."
+msgstr "Article sent to review successfully."
+
+msgid "Article submitted successfully."
+msgstr "Article submitted successfully."
+
+msgid "Assigned Reviewers"
+msgstr "Assigned Reviewers"
+
+msgid "Auto-publish only works when resubmitting after changes requested."
+msgstr "Auto-publish only works when resubmitting after changes requested."
+
+msgid "Biography"
+msgstr "Biography"
+
+msgid "Blocked"
+msgstr "Blocked"
+
+msgid "Blocked: Too many rejections (%(rejections)d > %(max)d)"
+msgstr "Blocked: Too many rejections (%(rejections)d > %(max)d)"
+
+msgid "Cannot request changes for article in its current status."
+msgstr "Cannot request changes for article in its current status."
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Category Policies"
+msgstr "Category Policies"
+
+msgid "Category Policy"
+msgstr "Category Policy"
+
+msgid "Changes Requested"
+msgstr "Changes Requested"
+
+msgid "Changes requested by %(count)d reviewer(s)"
+msgstr "Changes requested by %(count)d reviewer(s)"
+
+msgid "Changes requested for %(count)d article(s)."
+msgstr "Changes requested for %(count)d article(s)."
+
+msgid "Changes requested for your article"
+msgstr "Changes requested for your article"
+
+msgid "Changes requested from author."
+msgstr "Changes requested from author."
+
+msgid "Comment"
+msgstr "Comment"
+
+msgid "Comment is required when rejecting."
+msgstr "Comment is required when rejecting."
+
+msgid "Comment is required when requesting changes."
+msgstr "Comment is required when requesting changes."
+
+msgid "Content (English)"
+msgstr "Content (English)"
+
+msgid "Content (Russian)"
+msgstr "Content (Russian)"
+
+msgid "Content (Uzbek)"
+msgstr "Content (Uzbek)"
+
+msgid "Decision"
+msgstr "Decision"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "General"
+msgstr "General"
+
+msgid "In Review"
+msgstr "In Review"
+
+msgid "Keyword"
+msgstr "Keyword"
+
+msgid "Keywords"
+msgstr "Keywords"
+
+msgid "Maqola tasdiqlandi va nashr qilindi."
+msgstr "Article approved and published."
+
+msgid "Maqola tasdiqlandi."
+msgstr "Article approved."
+
+msgid "Maximum Rejections Before Block"
+msgstr "Maximum Rejections Before Block"
+
+msgid "Minimum Approvals to Publish"
+msgstr "Minimum Approvals to Publish"
+
+msgid "Minimum Required Reviews"
+msgstr "Minimum Required Reviews"
+
+msgid "N/A - Article is not in review"
+msgstr "N/A - Article is not in review"
+
+msgid "Name (English)"
+msgstr "Name (English)"
+
+msgid "Name (Russian)"
+msgstr "Name (Russian)"
+
+msgid "Name (Uzbek)"
+msgstr "Name (Uzbek)"
+
+msgid "Needs more approvals: %(current)d/%(required)d"
+msgstr "Needs more approvals: %(current)d/%(required)d"
+
+msgid "Needs more reviews: %(current)d/%(required)d"
+msgstr "Needs more reviews: %(current)d/%(required)d"
+
+msgid "New article assigned for review"
+msgstr "New article assigned for review"
+
+msgid "New article submitted for review"
+msgstr "New article submitted for review"
+
+msgid "No eligible articles selected."
+msgstr "No eligible articles selected."
+
+msgid "No notifications"
+msgstr "No notifications"
+
+msgid "No pending articles selected."
+msgstr "No pending articles selected."
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Number of approval votes required"
+msgstr "Number of approval votes required"
+
+msgid "Only pending articles can be sent to review."
+msgstr "Only pending articles can be sent to review."
+
+msgid "Only the author can submit this article."
+msgstr "Only the author can submit this article."
+
+msgid "Optional deadline for reviews"
+msgstr "Optional deadline for reviews"
+
+msgid "Organization"
+msgstr "Organization"
+
+msgid "Pending Admin Review"
+msgstr "Pending Admin Review"
+
+msgid "Publishability"
+msgstr "Publishability"
+
+msgid "Published At"
+msgstr "Published At"
+
+msgid "Publish Articles"
+msgstr "Publish Articles"
+
+msgid "Read"
+msgstr "Read"
+
+msgid "Ready for publishing"
+msgstr "Ready for publishing"
+
+msgid "Ready to Publish"
+msgstr "Ready to Publish"
+
+msgid "Reject"
+msgstr "Reject"
+
+msgid "Reject Articles"
+msgstr "Reject Articles"
+
+msgid "Request Changes"
+msgstr "Request Changes"
+
+msgid "Request Changes from Author"
+msgstr "Request Changes from Author"
+
+msgid "Require Comment for Changes"
+msgstr "Require Comment for Changes"
+
+msgid "Require Comment for Rejection"
+msgstr "Require Comment for Rejection"
+
+msgid "Reset to Draft"
+msgstr "Reset to Draft"
+
+msgid "Review"
+msgstr "Review"
+
+msgid "Review Comment"
+msgstr "Review Comment"
+
+msgid "Review Deadline (Hours)"
+msgstr "Review Deadline (Hours)"
+
+msgid "Review In Progress"
+msgstr "Review In Progress"
+
+msgid "Review Status by Category"
+msgstr "Review Status by Category"
+
+msgid "Review Submitted"
+msgstr "Review Submitted"
+
+msgid "Review in progress"
+msgstr "Review in progress"
+
+msgid "Review received for your article"
+msgstr "Review received for your article"
+
+msgid "Reviewer"
+msgstr "Reviewer"
+
+msgid "Reviewer Assigned"
+msgstr "Reviewer Assigned"
+
+msgid "Reviewer Assignment"
+msgstr "Reviewer Assignment"
+
+msgid "Reviewer Dashboard"
+msgstr "Reviewer Dashboard"
+
+msgid "Reviewer feedback or comment"
+msgstr "Reviewer feedback or comment"
+
+msgid "Reviewer must provide comment when rejecting"
+msgstr "Reviewer must provide comment when rejecting"
+
+msgid "Reviewer must provide comment when requesting changes"
+msgstr "Reviewer must provide comment when requesting changes"
+
+msgid "Reviewers can only be assigned to pending or in-review articles."
+msgstr "Reviewers can only be assigned to pending or in-review articles."
+
+msgid "Reviewers who can review articles in this category"
+msgstr "Reviewers who can review articles in this category"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+msgid "Send to Review (from Pending Admin)"
+msgstr "Send to Review (from Pending Admin)"
+
+msgid "Status Changed"
+msgstr "Status Changed"
+
+msgid "This article cannot be reviewed in its current status."
+msgstr "This article cannot be reviewed in its current status."
+
+msgid "Title (English)"
+msgstr "Title (English)"
+
+msgid "Title (Russian)"
+msgstr "Title (Russian)"
+
+msgid "Title (Uzbek)"
+msgstr "Title (Uzbek)"
+
+msgid "Total reviews needed before decision"
+msgstr "Total reviews needed before decision"
+
+msgid "Upload article file (PDF, DOC, DOCX). Max 20MB."
+msgstr "Upload article file (PDF, DOC, DOCX). Max 20MB."
+
+msgid "You are not assigned to review this category."
+msgstr "You are not assigned to review this category."
+
+msgid "You have been assigned as a Reviewer"
+msgstr "You have been assigned as a Reviewer"
+
+msgid "You have been assigned to review an article"
+msgstr "You have been assigned to review an article"
+
+msgid "Your article has been published!"
+msgstr "Your article has been published!"
+
+msgid "Your article has been rejected"
+msgstr "Your article has been rejected"
+
+msgid "Your review has been submitted."
+msgstr "Your review has been submitted."

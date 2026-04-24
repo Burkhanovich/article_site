@@ -1,0 +1,178 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Article Management" %} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="article-manage-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{% trans "Article Management" %}</h2>
+        <span class="badge badge-danger badge-lg">
+            {% trans "Pending" %}: {{ pending_count }}
+        </span>
+    </div>
+    
+    <!-- Filter Form -->
+    <div class="card p-3 mb-4">
+        <form method="get" class="form-inline" data-test="filter-form">
+            <select name="status" class="form-control mr-2" data-test="status-filter">
+                <option value="">{% trans "All Status" %}</option>
+                {% for value, label in status_choices %}
+                <option value="{{ value }}" {% if current_status == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            
+            <input 
+                type="text" 
+                name="search" 
+                class="form-control mr-2" 
+                placeholder="{% trans 'Search articles...' %}"
+                value="{{ search }}"
+                data-test="search-input"
+            />
+            
+            <button type="submit" class="btn btn-secondary">
+                {% trans "Filter" %}
+            </button>
+            
+            {% if current_status or search %}
+            <a href="{% url 'admin_panel:article_manage' %}" class="btn btn-light ml-2">
+                {% trans "Clear" %}
+            </a>
+            {% endif %}
+        </form>
+    </div>
+    
+    <!-- Articles Table -->
+    {% if articles %}
+    <form method="post" action="{% url 'admin_panel:bulk_article_action' %}" class="mb-3">
+        {% csrf_token %}
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width: 30px;"></th>
+                        <th>{% trans "Title" %}</th>
+                        <th>{% trans "Author" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Created" %}</th>
+                        <th>{% trans "Submitted" %}</th>
+                        <th>{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for article in articles %}
+                    <tr data-test="article-row-{{ article.id }}">
+                        <td>
+                            <input type="checkbox" name="articles" value="{{ article.id }}" class="article-checkbox">
+                        </td>
+                        <td>
+                            <strong>{{ article.title_uz }}</strong>
+                            <br>
+                            <small class="text-muted">{{ article.title_ru }}</small>
+                        </td>
+                        <td>
+                            {{ article.author.get_full_name|default:article.author.username }}
+                            <br>
+                            <small class="text-muted">{{ article.author.email }}</small>
+                        </td>
+                        <td>
+                            {% if article.status == 'DRAFT' %}
+                            <span class="badge badge-secondary">{% trans "Draft" %}</span>
+                            {% elif article.status == 'PENDING_ADMIN' %}
+                            <span class="badge badge-danger">{% trans "Pending Admin" %}</span>
+                            {% elif article.status == 'IN_REVIEW' %}
+                            <span class="badge badge-info">{% trans "In Review" %}</span>
+                            {% elif article.status == 'CHANGES_REQUESTED' %}
+                            <span class="badge badge-warning">{% trans "Changes Requested" %}</span>
+                            {% elif article.status == 'REJECTED' %}
+                            <span class="badge badge-danger">{% trans "Rejected" %}</span>
+                            {% elif article.status == 'PUBLISHED' %}
+                            <span class="badge badge-success">{% trans "Published" %}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ article.created_at|date:"Y-m-d" }}</td>
+                        <td>
+                            {% if article.submitted_at %}
+                            {{ article.submitted_at|date:"Y-m-d H:i" }}
+                            {% else %}
+                            —
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'admin_panel:article_action' article.slug %}" 
+                               class="btn btn-sm btn-primary"
+                               data-test="article-action-{{ article.id }}">
+                                {% trans "Review" %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Bulk Actions -->
+        <div class="card p-3 mt-3">
+            <div class="form-inline">
+                <select name="action" class="form-control mr-2" data-test="bulk-action">
+                    <option value="">{% trans "Select bulk action..." %}</option>
+                    <option value="publish">{% trans "Publish Selected" %}</option>
+                    <option value="reject">{% trans "Reject Selected" %}</option>
+                    <option value="request_changes">{% trans "Request Changes on Selected" %}</option>
+                </select>
+                
+                <button type="submit" class="btn btn-warning" data-test="bulk-submit">
+                    {% trans "Apply" %}
+                </button>
+            </div>
+        </div>
+    </form>
+    
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1{% if current_status %}&status={{ current_status }}{% endif %}{% if search %}&search={{ search }}{% endif %}">
+                    {% trans "First" %}
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if current_status %}&status={{ current_status }}{% endif %}{% if search %}&search={{ search }}{% endif %}">
+                    {% trans "Previous" %}
+                </a>
+            </li>
+            {% endif %}
+            
+            <li class="page-item active">
+                <span class="page-link">
+                    {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+            
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if current_status %}&status={{ current_status }}{% endif %}{% if search %}&search={{ search }}{% endif %}">
+                    {% trans "Next" %}
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if current_status %}&status={{ current_status }}{% endif %}{% if search %}&search={{ search }}{% endif %}">
+                    {% trans "Last" %}
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+    
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        {% trans "No articles found." %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

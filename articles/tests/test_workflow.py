@@ -7,7 +7,6 @@ Tests cover the complete editorial workflow including:
 - Author resubmit auto-publishes article
 - Status transitions work correctly
 """
-import pytest
 from django.test import TestCase, override_settings
 from django.utils import timezone
 from unittest.mock import patch, MagicMock
@@ -93,7 +92,6 @@ class WorkflowTestBase(TestCase):
             author=author,
             status=status,
         )
-        article.categories.add(self.category)
         return article
 
 

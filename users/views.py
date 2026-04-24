@@ -83,6 +83,22 @@ class CustomLoginView(LoginView):
         """Redirect based on user role and rules acceptance."""
         user = self.request.user
 
+        # Redirect reviewer users to reviewer dashboard
+        if user.is_reviewer:
+            messages.success(
+                self.request,
+                f'Welcome, {user.username}! You are logged in as a Reviewer.'
+            )
+            return reverse_lazy('articles:reviewer_dashboard')
+
+        # Redirect admin users to admin panel
+        if user.is_admin_user:
+            messages.success(
+                self.request,
+                'Admin panelga xush kelibsiz! / Welcome to Admin Panel!'
+            )
+            return reverse_lazy('admin_panel:dashboard')
+
         # Check if author hasn't accepted rules
         if user.is_author and not user.has_accepted_rules:
             messages.info(
@@ -234,7 +250,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             # Recent articles
             context['recent_articles'] = Article.objects.filter(
                 author=user
-            ).select_related('author').prefetch_related('categories').order_by('-created_at')[:5]
+            ).select_related('author').order_by('-created_at')[:5]
 
             # Recent reviews received on user's articles
             context['recent_reviews_received'] = Review.objects.filter(

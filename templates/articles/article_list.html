@@ -40,15 +40,6 @@
         {% for article in articles %}
             <div class="col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm">
-                    <!-- Cover Image -->
-                    {% if article.cover_image %}
-                        <img src="{{ article.cover_image.url }}" class="card-img-top article-cover" alt="{{ article.title }}">
-                    {% else %}
-                        <div class="article-cover d-flex align-items-center justify-content-center bg-secondary text-white">
-                            <i class="bi bi-file-earmark-text" style="font-size: 3rem;"></i>
-                        </div>
-                    {% endif %}
-
                     <div class="card-body">
                         <h5 class="card-title">
                             {% if article.article_file %}

@@ -28,6 +28,11 @@ def get_site_name() -> str:
     return getattr(settings, 'SITE_NAME', 'Article Publishing Platform')
 
 
+def get_admin_article_link(article) -> str:
+    """Build admin panel URL for article action page."""
+    return reverse('admin_panel:article_action', kwargs={'slug': article.slug})
+
+
 def send_email_notification(
     user: CustomUser,
     subject: str,
@@ -191,8 +196,7 @@ def notify_reviewer_assigned(
 
 def notify_article_for_review(
     reviewer: CustomUser,
-    article,
-    categories: List
+    article
 ) -> bool:
     """
     Notify a reviewer that an article is ready for their review.
@@ -200,24 +204,20 @@ def notify_article_for_review(
     Args:
         reviewer: The reviewer to notify
         article: The Article object to be reviewed
-        categories: Categories this reviewer should review for
 
     Returns:
         True if notifications were sent successfully
     """
     site_url = get_site_url()
     article_url = f"{site_url}{article.get_absolute_url()}"
-    category_names = ', '.join([cat.name_uz for cat in categories])
 
     # Create in-site notification
     title = str(_("New article assigned for review"))
     message = str(_(
-        "Article '%(title)s' by %(author)s has been assigned for your review. "
-        "Categories: %(categories)s."
+        "Article '%(title)s' by %(author)s has been assigned for your review."
     ) % {
         'title': article.title_uz,
         'author': article.author.username,
-        'categories': category_names,
     })
 
     create_notification(
@@ -231,8 +231,6 @@ def notify_article_for_review(
     # Send email
     context = {
         'article': article,
-        'categories': categories,
-        'category_names': category_names,
         'article_url': article_url,
     }
 
@@ -261,7 +259,7 @@ def notify_review_submitted(
     Args:
         author: The article author to notify
         article: The Article object
-        review: The Review object
+        review: The Review object (can be None for automatic approvals)
         reviewer: The reviewer who submitted the review
 
     Returns:
@@ -270,27 +268,40 @@ def notify_review_submitted(
     site_url = get_site_url()
     article_url = f"{site_url}{article.get_absolute_url()}"
 
-    # Determine decision text
-    decision_texts = {
-        'APPROVE': _('Approved'),
-        'CHANGES': _('Changes Requested'),
-        'REJECT': _('Rejected'),
-    }
-    decision_text = decision_texts.get(review.decision, review.decision)
+    # Handle case where review might be None (auto-approval)
+    if review:
+        # Determine decision text
+        decision_texts = {
+            'APPROVE': _('Approved'),
+            'CHANGES': _('Changes Requested'),
+            'REJECT': _('Rejected'),
+        }
+        decision_text = decision_texts.get(review.decision, review.decision)
+        category_text = review.category.name_uz if review.category else 'General'
 
-    # Create in-site notification
-    title = str(_("Review received for your article"))
-    message = str(_(
-        "Your article '%(title)s' has received a review. "
-        "Decision: %(decision)s. Category: %(category)s."
-    ) % {
-        'title': article.title_uz,
-        'decision': decision_text,
-        'category': review.category.name_uz,
-    })
+        # Create in-site notification
+        title = str(_("Review received for your article"))
+        message = str(_(
+            "Your article '%(title)s' has received a review. "
+            "Decision: %(decision)s."
+        ) % {
+            'title': article.title_uz,
+            'decision': decision_text,
+        })
 
-    if review.comment:
-        message += str(_(" Comment: %(comment)s") % {'comment': review.comment[:200]})
+        if review.comment:
+            message += str(_(" Comment: %(comment)s") % {'comment': review.comment[:200]})
+    else:
+        # Auto-approval without explicit review object
+        decision_text = str(_('Approved'))
+        category_text = 'General'
+        title = str(_("Review submitted for your article"))
+        message = str(_(
+            "Your article '%(title)s' has been approved by reviewer %(reviewer)s."
+        ) % {
+            'title': article.title_uz,
+            'reviewer': reviewer.get_full_name() or reviewer.username,
+        })
 
     create_notification(
         user=author,
@@ -523,7 +534,7 @@ def notify_admin_article_submitted(article, author: CustomUser) -> int:
             notification_type=Notification.NotificationType.ARTICLE_SUBMITTED,
             title=title,
             message=message,
-            link=article.get_absolute_url(),
+            link=get_admin_article_link(article),
         )
 
         # Send email notification
@@ -635,12 +646,14 @@ def notify_article_resubmitted(article, recipients: list) -> int:
             'author': article.author.username,
         })
 
+        link = get_admin_article_link(article) if user.is_admin_user else article.get_absolute_url()
+
         create_notification(
             user=user,
             notification_type=Notification.NotificationType.ARTICLE_RESUBMITTED,
             title=title,
             message=message,
-            link=article.get_absolute_url(),
+            link=link,
         )
 
         # Send email notification
@@ -760,7 +773,7 @@ def notify_all_parties_published(article) -> int:
 
 def notify_reviewers_for_article(article, admin_user: CustomUser = None) -> int:
     """
-    Notify all eligible reviewers when an article is sent to review.
+    Notify all assigned reviewers when an article is sent to review.
 
     Args:
         article: The Article object sent to review
@@ -771,28 +784,15 @@ def notify_reviewers_for_article(article, admin_user: CustomUser = None) -> int:
     """
     notified_count = 0
 
-    # Get all categories of the article
-    categories = article.categories.all()
+    # Get all reviewers assigned to this article
+    reviewer_assignments = article.reviewer_assignments.filter(
+        status='PENDING'
+    ).select_related('reviewer')
 
-    # Track which reviewers have been notified
-    notified_reviewers = set()
-
-    for category in categories:
-        # Get reviewers assigned to this category
-        reviewers = category.reviewers.filter(role=CustomUser.UserRole.REVIEWER)
-
-        for reviewer in reviewers:
-            if reviewer.id not in notified_reviewers:
-                # Get all categories this reviewer can review for this article
-                reviewer_categories = [
-                    cat for cat in categories
-                    if reviewer.can_review_category(cat)
-                ]
-
-                if reviewer_categories:
-                    notify_article_for_review(reviewer, article, reviewer_categories)
-                    notified_reviewers.add(reviewer.id)
-                    notified_count += 1
+    for assignment in reviewer_assignments:
+        reviewer = assignment.reviewer
+        notify_article_for_review(reviewer, article)
+        notified_count += 1
 
     logger.info(f"Notified {notified_count} reviewers for article: {article.title_uz}")
     return notified_count

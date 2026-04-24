@@ -1,0 +1,118 @@
+{% extends "admin_panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} - {{ block.super }}{% endblock %}
+
+{% block admin_content %}
+<div class="reviewer-form-content">
+    <h2 class="mb-4">{{ title }}</h2>
+    
+    <form method="post" class="needs-validation">
+        {% csrf_token %}
+        
+        <div class="card p-4">
+            <!-- User Information -->
+            <h4 class="mb-3">{% trans "Basic Information" %}</h4>
+            
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <div class="invalid-feedback d-block">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                        <div class="invalid-feedback d-block">{{ form.first_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                        <div class="invalid-feedback d-block">{{ form.last_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="invalid-feedback d-block">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.organization.id_for_label }}">{{ form.organization.label }}</label>
+                {{ form.organization }}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.bio.id_for_label }}">{{ form.bio.label }}</label>
+                {{ form.bio }}
+            </div>
+            
+            <!-- Password Fields (for creation only) -->
+            {% if form.password1 %}
+            <hr>
+            <h4 class="mb-3">{% trans "Password" %}</h4>
+            
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                <div class="invalid-feedback d-block">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                <div class="invalid-feedback d-block">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <!-- Status (for editing) -->
+            {% if form.is_active %}
+            <hr>
+            <div class="form-group form-check">
+                {{ form.is_active }}
+                <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
+                    {{ form.is_active.label }}
+                </label>
+            </div>
+            {% endif %}
+            
+            <!-- Non-field Errors -->
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <!-- Buttons -->
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-success" data-test="submit-btn">
+                    {% trans "Save" %}
+                </button>
+                <a href="{% url 'admin_panel:reviewer_list' %}" class="btn btn-secondary">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Admin Panel" %} - {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-sidebar {
+        background: linear-gradient(135deg, #1A2421 0%, #2E5240 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        position: sticky;
+        top: 20px;
+    }
+    
+    .admin-sidebar h3 {
+        color: #C8D5CB;
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .admin-sidebar a {
+        color: rgba(200, 213, 203, 0.85);
+        display: block;
+        padding: 10px 0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+        padding-left: 10px;
+    }
+    
+    .admin-sidebar a:hover,
+    .admin-sidebar a.active {
+        color: #D4772C;
+        background: rgba(212, 119, 44, 0.1);
+        border-left-color: #D4772C;
+    }
+    
+    .stat-card {
+        background: var(--card-bg, #FAFBFA);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(26, 36, 33, 0.06);
+        border-left: 4px solid #3D6B4F;
+    }
+    
+    .stat-card h5 {
+        color: var(--text-secondary, #5A6B5E);
+        font-size: 13px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-primary, #1A2421);
+    }
+    
+    .stat-card.danger {
+        border-left-color: #C04E3A;
+    }
+    
+    .stat-card.success {
+        border-left-color: #4A8C5C;
+    }
+    
+    .stat-card.warning {
+        border-left-color: #D4982C;
+    }
+    
+    .stat-card.info {
+        border-left-color: #3B8686;
+    }
+    
+    .admin-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-container py-4">
+    <h1 class="mb-4">{% trans "Admin Control Panel" %}</h1>
+    
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="admin-sidebar">
+                <h3>{% trans "Dashboard" %}</h3>
+                <a href="{% url 'admin_panel:dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    {% trans "Overview" %}
+                </a>
+                
+                <h3 class="mt-4">{% trans "Reviewers" %}</h3>
+                <a href="{% url 'admin_panel:reviewer_list' %}" class="{% if request.resolver_match.url_name == 'reviewer_list' %}active{% endif %}">
+                    {% trans "Manage Reviewers" %}
+                </a>
+                <a href="{% url 'admin_panel:reviewer_create' %}">
+                    {% trans "Add New Reviewer" %}
+                </a>
+                
+                <h3 class="mt-4">{% trans "Journals" %}</h3>
+                <a href="{% url 'admin_panel:journal_list' %}" class="{% if request.resolver_match.url_name == 'journal_list' %}active{% endif %}">
+                    {% trans "Manage Journals" %}
+                </a>
+                <a href="{% url 'admin_panel:journal_create' %}">
+                    {% trans "Add New Journal" %}
+                </a>
+                
+                <h3 class="mt-4">{% trans "Articles" %}</h3>
+                <a href="{% url 'admin_panel:article_manage' %}" class="{% if request.resolver_match.url_name == 'article_manage' %}active{% endif %}">
+                    {% trans "Article Management" %}
+                </a>
+                
+                <h3 class="mt-4">{% trans "System" %}</h3>
+                <a href="{% url 'admin_panel:system_stats' %}" class="{% if request.resolver_match.url_name == 'system_stats' %}active{% endif %}">
+                    {% trans "Statistics" %}
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="col-md-9">
+            {% block admin_content %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
