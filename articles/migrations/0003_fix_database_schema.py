@@ -8,25 +8,28 @@ from django.db import migrations, connection
 
 def drop_column_if_exists(apps, schema_editor):
     """
-    Drop legacy columns if they exist. Safe for both existing and fresh databases.
+    Drop legacy columns if they exist. Safe for both SQLite and PostgreSQL.
     """
     columns_to_drop = ['title', 'content', 'cover_image', 'rejection_reason', 'reviewed_at', 'reviewed_by_id']
 
-    # Check which columns exist
+    db_engine = connection.vendor  # 'sqlite' or 'postgresql'
+
     with connection.cursor() as cursor:
-        # Get existing columns for articles_article table
-        cursor.execute("PRAGMA table_info(articles_article);")
-        existing_columns = {row[1] for row in cursor.fetchall()}
+        if db_engine == 'sqlite':
+            cursor.execute("PRAGMA table_info(articles_article);")
+            existing_columns = {row[1] for row in cursor.fetchall()}
+        else:
+            cursor.execute(
+                "SELECT column_name FROM information_schema.columns "
+                "WHERE table_name = 'articles_article';"
+            )
+            existing_columns = {row[0] for row in cursor.fetchall()}
 
         for column in columns_to_drop:
             if column in existing_columns:
-                # SQLite doesn't support DROP COLUMN directly in older versions
-                # This is a no-op for fresh databases
                 try:
-                    # For SQLite 3.35.0+, DROP COLUMN is supported
                     cursor.execute(f"ALTER TABLE articles_article DROP COLUMN {column};")
                 except Exception:
-                    # Silently ignore if column doesn't exist or can't be dropped
                     pass
 
 
