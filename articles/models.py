@@ -533,7 +533,8 @@ class Review(models.Model):
         unique_together = ['article', 'reviewer']
 
     def __str__(self):
-        return f"{self.reviewer.username} - {self.article.title_uz[:30]} ({self.category.name_uz})"
+        category_name = self.category.name_uz if self.category else 'No Category'
+        return f"{self.reviewer.username} - {self.article.title_uz[:30]} ({category_name})"
 
     def clean(self):
         from django.core.exceptions import ValidationError

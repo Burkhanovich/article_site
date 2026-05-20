@@ -20,7 +20,7 @@ class ArticleForm(forms.ModelForm):
 
     # Journal selection fields
     journal = forms.ModelChoiceField(
-        queryset=Journal.objects.filter(is_active=True).order_by('-year', '-number'),
+        queryset=Journal.objects.none(),
         widget=forms.Select(attrs={'class': 'form-select'}),
         label=_('Journal'),
         required=True,
@@ -59,6 +59,11 @@ class ArticleForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        # Evaluate journal queryset at request time, not class definition time
+        self.fields['journal'].queryset = Journal.objects.filter(
+            is_active=True
+        ).order_by('-year', '-number')
 
         # Set translated labels
         self.fields['title_uz'].label = _('Title')

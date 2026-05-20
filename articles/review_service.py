@@ -134,8 +134,9 @@ def _update_article_status(article, reviewer, decision, comment):
             Article.ArticleStatus.IN_REVIEW,
         ]:
             article.status = Article.ArticleStatus.REJECTED
+            article.admin_decision_by = reviewer
             article.admin_decision_at = timezone.now()
-            article.save(update_fields=['status', 'admin_decision_at', 'updated_at'])
+            article.save(update_fields=['status', 'admin_decision_by', 'admin_decision_at', 'updated_at'])
             article._log_status_change(
                 old_status,
                 Article.ArticleStatus.REJECTED,

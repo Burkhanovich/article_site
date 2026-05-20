@@ -308,10 +308,6 @@ def search_published_articles(query: str, language: str = 'uz'):
     # Search in keywords
     q_objects |= Q(keywords__name__icontains=query)
 
-    # Search in category names
-    cat_name_field = f'categories__name_{language}'
-    q_objects |= Q(**{f'{cat_name_field}__icontains': query})
-
     return Article.objects.filter(
         status=Article.ArticleStatus.PUBLISHED
     ).filter(q_objects).distinct()

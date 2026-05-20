@@ -158,7 +158,7 @@ class ArticleDetailView(DetailView):
         context['can_submit'] = (
             self.request.user.is_authenticated and
             self.request.user == article.author and
-            article.is_draft
+            article.can_be_submitted
         )
 
         # Determine if user can review
@@ -366,7 +366,8 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                     messages.warning(self.request, message)
             return response
         else:
-            form.instance.status = Article.ArticleStatus.DRAFT
+            if form.instance.status != Article.ArticleStatus.CHANGES_REQUESTED:
+                form.instance.status = Article.ArticleStatus.DRAFT
             messages.success(
                 self.request,
                 _('Article "%(title)s" updated and saved as draft.') % {

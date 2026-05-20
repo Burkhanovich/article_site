@@ -405,25 +405,22 @@ class BulkArticleActionView(AdminAccessMixin, FormView):
         note = form.cleaned_data.get('note', '')
         article_ids = self.request.POST.getlist('article_ids')
         articles = Article.objects.filter(id__in=article_ids)
-        
+
         count = 0
         for article in articles:
             if action == 'publish':
-                article.status = Article.ArticleStatus.PUBLISHED
-                article.published_at = timezone.now()
+                success, _ = ArticleWorkflow.publish_article(article, self.request.user, note)
             elif action == 'reject':
-                article.status = Article.ArticleStatus.REJECTED
-                article.admin_note = note
+                success, _ = ArticleWorkflow.reject_article(article, self.request.user, note)
             elif action == 'request_changes':
-                article.status = Article.ArticleStatus.CHANGES_REQUESTED
-                article.admin_note = note
-            
-            article.admin_decision_by = self.request.user
-            article.admin_decision_at = timezone.now()
-            article.save()
-            count += 1
-        
-        messages.success(self.request, _('Action performed on {} articles.'.format(count)))
+                success, _ = ArticleWorkflow.request_changes_from_author(article, self.request.user, note)
+            else:
+                success = False
+
+            if success:
+                count += 1
+
+        messages.success(self.request, _('Action performed on %(count)d articles.') % {'count': count})
         return redirect(self.get_success_url())
 
 
