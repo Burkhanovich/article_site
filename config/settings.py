@@ -181,8 +181,9 @@ SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-# Production security settings (enable when deploying)
-if not DEBUG:
+# Production security settings (only when HTTPS is configured)
+HTTPS_ENABLED = config('HTTPS_ENABLED', default=False, cast=bool)
+if not DEBUG and HTTPS_ENABLED:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
