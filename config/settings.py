@@ -220,4 +220,4 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@articleplatfo
 
 # Site URL for email links
 SITE_URL = config('SITE_URL', default='http://localhost:8000')
-SITE_NAME = config('SITE_NAME', default='Article Publishing Platform')
+SITE_NAME = config('SITE_NAME', default='Texnika Yulduzlari')

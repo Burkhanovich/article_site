@@ -271,6 +271,10 @@ class ArticleWorkflow:
         Reviewer approves the article.
         When approved, the article is automatically published.
 
+        NOTE: Auto-publish happens on the FIRST approval by design (see README).
+        CategoryPolicy.min_approvals_to_publish is intentionally NOT enforced
+        here; it is reserved for a future multi-approval policy.
+
         Args:
             article: The Article instance
             reviewer: The reviewer user

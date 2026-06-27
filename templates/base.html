@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}Maqola Publishing Platform{% endblock %}</title>
+    <title>{% block title %}Texnika Yulduzlari{% endblock %}</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
@@ -685,7 +685,7 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'core:home' %}">
-                <img src="{% static 'images/logo.svg' %}" alt="Maqola" style="height: 40px; width: auto;">
+                <i class="bi bi-stars"></i> Texnika Yulduzlari
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -872,7 +872,7 @@
             <div class="row mb-4">
                 <div class="col-md-4 mb-3 mb-md-0">
                     <div class="footer-title">
-                        <i class="bi bi-pencil-square"></i> Maqola
+                        <i class="bi bi-stars"></i> Texnika Yulduzlari
                     </div>
                     <p class="text-muted small mb-0">
                         {% trans "Professional article publishing platform for quality content." %}
@@ -898,7 +898,7 @@
             <div class="footer-divider"></div>
             <div class="text-center pb-3">
                 <p class="text-muted small mb-2">
-                    &copy; 2026 Maqola. {% trans "All rights reserved." %}
+                    &copy; 2026 Texnika Yulduzlari. {% trans "All rights reserved." %}
                 </p>
                 <small class="text-muted">
                     {% trans "Built with" %} <i class="bi bi-heart-fill text-danger"></i> 

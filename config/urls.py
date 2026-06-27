@@ -45,6 +45,6 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Custom admin site headers
-admin.site.site_header = "Article Platform Administration"
-admin.site.site_title = "Article Platform Admin"
-admin.site.index_title = "Welcome to Article Platform Administration"
+admin.site.site_header = "Texnika Yulduzlari Administration"
+admin.site.site_title = "Texnika Yulduzlari Admin"
+admin.site.index_title = "Welcome to Texnika Yulduzlari Administration"

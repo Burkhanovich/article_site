@@ -25,7 +25,7 @@ def get_site_url() -> str:
 
 def get_site_name() -> str:
     """Get the site name from settings."""
-    return getattr(settings, 'SITE_NAME', 'Article Publishing Platform')
+    return getattr(settings, 'SITE_NAME', 'Texnika Yulduzlari')
 
 
 def get_admin_article_link(article) -> str:

@@ -57,6 +57,14 @@ class Category(models.Model):
 class CategoryPolicy(models.Model):
     """
     Per-category workflow policy for article review.
+
+    NOTE: The current published workflow auto-publishes an article as soon as
+    ONE assigned reviewer approves it (see ArticleWorkflow.reviewer_approve).
+    This is the intended product behaviour documented in README.md
+    ("taqrizchi tasdiqlasa - maqola avtomatik nashr bo'ladi").
+    Therefore the threshold fields below (min_approvals_to_publish,
+    min_required_reviews, max_rejections_before_block) are NOT enforced by the
+    auto-publish path and are kept for future, stricter review policies only.
     """
     category = models.OneToOneField(
         Category,
